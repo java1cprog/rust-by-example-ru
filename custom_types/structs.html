@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Structures | Rust by Example</title>
+        <title>Structures | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="3.1" data-basepath=".." data-revision="1468441231454">
+    <div class="book" data-level="3.1" data-basepath=".." data-revision="1470110693366">
     
 
 <div class="book-summary">
@@ -2854,7 +2854,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Rust by Example</a>
+        <a href="../" >Rust на примерах</a>
     </h1>
 </div>
 
@@ -2865,29 +2865,28 @@
                     <section class="normal" id="section-gitbook_25">
                     
                         <h2 id="31-structures">3.1 Structures</h2>
-<p>There are three types of structures (&quot;structs&quot;) that can be created using the
-<code>struct</code> keyword:</p>
+<p>Существует три типа структур, которые можно создать с помощью ключевого слова <code>struct</code>:</p>
 <ul>
-<li>Tuple structs, which are, basically, named tuples.</li>
-<li>The classic <a href="http://en.wikipedia.org/wiki/Struct_(C_programming_language)" target="_blank">C structs</a></li>
-<li>Unit structs, which are field-less, are useful for generics.</li>
+<li>Кортежная структура, которая, в общем, является именованным кортежем.</li>
+<li>Классическую <a href="http://en.wikipedia.org/wiki/Struct_(C_programming_language)" target="_blank">C структуру</a></li>
+<li>Единичную (unit) структуру, которая не имеет полей, но может быть полезна для дженериков.</li>
 </ul>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// A unit struct
+<div id="editor"><pre>// Единичная структура
 struct Nil;
 
-// A tuple struct
+// Кортежная структура
 struct Pair(i32, f64);
 
-// A struct with two fields
+// Структура с двумя полями
 struct Point {
     x: f64,
     y: f64,
 }
 
-// Structs can be reused as fields of another struct
+// Структуры могут быть использованы как поля другой структуры
 #[allow(dead&#95;code)]
 struct Rectangle {
     p1: Point,
@@ -2895,28 +2894,28 @@ struct Rectangle {
 }
 
 fn main() {
-    // Instantiate a &#96;Point&#96;
+    // Создаем связь со структурой &#96;Point&#96;
     let point: Point = Point { x: 0.3, y: 0.4 };
 
-    // Access the fields of the point
+    // Получаем доступ к полям структуры &#96;point&#96;
     println!(&quot;point coordinates: ({}, {})&quot;, point.x, point.y);
 
-    // Destructure the point using a &#96;let&#96; binding
+    // Деструктурируем &#96;point&#96; создавая связь с помощью &#96;let&#96;
     let Point { x: my&#95;x, y: my&#95;y } = point;
 
     let &#95;rectangle = Rectangle {
-        // struct instantiation is an expression too
+        // инициализация стуктуры так же является выражением
         p1: Point { x: my&#95;y, y: my&#95;x },
         p2: point,
     };
 
-    // Instantiate a unit struct
+    // Создаем связь с единичной структурой
     let &#95;nil = Nil;
 
-    // Instantiate a tuple struct
+    // Создаем связь с кортежной структурой
     let pair = Pair(1, 0.1);
 
-    // Destructure a tuple struct
+    // Деструктурируем кортежную структуру
     let Pair(integer, decimal) = pair;
 
     println!(&quot;pair contains {:?} and {:?}&quot;, integer, decimal);
@@ -2924,14 +2923,13 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<h3 id="activity">Activity</h3>
+<h3 id="">Задание</h3>
 <ol>
-<li>Add a function <code>rect_area</code> which calculates the area of a rectangle (try 
-using nested destructuring). </li>
-<li>Add a function <code>square</code> which takes a <code>Point</code> and a <code>f32</code> as arguments, and returns a <code>Rectangle</code> with its lower left corner on the point, and a width and height corresponding to the <code>f32</code>.</li>
+<li>Добавьте функцию <code>rect_area</code>, которая рассчитывает площадь прямоугольника. (попробуйте использовать &quot;деструктуризацию&quot; (разбор на части) ). </li>
+<li>Добавьте функцию <code>square</code>, которая принимает в качестве аргументов <code>Point</code> и <code>f32</code>, а возвращает <code>Rectangle</code> with its lower left corner on the point, and a width and height corresponding to the <code>f32</code>.</li>
 </ol>
-<h3 id="see-also">See also:</h3>
-<p><a href="/attribute.html"><code>attributes</code></a> and <a href="/flow_control/match/destructuring.html">destructuring</a></p>
+<h3 id="-">Смотрите также:</h3>
+<p><a href="/attribute.html"><code>attributes</code></a> и <a href="/flow_control/match/destructuring.html">destructuring</a></p>
 
                     
                     </section>

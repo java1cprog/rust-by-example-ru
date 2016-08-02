@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Debug | Rust by Example</title>
+        <title>Debug | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2.1" data-basepath="../.." data-revision="1468441231454">
+    <div class="book" data-level="1.2.1" data-basepath="../.." data-revision="1470110693366">
     
 
 <div class="book-summary">
@@ -2854,7 +2854,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Rust by Example</a>
+        <a href="../../" >Rust на примерах</a>
     </h1>
 </div>
 
@@ -2865,59 +2865,59 @@
                     <section class="normal" id="section-gitbook_3">
                     
                         <h3 id="121-debug">1.2.1 Debug</h3>
-<p>All types which want to use <code>std::fmt</code> formatting <code>traits</code> require an
-implementation to be printable. Automatic implementations are only provided
-for types such as in the <code>std</code> library. All others <em>must</em> be manually
-implemented somehow.</p>
-<p>The <code>fmt::Debug</code> <code>trait</code> makes this very straightforward. <em>All</em> types can
-<code>derive</code> (automatically create) the <code>fmt::Debug</code> implementation. This is
-not true for <code>fmt::Display</code> which must be manually implemented.</p>
-<pre><code class="lang-rust"><span class="hljs-comment">// This structure cannot be printed either with `fmt::Display` or</span>
-<span class="hljs-comment">// with `fmt::Debug`</span>
+<p>Все типы, которые будут использовать <code>типажи (traits)</code> форматирования <code>std::fmt</code> требуют
+их реализации для возможности печати. Автоматическая реализация предоставлена только для
+типов из <code>стандартной библиотеки (std)</code>. Все остальные типы <em>должны</em> иметь собственную реализацию.</p>
+<p>C помощью <code>типажа</code> <code>fmt::Debug</code> это сделать очень просто. <em>Все</em> типы могут
+<code>выводить (derive)</code> (автоматически создавать) реализацию <code>fmt::Debug</code>. Сделать подобное с <code>fmt::Display</code> невозможно, он должен быть реализовн вручную.</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// Эта структура не может быть напечатана с помощью `fmt::Display` </span>
+<span class="hljs-comment">// или с помощью `fmt::Debug`</span>
 <span class="hljs-keyword">struct</span> UnPrintable(<span class="hljs-keyword">i32</span>);
 
-<span class="hljs-comment">// The `derive` attribute automatically creates the implementation</span>
-<span class="hljs-comment">// required to make this `struct` printable with `fmt::Debug`.</span>
+<span class="hljs-comment">// Атрибут `выводить (derive)` автоматически реализует</span>
+<span class="hljs-comment">// необходимые методы, чтобы была возможность </span>
+<span class="hljs-comment">// печатать данную `структуру` с помощью `fmt::Debug`.</span>
 <span class="hljs-preprocessor">#[derive(Debug)]</span>
 <span class="hljs-keyword">struct</span> DebugPrintable(<span class="hljs-keyword">i32</span>);
 </code></pre>
-<p>All <code>std</code> library types automatically are printable with <code>{:?}</code> too:</p>
+<p>Все типы в <code>стандартной библиотеке (std)</code> могут быть напечатаны с <code>{:?}</code>:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// Derive the &#96;fmt::Debug&#96; implementation for &#96;Structure&#96;. &#96;Structure&#96;
-// is a structure which contains a single &#96;i32&#96;.
+<div id="editor"><pre>// Вывод и реализация &#96;fmt::Debug&#96; для &#96;Structure&#96;. &#96;Structure&#96;
+// &#96;Structure&#96; - это структура, которая содержит в себе один &#96;i32&#96;.
 #[derive(Debug)]
 struct Structure(i32);
 
-// Put a &#96;Structure&#96; inside of the structure &#96;Deep&#96;. Make it printable
-// also.
+// Добавим структуру &#96;Structure&#96; в структуру &#96;Deep&#96;. 
+// Релазиуем для &#96;Deep&#96; возможность вывода с помощью fmt::Debug&#96;.
 #[derive(Debug)]
 struct Deep(Structure);
 
 fn main() {
     // Printing with &#96;{:?}&#96; is similar to with &#96;{}&#96;.
+    // Вывод с помощью &#96;{:?}&#96; аналогичен &#96;{}&#96;.
     println!(&quot;{:?} months in a year.&quot;, 12);
     println!(&quot;{1:?} {0:?} is the {actor:?} name.&quot;,
              &quot;Slater&quot;,
              &quot;Christian&quot;,
              actor=&quot;actor&#39;s&quot;);
 
-    // &#96;Structure&#96; is printable!
+    // &#96;Structure&#96; теперь можно напечатать!
     println!(&quot;Now {:?} will print!&quot;, Structure(3));
 
-    // The problem with &#96;derive&#96; is there is no control over how
-    // the results look. What if I want this to just show a &#96;7&#96;?
+    // Проблема с &#96;выводом (derive)&#96;, в том, что у нас не будет контроля
+    // над тем, как будет выглядить результат. 
+    // Что если мы хотим напечатать просто &#96;7&#96;?
     println!(&quot;Now {:?} will print!&quot;, Deep(Structure(7)));
 }</pre></div>
 <div id="result"></div>
 </div>
 
-<p>So <code>fmt::Debug</code> definitely makes this printable but sacrifices some
-elegance. Manually implementing <code>fmt::Display</code> will fix that.</p>
-<h3 id="see-also">See also</h3>
+<p><code>fmt::Debug</code> дает возможность выводить информацию о обьектах на экран, жертвуя при этом элегантность. Реализовав типаж <code>fmt::Display</code> вручную можно исправить это.</p>
+<h3 id="-">Смотрите также</h3>
 <p><a href="http://doc.rust-lang.org/reference.html#attributes" target="_blank">attributes</a>, <a href="/trait/derive.html"><code>derive</code></a>, <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>,
-and <a href="/custom_types/structs.html"><code>struct</code></a></p>
+и <a href="/custom_types/structs.html"><code>struct</code></a></p>
 
                     
                     </section>

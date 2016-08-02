@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Hello World | Rust by Example</title>
+        <title>Hello World | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1" data-basepath="." data-revision="1468441231454">
+    <div class="book" data-level="1" data-basepath="." data-revision="1470110693366">
     
 
 <div class="book-summary">
@@ -2854,7 +2854,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" >Rust by Example</a>
+        <a href="./" >Rust на примерах</a>
     </h1>
 </div>
 
@@ -2865,38 +2865,36 @@
                     <section class="normal" id="section-gitbook_83">
                     
                         <h1 id="1-hello-world">1 Hello World</h1>
-<p>This is the source code of the traditional Hello World program.</p>
+<p>Это исходный код традиционной программы &quot;Hello World&quot;</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// This is a comment, and will be ignored by the compiler
-// You can test this code by clicking the &quot;Run&quot; button over there -&gt;
-// or if prefer to use your keyboard, you can use the &quot;Ctrl + Enter&quot; shortcut
+<div id="editor"><pre>// Эта строка является комментарием и она будет проигнорирована компилятором
+// Протестировать код можно нажав на кнопку &quot;Run&quot; вот тут -&gt;
+// так же можно использовать клавиатуру, нажав сочетание клавиш &quot;Ctrl + Enter&quot;
 
-// This code is editable, feel free to hack it!
-// You can always return to the original code by clicking the &quot;Reset&quot; button -&gt;
+// Этот код можно редактировать не стесняясь, дерзайте!
+// Всегда можно вернуть оригинальный код, нажав на кнопку &quot;Reset&quot; вот тут -&gt;
 
-// This is the main function
+// Это главная функция. С нее начинается исполнение любой программы
 fn main() {
-    // The statements here will be executed when the compiled binary is called
+    // Следующий код будет исполнен в момент, когда будет запущен исполняемый файл
 
-    // Print text to the console
+    // Отображаем текст в консоле
     println!(&quot;Hello World!&quot;);
 }</pre></div>
 <div id="result"></div>
 </div>
 
-<p><code>println!</code> is a <a href="./macros.html"><em>macro</em></a> that prints text to the
-console.</p>
-<p>A binary can be generated using the Rust compiler: <code>rustc</code>.</p>
+<p><code>println!</code> - это <a href="./macros.html"><em>макрос</em></a>, который отображает текст в консоле.</p>
+<p>Исполняемый файл может быть сгенерирован с помощью компилятора Rust - <code>rustc</code>.</p>
 <pre><code>$ rustc hello.rs
-</code></pre><p><code>rustc</code> will produce a <code>hello</code> binary that can be executed.</p>
+</code></pre><p><code>rustc</code> создаст исполняемый файл <code>hello</code>, который можно будет запустить.</p>
 <pre><code>$ ./hello
 Hello World!
-</code></pre><h3 id="activity">Activity</h3>
-<p>Click &#39;Run&#39; above to see the expected output. Next, add a new
-line with a second <code>println!</code> macro so that the output
-shows:</p>
+</code></pre><h3 id="">Задание</h3>
+<p>Нажми кнопку &#39;Run&#39;, чтобы увидеть ожидаемый результат. 
+Затем, добавь новую строку с другим макросом <code>println!</code>, чтобы вывод был таким:</p>
 <pre><code>Hello World!
 I&#39;m a Rustacean!
 </code></pre>

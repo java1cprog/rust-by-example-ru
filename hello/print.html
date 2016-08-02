@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Formatted print | Rust by Example</title>
+        <title>Formatted print | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2" data-basepath=".." data-revision="1468441231454">
+    <div class="book" data-level="1.2" data-basepath=".." data-revision="1470110693366">
     
 
 <div class="book-summary">
@@ -2854,7 +2854,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Rust by Example</a>
+        <a href="../" >Rust на примерах</a>
     </h1>
 </div>
 
@@ -2862,88 +2862,88 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_6">
+                    <section class="normal" id="section-gitbook_5">
                     
                         <h2 id="12-formatted-print">1.2 Formatted print</h2>
-<p>Printing is handled by a series of <a href="/macros.html"><code>macros</code></a> defined in <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>
-some of which include:</p>
+<p>Вывод обрабатывается несколькими <a href="/macros.html"><code>макросами</code></a>, которые определены в <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>. Вот некоторые из них:</p>
 <ul>
-<li><code>format!</code>: write formatted text to <a href="/std/str.html"><code>String</code></a></li>
-<li><code>print!</code>: same as <code>format!</code> but the text is printed to the console.</li>
-<li><code>println!</code>: same as <code>print!</code> but a newline is appended.</li>
+<li><code>format!</code>: записывает форматированный текст в <a href="/std/str.html"><code>String</code></a>.</li>
+<li><code>print!</code>: работает аналогично с <code>format!</code>, но текст выводится в консоль.</li>
+<li><code>println!</code>: аналогично <code>print!</code>, но в конце добавляется переход на новую строку.</li>
 </ul>
-<p>All parse text in the same fashion. A plus is that the formatting correctness will
-be checked at compile time.</p>
+<p>Весь текст обрабатывается аналогичным образом. Плюс данного метода в том, что корректность 
+форматирования будет проверена на этапе комплиции программы.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn main() {
-    // In general, the &#96;{}&#96; will be automatically replaced with any
-    // arguments. These will be stringified.
+    // &#96;{}&#96; автоматически будет заменено на
+    // аргументы. Они будут преобразованы в строку.
     println!(&quot;{} days&quot;, 31);
 
-    // Without a suffix, 31 becomes an i32. You can change what type 31 is,
-    // with a suffix.
+    // Без суффиксов, 31 является i32. Можно изменить тип 31,
+    // используя суффикс.
 
-    // There are various optional patterns this works with. Positional
-    // arguments can be used.
+    // Существует множество способов работы с форматированным выводом. Можно указать
+    // позицию для каждого аргумента.
     println!(&quot;{0}, this is {1}. {1}, this is {0}&quot;, &quot;Alice&quot;, &quot;Bob&quot;);
 
-    // As can named arguments.
+    // Так же можно именовать аргументы.
     println!(&quot;{subject} {verb} {object}&quot;,
              object=&quot;the lazy dog&quot;,
              subject=&quot;the quick brown fox&quot;,
              verb=&quot;jumps over&quot;);
 
-    // Special formatting can be specified after a &#96;:&#96;.
+    // Специальное форматирование может быть определено после &#96;:&#96;.
     println!(&quot;{} of {:b} people know binary, the other half don&#39;t&quot;, 1, 2);
 
-    // You can right-align text with a specified width. This will output
-    // &quot;     1&quot;. 5 white spaces and a &quot;1&quot;.
+    // Можно выравнивать текст, сдвигая его на указанную ширину. 
+    // Данный макрос отобразит в консоле
+    // &quot;     1&quot;. 5 пробелов и &quot;1&quot;.
     println!(&quot;{number:&gt;width&#36;}&quot;, number=1, width=6);
 
-    // You can pad numbers with extra zeroes. This will output &quot;000001&quot;.
+    // Можно добавить цифрам пару нулен. Данный макрос выведет &quot;000001&quot;.
     println!(&quot;{number:&gt;0width&#36;}&quot;, number=1, width=6);
 
-    // It will even check to make sure the correct number of arguments are
-    // used.
+    // Компилятор обязательно проверит, что в макрос переденом правильное количество
+    // аргументов.
     println!(&quot;My name is {0}, {1} {0}&quot;, &quot;Bond&quot;);
-    // FIXME ^ Add the missing argument: &quot;James&quot;
+    // FIXME ^ Добавьте недостающий аргумент: &quot;James&quot;
 
-    // Create a structure which contains an &#96;i32&#96;. Name it &#96;Structure&#96;.
+    // Создаем структуру, которая хранит в себе &#96;i32&#96;. Назовем ее &#96;Structure&#96;.
     #[allow(dead&#95;code)]
     struct Structure(i32);
 
-    // However, custom types such as this structure require more complicated
-    // handling. This will not work.
+    // Однако, пользовательские типы данных, например, как эта структура
+    // требуют более сложной обработки для вывода. Данный код не будет работать.
     println!(&quot;This struct &#96;{}&#96; won&#39;t print...&quot;, Structure(3));
-    // FIXME ^ Comment out this line.
+    // FIXME ^ Закоментируйте эту строку.
 }</pre></div>
 <div id="result"></div>
 </div>
 
-<p><a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a> contains many <a href="/trait.html"><code>traits</code></a> which govern the display
-of text. The base form of two important ones are listed below:</p>
+<p><a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a> содержит в себе много <a href="/trait.html"><code>типажей (traits)</code></a>, которые управляют 
+отображением текста. Базовая форма двух самых важных рассмотрена ниже:</p>
 <ul>
-<li><code>fmt::Debug</code>: Uses the <code>{:?}</code> marker. Format text for debugging purposes.</li>
-<li><code>fmt::Display</code>: Uses the <code>{}</code> marker. Format text in a more elegant, user
-friendly fashion.</li>
+<li><code>fmt::Debug</code>: Использует <code>{:?}</code> marker. Форматирует текст для отладочных целей.</li>
+<li><code>fmt::Display</code>: Использует <code>{}</code> marker. Форматирует текст в более элегантном,
+удобном для пользователя стиле.</li>
 </ul>
-<p>Here, <code>fmt::Display</code> was used because the std library provides implementations
-for these types. To print text for custom types, more steps are required.</p>
-<h3 id="activities">Activities</h3>
+<p>В данном примере используется <code>fmt::Display</code>, потому что стандартная библиотека предоставляет реализацию для данного типа. Для отображения собственных типов потребуется больше дополнительных шагов.</p>
+<h3 id="">Задание</h3>
 <ul>
-<li>Fix the two issues in the above code (see FIXME) so that it runs without
-error.</li>
-<li>Add a <code>println!</code> macro that prints: <code>Pi is roughly 3.142</code> by controlling
-the number of decimal places shown. For the purposes of this exercise,
-use <code>let pi = 3.141592</code> as an estimate for Pi. (Hint: you may need to
-check the <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a> documentation for setting the number of
-decimals to display)</li>
+<li>Исправьте две ошибки в коде выше (смотрите FIXME), чтобы код 
+комплировался без ошибок</li>
+<li>Добавьте макрос <code>println!</code>, который выводит: <code>Pi is roughly 3.142</code> c помощью 
+управления количеством знаков после запятой. Для выполнения данного задания создайте
+переменную, которая будет хранить в себе значение числа Пи: <code>let pi = 3.141592</code>. 
+(Подсказка: вым необходимо ознакомиться с документация по 
+<a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>, чтобы узнать, 
+как отобразить только часть знаков после запятой в консоле.)</li>
 </ul>
-<h3 id="see-also">See also</h3>
-<p><a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>, <a href="/macros.html"><code>macros</code></a>, <a href="/custom_types/structs.html"><code>struct</code></a>,
-and <a href="/trait.html"><code>traits</code></a></p>
+<h3 id="-">Смотрите также</h3>
+<p><a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>, <a href="/macros.html"><code>macros</code></a>, <a href="/custom_types/structs.html"><code>struct</code></a>
+и <a href="/trait.html"><code>traits</code></a></p>
 
                     
                     </section>

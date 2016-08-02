@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Primitives | Rust by Example</title>
+        <title>Primitives | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="2" data-basepath="." data-revision="1468441231454">
+    <div class="book" data-level="2" data-basepath="." data-revision="1470110693366">
     
 
 <div class="book-summary">
@@ -2854,7 +2854,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" >Rust by Example</a>
+        <a href="./" >Rust на примерах</a>
     </h1>
 </div>
 
@@ -2865,44 +2865,43 @@
                     <section class="normal" id="section-gitbook_101">
                     
                         <h1 id="2-primitives">2 Primitives</h1>
-<p>Rust provides access to a wide variety of <code>primitives</code>. A sample includes:</p>
+<p>Rust предоставляет доступ к большому количеству <code>примитивов</code>:</p>
 <ul>
-<li>signed integers: <code>i8</code>, <code>i16</code>, <code>i32</code>, <code>i64</code> and <code>isize</code> (pointer size)</li>
-<li>unsigned integers: <code>u8</code>, <code>u16</code>, <code>u32</code>, <code>u64</code> and <code>usize</code> (pointer size)</li>
-<li>floating point: <code>f32</code>, <code>f64</code></li>
-<li><code>char</code> Unicode scalar values like <code>&#39;a&#39;</code>, <code>&#39;α&#39;</code> and <code>&#39;∞&#39;</code> (4 bytes each)</li>
-<li><code>bool</code> either <code>true</code> or <code>false</code></li>
-<li>and the unit type <code>()</code>, whose only value is also <code>()</code></li>
-<li>arrays like <code>[1, 2, 3]</code></li>
-<li>tuples like <code>(1, true)</code></li>
+<li>знаковые целочисленные: <code>i8</code>, <code>i16</code>, <code>i32</code>, <code>i64</code> и <code>isize</code> (размер указателя)</li>
+<li>беззнаковым целочисленные: <code>u8</code>, <code>u16</code>, <code>u32</code>, <code>u64</code> и <code>usize</code> (размер указателя)</li>
+<li>вещественные: <code>f32</code>, <code>f64</code></li>
+<li><code>char</code> скалярное значение Unicode, например: <code>&#39;a&#39;</code>, <code>&#39;α&#39;</code> и <code>&#39;∞&#39;</code> (4 байта каждый)</li>
+<li><code>bool</code>: <code>true</code> или <code>false</code></li>
+<li>единичный тип <code>()</code>, значение которого так же <code>()</code></li>
+<li>массивы, например <code>[1, 2, 3]</code></li>
+<li>кортежи, например <code>(1, true)</code></li>
 </ul>
-<p>Variables can always be <em>type annotated</em>. Numbers may additionally be
-annotated via a <em>suffix</em> or <em>by default</em>. Integers default to <code>i32</code> and
-floats to <code>f64</code>.</p>
+<p>Переменные всегда должны быть <em>аннотированны</em>. Числам можно указать определенный тип с помощью <em>суффикса</em>, иначе будет присвоен <em>тип по умолчанию</em>. 
+Целочисленные значения по умолчанию <code>i32</code>, а вещественные <code>f64</code>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn main() {
-    // Variables can be type annotated.
+    // Переменные могут быть аннотированны.
     let logical: bool = true;
 
-    let a&#95;float: f64 = 1.0;  // Regular annotation
-    let an&#95;integer   = 5i32; // Suffix annotation
+    let a&#95;float: f64 = 1.0;  // Обычная аннотация
+    let an&#95;integer   = 5i32; // Суффиксная аннотация
 
-    // Or a default will be used.
+    // Этим переменным будет присвоен тип по умолчанию.
     let default&#95;float   = 3.0; // &#96;f64&#96;
     let default&#95;integer = 7;   // &#96;i32&#96;
 
-    let mut mutable = 12; // Mutable &#96;i32&#96;.
+    let mut mutable = 12; // Изменяемый &#96;i32&#96;.
 
-    // Error! The type of a variable can&#39;t be changed
+    // Ошибка! Тип переменной не может быть изменен!
     mutable = true;
 }</pre></div>
 <div id="result"></div>
 </div>
 
-<h3 id="see-also">See also:</h3>
-<p><a href="http://doc.rust-lang.org/std/" target="_blank">the <code>std</code> library</a></p>
+<h3 id="-">Смотрите также:</h3>
+<p><a href="http://doc.rust-lang.org/std/" target="_blank">стандартная библиотека</a></p>
 
                     
                     </section>

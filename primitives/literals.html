@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Literals and operators | Rust by Example</title>
+        <title>Literals and operators | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="2.1" data-basepath=".." data-revision="1468441231454">
+    <div class="book" data-level="2.1" data-basepath=".." data-revision="1470110693366">
     
 
 <div class="book-summary">
@@ -2854,7 +2854,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Rust by Example</a>
+        <a href="../" >Rust на примерах</a>
     </h1>
 </div>
 
@@ -2865,41 +2865,39 @@
                     <section class="normal" id="section-gitbook_99">
                     
                         <h2 id="21-literals-and-operators">2.1 Literals and operators</h2>
-<p>Integers <code>1</code>, floats <code>1.2</code>, characters <code>&#39;a&#39;</code>, strings <code>&quot;abc&quot;</code>, booleans <code>true</code>
-and the unit type <code>()</code> can be expressed using literals.</p>
-<p>Integers can, alternatively, be expressed using hexadecimal, octal or binary
-notation using either of these prefixes: <code>0x</code>, <code>0o</code> or <code>0b</code>.</p>
-<p>Underscores can be inserted in numeric literals to improve readability, e.g.
-<code>1_000</code> is the same as <code>1000</code>, and <code>0.000_001</code> is the same as <code>0.000001</code>.</p>
-<p>We need to tell the compiler the type of the literals we use. For now,
-we&#39;ll use the <code>u32</code> suffix to indicate that the literal is an unsigned 32-bit
-integer, and the <code>i32</code> suffix to indicate that it&#39;s a signed 32-bit integer.</p>
-<p>The operators available and their precedence <a href="http://doc.rust-lang.org/reference.html#operator-precedence" target="_blank">in Rust</a> are similar to other
-<a href="https://en.wikipedia.org/wiki/Operator_precedence#Programming_languages" target="_blank">C-like languages</a>.</p>
+<p>Целочисленное <code>1</code>, вещественное <code>1.2</code>, символ <code>&#39;a&#39;</code>, строка <code>&quot;abc&quot;</code>, логическое <code>true</code>
+и единичный тип <code>()</code> могут быть выражены с помощью литералов.</p>
+<p>Целочисленные значения так же могут быть выражены с помощью шестнадцатеричного, восьмеричного или двоичного обозначения используя соответствующие префиксы: <code>0x</code>, <code>0o</code> или <code>0b</code>.</p>
+<p>Для улучшения читаемости числовых литералов можно использовать подчеркивания, например
+<code>1_000</code> тоже самое, что и <code>1000</code>, и <code>0.000_001</code> равно <code>0.000001</code>.</p>
+<p>Нам необходимо указать компилятору какой тип для литерала мы используем. Сейчас мы используем суффикс <code>u32</code>, чтобы указать, что литерал - беззнаковое целое число 32-х бит и суффикс <code>i32</code> - знаковое целое 32-х битное число.</p>
+<p>Доступные операторы и их приоритет <a href="http://doc.rust-lang.org/reference.html#operator-precedence" target="_blank">в Rust</a> такой же как и в других
+<a href="https://en.wikipedia.org/wiki/Operator_precedence#Programming_languages" target="_blank">C-подобных языках</a>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn main() {
-    // Integer addition
+    // Целочисленное сложение
     println!(&quot;1 + 2 = {}&quot;, 1u32 + 2);
 
-    // Integer subtraction
+    // Целочисленное вычитание
     println!(&quot;1 - 2 = {}&quot;, 1i32 - 2);
-    // TODO ^ Try changing &#96;1i32&#96; to &#96;1u32&#96; to see why the type is important
+    // TODO ^ Попробуйте изменить &#96;1i32&#96; на &#96;1u32&#96;
+    // чтобы убедится насколько важен тип данных
 
-    // Short-circuiting boolean logic
+    // Булева логика
     println!(&quot;true AND false is {}&quot;, true &amp;&amp; false);
     println!(&quot;true OR false is {}&quot;, true || false);
     println!(&quot;NOT true is {}&quot;, !true);
 
-    // Bitwise operations
+    // Побитовые операции
     println!(&quot;0011 AND 0101 is {:04b}&quot;, 0b0011u32 &amp; 0b0101);
     println!(&quot;0011 OR 0101 is {:04b}&quot;, 0b0011u32 | 0b0101);
     println!(&quot;0011 XOR 0101 is {:04b}&quot;, 0b0011u32 ^ 0b0101);
     println!(&quot;1 &lt;&lt; 5 is {}&quot;, 1u32 &lt;&lt; 5);
     println!(&quot;0x80 &gt;&gt; 2 is 0x{:x}&quot;, 0x80u32 &gt;&gt; 2);
 
-    // Use underscores to improve readability!
+    // Использование подчеркивания для улучшения читаемости!
     println!(&quot;One million is written as {}&quot;, 1&#95;000&#95;000u32);
 }</pre></div>
 <div id="result"></div>

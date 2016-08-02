@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Display | Rust by Example</title>
+        <title>Display | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2.2" data-basepath="../.." data-revision="1468441231454">
+    <div class="book" data-level="1.2.2" data-basepath="../.." data-revision="1470110693366">
     
 
 <div class="book-summary">
@@ -2854,7 +2854,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Rust by Example</a>
+        <a href="../../" >Rust на примерах</a>
     </h1>
 </div>
 
@@ -2862,76 +2862,73 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_5">
+                    <section class="normal" id="section-gitbook_6">
                     
                         <h3 id="122-display">1.2.2 Display</h3>
-<p><code>fmt::Debug</code> hardly looks compact and clean, so it is often advantageous to
-customize the output appearance. This is done by manually implementing
-<a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>fmt::Display</code></a>, which uses the <code>{}</code> print marker. Implementing it
-looks like this:</p>
-<pre><code class="lang-rust"><span class="hljs-comment">// Import (via `use`) the `fmt` module to make it available.</span>
+<p><code>fmt::Debug</code> выглядит не очень компактно и красиво, поэтому полезно настраивать внешний вид информации, которая будет напечатана. Это можно сделать реализовав <code>типаж (trait)</code>
+<a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>fmt::Display</code></a> вручную, который использует маркер <code>{}</code> для печати. Его реализация выглядит следующим образом:</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// Импортируем (с помощью `use`) модуль `fmt`, чтобы мы могли его использовать.</span>
 <span class="hljs-keyword">use</span> std::fmt;
 
-<span class="hljs-comment">// Define a structure which `fmt::Display` will be implemented for. This is simply</span>
-<span class="hljs-comment">// a tuple struct containing an `i32` bound to the name `Structure`.</span>
+<span class="hljs-comment">// Определяем структуру, для которой будет реализован `fmt::Display`.</span>
+<span class="hljs-comment">// Это простая кортежная структура, которая хранит в себе `i32` и которой присвоено имя `Structure`.</span>
 <span class="hljs-keyword">struct</span> Structure(<span class="hljs-keyword">i32</span>);
 
-<span class="hljs-comment">// In order to use the `{}` marker, the trait `fmt::Display` must be implemented</span>
-<span class="hljs-comment">// manually for the type.</span>
+<span class="hljs-comment">// Чтобы была возможность использовать маркер `{}`</span>
+<span class="hljs-comment">// `типаж (trait) fmt::Display` должен быть реализован вручную </span>
+<span class="hljs-comment">// для данного типа.</span>
 <span class="hljs-keyword">impl</span> fmt::Display <span class="hljs-keyword">for</span> Structure {
-    <span class="hljs-comment">// This trait requires `fmt` with this exact signature.</span>
+    <span class="hljs-comment">// Этот типаж требует реализацию метода `fmt` с данной сигнатурой:</span>
     <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">fmt</span></span>(&amp;<span class="hljs-keyword">self</span>, f: &amp;<span class="hljs-keyword">mut</span> fmt::Formatter) -&gt; fmt::Result {
-        <span class="hljs-comment">// Write strictly the first element into the supplied output</span>
-        <span class="hljs-comment">// stream: `f`. Returns `fmt::Result` which indicates whether the</span>
-        <span class="hljs-comment">// operation succeeded or failed. Note that `write!` uses syntax which</span>
-        <span class="hljs-comment">// is very similar to `println!`.</span>
+        <span class="hljs-comment">// Записываем первый элемент в предоставленный выходной поток: `f`.</span>
+        <span class="hljs-comment">// Возвращаем `fmt::Result`, который показывает выполнилась операция</span>
+        <span class="hljs-comment">// успешно или нет. Обратите внимание на то, что синтаксис `write!`</span>
+        <span class="hljs-comment">// похож на синтаксис `println!`.</span>
         <span class="hljs-built_in">write!</span>(f, <span class="hljs-string">"{}"</span>, <span class="hljs-keyword">self</span>.<span class="hljs-number">0</span>)
     }
 }
 </code></pre>
-<p><code>fmt::Display</code> may be cleaner than <code>fmt::Debug</code> but this presents
-a problem for the <code>std</code> library. How should ambiguous types be displayed?
-For example, if the <code>std</code> library implemented a single style for all
-<code>Vec&lt;T&gt;</code>, what style should it be? Either of these two?</p>
+<p>Вывод <code>fmt::Display</code> может быть более чистым чем <code>fmt::Debug</code>, но может быть
+проблемой для <code>стандартной библиотеки (std)</code>. Как нестандартные типы должны отображаться?
+Например, если <code>стандартная библиотека (std)</code> предоставляет единый стиль вывода для
+<code>Vec&lt;T&gt;</code>, каким этот вывод должен быть? Любой из этих двух?</p>
 <ul>
-<li><code>Vec&lt;path&gt;</code>: <code>/:/etc:/home/username:/bin</code> (split on <code>:</code>)</li>
-<li><code>Vec&lt;number&gt;</code>: <code>1,2,3</code> (split on <code>,</code>)</li>
+<li><code>Vec&lt;path&gt;</code>: <code>/:/etc:/home/username:/bin</code> (разделитель <code>:</code>)</li>
+<li><code>Vec&lt;number&gt;</code>: <code>1,2,3</code> (разделитель <code>,</code>)</li>
 </ul>
-<p>No, because there is no ideal style for all types and the <code>std</code> library
-doesn&#39;t presume to dictate one. <code>fmt::Display</code> is not implemented for <code>Vec&lt;T&gt;</code>
-or for any other generic containers. <code>fmt::Debug</code> must then be used for these
-generic cases.</p>
-<p>This is not a problem though because for any new <em>container</em> type which is
-<em>not</em> generic,<code>fmt::Display</code> can be implemented.</p>
+<p>Нет, потому что не существует идеального стиля вывода для всех типов, поэтому
+<code>стандартная библиотека std</code> не может его предоставить. <code>fmt::Display</code> не реализован для 
+<code>Vec&lt;T&gt;</code> или для других обобщенных контейнеров. Для этих случаев подойдет <code>fmt::Debug</code>.</p>
+<p>Это не проблема, потому что для любых новых <em>контейнеров</em>, типы которых не обобщенные, может быть реализован <code>fmt::Display</code>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>use std::fmt; // Import &#96;fmt&#96;
+<div id="editor"><pre>use std::fmt; // Импортируем &#96;fmt&#96;
 
-// A structure holding two numbers. &#96;Debug&#96; will be derived so the results can
-// be contrasted with &#96;Display&#96;.
+// Структура, которая хранит в себе два числа. 
+//Вывод типажа &#96;Debug&#96; добавлен для сравнения с &#96;Display&#96;.
 #[derive(Debug)]
 struct MinMax(i64, i64);
 
-// Implement &#96;Display&#96; for &#96;MinMax&#96;.
+// Реализуем &#96;Display&#96; для &#96;MinMax&#96;.
 impl fmt::Display for MinMax {
     fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
-        // Use &#96;self.number&#96; to refer to each positional data point.
+        // Используем &#96;self.number&#96;, чтобы получить доступ к каждому полю структуры.
         write!(f, &quot;({}, {})&quot;, self.0, self.1)
     }
 }
 
-// Define a structure where the fields are nameable for comparison.
+// Определим структуру с именованными полями, для сравнения 
 #[derive(Debug)]
 struct Point2 {
     x: f64,
     y: f64,
 }
 
-// Similarly, implement for Point2
+// По аналогии, реализуем &#96;Display&#96; для Point2
 impl fmt::Display for Point2 {
     fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
-        // Customize so only &#96;x&#96; and &#96;y&#96; are denoted.
+        // Обращаться к полям структуры Point2 будет по имени
         write!(f, &quot;x: {}, y: {}&quot;, self.x, self.y)
     }
 }
@@ -2956,26 +2953,24 @@ fn main() {
     println!(&quot;Display: {}&quot;, point);
     println!(&quot;Debug: {:?}&quot;, point);
 
-    // Error. Both &#96;Debug&#96; and &#96;Display&#96; were implemented but &#96;{:b}&#96;
-    // requires &#96;fmt::Binary&#96; to be implemented. This will not work.
+    // Ошибка. Типажи &#96;Debug&#96; и &#96;Display&#96; были реализованны, но &#96;{:b}&#96;
+    // необходима реализация &#96;fmt::Binary&#96;. Следующий код не сработает.
     // println!(&quot;What does Point2D look like in binary: {:b}?&quot;, point);
 }</pre></div>
 <div id="result"></div>
 </div>
 
-<p>So, <code>fmt::Display</code> has been implemented but <code>fmt::Binary</code> has not, and
-therefore cannot be used. <code>std::fmt</code> has many such <a href="/trait.html"><code>traits</code></a> and
-each requires its own implementation. This is detailed further in
+<p>И так, <code>fmt::Display</code> был реализован, но <code>fmt::Binary</code> нет, следовательно не может быть
+использован. <code>std::fmt</code> имеет много таких <a href="/trait.html"><code>типажей</code></a> и
+каждый из них требует свою реализацию. Это более подробно описано в документации к 
 <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>.</p>
-<h3 id="activity">Activity</h3>
-<p>After checking the output of the above example, use the <code>Point2</code> struct as
-guide to add a Complex struct to the example. When printed in the same
-way, the output should be:</p>
+<h3 id="">Задание</h3>
+<p>После того, как запустите код, представленный выше, используйте структуру <code>Point2</code> как пример и добавьте новую структуру <code>Complex</code>, чтобы вывод был таким:</p>
 <pre><code>Display: 3.3 + 7.2i
 Debug: Complex { real: 3.3, imag: 7.2 }
-</code></pre><h3 id="see-also">See also</h3>
+</code></pre><h3 id="-">Смотрите также</h3>
 <p><a href="/trait/derive.html"><code>derive</code></a>, <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>, <a href="/macros.html">macros</a>, <a href="/custom_types/structs.html"><code>struct</code></a>,
-<a href="/trait.html"><code>trait</code></a>, and <a href="/mod/use.html">use</a></p>
+<a href="/trait.html"><code>trait</code></a>, и <a href="/mod/use.html">use</a></p>
 
                     
                     </section>

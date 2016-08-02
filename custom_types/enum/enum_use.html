@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>use | Rust by Example</title>
+        <title>use | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="3.2.1" data-basepath="../.." data-revision="1468441231454">
+    <div class="book" data-level="3.2.1" data-basepath="../.." data-revision="1470110693366">
     
 
 <div class="book-summary">
@@ -2854,7 +2854,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Rust by Example</a>
+        <a href="../../" >Rust на примерах</a>
     </h1>
 </div>
 
@@ -2865,11 +2865,12 @@
                     <section class="normal" id="section-gitbook_22">
                     
                         <h3 id="321-use">3.2.1 use</h3>
-<p>The <code>use</code> declaration can be used so manual scoping isn&#39;t needed:</p>
+<p>Декларация <code>use</code> может быть использована для того, чтобы не было необходимости в указание области видимости:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// An attribute to hide warnings for unused code.
+<div id="editor"><pre>// Атрибут, который убирает предупреждения компилятора
+// о неиспользуемом коде
 #![allow(dead&#95;code)]
 
 enum Status {
@@ -2883,25 +2884,26 @@ enum Work {
 }
 
 fn main() {
-    // Explicitly &#96;use&#96; each name so they are available without
-    // manual scoping.
+    // Используем &#96;use&#96; для каждого из вариантов, чтобы они были доступны
+    // без указания области видимости.
     use Status::{Poor, Rich};
-    // Automatically &#96;use&#96; each name inside &#96;Work&#96;.
+    // Автоматически используем &#96;use&#96; для каждого из вариантов в &#96;Work&#96;.
     use Work::&#42;;
 
-    // Equivalent to &#96;Status::Poor&#96;.
+    // Эквивалентно &#96;Status::Poor&#96;.
     let status = Poor;
-    // Equivalent to &#96;Work::Civilian&#96;.
+    // Эквивалентно to &#96;Work::Civilian&#96;.
     let work = Civilian;
 
     match status {
-        // Note the lack of scoping because of the explicit &#96;use&#96; above.
+        // Обратите внимание, как используются варианты из перечисления &#96;Status&#96;
+        // все благодаря &#96;use&#96;
         Rich =&gt; println!(&quot;The rich have lots of money!&quot;),
         Poor =&gt; println!(&quot;The poor have no money...&quot;),
     }
 
     match work {
-        // Note again the lack of scoping.
+        // И снова используем варианты напрямую.
         Civilian =&gt; println!(&quot;Civilians work!&quot;),
         Soldier  =&gt; println!(&quot;Soldiers fight!&quot;),
     }
@@ -2909,7 +2911,7 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<h3 id="see-also">See also:</h3>
+<h3 id="-">Смотрите также:</h3>
 <p><a href="/flow_control/match.html"><code>match</code></a> and <a href="/mod/use.html"><code>use</code></a> </p>
 
                     

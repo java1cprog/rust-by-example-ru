@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Arrays and Slices | Rust by Example</title>
+        <title>Arrays and Slices | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="2.3" data-basepath=".." data-revision="1468441231454">
+    <div class="book" data-level="2.3" data-basepath=".." data-revision="1470110693366">
     
 
 <div class="book-summary">
@@ -2854,7 +2854,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Rust by Example</a>
+        <a href="../" >Rust на примерах</a>
     </h1>
 </div>
 
@@ -2865,50 +2865,47 @@
                     <section class="normal" id="section-gitbook_98">
                     
                         <h2 id="23-arrays-and-slices">2.3 Arrays and Slices</h2>
-<p>An array is a collection of objects of the same type <code>T</code>, stored in contiguous
-memory. Arrays are created using brackets <code>[]</code>, and their size, which is known
-at compile time, is part of their type signature <code>[T; size]</code>.</p>
-<p>Slices are similar to arrays, but their size is not known at compile time.
-Instead, a slice is a two-word object, the first word is a pointer to the data,
-and the second word is the length of the slice. Slices can be used to borrow a
-section of an array, and have the type signature <code>&amp;[T]</code>.</p>
+<p><code>Массив (arrays)</code> - это коллекция объектов одинакового типа <code>T</code>, расположенных в памяти непосредственно друг за другом. Массивы создаются с помощью квадратных скобок <code>[]</code>, а их размер должен быть известен во время компиляции и являются частью сигнатуры типа <code>[T; size]</code>. </p>
+<p><code>Срезы slices</code> похожи на массивы, но из размер не известен в момент компиляции программы.
+Срезы представляют собой объекты, состоящие из указателя на данные и размер среза. Срезы могут быть использованы для заимствования части массива и будут иметь сигнатуру типа <code>&amp;[T]</code>. </p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>use std::mem;
 
-// This function borrows a slice
+// Эта функция заимствует срез
 fn analyze&#95;slice(slice: &amp;[i32]) {
     println!(&quot;first element of the slice: {}&quot;, slice[0]);
     println!(&quot;the slice has {} elements&quot;, slice.len());
 }
 
 fn main() {
-    // Fixed-size array (type signature is superfluous)
+    // Массив фиксированного размера (указывать сигнатуру типа необязательно)
     let xs: [i32; 5] = [1, 2, 3, 4, 5];
 
-    // All elements can be initialized to the same value
+    // Все элементы могут быть инициализированы одной и той же переменной
     let ys: [i32; 500] = [0; 500];
 
-    // Indexing starts at 0
+    // Индекс начинается с 0
     println!(&quot;first element of the array: {}&quot;, xs[0]);
     println!(&quot;second element of the array: {}&quot;, xs[1]);
 
-    // &#96;len&#96; returns the size of the array
+    // &#96;len&#96; возвращает длину массива
     println!(&quot;array size: {}&quot;, xs.len());
 
-    // Arrays are stack allocated
+    // Память для массивов выделяется в стеке
     println!(&quot;array occupies {} bytes&quot;, mem::size&#95;of&#95;val(&amp;xs));
 
-    // Arrays can be automatically borrowed as slices
+    // Массивы могут быть автоматически заимствованны как срез
     println!(&quot;borrow the whole array as a slice&quot;);
     analyze&#95;slice(&amp;xs);
 
-    // Slices can point to a section of an array
+    // Срезы могут указывать на часть массива
     println!(&quot;borrow a section of the array as a slice&quot;);
     analyze&#95;slice(&amp;ys[1 .. 4]);
 
-    // Out of bound indexing yields a panic
+    // Выход за границу массива заставит компилятор паниковать. 
+    // Не надо так.
     println!(&quot;{}&quot;, xs[5]);
 }</pre></div>
 <div id="result"></div>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Enums | Rust by Example</title>
+        <title>Enums | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="3.2" data-basepath=".." data-revision="1468441231454">
+    <div class="book" data-level="3.2" data-basepath=".." data-revision="1470110693366">
     
 
 <div class="book-summary">
@@ -2854,7 +2854,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Rust by Example</a>
+        <a href="../" >Rust на примерах</a>
     </h1>
 </div>
 
@@ -2865,42 +2865,43 @@
                     <section class="normal" id="section-gitbook_24">
                     
                         <h2 id="32-enums">3.2 Enums</h2>
-<p>The <code>enum</code> keyword allows the creation of a type which may be one of a few
-different variants. Any variant which is valid as a <code>struct</code> is also valid as
+<p>Ключевое слово <code>enum</code> позволяет создавать тип данных, который представляет собой один из нескольких возможных вариантов. Any variant which is valid as a <code>struct</code> is also valid as
 an <code>enum</code>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// An attribute to hide warnings for unused code.
+<div id="editor"><pre>// Атрибут, который убирает предупреждения компилятора
+// о неиспользуемом коде
 #![allow(dead&#95;code)]
 
-// Create an &#96;enum&#96; to classify someone. Note how both names
+// Создадим &#96;enum&#96;, для классификации кого либо. Обратите внимание на то, как
 // and type information together specify the variant:
 // &#96;Engineer != Scientist&#96; and &#96;Height(i32) != Weight(i32)&#96;. Each
 // is different and independent.
 enum Person {
-    // An &#96;enum&#96; may either be &#96;unit-like&#96;,
+    // &#96;enum&#96; так же может быть &#96;единичным&#96;,
     Engineer,
     Scientist,
-    // like tuple structs,
+    // может быть как кортежная структура,
     Height(i32),
     Weight(i32),
-    // or like structures.
+    // или как просто структура.
     Info { name: String, height: i32 }
 }
 
-// A function which takes a &#96;Person&#96; enum as an argument and
-// returns nothing.
+// Функция, которая принимает Person&#96; в качестве аргумента
+// и не возвращает ничего.
 fn inspect(p: Person) {
-    // Usage of an &#96;enum&#96; must cover all cases (irrefutable)
-    // so a &#96;match&#96; is used to branch over it.
+    // При использование &#96;enum&#96; компилятору необходимо указать, 
+    // что нужно делать при каждом из возможных вариантов.
+    // Для этого мы используем &#96;match&#96;.
     match p {
         Person::Engineer  =&gt; println!(&quot;Is an engineer!&quot;),
         Person::Scientist =&gt; println!(&quot;Is a scientist!&quot;),
-        // Destructure &#96;i&#96; from inside the &#96;enum&#96;.
+        // Деструктурируем &#96;i&#96; из &#96;enum&#96;.
         Person::Height(i) =&gt; println!(&quot;Has a height of {}.&quot;, i),
         Person::Weight(i) =&gt; println!(&quot;Has a weight of {}.&quot;, i),
-        // Destructure &#96;Info&#96; into &#96;name&#96; and &#96;height&#96;.
+        // Деструктурируем &#96;Info&#96; в &#96;name&#96; и &#96;height&#96;.
         Person::Info { name, height } =&gt; {
             println!(&quot;{} is {} tall!&quot;, name, height);
         },
@@ -2910,7 +2911,7 @@ fn inspect(p: Person) {
 fn main() {
     let person   = Person::Height(18);
     let amira    = Person::Weight(10);
-    // &#96;to&#95;owned()&#96; creates an owned &#96;String&#96; from a string slice.
+    // &#96;to&#95;owned()&#96; создает копию &#96;String&#96; из среза строки.
     let dave     = Person::Info { name: &quot;Dave&quot;.to&#95;owned(), height: 72 };
     let rebecca  = Person::Scientist;
     let rohan    = Person::Engineer;
@@ -2924,8 +2925,8 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<h3 id="see-also">See also:</h3>
-<p><a href="/attribute.html"><code>attributes</code></a>, <a href="/flow_control/match.html"><code>match</code></a>, <a href="/fn.html"><code>fn</code></a>, and <a href="/std/str.html"><code>String</code></a></p>
+<h3 id="-">Смотрите также:</h3>
+<p><a href="/attribute.html"><code>attributes</code></a>, <a href="/flow_control/match.html"><code>match</code></a>, <a href="/fn.html"><code>fn</code></a>, и <a href="/std/str.html"><code>String</code></a></p>
 
                     
                     </section>

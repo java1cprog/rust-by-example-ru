@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Formatting | Rust by Example</title>
+        <title>Formatting | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2.3" data-basepath="../.." data-revision="1468441231454">
+    <div class="book" data-level="1.2.3" data-basepath="../.." data-revision="1470110693366">
     
 
 <div class="book-summary">
@@ -2854,7 +2854,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Rust by Example</a>
+        <a href="../../" >Rust на примерах</a>
     </h1>
 </div>
 
@@ -2865,18 +2865,16 @@
                     <section class="normal" id="section-gitbook_2">
                     
                         <h3 id="123-formatting">1.2.3 Formatting</h3>
-<p>We&#39;ve seen that formatting is specified via a <em>format string</em>:</p>
+<p>Мы видели, что форматирование задается <em>макросом форматирования</em>:</p>
 <ul>
 <li><code>format!(&quot;{}&quot;, foo)</code> -&gt; <code>&quot;3735928559&quot;</code></li>
 <li><code>format!(&quot;0x{:X}&quot;, foo)</code> -&gt;
 <a href="https://en.wikipedia.org/wiki/Deadbeef#Magic_debug_values" target="_blank"><code>&quot;0xDEADBEEF&quot;</code></a></li>
 <li><code>format!(&quot;0o{:o}&quot;, foo)</code> -&gt; <code>&quot;0o33653337357&quot;</code></li>
 </ul>
-<p>The same variable (<code>foo</code>) can be formatted differently depending on which
-<em>argument type</em> is used: <code>X</code> vs <code>o</code> vs <em>unspecified</em>.</p>
-<p>This formatting functionality is implemented via traits, and there is one trait
-for each argument type. The most common formatting trait is <code>Display</code>, which
-handles cases where the argument type is left unspecified: <code>{}</code> for instance.</p>
+<p>Одна и та же переменная (<code>foo</code>) может быть отображена по разному в зависимости от
+используемого <em>типа аргумента</em>: <code>X</code>, <code>o</code> или <em>неопределенный</em>.</p>
+<p>Функционал форматирования реализован благодаря типажу, и для каждого типа аргумента существует свой. Наиболее распространенный типаж для форматирования - <code>Display</code>, который работает без аргументов: <code>{}</code>, например. </p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2884,20 +2882,20 @@ handles cases where the argument type is left unspecified: <code>{}</code> for i
 
 struct City {
     name: &amp;&#39;static str,
-    // Latitude
+    // Широта
     lat: f32,
-    // Longitude
+    // Долгота
     lon: f32,
 }
 
 impl Display for City {
-    // &#96;f&#96; is a buffer, this method must write the formatted string into it
+    // &#96;f&#96; - это буфер, данный метод должен записать в него форматированную строку
     fn fmt(&amp;self, f: &amp;mut Formatter) -&gt; fmt::Result {
         let lat&#95;c = if self.lat &gt;= 0.0 { &#39;N&#39; } else { &#39;S&#39; };
         let lon&#95;c = if self.lon &gt;= 0.0 { &#39;E&#39; } else { &#39;W&#39; };
 
-        // &#96;write!&#96; is like &#96;format!&#96;, but it will write the formatted string
-        // into a buffer (the first argument)
+        // &#96;write!&#96; похож на &#96;format!&#96;, только он запишет форматированную строку
+        // в буфер (первый аргумент функции)
         write!(f, &quot;{}: {:.3}°{} {:.3}°{}&quot;,
                self.name, self.lat.abs(), lat&#95;c, self.lon.abs(), lon&#95;c)
     }
@@ -2923,28 +2921,28 @@ fn main() {
         Color { red: 0, green: 3, blue: 254 },
         Color { red: 0, green: 0, blue: 0 },
     ].iter() {
-        // Switch this to use {} once you&#39;ve added an implementation
-        // for fmt::Display
+        // Поменяйте {:?} на {}, когда добавите реализацию
+        // типажа fmt::Display
         println!(&quot;{:?}&quot;, &#42;color)
     }
 }</pre></div>
 <div id="result"></div>
 </div>
 
-<p>You can view a <a href="http://doc.rust-lang.org/std/fmt/#formatting-traits" target="_blank">full list of formatting traits</a> and their argument
-types in the <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a> documentation.</p>
-<h3 id="activity">Activity</h3>
-<p>Add an implementation of the <code>fmt::Display</code> trait for the <code>Color</code> struct above
-so that the output displays as:</p>
+<p>Вы можете посмотреть <a href="http://doc.rust-lang.org/std/fmt/#formatting-traits" target="_blank">полный список типажей форматирования</a> и их типы аргументов
+в документации к <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>.</p>
+<h3 id="">Задание</h3>
+<p>Добавьте реализацию типажа <code>fmt::Display</code> для структуры <code>Color</code>, 
+чтобы вывод отображался вот так:</p>
 <pre><code>RGB (128, 255, 90) 0x80FF5A
 RGB (0, 3, 254) 0x0003FE
 RGB (0, 0, 0) 0x000000
-</code></pre><p>Two hints if you get stuck:</p>
+</code></pre><p>Пару подсказок, если вы не знаете, что делать:</p>
 <ul>
-<li>You <a href="http://doc.rust-lang.org/std/fmt/#argument-types" target="_blank">may need to list each color more than once</a>,</li>
-<li>You can <a href="http://doc.rust-lang.org/std/fmt/#width" target="_blank">pad with zeros to a width of 2</a> with <code>:02</code>.</li>
+<li>Вам <a href="http://doc.rust-lang.org/std/fmt/#argument-types" target="_blank">возможно потребуется перечислить каждый цвет несколько раз</a>,</li>
+<li>Вы можете <a href="http://doc.rust-lang.org/std/fmt/#width" target="_blank">добавить немного нулей</a>.</li>
 </ul>
-<h3 id="see-also">See also</h3>
+<h3 id="-">Смотрите также</h3>
 <p><a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a></p>
 
                     

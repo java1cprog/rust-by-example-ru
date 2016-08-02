@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Comments | Rust by Example</title>
+        <title>Comments | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.1" data-basepath=".." data-revision="1468441231454">
+    <div class="book" data-level="1.1" data-basepath=".." data-revision="1470110693366">
     
 
 <div class="book-summary">
@@ -2854,7 +2854,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Rust by Example</a>
+        <a href="../" >Rust на примерах</a>
     </h1>
 </div>
 
@@ -2865,18 +2865,18 @@
                     <section class="normal" id="section-gitbook_1">
                     
                         <h2 id="11-comments">1.1 Comments</h2>
-<p>Any program requires comments and indeed Rust supports
-a few different varieties:</p>
+<p>Каждая программа, безусловно, нуждается в комментариях и 
+Rust предоставляет несколько способов комментирования кода:</p>
 <ul>
-<li><em>Regular comments</em> which are ignored by the compiler:<ul>
-<li><code>// Line comments which go to the end of the line.</code></li>
-<li><code>/* Block comments which go to the closing delimiter. */</code></li>
+<li><em>Обычные комментарии</em>, которые игнорируются компилятором:<ul>
+<li><code>// Однострочный комментарий. Который завершается в конце строки.</code></li>
+<li><code>/* Блочный комментарий, который продолжается до завершающего символа. */</code></li>
 </ul>
 </li>
-<li><em>Doc comments</em> which are parsed into HTML library
-<a href="/meta/doc.html">documentation</a>:<ul>
-<li><code>/// Generate library docs for the following item.</code></li>
-<li><code>//! Generate library docs for the enclosing item.</code></li>
+<li><em>Doc комментарии</em>, которые будут сгенерированы в HTML
+<a href="/meta/doc.html">документацию</a>:<ul>
+<li><code>/// Генерация документации для функции.</code></li>
+<li><code>//! Генерация документации для модуля.</code></li>
 </ul>
 </li>
 </ul>
@@ -2884,38 +2884,38 @@ a few different varieties:</p>
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn main() {
-    // This is an example of a line comment
-    // Notice how there are two slashes at the beginning of the line
-    // And that nothing written inside these will be read by the compiler
+    // Это пример однострочного комментария
+    // Обратите внимание на то, что строка комментария начинается с двух косых черт
+    // Компилятор проигнорирует все, что написано внутри комментария
 
     // println!(&quot;Hello, world!&quot;);
 
-    // Run it. See? Now try deleting the two slashes, and run it again.
+    // Запустите данный код. Видите? Теперь попробуйте удалить комментарий и запустить еще раз.
 
     /&#42; 
-     &#42; This is another type of comment, the block comment. In general,
-     &#42; the line comment is the recommended comment style however the
-     &#42; block comment is extremely useful for temporarily disabling
-     &#42; a large chunk of code. /&#42; Block comments can be /&#42; nested, &#42;/ &#42;/
-     &#42; so it takes only a few keystrokes to comment out all the lines
-     &#42; in this main() function. /&#42;/&#42;/&#42; Try it yourself! &#42;/&#42;/&#42;/
+     &#42; Это другой тип комментария - блочный. В целом, рекомендованным стилем
+     &#42; комментирования кода является однострочный комментарий, но блочный комментарий
+     &#42; является очень полезным в случае, когда необходимо проигнорировать какую-то 
+     &#42; большую часть кода. /&#42; Блочные комментарии могут быть /&#42; вложенными, &#42;/ &#42;/
+     &#42; так что комментирование всего кода в функции main займет всего пару нажатий
+     &#42; клавиш на клавиатуре. /&#42;/&#42;/&#42; Попробуйте сами! &#42;/&#42;/&#42;/ 
      &#42;/
 
      /&#42;
-     Note, the previous column of &#96;&#42;&#96; was entirely for style. There&#39;s
-     no actual need for it.
+     Обратите внимание, что столбец из &#42; в прошлом комментарие был добавлен
+     для стиля. Он является необязательным. 
      &#42;/
 
-     // Observe how block comments allow easy expression manipulation
-     // which line comments do not. Deleting the comment delimiters
-     // will change the result:
+     // Обратите внимание, как блочный комментарий позволяет легко управлять выражениями
+     // однострочный комментарии не подходит для этой цели. Удалите блочный комментарий
+     // и посмотрите, как изменится результат:
      let x = 5 + /&#42; 90 + &#42;/ 5;
      println!(&quot;Is &#96;x&#96; 10 or 100? x = {}&quot;, x);
 }</pre></div>
 <div id="result"></div>
 </div>
 
-<h3 id="see-also">See also:</h3>
+<h3 id="-">Смотрите также:</h3>
 <p><a href="/meta/doc.html">Library documentation</a></p>
 
                     
