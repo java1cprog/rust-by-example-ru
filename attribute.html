@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="11" data-basepath="." data-revision="1471233681552">
+    <div class="book" data-level="11" data-basepath="." data-revision="1471411865287">
     
 
 <div class="book-summary">
@@ -78,7 +78,7 @@
                         
                             <b>1.</b>
                         
-                         Hello World
+                         Привет, мир!
                     </a>
                 
             
@@ -2865,22 +2865,19 @@
                     <section class="normal" id="section-gitbook_12">
                     
                         <h1 id="11-attributes">11 Attributes</h1>
-<p>An attribute is metadata applied to some module, crate or item. This metadata
-can be used to/for:</p>
+<p>Атрибуты - это метаданные, применяемые к какому-либо модулю, контейнеру или их элементу. Благодаря атрибутам можно:</p>
 <!-- TODO: Link these to their respective examples -->
 <ul>
-<li><a href="/attribute/cfg.html">conditional compilation of code</a></li>
-<li><a href="/attribute/crate.html">set crate name, version and type (binary or library)</a></li>
-<li>disable <a href="https://en.wikipedia.org/wiki/Lint_%28software%29" target="_blank">lints</a> (warnings)</li>
-<li>enable compiler features (macros, glob imports, etc.)</li>
-<li>link to a foreign library</li>
-<li>mark functions as unit tests</li>
-<li>mark functions that will be part of a benchmark</li>
+<li><a href="/attribute/cfg.html">задать условия компиляции кода</a></li>
+<li><a href="/attribute/crate.html">задать имя, версию и тип (библиотека или исполняемый файл) крэйта контейнера</a></li>
+<li>отключить <a href="https://en.wikipedia.org/wiki/Lint_%28software%29" target="_blank">lints</a> (предупреждения)</li>
+<li>включить возможностей компилятора (макросы, глобальный импорт и другое.)</li>
+<li>связаться с внешней библиотекой</li>
+<li>пометить функций как юнит тесты</li>
+<li>пометить функции, которые будут частью бенчмарка</li>
 </ul>
-<p>When attributes apply to a whole crate, their syntax is <code>#![crate_attribute]</code>,
-and when they apply to a module or item, the syntax is <code>#[item_attribute]</code>
-(notice the missing bang <code>!</code>).</p>
-<p>Attributes can take arguments with different syntaxes:</p>
+<p>Когда атрибуты применяются ко всему контейнеру, их синтаксис будет #![crate_attribute], когда они применяются к модулю или элементу модуля, их синтаксис станет #[item_attribute] (обратите внимание на отсутствие !).</p>
+<p>Атрибуты могут принимать аргументы с различным синтаксисом:</p>
 <ul>
 <li><code>#[attribute = &quot;value&quot;]</code></li>
 <li><code>#[attribute(key = &quot;value&quot;)]</code></li>

@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="11.1" data-basepath=".." data-revision="1471233681552">
+    <div class="book" data-level="11.1" data-basepath=".." data-revision="1471411865287">
     
 
 <div class="book-summary">
@@ -78,7 +78,7 @@
                         
                             <b>1.</b>
                         
-                         Hello World
+                         Привет, мир!
                     </a>
                 
             
@@ -2865,20 +2865,20 @@
                     <section class="normal" id="section-gitbook_11">
                     
                         <h2 id="111-dead_code">11.1 <code>dead_code</code></h2>
-<p>The compiler provides a <code>dead_code</code>
-<a href="https://en.wikipedia.org/wiki/Lint_%28software%29" target="_blank"><em>lint</em></a> that will warn
-about unused functions. An <em>attribute</em> can be used to disable the lint.</p>
+<p>Компилятор предоставляет <a href="https://en.wikipedia.org/wiki/Lint_%28software%29" target="_blank"><em>проверку</em></a> на <code>мертвый код</code>,
+которая предупреждает о неиспользованных функциях. </p>
+<p><em>Атрибут dead_code</em> можно использовать, чтобы отключить данную проверку.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn used&#95;function() {}
 
-// &#96;#[allow(dead&#95;code)]&#96; is an attribute that disables the &#96;dead&#95;code&#96; lint
+// &#96;#[allow(dead&#95;code)]&#96; - атрибут, который убирает проверку на неиспользуемый код
 #[allow(dead&#95;code)]
 fn unused&#95;function() {}
 
 fn noisy&#95;unused&#95;function() {}
-// FIXME ^ Add an attribute to suppress the warning
+// FIXME ^ Добавьте атрибут &#96;dead&#95;code&#96;, чтобы убрать предупреждение
 
 fn main() {
     used&#95;function();
@@ -2886,9 +2886,7 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<p>Note that in real programs, you should eliminate dead code. In these examples
-we&#39;ll allow dead code in some places because of the interactive nature of the
-examples.</p>
+<p>Обратите внимание, что в реальных программах, вы должны удалить неиспользуемый код. В этих примерах мы разрешаем оставить неиспользуемый код в некоторых местах, но, это только для примера!</p>
 
                     
                     </section>

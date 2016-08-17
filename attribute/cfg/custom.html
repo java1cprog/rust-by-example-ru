@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="11.3.1" data-basepath="../.." data-revision="1471233681552">
+    <div class="book" data-level="11.3.1" data-basepath="../.." data-revision="1471411865287">
     
 
 <div class="book-summary">
@@ -78,7 +78,7 @@
                         
                             <b>1.</b>
                         
-                         Hello World
+                         Привет, мир!
                     </a>
                 
             
@@ -2865,8 +2865,7 @@
                     <section class="normal" id="section-gitbook_8">
                     
                         <h3 id="1131-custom">11.3.1 Custom</h3>
-<p>Some conditionals like <code>target_os</code> are implicitly provided by <code>rustc</code>, but
-custom conditionals must be passed to <code>rustc</code> using the <code>--cfg</code> flag.</p>
+<p>Некоторые условия, например, <code>target_os</code> предоставляются компилятором. Если мы хотим создать собственные условия, то их необходимо передать компилятору используя флаг <code>--cfg</code>.  </p>
 <pre><code class="lang-rust"><span class="hljs-comment">// custom.rs</span>
 <span class="hljs-preprocessor">#[cfg(some_condition)]</span>
 <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">conditional_function</span></span>() {
@@ -2877,10 +2876,10 @@ custom conditionals must be passed to <code>rustc</code> using the <code>--cfg</
     conditional_function();
 }
 </code></pre>
-<p>Without the custom <code>cfg</code> flag:</p>
+<p>Без указания флага <code>cfg</code>:</p>
 <pre><code>$ rustc custom.rs &amp;&amp; ./custom
 No such file or directory (os error 2)
-</code></pre><p>With the custom <code>cfg</code> flag:</p>
+</code></pre><p>С указанием флага <code>cfg</code>:</p>
 <pre><code>$ rustc --cfg some_condition custom.rs &amp;&amp; ./custom
 condition met!
 </code></pre>

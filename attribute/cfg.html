@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="11.3" data-basepath=".." data-revision="1471233681552">
+    <div class="book" data-level="11.3" data-basepath=".." data-revision="1471411865287">
     
 
 <div class="book-summary">
@@ -78,7 +78,7 @@
                         
                             <b>1.</b>
                         
-                         Hello World
+                         Привет, мир!
                     </a>
                 
             
@@ -2865,22 +2865,22 @@
                     <section class="normal" id="section-gitbook_9">
                     
                         <h2 id="113-cfg">11.3 <code>cfg</code></h2>
-<p>Conditional compilation is possible through two different operators:</p>
+<p>Условная компиляция возможна благодаря двум операторам:</p>
 <ul>
-<li>the <code>cfg</code> attribute: <code>#[cfg(...)]</code> in attribute position</li>
-<li>the <code>cfg!</code> macro: <code>cfg!(...)</code> in boolean expressions</li>
+<li>Атрибуту <code>cfg</code>: <code>#[cfg(...)]</code>, который указывается на месте атрибута</li>
+<li>Макросу <code>cfg!</code>: <code>cfg!(...)</code>, который можно использовать в условных выражениях</li>
 </ul>
-<p>Both utilize identical argument syntax.</p>
+<p>Обе инициализации имеют идентичный синтаксис для принятия аргументов.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// This function only gets compiled if the target OS is linux
+<div id="editor"><pre>// Эта функция будет скомпилирована только в том случае, если целевая OS будет linux
 #[cfg(target&#95;os = &quot;linux&quot;)]
 fn are&#95;you&#95;on&#95;linux() {
     println!(&quot;You are running linux!&quot;)
 }
 
-// And this function only gets compiled if the target OS is &#42;not&#42; linux
+// А эта функция будет скомпилирована только в том случае &#42;не&#42; linux
 #[cfg(not(target&#95;os = &quot;linux&quot;))]
 fn are&#95;you&#95;on&#95;linux() {
     println!(&quot;You are &#42;not&#42; running linux!&quot;)
@@ -2899,8 +2899,8 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<h3 id="see-also">See also:</h3>
-<p><a href="http://doc.rust-lang.org/reference.html#conditional-compilation" target="_blank">the reference</a>, <a href="http://doc.rust-lang.org/std/macro.cfg!.html" target="_blank"><code>cfg!</code></a>, and <a href="/macros.html">macros</a>.</p>
+<h3 id="-">Смотрите также:</h3>
+<p><a href="http://doc.rust-lang.org/reference.html#conditional-compilation" target="_blank">the reference</a>, <a href="http://doc.rust-lang.org/std/macro.cfg!.html" target="_blank"><code>cfg!</code></a>, и <a href="/macros.html">макросы</a>.</p>
 
                     
                     </section>

@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="11.2" data-basepath=".." data-revision="1471233681552">
+    <div class="book" data-level="11.2" data-basepath=".." data-revision="1471411865287">
     
 
 <div class="book-summary">
@@ -78,7 +78,7 @@
                         
                             <b>1.</b>
                         
-                         Hello World
+                         Привет, мир!
                     </a>
                 
             
@@ -2865,13 +2865,11 @@
                     <section class="normal" id="section-gitbook_10">
                     
                         <h2 id="112-crates">11.2 Crates</h2>
-<p>The <code>crate_type</code> attribute can be used to tell the compiler whether a crate is
-a binary or a library (and even which type of library), and the <code>crate_name</code>
-attribute can be used to set the name of the crate.</p>
+<p>Атрибут <code>crate_type</code> используется, чтобы сказать компилятору, какой контейнер является библиотекой (и каким типом библиотеки), а какой исполняемым файлом. Атрибут <code>crate_name</code> используется для указания имя контейнера.</p>
 <pre><code class="lang-rust"><span class="hljs-comment">// lib.rs</span>
-<span class="hljs-comment">// This crate is a library</span>
+<span class="hljs-comment">// Этот контейнер - библиотека</span>
 #![crate_type = <span class="hljs-string">"lib"</span>]
-<span class="hljs-comment">// The library is named "rary"</span>
+<span class="hljs-comment">// Эта библиотека называется "rary"</span>
 #![crate_name = <span class="hljs-string">"rary"</span>]
 
 <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">public_function</span></span>() {
@@ -2888,8 +2886,7 @@ attribute can be used to set the name of the crate.</p>
     private_function();
 }
 </code></pre>
-<p>When the <code>crate_type</code> attribute is used, we no longer need to pass the
-<code>--crate-type</code> flag to <code>rustc</code>.</p>
+<p>Если мы используем атрибут <code>crate_type</code>, то нам больше нет необходимости передавать флаг <code>--crate-type</code> компилятору.</p>
 <pre><code>$ rustc lib.rs
 $ ls lib*
 library.rlib
