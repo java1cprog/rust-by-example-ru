@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Expressions | Rust на примерах</title>
+        <title>Выражения | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="6" data-basepath="." data-revision="1471411865287">
+    <div class="book" data-level="6" data-basepath="." data-revision="1471843849735">
     
 
 <div class="book-summary">
@@ -542,7 +542,7 @@
                         
                             <b>6.</b>
                         
-                         Expressions
+                         Выражения
                     </a>
                 
             
@@ -2862,30 +2862,26 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_40">
+                    <section class="normal" id="section-gitbook_41">
                     
-                        <h1 id="6-expressions">6 Expressions</h1>
-<p>A Rust program is (mostly) made up of a series of statements:</p>
+                        <h1 id="6-">6 Выражения</h1>
+<p>Программы на языке Rust - это (в основном) набор последовательных операторов:</p>
 <pre><code>fn main() {
-    // statement
-    // statement
-    // statement
+    // оператор
+    // оператор
+    // оператор
 }
-</code></pre><p>There are a few kinds of statements in Rust. The most common two are declaring
-a variable binding, and using a <code>;</code> with an expression:</p>
+</code></pre><p>Существует несколько типов операторов в Rust. Наиболее распространенные - оператор связывания и оператор выражения:</p>
 <pre><code>fn main() {
-    // variable binding
+    // оператор связывания
     let x = 5;
 
-    // expression;
+    // оператор выражения
     x;
     x + 1;
     15;
 }
-</code></pre><p>Blocks are expressions too, so they can be used as <a href="https://en.wikipedia.org/wiki/Value_%28computer_science%29#lrvalue" target="_blank">r-values</a> in
-assignments. The last expression in the block will be assigned to the
-<a href="https://en.wikipedia.org/wiki/Value_%28computer_science%29#lrvalue" target="_blank">l-value</a>. However, if the last expression of the block ends with a
-semicolon, the return value will be <code>()</code>.</p>
+</code></pre><p>Блоки так же могут быть частью оператора выражения. Они используются в качестве [r-values][r-значения] при присваивание. Последнее выражение в блоке будет присвоено [l-value][l-значению]. Однако, если последнее выражение в блоке оканчивается точкой с запятой, в качестве значения будет возвращено <code>()</code>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2896,12 +2892,12 @@ semicolon, the return value will be <code>()</code>.</p>
         let x&#95;squared = x &#42; x;
         let x&#95;cube = x&#95;squared &#42; x;
 
-        // This expression will be assigned to &#96;y&#96;
+        // Результат этого выражение будет присвоен переменной &#96;y&#96;
         x&#95;cube + x&#95;squared + x
     };
 
     let z = {
-        // The semicolon suppresses this expression and &#96;()&#96; is assigned to &#96;z&#96;
+        // Т.к это выражение оканчивается на &#96;;&#96;, переменной &#96;z&#96; будет присвоен &#96;()&#96;
         2 &#42; x;
     };
 
