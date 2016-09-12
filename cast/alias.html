@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Alias | Rust на примерах</title>
+        <title>Псевдонимы | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="5.3" data-basepath=".." data-revision="1473692255110">
+    <div class="book" data-level="5.3" data-basepath=".." data-revision="1473719891376">
     
 
 <div class="book-summary">
@@ -472,7 +472,7 @@
                         
                             <b>5.</b>
                         
-                         Casting
+                         Преобразование типов
                     </a>
                 
             
@@ -489,7 +489,7 @@
                         
                             <b>5.1.</b>
                         
-                         Literals
+                         Литералы
                     </a>
                 
             
@@ -505,7 +505,7 @@
                         
                             <b>5.2.</b>
                         
-                         Inference
+                         Вывод типов
                     </a>
                 
             
@@ -521,7 +521,7 @@
                         
                             <b>5.3.</b>
                         
-                         Alias
+                         Псевдонимы
                     </a>
                 
             
@@ -1204,7 +1204,7 @@
                         
                             <b>11.</b>
                         
-                         Attributes
+                         Атрибуты
                     </a>
                 
             
@@ -1221,7 +1221,7 @@
                         
                             <b>11.1.</b>
                         
-                         `dead_code`
+                         `Мертвый код`
                     </a>
                 
             
@@ -1237,7 +1237,7 @@
                         
                             <b>11.2.</b>
                         
-                         Crates
+                         Контейнеры
                     </a>
                 
             
@@ -1253,7 +1253,7 @@
                         
                             <b>11.3.</b>
                         
-                         `cfg`
+                         Условные атрибуты
                     </a>
                 
             
@@ -1270,7 +1270,7 @@
                         
                             <b>11.3.1.</b>
                         
-                         Custom
+                         Собственные условия
                     </a>
                 
             
@@ -2864,29 +2864,30 @@
                 
                     <section class="normal" id="section-gitbook_13">
                     
-                        <h2 id="53-alias">5.3 Alias</h2>
-<p>The <code>type</code> statement can be used to give a new name to an existing type. Types
-must have <code>CamelCase</code> names, or the compiler will raise a warning. The
-exception to this rule are the primitive types: <code>usize</code>, <code>f32</code>, etc.</p>
+                        <h2 id="53-">5.3 Псевдонимы</h2>
+<p>Оператор type используется, чтобы задать новое имя существующему типу. 
+Имя типа должно быть в стиле CamelCase, иначе компилятор выдаст предупреждение. 
+Исключением являются примитивные типы: usize, f32 и другие.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// &#96;NanoSecond&#96; is a new name for &#96;u64&#96;.
+<div id="editor"><pre>// &#96;NanoSecond&#96; это новое имя для &#96;u64&#96;.
 type NanoSecond = u64;
 type Inch = u64;
 
-// Use an attribute to silence warning.
+// Используйте этот атрибут, чтобы не выводить предупреждение
+// о именах не в стиле CamelCase
 #[allow(non&#95;camel&#95;case&#95;types)]
 type u64&#95;t = u64;
-// TODO ^ Try removing the attribute
+// TODO ^ Попробуйте удалить атрибут
 
 fn main() {
     // &#96;NanoSecond&#96; = &#96;Inch&#96; = &#96;u64&#95;t&#96; = &#96;u64&#96;.
     let nanoseconds: NanoSecond = 5 as u64&#95;t;
     let inches: Inch = 2 as u64&#95;t;
 
-    // Note that type aliases &#42;don&#39;t&#42; provide any extra type safety, because
-    // aliases are &#42;not&#42; new types
+    // Обратите внимание, что псевдонимы &#42;не предоставляют&#42; никакой
+    // дополнительной безопасности типов, так как &#42;не являются&#42; новыми типами
     println!(&quot;{} nanoseconds + {} inches = {} unit?&quot;,
              nanoseconds,
              inches,
@@ -2895,9 +2896,9 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<p>The main use of aliases is to reduce typing; for example the <code>IoResult&lt;T&gt;</code> type
-is an alias for the <code>Result&lt;T, IoError&gt;</code> type.</p>
-<h3 id="see-also">See also:</h3>
+<p>Основное применение псевдонимов — сокращение размера кода: например, тип IoResult<T> является 
+псевдонимом типа Result<T, IoError>.</p>
+<h3 id="-">Смотрите также:</h3>
 <p><a href="/attribute.html">Attributes</a></p>
 
                     
@@ -2909,7 +2910,7 @@ is an alias for the <code>Result&lt;T, IoError&gt;</code> type.</p>
         </div>
 
         
-        <a href="../cast/inference.html" class="navigation navigation-prev " aria-label="Previous page: Inference"><i class="fa fa-angle-left"></i></a>
+        <a href="../cast/inference.html" class="navigation navigation-prev " aria-label="Previous page: Вывод типов"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../expression.html" class="navigation navigation-next " aria-label="Next page: Выражения"><i class="fa fa-angle-right"></i></a>

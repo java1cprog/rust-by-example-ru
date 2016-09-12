@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Literals | Rust на примерах</title>
+        <title>Литералы | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="5.1" data-basepath=".." data-revision="1473692255110">
+    <div class="book" data-level="5.1" data-basepath=".." data-revision="1473719891376">
     
 
 <div class="book-summary">
@@ -472,7 +472,7 @@
                         
                             <b>5.</b>
                         
-                         Casting
+                         Преобразование типов
                     </a>
                 
             
@@ -489,7 +489,7 @@
                         
                             <b>5.1.</b>
                         
-                         Literals
+                         Литералы
                     </a>
                 
             
@@ -505,7 +505,7 @@
                         
                             <b>5.2.</b>
                         
-                         Inference
+                         Вывод типов
                     </a>
                 
             
@@ -521,7 +521,7 @@
                         
                             <b>5.3.</b>
                         
-                         Alias
+                         Псевдонимы
                     </a>
                 
             
@@ -1204,7 +1204,7 @@
                         
                             <b>11.</b>
                         
-                         Attributes
+                         Атрибуты
                     </a>
                 
             
@@ -1221,7 +1221,7 @@
                         
                             <b>11.1.</b>
                         
-                         `dead_code`
+                         `Мертвый код`
                     </a>
                 
             
@@ -1237,7 +1237,7 @@
                         
                             <b>11.2.</b>
                         
-                         Crates
+                         Контейнеры
                     </a>
                 
             
@@ -1253,7 +1253,7 @@
                         
                             <b>11.3.</b>
                         
-                         `cfg`
+                         Условные атрибуты
                     </a>
                 
             
@@ -1270,7 +1270,7 @@
                         
                             <b>11.3.1.</b>
                         
-                         Custom
+                         Собственные условия
                     </a>
                 
             
@@ -2864,26 +2864,26 @@
                 
                     <section class="normal" id="section-gitbook_15">
                     
-                        <h2 id="51-literals">5.1 Literals</h2>
-<p>Numeric literals can be type annotated by adding the type as a suffix. As an example, 
-to specify that the literal <code>42</code> should have the type <code>i32</code>, write <code>42i32</code>.</p>
-<p>The type of unsuffixed numeric literals will depend on how they are used. If no
-constraint exists, the compiler will use <code>i32</code> for integers, and <code>f64</code> for
-floating-point numbers.</p>
+                        <h2 id="51-">5.1 Литералы</h2>
+<p>Числовые литералы могут быть обозначены добавлением типа в качестве суффикса. Например, 
+чтобы указать, что литерал <code>42</code> должен иметь тип <code>i32</code>, необходимо написать <code>42i32</code>.</p>
+<p>Тип литералов без суффикса будет зависеть от того, как они используются. Если нет никаких 
+ограничений, то компилятор будет использовать <code>i32</code> для целочисленных литералов, а <code>f64</code> для 
+литералов с плавающей точкой.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn main() {
-    // Suffixed literals, their types are known at initialization
+    // Литералы с суффиксами. Их тип известен при инициализации.
     let x = 1u8;
     let y = 2u32;
     let z = 3f32;
 
-    // Unsuffixed literal, their types depend on how they are used
+    // Литералы без суффиксов. Их тип будет зависеть от того, как их используют.
     let i = 1;
     let f = 1.0;
 
-    // &#96;size&#95;of&#95;val&#96; returns the size of a variable in bytes
+    // &#96;size&#95;of&#95;val&#96; возвращает размер переменной в байтах
     println!(&quot;size of &#96;x&#96; in bytes: {}&quot;, std::mem::size&#95;of&#95;val(&amp;x));
     println!(&quot;size of &#96;y&#96; in bytes: {}&quot;, std::mem::size&#95;of&#95;val(&amp;y));
     println!(&quot;size of &#96;z&#96; in bytes: {}&quot;, std::mem::size&#95;of&#95;val(&amp;z));
@@ -2893,16 +2893,17 @@ floating-point numbers.</p>
 <div id="result"></div>
 </div>
 
-<p>There are some concepts used in the previous code that haven&#39;t been explained
-yet, here&#39;s a brief explanation for the impatient readers:</p>
+<p>В предыдущем коде используются некоторые вещи, которые не были объяснены ранее. 
+Вот краткое объяснение для нетерпеливых читателей:</p>
 <ul>
-<li><code>fun(&amp;foo)</code> is used to pass an argument to a function <em>by reference</em>, rather
-than by value (<code>fun(foo)</code>). For more details see <a href="/scope/borrow.html">borrowing</a>.</li>
-<li><code>std::mem::size_of_val</code> is a function, but called with its <em>full path</em>. Code
-can be split in logical units called <em>modules</em>. In this case, the
-<code>size_of_val</code> function is defined in the <code>mem</code> module, and the <code>mem</code> module
-is defined in the <code>std</code> <em>crate</em>. For more details, see
-<a href="/mod.html">modules</a> and <a href="/crates.html">crates</a>.</li>
+<li><code>fun(&amp;foo)</code> используется для передаче аргумента в функцию <em>по ссылке</em>, вместо
+передачи по значению (<code>fun(foo)</code>). Подробнее см. <a href="/scope/borrow.html">заимствование</a> или соответствующую 
+<a href="http://rurust.github.io/rust_book_ru/src/references-and-borrowing.html" target="_blank">главу в книгу</a>.</li>
+<li><code>std::mem::size_of_val</code> является функцией, но вызывается с указанием <em>полного пути</em>. 
+Код можно разделить на логические единицы, называемые <em>модулями</em>. В данном случае, 
+функция определена в модуле <code>mem</code>, а модуль <code>mem</code> определён в <em>контейнере</em> <code>std</code>. 
+Подробнее см. <a href="/mod.html">модули</a> и <a href="/crates.html">контейнеры</a>, 
+а так же соответствующую <a href="http://rurust.github.io/rust_book_ru/src/crates-and-modules.html" target="_blank">главу в книге</a> </li>
 </ul>
 
                     
@@ -2914,10 +2915,10 @@ is defined in the <code>std</code> <em>crate</em>. For more details, see
         </div>
 
         
-        <a href="../cast.html" class="navigation navigation-prev " aria-label="Previous page: Casting"><i class="fa fa-angle-left"></i></a>
+        <a href="../cast.html" class="navigation navigation-prev " aria-label="Previous page: Преобразование типов"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../cast/inference.html" class="navigation navigation-next " aria-label="Next page: Inference"><i class="fa fa-angle-right"></i></a>
+        <a href="../cast/inference.html" class="navigation navigation-next " aria-label="Next page: Вывод типов"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

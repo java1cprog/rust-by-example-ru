@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Casting | Rust на примерах</title>
+        <title>Преобразование типов | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="5" data-basepath="." data-revision="1473692255110">
+    <div class="book" data-level="5" data-basepath="." data-revision="1473719891376">
     
 
 <div class="book-summary">
@@ -472,7 +472,7 @@
                         
                             <b>5.</b>
                         
-                         Casting
+                         Преобразование типов
                     </a>
                 
             
@@ -489,7 +489,7 @@
                         
                             <b>5.1.</b>
                         
-                         Literals
+                         Литералы
                     </a>
                 
             
@@ -505,7 +505,7 @@
                         
                             <b>5.2.</b>
                         
-                         Inference
+                         Вывод типов
                     </a>
                 
             
@@ -521,7 +521,7 @@
                         
                             <b>5.3.</b>
                         
-                         Alias
+                         Псевдонимы
                     </a>
                 
             
@@ -1204,7 +1204,7 @@
                         
                             <b>11.</b>
                         
-                         Attributes
+                         Атрибуты
                     </a>
                 
             
@@ -1221,7 +1221,7 @@
                         
                             <b>11.1.</b>
                         
-                         `dead_code`
+                         `Мертвый код`
                     </a>
                 
             
@@ -1237,7 +1237,7 @@
                         
                             <b>11.2.</b>
                         
-                         Crates
+                         Контейнеры
                     </a>
                 
             
@@ -1253,7 +1253,7 @@
                         
                             <b>11.3.</b>
                         
-                         `cfg`
+                         Условные атрибуты
                     </a>
                 
             
@@ -1270,7 +1270,7 @@
                         
                             <b>11.3.1.</b>
                         
-                         Custom
+                         Собственные условия
                     </a>
                 
             
@@ -2862,12 +2862,14 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_17">
+                    <section class="normal" id="section-gitbook_16">
                     
-                        <h1 id="5-casting">5 Casting</h1>
+                        <h1 id="5--">5 Преобразование типов</h1>
 <p>Rust предоставляет неявное преобразование типов (принудительное) между примитивными типами.
 Но, явное преобразование типов (casting) можно выполнить используя ключевое слово <code>as</code>. </p>
-<p>Правила, используемые для преобразование внутренних типов, такие же, как в языка C, за исключением тех случаев, когда преобразование типов в языка C вызываем неопределенное поведение. В языке Rust описаны все поведения при преобразование внутренних типов.</p>
+<p>Правила, используемые для преобразование внутренних типов, такие же, как в языка C, 
+за исключением тех случаев, когда преобразование типов в языка C вызываем неопределенное поведение. 
+В языке Rust описаны все поведения при преобразование внутренних типов.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2888,37 +2890,37 @@ fn main() {
 
     println!(&quot;Casting: {} -&gt; {} -&gt; {}&quot;, decimal, integer, character);
 
-    // когда преобразовывается любое значение в беззнаковый тип T
-    // when casting any value to an unsigned type, T, 
-    // std::T::MAX + 1 is added or subtracted until the value
-    // fits into the new type
+    // Когда преобразовывается любое значение в беззнаковый тип T
+    // std::T::MAX + 1 добавляется или вычитается до тех пор, пока значение
+    // не будет помещаться в новый тип.
 
     // 1000 поместится в u16
     println!(&quot;1000 as a u16 is: {}&quot;, 1000 as u16);
 
     // 1000 - 256 - 256 - 256 = 232
-    // Under the hood, the first 8 least significant bits (LSB) are kept,
-    // while the rest towards the most significant bit (MSB) get truncated.
+    // Подробнее. Первые 8 младших битов (LSB) сохраняются,
+    // а старшие биты (MSB) будут усечены.
     println!(&quot;1000 as a u8 is : {}&quot;, 1000 as u8);
     // -1 + 256 = 255
     println!(&quot;  -1 as a u8 is : {}&quot;, (-1i8) as u8);
 
-    // For positive numbers, this is the same as the modulus
+    // Для положительных чисел результатом будет остаток от деления
     println!(&quot;1000 mod 256 is : {}&quot;, 1000 % 256);
 
-    // When casting to a signed type, the (bitwise) result is the same as 
-    // first casting to the corresponding unsigned type. If the most significant 
-    // bit of that value is 1, then the value is negative.
+    // Когда значение преобразовывается в знаковый тип,
+    // побитовый результат будет таким же, как и
+    // первое преобразование к соответствующему типу без знака. Если старший бит этого значения
+    // равен 1, то это значение отрицательное.
 
-    // Unless it already fits, of course.
+    // За исключением случая, когда значение умещается в тип.
     println!(&quot; 128 as a i16 is: {}&quot;, 128 as i16);
-    // 128 as u8 -&gt; 128, whose two&#39;s complement in eight bits is:
+    // 128 as u8 -&gt; 128, дополнительный код которого в 8 битах:
     println!(&quot; 128 as a i8 is : {}&quot;, 128 as i8);
 
-    // repeating the example above
+    // повторяем примеры
     // 1000 as u8 -&gt; 232
     println!(&quot;1000 as a i8 is : {}&quot;, 1000 as i8);
-    // and the two&#39;s complement of 232 is -24
+    // и дополнительный код 232 - это -24
     println!(&quot; 232 as a i8 is : {}&quot;, 232 as i8);
 
 
@@ -2938,7 +2940,7 @@ fn main() {
         <a href="./variable_bindings/declare.html" class="navigation navigation-prev " aria-label="Previous page: Declare first"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./cast/literals.html" class="navigation navigation-next " aria-label="Next page: Literals"><i class="fa fa-angle-right"></i></a>
+        <a href="./cast/literals.html" class="navigation navigation-next " aria-label="Next page: Литералы"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
