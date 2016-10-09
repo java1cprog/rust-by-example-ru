@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Mutability | Rust на примерах</title>
+        <title>Изменяемость | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="4.1" data-basepath=".." data-revision="1476003533020">
+    <div class="book" data-level="4.1" data-basepath=".." data-revision="1476011996634">
     
 
 <div class="book-summary">
@@ -402,7 +402,7 @@
                         
                             <b>4.</b>
                         
-                         Variable Bindings
+                         Связывание переменных
                     </a>
                 
             
@@ -419,7 +419,7 @@
                         
                             <b>4.1.</b>
                         
-                         Mutability
+                         Изменяемость
                     </a>
                 
             
@@ -435,7 +435,7 @@
                         
                             <b>4.2.</b>
                         
-                         Scope and shadowing
+                         Область видимость
                     </a>
                 
             
@@ -451,7 +451,7 @@
                         
                             <b>4.3.</b>
                         
-                         Declare first
+                         Предварительное объявление
                     </a>
                 
             
@@ -2864,9 +2864,9 @@
                 
                     <section class="normal" id="section-gitbook_153">
                     
-                        <h2 id="41-mutability">4.1 Mutability</h2>
-<p>Variable bindings are immutable by default, but this can be overridden using
-the <code>mut</code> modifier.</p>
+                        <h2 id="41-">4.1 Изменяемость</h2>
+<p>По умолчанию связывание переменных является неизменяемым, 
+но с помощью модификатора <code>mut</code> можно разрешить изменения.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2874,21 +2874,21 @@ the <code>mut</code> modifier.</p>
     let &#95;immutable&#95;binding = 1;
     let mut mutable&#95;binding = 1;
 
-    println!(&quot;Before mutation: {}&quot;, mutable&#95;binding);
+    println!(&quot;Перед изменением: {}&quot;, mutable&#95;binding);
 
     // Ok
     mutable&#95;binding += 1;
 
-    println!(&quot;After mutation: {}&quot;, mutable&#95;binding);
+    println!(&quot;После изменения: {}&quot;, mutable&#95;binding);
 
-    // Error!
+    // Ошибка!
     &#95;immutable&#95;binding += 1;
-    // FIXME ^ Comment out this line
+    // FIXME ^ Закоментируйте эту строку
 }</pre></div>
 <div id="result"></div>
 </div>
 
-<p>The compiler will throw a detailed diagnostic about mutability errors.</p>
+<p>Компилятор будет выводить подробные сообщения об ошибках, связанных с изменяемостью.</p>
 
                     
                     </section>
@@ -2899,10 +2899,10 @@ the <code>mut</code> modifier.</p>
         </div>
 
         
-        <a href="../variable_bindings.html" class="navigation navigation-prev " aria-label="Previous page: Variable Bindings"><i class="fa fa-angle-left"></i></a>
+        <a href="../variable_bindings.html" class="navigation navigation-prev " aria-label="Previous page: Связывание переменных"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../variable_bindings/scope.html" class="navigation navigation-next " aria-label="Next page: Scope and shadowing"><i class="fa fa-angle-right"></i></a>
+        <a href="../variable_bindings/scope.html" class="navigation navigation-next " aria-label="Next page: Область видимость"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

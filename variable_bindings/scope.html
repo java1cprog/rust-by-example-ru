@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Scope and shadowing | Rust на примерах</title>
+        <title>Область видимость | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="4.2" data-basepath=".." data-revision="1476003533020">
+    <div class="book" data-level="4.2" data-basepath=".." data-revision="1476011996634">
     
 
 <div class="book-summary">
@@ -402,7 +402,7 @@
                         
                             <b>4.</b>
                         
-                         Variable Bindings
+                         Связывание переменных
                     </a>
                 
             
@@ -419,7 +419,7 @@
                         
                             <b>4.1.</b>
                         
-                         Mutability
+                         Изменяемость
                     </a>
                 
             
@@ -435,7 +435,7 @@
                         
                             <b>4.2.</b>
                         
-                         Scope and shadowing
+                         Область видимость
                     </a>
                 
             
@@ -451,7 +451,7 @@
                         
                             <b>4.3.</b>
                         
-                         Declare first
+                         Предварительное объявление
                     </a>
                 
             
@@ -2864,38 +2864,38 @@
                 
                     <section class="normal" id="section-gitbook_154">
                     
-                        <h2 id="42-scope-and-shadowing">4.2 Scope and shadowing</h2>
-<p>Variable bindings have a scope, and are constrained to live in a <em>block</em>. A
-block is a collection of statements enclosed by braces <code>{}</code>. Also, <a href="https://en.wikipedia.org/wiki/Variable_shadowing" target="_blank">variable
-shadowing</a> is allowed.</p>
+                        <h2 id="42--">4.2 Область видимость</h2>
+<p>Связывание переменных имеет локальную область видимости, и живут эти переменные в <em>блоке</em>.
+Блок — набор инструкций, заключённый между фигурными скобками <code>{}</code>. 
+Кроме того, допускается <a href="https://en.wikipedia.org/wiki/Variable_shadowing" target="_blank">скрытие переменных.</a> is allowed.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn main() {
-    // This binding lives in the main function
+    // Эта переменная живет в функции main
     let long&#95;lived&#95;binding = 1;
 
-    // This is a block, and has a smaller scope than the main function
+    // Это блок, он имеет меньшую область видимости, чем функция main
     {
-        // This binding only exists in this block
+        // Эта переменная существует только в этом блоке
         let short&#95;lived&#95;binding = 2;
 
         println!(&quot;inner short: {}&quot;, short&#95;lived&#95;binding);
 
-        // This binding &#42;shadows&#42; the outer one
+        // Эта переменная &#42;скрывает&#42; собой внешнуюю
         let long&#95;lived&#95;binding = 5&#95;f32;
 
         println!(&quot;inner long: {}&quot;, long&#95;lived&#95;binding);
     }
-    // End of the block
+    // Конец блока
 
-    // Error! &#96;short&#95;lived&#95;binding&#96; doesn&#39;t exist in this scope
+    // Ошибка! &#96;short&#95;lived&#95;binding&#96; нет в этой области видимости
     println!(&quot;outer short: {}&quot;, short&#95;lived&#95;binding);
-    // FIXME ^ Comment out this line
+    // FIXME ^ Закомментируйте строку
 
     println!(&quot;outer long: {}&quot;, long&#95;lived&#95;binding);
 
-    // This binding also &#42;shadows&#42; the previous binding
+    // Это связывание так же &#42;скрывает&#42; собой предыдущие
     let long&#95;lived&#95;binding = &#39;a&#39;;
 
     println!(&quot;outer long: {}&quot;, long&#95;lived&#95;binding);
@@ -2913,10 +2913,10 @@ shadowing</a> is allowed.</p>
         </div>
 
         
-        <a href="../variable_bindings/mut.html" class="navigation navigation-prev " aria-label="Previous page: Mutability"><i class="fa fa-angle-left"></i></a>
+        <a href="../variable_bindings/mut.html" class="navigation navigation-prev " aria-label="Previous page: Изменяемость"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../variable_bindings/declare.html" class="navigation navigation-next " aria-label="Next page: Declare first"><i class="fa fa-angle-right"></i></a>
+        <a href="../variable_bindings/declare.html" class="navigation navigation-next " aria-label="Next page: Предварительное объявление"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

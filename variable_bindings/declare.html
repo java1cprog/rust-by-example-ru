@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Declare first | Rust на примерах</title>
+        <title>Предварительное объявление | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="4.3" data-basepath=".." data-revision="1476003533020">
+    <div class="book" data-level="4.3" data-basepath=".." data-revision="1476011996634">
     
 
 <div class="book-summary">
@@ -402,7 +402,7 @@
                         
                             <b>4.</b>
                         
-                         Variable Bindings
+                         Связывание переменных
                     </a>
                 
             
@@ -419,7 +419,7 @@
                         
                             <b>4.1.</b>
                         
-                         Mutability
+                         Изменяемость
                     </a>
                 
             
@@ -435,7 +435,7 @@
                         
                             <b>4.2.</b>
                         
-                         Scope and shadowing
+                         Область видимость
                     </a>
                 
             
@@ -451,7 +451,7 @@
                         
                             <b>4.3.</b>
                         
-                         Declare first
+                         Предварительное объявление
                     </a>
                 
             
@@ -2864,41 +2864,41 @@
                 
                     <section class="normal" id="section-gitbook_152">
                     
-                        <h2 id="43-declare-first">4.3 Declare first</h2>
-<p>It&#39;s possible to declare variable bindings first, and initialize them later.
-However, this form is seldom used, as it may lead to the use of uninitialized
-variables.</p>
+                        <h2 id="43--">4.3 Предварительное объявление</h2>
+<p>Можно сначала объявить связь с переменной, а инициализировать ее позже.
+Однако, такая форма используется редко, 
+так как может привести к использованию неинициализированных переменных.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn main() {
-    // Declare a variable binding
+    // Объявляем связь с переменной
     let a&#95;binding;
 
     {
         let x = 2;
 
-        // Initialize the binding
+        // Инициализируем связь
         a&#95;binding = x &#42; x;
     }
 
-    println!(&quot;a binding: {}&quot;, a&#95;binding);
+    println!(&quot;связь а: {}&quot;, a&#95;binding);
 
     let another&#95;binding;
 
-    // Error! Use of uninitialized binding
-    println!(&quot;another binding: {}&quot;, another&#95;binding);
-    // FIXME ^ Comment out this line
+    // Ошибка! Использование неициализированной связи с переменной
+    println!(&quot;другая связь: {}&quot;, another&#95;binding);
+    // FIXME ^ Закомментируйте строку
 
     another&#95;binding = 1;
 
-    println!(&quot;another binding: {}&quot;, another&#95;binding);
+    println!(&quot;другая связь: {}&quot;, another&#95;binding);
 }</pre></div>
 <div id="result"></div>
 </div>
 
-<p>The compiler forbids use of uninitialized variables, as this would lead to
-undefined behavior.</p>
+<p>Компилятор запрещает использование неинициализированных переменных, 
+так как это привело бы к неопределённому поведению.</p>
 
                     
                     </section>
@@ -2909,7 +2909,7 @@ undefined behavior.</p>
         </div>
 
         
-        <a href="../variable_bindings/scope.html" class="navigation navigation-prev " aria-label="Previous page: Scope and shadowing"><i class="fa fa-angle-left"></i></a>
+        <a href="../variable_bindings/scope.html" class="navigation navigation-prev " aria-label="Previous page: Область видимость"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../cast.html" class="navigation navigation-next " aria-label="Next page: Преобразование типов"><i class="fa fa-angle-right"></i></a>
