@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Methods | Rust на примерах</title>
+        <title>Методы | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="8.1" data-basepath=".." data-revision="1476011996634">
+    <div class="book" data-level="8.1" data-basepath=".." data-revision="1476045500300">
     
 
 <div class="book-summary">
@@ -838,7 +838,7 @@
                         
                             <b>8.</b>
                         
-                         Functions
+                         Функции
                     </a>
                 
             
@@ -855,7 +855,7 @@
                         
                             <b>8.1.</b>
                         
-                         Methods
+                         Методы
                     </a>
                 
             
@@ -1027,7 +1027,7 @@
                         
                             <b>8.3.</b>
                         
-                         Higher Order Functions
+                         Функции Высшего Порядка
                     </a>
                 
             
@@ -2864,10 +2864,9 @@
                 
                     <section class="normal" id="section-gitbook_68">
                     
-                        <h2 id="81-methods">8.1 Methods</h2>
-<p>Methods are functions attached to objects. These methods have access to the
-data of the object and its other methods via the <code>self</code> keyword. Methods are
-defined under an <code>impl</code> block.</p>
+                        <h2 id="81-">8.1 Методы</h2>
+<p>Методы - это функций прикрепленные к объектам. Эти методы имеют допуск к данным объекта и 
+его другим методам через ключевое слово <code>self</code>. Методы определяются под блоком <code>impl</code>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2876,16 +2875,16 @@ defined under an <code>impl</code> block.</p>
     y: f64,
 }
 
-// Implementation block, all &#96;Point&#96; methods go in here
+// Блок реализаций, все методы &#96;Point&#96; идут сюда
 impl Point {
-    // This is a static method
-    // Static methods don&#39;t need to be called by an instance
-    // These methods are generally used as constructors
+    // Это статический метод
+    // Статические методы не нуждаются в вызове от экземпляра
+    // Эти методы, как правило, используются как конструкторы
     fn origin() -&gt; Point {
         Point { x: 0.0, y: 0.0 }
     }
 
-    // Another static method, taking two arguments:
+    // Другой статический метод, берет два аргумента
     fn new(x: f64, y: f64) -&gt; Point {
         Point { x: x, y: y }
     }
@@ -2897,16 +2896,16 @@ struct Rectangle {
 }
 
 impl Rectangle {
-    // This is an instance method
-    // &#96;&amp;self&#96; is sugar for &#96;self: &amp;Self&#96;, where &#96;Self&#96; is the type of the
-    // caller object. In this case &#96;Self&#96; = &#96;Rectangle&#96;
+    // Это метод экземпляра
+    // &#96;&amp;self&#96; это сахар для &#96;self: &amp;Self&#96;, где &#96;Self&#96; это тип
+    // вызываемого объекта. В этом месте &#96;Self&#96; = &#96;Rectangle&#96;
     fn area(&amp;self) -&gt; f64 {
-        // &#96;self&#96; gives access to the struct fields via the dot operator
+        // &#96;self&#96; дает допуск к полям структуры через оператор точка
         let Point { x: x1, y: y1 } = self.p1;
         let Point { x: x2, y: y2 } = self.p2;
 
-        // &#96;abs&#96; is a &#96;f64&#96; method that returns the absolute value of the
-        // caller
+        // &#96;abs&#96; это метод &#96;f64&#96; который возвращает абсолютную величину
+        // вызываемого
         ((x1 - x2) &#42; (y1 - y2)).abs()
     }
 
@@ -2917,8 +2916,8 @@ impl Rectangle {
         2.0 &#42; ((x1 - x2).abs() + (y1 - y2).abs())
     }
 
-    // This method requires the caller object to be mutable
-    // &#96;&amp;mut self&#96; desugars to &#96;self: &amp;mut Self&#96;
+    // Этот метод требует чтобы вызываемый объект был изменяемым
+    // &#96;&amp;mut self&#96; сахар для &#96;self: &amp;mut Self&#96;
     fn translate(&amp;mut self, x: f64, y: f64) {
         self.p1.x += x;
         self.p2.x += x;
@@ -2928,32 +2927,32 @@ impl Rectangle {
     }
 }
 
-// &#96;Pair&#96; owns resources: two heap allocated integers
+// &#96;Pair&#96; владеет ресурсами: два целых числа в куче
 struct Pair(Box&lt;i32&gt;, Box&lt;i32&gt;);
 
 impl Pair {
-    // This method &quot;consumes&quot; the resources of the caller object
-    // &#96;self&#96; desugars to &#96;self: Self&#96;
+    // Этот метод &quot;съедает&quot; ресурсы вызываемого объекта
+    // &#96;self&#96; сахар для &#96;self: Self&#96;
     fn destroy(self) {
-        // Destructure &#96;self&#96;
+        // деструктуризация &#96;self&#96;
         let Pair(first, second) = self;
 
         println!(&quot;Destroying Pair({}, {})&quot;, first, second);
 
-        // &#96;first&#96; and &#96;second&#96; go out of scope and get freed
+        // &#96;first&#96; и &#96;second&#96; выходят из области видимости и освобождаются
     }
 }
 
 fn main() {
     let rectangle = Rectangle {
-        // Static methods are called using double colons
+        // Статические методы вызываются двойными двоеточиями
         p1: Point::origin(),
         p2: Point::new(3.0, 4.0),
     };
 
-    // Instance methods are called using the dot operator
-    // Note that the first argument &#96;&amp;self&#96; is implicitly passed, i.e.
-    // &#96;rectangle.perimeter()&#96; === &#96;Rectangle::perimeter(&amp;rectangle)&#96;
+    // Метод экземпляра вызывается с помощью оператора точка
+    // Обратите внимание, что первый аргумент &#96;&amp;self&#96; неявно пропускается т.е.
+    // &#96;rectangle.perimeter()&#96; === &#96;perimeter(&amp;rectangle)&#96;
     println!(&quot;Rectangle perimeter: {}&quot;, rectangle.perimeter());
     println!(&quot;Rectangle area: {}&quot;, rectangle.area());
 
@@ -2962,21 +2961,21 @@ fn main() {
         p2: Point::new(1.0, 1.0),
     };
 
-    // Error! &#96;rectangle&#96; is immutable, but this method requires a mutable
-    // object
+    // Ошибка! &#96;rectangle&#96; неизменяемый, но этот метод нуждается в изменяемом
+    // объекте
     //rectangle.translate(1.0, 0.0);
-    // TODO ^ Try uncommenting this line
+    // TODO ^ Попробуйте удалить комментарий
 
-    // Okay! Mutable objects can call mutable methods
+    // Хорошо, изменяемый объект может вызывать изменяемые методы
     square.translate(1.0, 1.0);
 
     let pair = Pair(Box::new(1), Box::new(2));
 
     pair.destroy();
 
-    // Error! Previous &#96;destroy&#96; call &quot;consumed&quot; &#96;pair&#96;
+    // Ошибка! &#96;destroy&#96; вызывает &quot;съеденный&quot; &#96;pair&#96;
     //pair.destroy();
-    // TODO ^ Try uncommenting this line
+    // TODO ^ Попробуйте удалить комментарий
 }</pre></div>
 <div id="result"></div>
 </div>
@@ -2990,7 +2989,7 @@ fn main() {
         </div>
 
         
-        <a href="../fn.html" class="navigation navigation-prev " aria-label="Previous page: Functions"><i class="fa fa-angle-left"></i></a>
+        <a href="../fn.html" class="navigation navigation-prev " aria-label="Previous page: Функции"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../fn/closures.html" class="navigation navigation-next " aria-label="Next page: Closures"><i class="fa fa-angle-right"></i></a>

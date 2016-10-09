@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="7.2.1" data-basepath="../.." data-revision="1476011996634">
+    <div class="book" data-level="7.2.1" data-basepath="../.." data-revision="1476045500300">
     
 
 <div class="book-summary">
@@ -838,7 +838,7 @@
                         
                             <b>8.</b>
                         
-                         Functions
+                         Функции
                     </a>
                 
             
@@ -855,7 +855,7 @@
                         
                             <b>8.1.</b>
                         
-                         Methods
+                         Методы
                     </a>
                 
             
@@ -1027,7 +1027,7 @@
                         
                             <b>8.3.</b>
                         
-                         Higher Order Functions
+                         Функции Высшего Порядка
                     </a>
                 
             
@@ -2865,9 +2865,10 @@
                     <section class="normal" id="section-gitbook_45">
                     
                         <h3 id="721-nesting-and-labels">7.2.1 Nesting and labels</h3>
-<p>It&#39;s possible to <code>break</code> or <code>continue</code> outer loops when dealing with nested
-loops. In these cases, the loops must be annotated with some <code>&#39;label</code>, and the
-label must be passed to the <code>break</code>/<code>continue</code> statement.</p>
+<p>Можно прерывать выполнение внешних циклов с помощью <code>break</code> или <code>continue</code>, 
+когда речь заходит о вложенных циклах.
+Для этого циклы должны быть обозначены метками вроде <code>&#39;label</code>, 
+а метки должны быть переданы операторам <code>break</code> или <code>continue</code>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2875,22 +2876,22 @@ label must be passed to the <code>break</code>/<code>continue</code> statement.<
 
 fn main() {
     &#39;outer: loop {
-        println!(&quot;Entered the outer loop&quot;);
+        println!(&quot;Вошли во внешний цикл&quot;);
 
         &#39;inner: loop {
-            println!(&quot;Entered the inner loop&quot;);
+            println!(&quot;Вошли во внутренний цикл&quot;);
 
-            // This would break only the inner loop
+            // Это прервёт лишь внутренний цикл
             //break;
 
-            // This breaks the outer loop
+            // Это прервёт внешний цикл
             break &#39;outer;
         }
 
-        println!(&quot;This point will never be reached&quot;);
+        println!(&quot;Эта точка не будет достигнута&quot;);
     }
 
-    println!(&quot;Exited the outer loop&quot;);
+    println!(&quot;Вышли из внешнего цикла&quot;);
 }</pre></div>
 <div id="result"></div>
 </div>

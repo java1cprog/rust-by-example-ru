@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="7.1" data-basepath=".." data-revision="1476011996634">
+    <div class="book" data-level="7.1" data-basepath=".." data-revision="1476045500300">
     
 
 <div class="book-summary">
@@ -838,7 +838,7 @@
                         
                             <b>8.</b>
                         
-                         Functions
+                         Функции
                     </a>
                 
             
@@ -855,7 +855,7 @@
                         
                             <b>8.1.</b>
                         
-                         Methods
+                         Методы
                     </a>
                 
             
@@ -1027,7 +1027,7 @@
                         
                             <b>8.3.</b>
                         
-                         Higher Order Functions
+                         Функции Высшего Порядка
                     </a>
                 
             
@@ -2865,10 +2865,10 @@
                     <section class="normal" id="section-gitbook_43">
                     
                         <h2 id="71-ifelse">7.1 if/else</h2>
-<p>Branching with <code>if</code>-<code>else</code> is similar to other languages. Unlike many of them,
-the boolean condition doesn&#39;t need to be surrounded by parentheses, and each
-condition is followed by a block. <code>if</code>-<code>else</code> conditionals are expressions,
-and, all branches must return the same type.</p>
+<p>Ветвление с помощью <code>if</code>-<code>else</code> такое же, как и в других языка программирования. 
+В отличие от многих других языков программирования, логические условия не должны быть заключены 
+в круглые скобки и после каждого условия должен следовать блок. 
+Условия <code>if</code>-<code>else</code> являются выражениями, и все ветки должны возвращать одинаковый тип данных.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2876,27 +2876,27 @@ and, all branches must return the same type.</p>
     let n = 5;
 
     if n &lt; 0 {
-        print!(&quot;{} is negative&quot;, n);
+        print!(&quot;{} — отрицательное&quot;, n);
     } else if n &gt; 0 {
-        print!(&quot;{} is positive&quot;, n);
+        print!(&quot;{} — положительное&quot;, n);
     } else {
-        print!(&quot;{} is zero&quot;, n);
+        print!(&quot;{} — нуль&quot;, n);
     }
 
     let big&#95;n =
         if n &lt; 10 &amp;&amp; n &gt; -10 {
-            println!(&quot;, and is a small number, increase ten-fold&quot;);
+            println!(&quot;, малое по модулю число, умножим его в десять раз&quot;);
 
-            // This expression returns an &#96;i32&#96;.
+            // Это выражение вернет &#96;i32&#96;.
             10 &#42; n
         } else {
-            println!(&quot;, and is a big number, reduce by two&quot;);
+            println!(&quot;, большое по модулю число, уменьшим его вдвое&quot;);
 
-            // This expression must return an &#96;i32&#96; as well.
+            // И это выражение вернет &#96;i32&#96;.
             n / 2
-            // TODO ^ Try suppressing this expression with a semicolon.
+            // TODO ^ Попробуйте отброить значение, добавив точку с запятой.
         };
-    //   ^ Don&#39;t forget to put a semicolon here! All &#96;let&#96; bindings need it.
+    //   ^ Не забудьте добавить тут точку с запятой! Все операторы &#96;let&#96; требуют её..
 
     println!(&quot;{} -&gt; {}&quot;, n, big&#95;n);
 }</pre></div>

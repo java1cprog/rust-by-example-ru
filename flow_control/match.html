@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="7.5" data-basepath=".." data-revision="1476011996634">
+    <div class="book" data-level="7.5" data-basepath=".." data-revision="1476045500300">
     
 
 <div class="book-summary">
@@ -838,7 +838,7 @@
                         
                             <b>8.</b>
                         
-                         Functions
+                         Функции
                     </a>
                 
             
@@ -855,7 +855,7 @@
                         
                             <b>8.1.</b>
                         
-                         Methods
+                         Методы
                     </a>
                 
             
@@ -1027,7 +1027,7 @@
                         
                             <b>8.3.</b>
                         
-                         Higher Order Functions
+                         Функции Высшего Порядка
                     </a>
                 
             
@@ -2865,34 +2865,34 @@
                     <section class="normal" id="section-gitbook_54">
                     
                         <h2 id="75-match">7.5 match</h2>
-<p>Rust provides pattern matching via the <code>match</code> keyword, which can be used like
-a C <code>switch</code>.</p>
+<p>Rust предоставляет ключевое слово <code>match</code>, которое используется для проверки на 
+соответствие шаблону. <code>match</code> можно использовать как <code>switch</code> в языке C.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn main() {
     let number = 13;
-    // TODO ^ Try different values for &#96;number&#96;
+    // TODO ^ Попробуйте присвоить &#96;number&#96; другое значение
 
     println!(&quot;Tell me about {}&quot;, number);
     match number {
-        // Match a single value
+        // Сопоставление с одним значением
         1 =&gt; println!(&quot;One!&quot;),
-        // Match several values
+        // Сопоставление с несколькими значениями
         2 | 3 | 5 | 7 | 11 =&gt; println!(&quot;This is a prime&quot;),
-        // Match an inclusive range
+        // Сопоставление с диапозоном значений
         13...19 =&gt; println!(&quot;A teen&quot;),
-        // Handle the rest of cases
+        // Обработка остальных случаев
         &#95; =&gt; println!(&quot;Ain&#39;t special&quot;),
     }
 
     let boolean = true;
-    // Match is an expression too
+    // Match так же является выражением
     let binary = match boolean {
-        // The arms of a match must cover all the possible values
+        // Ветви match должны обработать все возможные значения переменной
         false =&gt; 0,
         true =&gt; 1,
-        // TODO ^ Try commenting out one of these arms
+        // TODO ^ Попробуйте закоментировать эту ветвь
     };
 
     println!(&quot;{} -&gt; {}&quot;, boolean, binary);

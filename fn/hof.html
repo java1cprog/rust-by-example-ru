@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Higher Order Functions | Rust на примерах</title>
+        <title>Функции Высшего Порядка | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="8.3" data-basepath=".." data-revision="1476011996634">
+    <div class="book" data-level="8.3" data-basepath=".." data-revision="1476045500300">
     
 
 <div class="book-summary">
@@ -838,7 +838,7 @@
                         
                             <b>8.</b>
                         
-                         Functions
+                         Функции
                     </a>
                 
             
@@ -855,7 +855,7 @@
                         
                             <b>8.1.</b>
                         
-                         Methods
+                         Методы
                     </a>
                 
             
@@ -1027,7 +1027,7 @@
                         
                             <b>8.3.</b>
                         
-                         Higher Order Functions
+                         Функции Высшего Порядка
                     </a>
                 
             
@@ -2864,10 +2864,10 @@
                 
                     <section class="normal" id="section-gitbook_67">
                     
-                        <h2 id="83-higher-order-functions">8.3 Higher Order Functions</h2>
-<p>Rust provides Higher Order Functions (HOF). These are functions that
-take one or more functions and/or produce a more useful function. HOFs
-and lazy iterators give Rust its functional flavor.</p>
+                        <h2 id="83---">8.3 Функции Высшего Порядка</h2>
+<p>Rust предоставляет Функций Высшего Порядка(ФВП). Это функций которые берут один или 
+больше функций и производит более полезные функций. 
+ФВП и ленивые итераторы дают языку Rust функциональную особенность.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2876,42 +2876,42 @@ and lazy iterators give Rust its functional flavor.</p>
 }
 
 fn main() {
-    println!(&quot;Find the sum of all the squared odd numbers under 1000&quot;);
+    println!(&quot;Найти сумму всех квадратов нечетных числ не больше 1000&quot;);
     let upper = 1000;
 
-    // Imperative approach
-    // Declare accumulator variable
+    // Императивный подход
+    // Объявляем переменную накопитель
     let mut acc = 0;
-    // Iterate: 0, 1, 2, ... to infinity
+    // Итерировать: 0, 1, 2, ... до бесконечности
     for n in 0.. {
-        // Square the number
+        // Квадрат числа
         let n&#95;squared = n &#42; n;
 
         if n&#95;squared &gt;= upper {
-            // Break loop if exceeded the upper limit
+            // станавить цикл, если превысили верхний лимит
             break;
         } else if is&#95;odd(n&#95;squared) {
-            // Accumulate value, if it&#39;s odd
+            // Складывать число, если оно нечетное
             acc += n&#95;squared;
         }
     }
     println!(&quot;imperative style: {}&quot;, acc);
 
-    // Functional approach
+    // Функциональный подход
     let sum&#95;of&#95;squared&#95;odd&#95;numbers: u32 =
-        (0..).map(|n| n &#42; n)             // All natural numbers squared
-             .take&#95;while(|&amp;n| n &lt; upper) // Below upper limit
-             .filter(|n| is&#95;odd(&#42;n))     // That are odd
-             .fold(0, |sum, i| sum + i); // Sum them
+        (0..).map(|n| n &#42; n)             // Все натуральные числа в квадрате
+             .take&#95;while(|&amp;n| n &lt; upper) // Ниже верхнего предела
+             .filter(|n| is&#95;odd(&#42;n))     // Это нечетные
+             .fold(0, |sum, i| sum + i); // Суммируем
     println!(&quot;functional style: {}&quot;, sum&#95;of&#95;squared&#95;odd&#95;numbers);
 }</pre></div>
 <div id="result"></div>
 </div>
 
 <p><a href="http://doc.rust-lang.org/core/option/enum.Option.html" target="_blank">Option</a>
-and
+и
 <a href="http://doc.rust-lang.org/core/iter/trait.Iterator.html" target="_blank">Iterator</a>
-implement their fair share of HOFs.</p>
+реализуют свою часть функций высшего порядка..</p>
 
                     
                     </section>

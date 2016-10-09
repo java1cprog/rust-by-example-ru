@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Functions | Rust на примерах</title>
+        <title>Функции | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="8" data-basepath="." data-revision="1476011996634">
+    <div class="book" data-level="8" data-basepath="." data-revision="1476045500300">
     
 
 <div class="book-summary">
@@ -838,7 +838,7 @@
                         
                             <b>8.</b>
                         
-                         Functions
+                         Функции
                     </a>
                 
             
@@ -855,7 +855,7 @@
                         
                             <b>8.1.</b>
                         
-                         Methods
+                         Методы
                     </a>
                 
             
@@ -1027,7 +1027,7 @@
                         
                             <b>8.3.</b>
                         
-                         Higher Order Functions
+                         Функции Высшего Порядка
                     </a>
                 
             
@@ -2864,35 +2864,35 @@
                 
                     <section class="normal" id="section-gitbook_69">
                     
-                        <h1 id="8-functions">8 Functions</h1>
-<p>Functions are declared using the <code>fn</code> keyword. Its arguments are type
-annotated, just like variables, and, if the function returns a value, the
-return type must be specified after an arrow <code>-&gt;</code>.</p>
-<p>The final expression in the function will be used as return value.
-Alternatively, the <code>return</code> statement can be used to return a value earlier
-from within the function, even from inside loops or <code>if</code>s.</p>
-<p>Let&#39;s rewrite FizzBuzz using functions!</p>
+                        <h1 id="8-">8 Функции</h1>
+<p>Функции объявляются с помощью ключевого слова <code>fn</code>. Их аргументы имеют явно заданный тип, 
+как у переменных, и, если функция возвращает значение, 
+возвращаемый тип должен быть указан после стрелки <code>-&gt;</code>.</p>
+<p>Последнее выражение в функции будет использовано как возвращаемое значение.
+Так же можно использовать оператор <code>return</code>, чтобы вернуть значение из функции раньше, 
+даже из цикла или оператора <code>if</code>.</p>
+<p>Давайте перепишем FizzBuzz используя функции!</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// Unlike C/C++, there&#39;s no restriction on the order of function definitions
+<div id="editor"><pre>// В отличие от С/С++, нет никаких ограничений касаемо порядка определений функций
 fn main() {
-    // We can use this function here, and define it somewhere later
+    // Можно использовать функцию здесь, а определить где-нибудь потом
     fizzbuzz&#95;to(100);
 }
 
-// Function that returns a boolean value
+// Функция, возвращающая логическое значение
 fn is&#95;divisible&#95;by(lhs: u32, rhs: u32) -&gt; bool {
-    // Corner case, early return
+    // Граничный случай, ранний возврат
     if rhs == 0 {
         return false;
     }
 
-    // This is an expression, the &#96;return&#96; keyword is not necessary here
+    // Это - выражение, ключевое слово &#96;return&#96; здесь не требуется
     lhs % rhs == 0
 }
 
-// Functions that &quot;don&#39;t&quot; return a value, actually return the unit type &#96;()&#96;
+// Функция, которая «не возвращает» значение, на самом деле возвращает единичный тип &#96;()&#96;
 fn fizzbuzz(n: u32) -&gt; () {
     if is&#95;divisible&#95;by(n, 15) {
         println!(&quot;fizzbuzz&quot;);
@@ -2905,8 +2905,7 @@ fn fizzbuzz(n: u32) -&gt; () {
     }
 }
 
-// When a function returns &#96;()&#96;, the return type can be omitted from the
-// signature
+// Когда функция возвращает &#96;()&#96;, возвращаемый тип можно не указывать
 fn fizzbuzz&#95;to(n: u32) {
     for n in 1..n + 1 {
         fizzbuzz(n);
@@ -2927,7 +2926,7 @@ fn fizzbuzz&#95;to(n: u32) {
         <a href="./flow_control/while_let.html" class="navigation navigation-prev " aria-label="Previous page: while let"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./fn/methods.html" class="navigation navigation-next " aria-label="Next page: Methods"><i class="fa fa-angle-right"></i></a>
+        <a href="./fn/methods.html" class="navigation navigation-next " aria-label="Next page: Методы"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
