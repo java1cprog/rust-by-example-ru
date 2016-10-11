@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Enter try! | Rust на примерах</title>
+        <title>Combinators: `map` | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="../../error/limits_of_strings.html" />
+    <link rel="next" href="../../error/option_unwrap/and_then.html" />
     
     
-    <link rel="prev" href="../../error/option_with_result/combinator_combinations.html" />
+    <link rel="prev" href="../../error/option_unwrap.html" />
     
 
         
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.5.3" data-basepath="../.." data-revision="1476045540697">
+    <div class="book" data-level="16.2.1" data-basepath="../.." data-revision="1476219853062">
     
 
 <div class="book-summary">
@@ -2037,15 +2037,15 @@
                 
     
         
-        <li class="chapter " data-level="16.1" data-path="error/unwrap.html">
+        <li class="chapter " data-level="16.1" data-path="error/panic.html">
             
                 
-                    <a href="../../error/unwrap.html">
+                    <a href="../../error/panic.html">
                         <i class="fa fa-check"></i>
                         
                             <b>16.1.</b>
                         
-                         Option &amp; unwrap
+                         `panic`
                     </a>
                 
             
@@ -2053,31 +2053,32 @@
         </li>
     
         
-        <li class="chapter " data-level="16.2" data-path="error/map.html">
+        <li class="chapter " data-level="16.2" data-path="error/option_unwrap.html">
             
                 
-                    <a href="../../error/map.html">
+                    <a href="../../error/option_unwrap.html">
                         <i class="fa fa-check"></i>
                         
                             <b>16.2.</b>
                         
-                         map
+                         `Option` &amp; `unwrap`
                     </a>
                 
             
             
-        </li>
+            <ul class="articles">
+                
     
         
-        <li class="chapter " data-level="16.3" data-path="error/and_then.html">
+        <li class="chapter active" data-level="16.2.1" data-path="error/option_unwrap/map.html">
             
                 
-                    <a href="../../error/and_then.html">
+                    <a href="../../error/option_unwrap/map.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>16.3.</b>
+                            <b>16.2.1.</b>
                         
-                         and_then
+                         Combinators: `map`
                     </a>
                 
             
@@ -2085,15 +2086,36 @@
         </li>
     
         
-        <li class="chapter " data-level="16.4" data-path="error/result.html">
+        <li class="chapter " data-level="16.2.2" data-path="error/option_unwrap/and_then.html">
+            
+                
+                    <a href="../../error/option_unwrap/and_then.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.2.2.</b>
+                        
+                         Combinators: `and_then`
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.3" data-path="error/result.html">
             
                 
                     <a href="../../error/result.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>16.4.</b>
+                            <b>16.3.</b>
                         
-                         Result
+                         `Result`
                     </a>
                 
             
@@ -2102,15 +2124,15 @@
                 
     
         
-        <li class="chapter " data-level="16.4.1" data-path="error/result/result_map.html">
+        <li class="chapter " data-level="16.3.1" data-path="error/result/result_map.html">
             
                 
                     <a href="../../error/result/result_map.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>16.4.1.</b>
+                            <b>16.3.1.</b>
                         
-                         map for Result
+                         `map` for `Result`
                     </a>
                 
             
@@ -2118,15 +2140,15 @@
         </li>
     
         
-        <li class="chapter " data-level="16.4.2" data-path="error/result/result_alias.html">
+        <li class="chapter " data-level="16.3.2" data-path="error/result/result_alias.html">
             
                 
                     <a href="../../error/result/result_alias.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>16.4.2.</b>
+                            <b>16.3.2.</b>
                         
-                         aliases for Result
+                         aliases for `Result`
                     </a>
                 
             
@@ -2139,15 +2161,15 @@
         </li>
     
         
-        <li class="chapter " data-level="16.5" data-path="error/option_with_result.html">
+        <li class="chapter " data-level="16.4" data-path="error/multiple_error_types.html">
             
                 
-                    <a href="../../error/option_with_result.html">
+                    <a href="../../error/multiple_error_types.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>16.5.</b>
+                            <b>16.4.</b>
                         
-                         Options with Results
+                         Multiple error types
                     </a>
                 
             
@@ -2156,15 +2178,15 @@
                 
     
         
-        <li class="chapter " data-level="16.5.1" data-path="error/option_with_result/result_string_errors.html">
+        <li class="chapter " data-level="16.4.1" data-path="error/multiple_error_types/early_returns.html">
             
                 
-                    <a href="../../error/option_with_result/result_string_errors.html">
+                    <a href="../../error/multiple_error_types/early_returns.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>16.5.1.</b>
+                            <b>16.4.1.</b>
                         
-                         Strings as errors
+                         Early returns
                     </a>
                 
             
@@ -2172,31 +2194,15 @@
         </li>
     
         
-        <li class="chapter " data-level="16.5.2" data-path="error/option_with_result/combinator_combinations.html">
+        <li class="chapter " data-level="16.4.2" data-path="error/multiple_error_types/enter_try.html">
             
                 
-                    <a href="../../error/option_with_result/combinator_combinations.html">
+                    <a href="../../error/multiple_error_types/enter_try.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>16.5.2.</b>
+                            <b>16.4.2.</b>
                         
-                         Combining separate combinators
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter active" data-level="16.5.3" data-path="error/option_with_result/enter_try.html">
-            
-                
-                    <a href="../../error/option_with_result/enter_try.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>16.5.3.</b>
-                        
-                         Enter try!
+                         Introducing `try!`
                     </a>
                 
             
@@ -2209,15 +2215,15 @@
         </li>
     
         
-        <li class="chapter " data-level="16.6" data-path="error/limits_of_strings.html">
+        <li class="chapter " data-level="16.5" data-path="error/define_error_type.html">
             
                 
-                    <a href="../../error/limits_of_strings.html">
+                    <a href="../../error/define_error_type.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>16.6.</b>
+                            <b>16.5.</b>
                         
-                         The limits of strings
+                         Defining an error type
                     </a>
                 
             
@@ -2225,15 +2231,15 @@
         </li>
     
         
-        <li class="chapter " data-level="16.7" data-path="error/reenter_try.html">
+        <li class="chapter " data-level="16.6" data-path="error/reenter_try.html">
             
                 
                     <a href="../../error/reenter_try.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>16.7.</b>
+                            <b>16.6.</b>
                         
-                         Re-enter try!
+                         Other uses of `try!`
                     </a>
                 
             
@@ -2241,15 +2247,15 @@
         </li>
     
         
-        <li class="chapter " data-level="16.8" data-path="error/reenabling_box.html">
+        <li class="chapter " data-level="16.7" data-path="error/boxing_errors.html">
             
                 
-                    <a href="../../error/reenabling_box.html">
+                    <a href="../../error/boxing_errors.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>16.8.</b>
+                            <b>16.7.</b>
                         
-                         Re-enabling box
+                         `Box`ing errors
                     </a>
                 
             
@@ -2862,80 +2868,87 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_31">
+                    <section class="normal" id="section-gitbook_33">
                     
-                        <h3 id="1653-enter-try">16.5.3 Enter try!</h3>
-<p>The previous problem was awkward because avoiding <code>unwrap</code> forced us to nest deeper and
-deeper when what we really wanted was to get the variable <em>out</em>. So, is there any way
-to accomodate this approach without <code>panic</code>? Well, what is a valid action to take when
-an <code>Err</code> is found? It turns out there are two:</p>
-<ol>
-<li><code>panic!</code> which we already decided to try to avoid if possible</li>
-<li><code>return</code> because an <code>Err</code> means it cannot be handled</li>
-</ol>
-<p>This is exactly the purpose of <code>try!</code>; it is <em>almost</em><sup><a href="#fn_1" id="reffn_1">1</a></sup> exactly equivalent to an
-<code>unwrap</code> which <code>returns</code> instead of <code>panics</code> on <code>Errs</code>.</p>
+                        <h3 id="1621-combinators-map">16.2.1 Combinators: <code>map</code></h3>
+<p><code>match</code> is a valid method for handling <code>Option</code>s. However, you may 
+eventually find heavy usage tedious, especially with operations only valid 
+with an input. In these cases, <a href="https://doc.rust-lang.org/book/glossary.html#combinators" target="_blank">combinators</a> can be used to 
+manage control flow in a modular fashion.</p>
+<p><code>Option</code> has a built in method called <code>map()</code>, a combinator for the simple 
+mapping of <code>Some -&gt; Some</code> and <code>None -&gt; None</code>. Multiple <code>map()</code> calls can be 
+chained together for even more flexibility.</p>
+<p>In the following example, <code>process()</code> replaces all functions previous
+to it while staying compact.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>use std::io::prelude::&#42;;
-use std::fs::File;
+<div id="editor"><pre>#![allow(dead&#95;code)]
 
-type Result&lt;T&gt; = std::result::Result&lt;T, String&gt;;
+#[derive(Debug)] enum Food { Apple, Carrot, Potato }
 
-// Setup to make this work. Create two files with some info.
-fn setup() -&gt; std::io::Result&lt;()&gt; {
-    let mut a = try!(File::create(&quot;a&quot;));
-    try!(a.write&#95;all(b&quot;grape&quot;));
+#[derive(Debug)] struct Peeled(Food);
+#[derive(Debug)] struct Chopped(Food);
+#[derive(Debug)] struct Cooked(Food);
 
-    let mut b = try!(File::create(&quot;b&quot;));
-    b.write&#95;all(b&quot;fruit&quot;)
+// Peeling food. If there isn&#39;t any, then return &#96;None&#96;.
+// Otherwise, return the peeled food.
+fn peel(food: Option&lt;Food&gt;) -&gt; Option&lt;Peeled&gt; {
+    match food {
+        Some(food) =&gt; Some(Peeled(food)),
+        None       =&gt; None,
+    }
 }
 
-// Get the data from each file with the data stored in a &#96;Result&#96;.
-fn get&#95;data(path: &amp;str) -&gt; Result&lt;String&gt; {
-    // &#96;try&#96; unwraps the value or returns the error.
-    let mut file = try!(File::open(path)
-        // Errors still must be converted to strings.
-        .map&#95;err(|err| err.to&#95;string())
-    );
-    let mut contents = String::new();
-
-    // Read the data into &#96;contents&#96;.
-    try!(file.read&#95;to&#95;string(&amp;mut contents)
-        .map&#95;err(|err| err.to&#95;string())
-    );
-
-    Ok(contents)
+// Chopping food. If there isn&#39;t any, then return &#96;None&#96;.
+// Otherwise, return the chopped food.
+fn chop(peeled: Option&lt;Peeled&gt;) -&gt; Option&lt;Chopped&gt; {
+    match peeled {
+        Some(Peeled(food)) =&gt; Some(Chopped(food)),
+        None               =&gt; None,
+    }
 }
 
-// Concat the contents of the two files together into a new &#96;Result&#96;.
-fn concat(a: &amp;str, b: &amp;str) -&gt; Result&lt;String&gt; {
-    let (data&#95;a, data&#95;b) = (try!(get&#95;data(a)), try!(get&#95;data(b)));
+// Cooking food. Here, we showcase &#96;map()&#96; instead of &#96;match&#96; for case handling.
+fn cook(chopped: Option&lt;Chopped&gt;) -&gt; Option&lt;Cooked&gt; {
+    chopped.map(|Chopped(food)| Cooked(food))
+}
 
-    Ok(data&#95;a + &amp;data&#95;b)
+// A function to peel, chop, and cook food all in sequence.
+// We chain multiple uses of &#96;map()&#96; to simplify the code.
+fn process(food: Option&lt;Food&gt;) -&gt; Option&lt;Cooked&gt; {
+    food.map(|f| Peeled(f))
+        .map(|Peeled(f)| Chopped(f))
+        .map(|Chopped(f)| Cooked(f))
+}
+
+// Check whether there&#39;s food or not before trying to eat it!
+fn eat(food: Option&lt;Cooked&gt;) {
+    match food {
+        Some(food) =&gt; println!(&quot;Mmm. I love {:?}&quot;, food),
+        None       =&gt; println!(&quot;Oh no! It wasn&#39;t edible.&quot;),
+    }
 }
 
 fn main() {
-    // Ignore this result.
-    setup().unwrap();
+    let apple = Some(Food::Apple);
+    let carrot = Some(Food::Carrot);
+    let potato = None;
 
-    match concat(&quot;a&quot;, &quot;b&quot;) {
-        Ok(n)  =&gt; println!(&quot;{}&quot;, n),
-        Err(e) =&gt; println!(&quot;Error: {}&quot;, e),
-    }
+    let cooked&#95;apple = cook(chop(peel(apple)));
+    let cooked&#95;carrot = cook(chop(peel(carrot)));
+    // Let&#39;s try the simpler looking &#96;process()&#96; now.
+    let cooked&#95;potato = process(potato);
+
+    eat(cooked&#95;apple);
+    eat(cooked&#95;carrot);
+    eat(cooked&#95;potato);
 }</pre></div>
 <div id="result"></div>
 </div>
 
-<p>This really is a <em>huge</em> improvement but there is still the nagging issue of <code>map_err</code>. There is
-actually a way to avoid it (we are using it everywhere it seems) but we are still missing some
-details. First, we have to learn how to make better errors.</p>
-<blockquote id="fn_1">
-<sup>1</sup>. See <a href="/error/reenter_try.html">re-enter try!</a> for more details.<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
-</blockquote>
 <h3 id="see-also">See also:</h3>
-<p><a href="http://doc.rust-lang.org/std/result/enum.Result.html" target="_blank"><code>Result</code></a> and <a href="http://doc.rust-lang.org/std/io/type.Result.html" target="_blank"><code>io::Result</code></a></p>
+<p><a href="/fn/closures.html">closures</a>, <a href="http://doc.rust-lang.org/std/option/enum.Option.html" target="_blank"><code>Option</code></a>, <a href="http://doc.rust-lang.org/std/option/enum.Option.html#method.map" target="_blank"><code>Option::map()</code></a></p>
 
                     
                     </section>
@@ -2946,10 +2959,10 @@ details. First, we have to learn how to make better errors.</p>
         </div>
 
         
-        <a href="../../error/option_with_result/combinator_combinations.html" class="navigation navigation-prev " aria-label="Previous page: Combining separate combinators"><i class="fa fa-angle-left"></i></a>
+        <a href="../../error/option_unwrap.html" class="navigation navigation-prev " aria-label="Previous page: `Option` &amp; `unwrap`"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../error/limits_of_strings.html" class="navigation navigation-next " aria-label="Next page: The limits of strings"><i class="fa fa-angle-right"></i></a>
+        <a href="../../error/option_unwrap/and_then.html" class="navigation navigation-next " aria-label="Next page: Combinators: `and_then`"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
