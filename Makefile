@@ -52,3 +52,4 @@ serve: node_modules/gitbook
 
 node_modules/gitbook:
 	npm install gitbook@1.5.0
+	gitbook install

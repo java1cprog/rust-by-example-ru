@@ -1,6 +1,10 @@
 {
-    "plugins": ["rust-playpen"],
+    "plugins": ["rust-playpen", "edit-link@1.1.0"],
     "pluginsConfig": {
-        "rust-playpen": {}
+        "rust-playpen": {},
+        "edit-link": {
+            "base": "https://github.com/ruRust/rust-by-example-ru/tree/master/examples",
+            "label": "Edit This Page"
+        }
     }
 }
