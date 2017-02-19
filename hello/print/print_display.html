@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2.2" data-basepath="../.." data-revision="1487512332201">
+    <div class="book" data-level="1.2.2" data-basepath="../.." data-revision="1487516869410">
     
 
 <div class="book-summary">
@@ -2868,7 +2868,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_5">
+                    <section class="normal" id="section-gitbook_4">
                     
                         <h3 id="122-display">1.2.2 Display</h3>
 <p><code>fmt::Debug</code> выглядит не очень компактно и красиво, поэтому полезно настраивать внешний вид информации, которая будет напечатана. Это можно сделать реализовав <code>типаж (trait)</code>
@@ -2926,13 +2926,13 @@ impl fmt::Display for MinMax {
 
 // Определим структуру с именованными полями, для сравнения 
 #[derive(Debug)]
-struct Point2 {
+struct Point2D {
     x: f64,
     y: f64,
 }
 
 // По аналогии, реализуем &#96;Display&#96; для Point2
-impl fmt::Display for Point2 {
+impl fmt::Display for Point2D {
     fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
         // Обращаться к полям структуры Point2 будет по имени
         write!(f, &quot;x: {}, y: {}&quot;, self.x, self.y)
@@ -2953,7 +2953,7 @@ fn main() {
              small = small&#95;range,
              big = big&#95;range);
 
-    let point = Point2 { x: 3.3, y: 7.2 };
+    let point = Point2D { x: 3.3, y: 7.2 };
 
     println!(&quot;Compare points:&quot;);
     println!(&quot;Display: {}&quot;, point);
@@ -2967,16 +2967,16 @@ fn main() {
 </div>
 
 <p>И так, <code>fmt::Display</code> был реализован, но <code>fmt::Binary</code> нет, следовательно не может быть
-использован. <code>std::fmt</code> имеет много таких <a href="../trait.html"><code>типажей</code></a> и
+использован. <code>std::fmt</code> имеет много таких <a href="/trait.html"><code>типажей</code></a> и
 каждый из них требует свою реализацию. Это более подробно описано в документации к 
 <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>.</p>
 <h3 id="">Задание</h3>
-<p>После того, как запустите код, представленный выше, используйте структуру <code>Point2</code> как пример и добавьте новую структуру <code>Complex</code>, чтобы вывод был таким:</p>
+<p>После того, как запустите код, представленный выше, используйте структуру <code>Point2D</code> как пример и добавьте новую структуру <code>Complex</code>, чтобы вывод был таким:</p>
 <pre><code>Display: 3.3 + 7.2i
 Debug: Complex { real: 3.3, imag: 7.2 }
 </code></pre><h3 id="-">Смотрите также</h3>
-<p><a href="../trait/derive.html"><code>derive</code></a>, <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>, <a href="../macros.html">macros</a>, <a href="../custom_types/structs.html"><code>struct</code></a>,
-<a href="../trait.html"><code>trait</code></a>, и <a href="../mod/use.html">use</a></p>
+<p><a href="/trait/derive.html"><code>derive</code></a>, <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>, <a href="/macros.html">macros</a>, <a href="/custom_types/structs.html"><code>struct</code></a>,
+<a href="/trait.html"><code>trait</code></a>, и <a href="/mod/use.html">use</a></p>
 
                     
                     </section>
