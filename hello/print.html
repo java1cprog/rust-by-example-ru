@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2" data-basepath=".." data-revision="1487516947713">
+    <div class="book" data-level="1.2" data-basepath=".." data-revision="1487517267476">
     
 
 <div class="book-summary">
@@ -2904,14 +2904,14 @@
     println!(&quot;{} of {:b} people know binary, the other half don&#39;t&quot;, 1, 2);
 
     // Можно выравнивать текст, сдвигая его на указанную ширину. 
-    // Данный макрос отобразит в консоле
+    // Данный макрос отобразит в консоли
     // &quot;     1&quot;. 5 пробелов и &quot;1&quot;.
     println!(&quot;{number:&gt;width&#36;}&quot;, number=1, width=6);
 
-    // Можно добавить цифрам пару нулен. Данный макрос выведет &quot;000001&quot;.
+    // Можно добавить к цифрам пару нулей. Данный макрос выведет &quot;000001&quot;.
     println!(&quot;{number:&gt;0width&#36;}&quot;, number=1, width=6);
 
-    // Компилятор обязательно проверит, что в макрос переденом правильное количество
+    // Компилятор обязательно проверит, что в макрос передано правильное количество
     // аргументов.
     println!(&quot;My name is {0}, {1} {0}&quot;, &quot;Bond&quot;);
     // FIXME ^ Добавьте недостающий аргумент: &quot;James&quot;
@@ -2943,9 +2943,9 @@
 <li>Добавьте макрос <code>println!</code>, который выводит: <code>Pi is roughly 3.142</code> c помощью 
 управления количеством знаков после запятой. Для выполнения данного задания создайте
 переменную, которая будет хранить в себе значение числа Пи: <code>let pi = 3.141592</code>. 
-(Подсказка: вым необходимо ознакомиться с документация по 
+(Подсказка: вам необходимо ознакомиться с документация по 
 <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>, чтобы узнать, 
-как отобразить только часть знаков после запятой в консоле.)</li>
+как отобразить только часть знаков после запятой в консоли.)</li>
 </ul>
 <h3 id="-">Смотрите также</h3>
 <p><a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>, <a href="/macros.html"><code>macros</code></a>, <a href="/custom_types/structs.html"><code>struct</code></a>
