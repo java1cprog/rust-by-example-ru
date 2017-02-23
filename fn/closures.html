@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Closures | Rust на примерах</title>
+        <title>Замыкания | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="8.2" data-basepath=".." data-revision="1487517316528">
+    <div class="book" data-level="8.2" data-basepath=".." data-revision="1487876569035">
     
 
 <div class="book-summary">
@@ -381,7 +381,7 @@
                         
                             <b>3.3.</b>
                         
-                         constants
+                         константы
                     </a>
                 
             
@@ -558,7 +558,7 @@
                         
                             <b>7.</b>
                         
-                         Flow Control
+                         Управление потоком
                     </a>
                 
             
@@ -608,7 +608,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         Nesting and labels
+                         Вложенность и метки
                     </a>
                 
             
@@ -871,7 +871,7 @@
                         
                             <b>8.2.</b>
                         
-                         Closures
+                         Замыкания
                     </a>
                 
             
@@ -2870,46 +2870,45 @@
                 
                     <section class="normal" id="section-gitbook_65">
                     
-                        <h2 id="82-closures">8.2 Closures</h2>
-<p>Closures in Rust, also called lambdas, are functions that can capture 
-the enclosing environment. For example, a closure that captures the x 
-variable:</p>
+                        <h2 id="82-">8.2 Замыкания</h2>
+<p>Замыкания в Rust, так же называемые лямбда, это функции,<br>которые замыкают свое окружение. 
+Для примера, замыкание, которое захватывает значение переменной x:</p>
 <pre><code class="lang-Rust">|val| val + x
 </code></pre>
-<p>The syntax and capabilities of closures make them very convenient for 
-on the fly usage. Calling a closure is exactly like calling a function.
-However, both input and return types <em>can</em> be inferred and input 
-variable names <em>must</em> be specified.</p>
-<p>Other characteristics of closures include:</p>
+<p>Синтаксис и возможности замыканий делают их очень удобными 
+для использования &quot;на лету&quot;. Использование замыканий похоже на использование функций.
+Однако, тип входных и возвращаемых значений <em>может</em> быть выведен, а 
+название аргумента <em>должно</em>  быть указано.</p>
+<p>Другие характеристики замыканий включают в себя:</p>
 <ul>
-<li>using <code>||</code> instead of <code>()</code> around input variables.</li>
-<li>optional body delimination (<code>{}</code>) for a single expression (mandatory otherwise).</li>
-<li>the ability to capture the outer environment variables.</li>
+<li>использование <code>||</code> вместо <code>()</code> для аргументов.</li>
+<li>опциональное ограничения тела функции (<code>{}</code>) для одного выражения (в противном случае обязательно).</li>
+<li>возможность захвата переменных за пределами окружения</li>
 </ul>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn main() {
-    // Increment via closures and functions.
+    // Инкремент с помощью замыкания и функции.
     fn  function            (i: i32) -&gt; i32 { i + 1 }
 
-    // Closures are anonymous, here we are binding them to references
-    // Annotation is identical to function annotation but is optional
-    // as are the &#96;{}&#96; wrapping the body. These nameless functions
-    // are assigned to appropriately named variables.
+    // Замыкания анонимны. Тут мы связываем их с ссылками
+    // Аннотация идентичны аннотации типов функции, но является опциональной
+    // как и оборачивания тела в &#96;{}&#96;. Эти безымянные функции
+    // назначены соответствующе названным переменным.
     let closure&#95;annotated = |i: i32| -&gt; i32 { i + 1 };
     let closure&#95;inferred  = |i     |          i + 1  ;
 
     let i = 1;
-    // Call the function and closures.
-    println!(&quot;function: {}&quot;, function(i));
-    println!(&quot;closure&#95;annotated: {}&quot;, closure&#95;annotated(i));
-    println!(&quot;closure&#95;inferred: {}&quot;, closure&#95;inferred(i));
+    // Вызов функции и замыкания.
+    println!(&quot;функция: {}&quot;, function(i));
+    println!(&quot;замыкание с указанием типа: {}&quot;, closure&#95;annotated(i));
+    println!(&quot;замыкание с выводом типа: {}&quot;, closure&#95;inferred(i));
 
-    // A closure taking no arguments which returns an &#96;i32&#96;.
-    // The return type is inferred.
+    // Замыкание не принимает аргументов, но возвращает &#96;i32&#96;.
+    // Тип возвращаемого значения выведен автоматически.
     let one = || 1;
-    println!(&quot;closure returning one: {}&quot;, one());
+    println!(&quot;замыкание, возвращающее один: {}&quot;, one());
 
 }</pre></div>
 <div id="result"></div>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>constants | Rust на примерах</title>
+        <title>константы | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="3.3" data-basepath=".." data-revision="1487517316528">
+    <div class="book" data-level="3.3" data-basepath=".." data-revision="1487876569035">
     
 
 <div class="book-summary">
@@ -381,7 +381,7 @@
                         
                             <b>3.3.</b>
                         
-                         constants
+                         константы
                     </a>
                 
             
@@ -558,7 +558,7 @@
                         
                             <b>7.</b>
                         
-                         Flow Control
+                         Управление потоком
                     </a>
                 
             
@@ -608,7 +608,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         Nesting and labels
+                         Вложенность и метки
                     </a>
                 
             
@@ -871,7 +871,7 @@
                         
                             <b>8.2.</b>
                         
-                         Closures
+                         Замыкания
                     </a>
                 
             
@@ -2870,47 +2870,46 @@
                 
                     <section class="normal" id="section-gitbook_20">
                     
-                        <h2 id="33-constants">3.3 constants</h2>
-<p>Rust has two different types of constants which can be declared in any scope
-including global. Both require explicit type annotation:</p>
+                        <h2 id="33-">3.3 константы</h2>
+<p>В Rust есть два типа констант, которые могут быть объявлены 
+в любой области видимости, включая глобальную. Оба требуют явной аннотации типа:</p>
 <ul>
-<li><code>const</code>: An unchangeable value (the common case).</li>
-<li><code>static</code>: A possibly <code>mut</code>able variable with <a href="/scope/lifetime/static_lifetime.html"><code>&#39;static</code></a> lifetime.</li>
+<li><code>const</code>: Неизменяемая переменная (в общем случае).</li>
+<li><code>static</code>: Возможно, изменяемая переменная со [<code>&#39;static</code>][статическим] временем жизни.</li>
 </ul>
-<p>One special case is the <code>&quot;string&quot;</code> literal. It can be assigned directly to a
-<code>static</code> variable without modification because its type signature:
-<code>&amp;&#39;static str</code> has the required lifetime of <code>&#39;static</code>. All other reference
-types must be specifically annotated so that they fulfill the <code>&#39;static</code>
-lifetime. This may seem minor though because the required explicit annotation
-hides the distinction.</p>
+<p>Частным случаем является литерал <code>&quot;string&quot;</code>. Он может быть напрямую 
+назначен переменной с временем жизни <code>static</code>, т.к сигнатура его типа:
+<code>&amp;&#39;static str</code> требует время жизни <code>&#39;static</code>. Для всех остальных ссылочных типов
+должно быть указано время жизни <code>&#39;static</code>. Это может показаться 
+незначительным, но в требовании явной аннотации типов и скрываются различия.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// Globals are declared outside all other scopes.
+<div id="editor"><pre>// Константы объявлены в глобальной области видимости.
 static LANGUAGE: &amp;&#39;static str = &quot;Rust&quot;;
 const  THRESHOLD: i32 = 10;
 
 fn is&#95;big(n: i32) -&gt; bool {
-    // Access constant in some function
+    // Получаем доступ к константе внутри функции
     n &gt; THRESHOLD
 }
 
 fn main() {
     let n = 16;
 
-    // Access constant in the main thread
+    // Получаем доступ к константе внутри функции main
     println!(&quot;This is {}&quot;, LANGUAGE);
     println!(&quot;The threshold is {}&quot;, THRESHOLD);
     println!(&quot;{} is {}&quot;, n, if is&#95;big(n) { &quot;big&quot; } else { &quot;small&quot; });
 
-    // Error! Cannot modify a &#96;const&#96;.
+    // Ошибка! &#96;константы&#96; нельзя изменить.
     THRESHOLD = 5;
-    // FIXME ^ Comment out this line
+    // ИСПРАВЬТЕ ^ Закомментируйте эту строчку
 }</pre></div>
 <div id="result"></div>
 </div>
 
-<h3 id="see-also">See also:</h3>
+<h3 id="-">Смотрите также:</h3>
 <p><a href="https://github.com/rust-lang/rfcs/blob/master/text/0246-const-vs-static.md" target="_blank">The <code>const</code>/<code>static</code> RFC</a>,
 <a href="/scope/lifetime/static_lifetime.html"><code>&#39;static</code> lifetime</a></p>
 
