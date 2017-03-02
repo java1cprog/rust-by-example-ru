@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2.1" data-basepath="../.." data-revision="1488479458888">
+    <div class="book" data-level="1.2.1" data-basepath="../.." data-revision="1488488816927">
     
 
 <div class="book-summary">
@@ -2875,7 +2875,8 @@
 их реализации для возможности печати. Автоматическая реализация предоставлена только для
 типов из <code>стандартной библиотеки (std)</code>. Все остальные типы <em>должны</em> иметь собственную реализацию.</p>
 <p>C помощью <code>типажа</code> <code>fmt::Debug</code> это сделать очень просто. <em>Все</em> типы могут
-<code>выводить (derive)</code> (автоматически создавать) реализацию <code>fmt::Debug</code>. Сделать подобное с <code>fmt::Display</code> невозможно, он должен быть реализован вручную.</p>
+<code>выводить (derive)</code> (автоматически создавать) реализацию <code>fmt::Debug</code>. 
+Сделать подобное с <code>fmt::Display</code> невозможно, он должен быть реализован вручную.</p>
 <pre><code class="lang-rust"><span class="hljs-comment">// Эта структура не может быть напечатана с помощью `fmt::Display`</span>
 <span class="hljs-comment">// или с помощью `fmt::Debug`</span>
 <span class="hljs-keyword">struct</span> UnPrintable(<span class="hljs-keyword">i32</span>);
@@ -2896,12 +2897,11 @@
 struct Structure(i32);
 
 // Добавим структуру &#96;Structure&#96; в структуру &#96;Deep&#96;.
-// Релазиуем для &#96;Deep&#96; возможность вывода с помощью fmt::Debug&#96;.
+// Реализуем для &#96;Deep&#96; возможность вывода с помощью fmt::Debug&#96;.
 #[derive(Debug)]
 struct Deep(Structure);
 
 fn main() {
-    // Printing with &#96;{:?}&#96; is similar to with &#96;{}&#96;.
     // Вывод с помощью &#96;{:?}&#96; аналогичен &#96;{}&#96;.
     println!(&quot;{:?} months in a year.&quot;, 12);
     println!(&quot;{1:?} {0:?} is the {actor:?} name.&quot;,
@@ -2920,7 +2920,8 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<p><code>fmt::Debug</code> дает возможность выводить информацию о обьектах на экран, жертвуя при этом элегантностью. Реализовав типаж <code>fmt::Display</code> вручную можно исправить это.</p>
+<p><code>fmt::Debug</code> дает возможность выводить информацию о обьектах на экран, 
+жертвуя при этом элегантностью. Реализовав типаж <code>fmt::Display</code> вручную можно исправить это.</p>
 <h3 id="-">Смотрите также</h3>
 <p><a href="http://doc.rust-lang.org/reference.html#attributes" target="_blank">attributes</a>, <a href="../../trait/derive.html"><code>derive</code></a>, <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>,
 и <a href="../../custom_types/structs.html"><code>struct</code></a></p>

@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.2.2" data-basepath="../.." data-revision="1488479458888">
+    <div class="book" data-level="16.2.2" data-basepath="../.." data-revision="1488488816927">
     
 
 <div class="book-summary">
@@ -2876,7 +2876,8 @@ However, using <code>map()</code> on a function that returns an <code>Option&lt;
 in the nested <code>Option&lt;Option&lt;T&gt;&gt;</code>. Chaining multiple calls together can
 then become confusing. That&#39;s where another combinator called <code>and_then()</code>,
 known in some languages as flatmap, comes in.</p>
-<p><code>and_then()</code> calls its function input with the wrapped value and returns the result. If the <code>Option</code> is <code>None</code>, then it returns <code>None</code> instead.</p>
+<p><code>and_then()</code> calls its function input with the wrapped value and returns the result. 
+If the <code>Option</code> is <code>None</code>, then it returns <code>None</code> instead.</p>
 <p>In the following example, <code>cookable_v2()</code> results in an <code>Option&lt;Food&gt;</code>.
 Using <code>map()</code> instead of <code>and_then()</code> would have given an
 <code>Option&lt;Option&lt;Food&gt;&gt;</code>, which is an invalid type for <code>eat()</code>.</p>

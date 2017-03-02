@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="11.2" data-basepath=".." data-revision="1488479458888">
+    <div class="book" data-level="11.2" data-basepath=".." data-revision="1488488816927">
     
 
 <div class="book-summary">
@@ -2871,7 +2871,9 @@
                     <section class="normal" id="section-gitbook_10">
                     
                         <h2 id="112-">11.2 Контейнеры</h2>
-<p>Атрибут <code>crate_type</code> используется, чтобы сказать компилятору, какой контейнер является библиотекой (и каким типом библиотеки), а какой исполняемым файлом. Атрибут <code>crate_name</code> используется для указания имя контейнера.</p>
+<p>Атрибут <code>crate_type</code> используется, чтобы сказать компилятору,
+какой контейнер является библиотекой (и каким типом библиотеки),
+а какой исполняемым файлом. Атрибут <code>crate_name</code> используется для указания имя контейнера.</p>
 <pre><code class="lang-rust"><span class="hljs-comment">// lib.rs</span>
 <span class="hljs-comment">// Этот контейнер - библиотека</span>
 #![crate_type = <span class="hljs-string">"lib"</span>]
@@ -2892,7 +2894,8 @@
     private_function();
 }
 </code></pre>
-<p>Если мы используем атрибут <code>crate_type</code>, то нам больше нет необходимости передавать флаг <code>--crate-type</code> компилятору.</p>
+<p>Если мы используем атрибут <code>crate_type</code>,
+то нам больше нет необходимости передавать флаг <code>--crate-type</code> компилятору.</p>
 <pre><code>$ rustc lib.rs
 $ ls lib*
 library.rlib
