@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="15" data-basepath="." data-revision="1488441709490">
+    <div class="book" data-level="15" data-basepath="." data-revision="1488445048233">
     
 
 <div class="book-summary">
@@ -2868,7 +2868,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_87">
+                    <section class="normal" id="section-gitbook_88">
                     
                         <h1 id="15-macro_rules">15 macro_rules!</h1>
 <p>Rust provides a powerful macro system that allows metaprogramming. As you&#39;ve
@@ -2879,17 +2879,17 @@ expanded into source code that gets compiled with the rest of the program.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// This is a simple macro named &#96;say&#95;hello&#96;.
+<div id="editor"><pre>// Этот простой макрос называется &#96;say&#95;hello&#96;.
 macro&#95;rules! say&#95;hello {
-    // &#96;()&#96; indicates that the macro takes no argument.
+    // &#96;()&#96; указывает, что макрос не принимает аргументов.
     () =&gt; (
-        // The macro will expand into the contents of this block.
+        // Макрос будет раскрываться с содержимым этого блока.
         println!(&quot;Hello!&quot;);
     )
 }
 
 fn main() {
-    // This call will expand into &#96;println!(&quot;Hello&quot;);&#96;
+    // Этот вызов будет раскрыт в код &#96;println!(&quot;Hello&quot;);&#96;
     say&#95;hello!()
 }</pre></div>
 <div id="result"></div>
