@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.3" data-basepath=".." data-revision="1488445048233">
+    <div class="book" data-level="16.3" data-basepath=".." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2871,7 +2871,7 @@
                     <section class="normal" id="section-gitbook_39">
                     
                         <h2 id="163-result">16.3 <code>Result</code></h2>
-<p><a href="http://doc.rust-lang.org/std/result/enum.Result.html" target="_blank"><code>Result</code></a> is a richer version of the <a href="http://doc.rust-lang.org/std/option/enum.Option.html" target="_blank"><code>Option</code></a> type that 
+<p><a href="http://doc.rust-lang.org/std/result/enum.Result.html" target="_blank"><code>Result</code></a> is a richer version of the <a href="http://doc.rust-lang.org/std/option/enum.Option.html" target="_blank"><code>Option</code></a> type that
 describes possible <em>error</em> instead of possible <em>absence</em>.</p>
 <p>That is, <code>Result&lt;T, E&gt;</code> could have one of two outcomes:</p>
 <ul>
@@ -2879,12 +2879,12 @@ describes possible <em>error</em> instead of possible <em>absence</em>.</p>
 <li><code>Err&lt;E&gt;</code>: An error was found with element <code>E</code></li>
 </ul>
 <p>By convention, the expected outcome is <code>Ok</code> while the unexpected outcome is <code>Err</code>.</p>
-<p>Like <code>Option</code>, <code>Result</code> has many methods associated with it. <code>unwrap()</code>, for 
-example, either yields the element <code>T</code> or <code>panic</code>s. For case handling, 
+<p>Like <code>Option</code>, <code>Result</code> has many methods associated with it. <code>unwrap()</code>, for
+example, either yields the element <code>T</code> or <code>panic</code>s. For case handling,
 there are many combinators between <code>Result</code> and <code>Option</code> that overlap.</p>
-<p>In working with Rust, you will likely encounter methods that return the 
-<code>Result</code> type, such as the <a href="https://doc.rust-lang.org/std/primitive.str.html#method.parse" target="_blank"><code>parse()</code></a> method. It might not always 
-be possible to parse a string into the other type, so <code>parse()</code> returns a 
+<p>In working with Rust, you will likely encounter methods that return the
+<code>Result</code> type, such as the <a href="https://doc.rust-lang.org/std/primitive.str.html#method.parse" target="_blank"><code>parse()</code></a> method. It might not always
+be possible to parse a string into the other type, so <code>parse()</code> returns a
 <code>Result</code> indicating possible failure.</p>
 <p>Let&#39;s see what happens when we successfully and unsuccessfully <code>parse()</code> a string:</p>
 <div id="active-code">
@@ -2905,10 +2905,10 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<p>In the unsuccessful case, <code>parse()</code> leaves us with an error for <code>unwrap()</code> 
-to <code>panic</code> on. Additionally, the <code>panic</code> exits our program and provides an 
+<p>In the unsuccessful case, <code>parse()</code> leaves us with an error for <code>unwrap()</code>
+to <code>panic</code> on. Additionally, the <code>panic</code> exits our program and provides an
 unpleasant error message.</p>
-<p>To improve the quality of our error message, we should be more specific 
+<p>To improve the quality of our error message, we should be more specific
 about the return type and consider explicitly handling the error.</p>
 
                     

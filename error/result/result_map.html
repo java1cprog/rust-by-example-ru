@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.3.1" data-basepath="../.." data-revision="1488445048233">
+    <div class="book" data-level="16.3.1" data-basepath="../.." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2868,18 +2868,18 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_38">
+                    <section class="normal" id="section-gitbook_36">
                     
                         <h3 id="1631-map-for-result">16.3.1 <code>map</code> for <code>Result</code></h3>
 <p>Panicking in the previous example gave us an unhelpful error message.
-To avoid that, we need to be more specific about the return type. There, the 
+To avoid that, we need to be more specific about the return type. There, the
 regular element is of type <code>i32</code>.</p>
-<p>To determine the <code>Err</code> type, we look to 
-<a href="https://doc.rust-lang.org/std/primitive.str.html#method.parse" target="_blank"><code>parse()</code></a>, which is implemented with the <a href="http://doc.rust-lang.org/std/str/trait.FromStr.html" target="_blank"><code>FromStr</code></a> trait for 
+<p>To determine the <code>Err</code> type, we look to
+<a href="https://doc.rust-lang.org/std/primitive.str.html#method.parse" target="_blank"><code>parse()</code></a>, which is implemented with the <a href="http://doc.rust-lang.org/std/str/trait.FromStr.html" target="_blank"><code>FromStr</code></a> trait for
 <a href="http://doc.rust-lang.org/std/primitive.i32.html" target="_blank"><code>i32</code></a>. As a result, the <code>Err</code> type is specified as <a href="http://doc.rust-lang.org/std/num/struct.ParseIntError.html" target="_blank"><code>ParseIntError</code></a>.</p>
-<p>In the example below, the straightforward <code>match</code> statement leads to code 
-that is overall more cumbersome. Luckily, the <code>map</code> method of <code>Option</code> is 
-one of many combinators also implemented for <code>Result</code>. <a href="http://doc.rust-lang.org/std/result/enum.Result.html" target="_blank"><code>enum.Result</code></a> 
+<p>In the example below, the straightforward <code>match</code> statement leads to code
+that is overall more cumbersome. Luckily, the <code>map</code> method of <code>Option</code> is
+one of many combinators also implemented for <code>Result</code>. <a href="http://doc.rust-lang.org/std/result/enum.Result.html" target="_blank"><code>enum.Result</code></a>
 contains a complete listing.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>

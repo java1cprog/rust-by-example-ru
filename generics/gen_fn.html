@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="12.1" data-basepath=".." data-revision="1488445048233">
+    <div class="book" data-level="12.1" data-basepath=".." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2873,9 +2873,9 @@
                         <h2 id="121-functions">12.1 Functions</h2>
 <p>The same set of rules can be applied to functions: a type <code>T</code> becomes
 generic when preceded by <code>&lt;T&gt;</code>.</p>
-<p>Using generic functions sometimes requires explicitly specifying type 
-parameters. This may be the case if the function is called where the return type 
-is generic, or if the compiler doesn&#39;t have enough information to infer 
+<p>Using generic functions sometimes requires explicitly specifying type
+parameters. This may be the case if the function is called where the return type
+is generic, or if the compiler doesn&#39;t have enough information to infer
 the necessary type parameters.</p>
 <p>A function call with explicitly specified type parameters looks like:
 <code>fun::&lt;A, B, ...&gt;()</code>.</p>
@@ -2894,7 +2894,7 @@ struct SGen&lt;T&gt;(T); // Generic type &#96;SGen&#96;.
 fn reg&#95;fn(&#95;s: S) {}
 
 // Define a function &#96;gen&#95;spec&#95;t&#96; that takes an argument &#96;&#95;s&#96; of type &#96;SGen&lt;T&gt;&#96;.
-// It has been explicitly given the type parameter &#96;A&#96;, but because &#96;A&#96; has not 
+// It has been explicitly given the type parameter &#96;A&#96;, but because &#96;A&#96; has not
 // been specified as a generic type parameter for &#96;gen&#95;spec&#95;t&#96;, it is not generic.
 fn gen&#95;spec&#95;t(&#95;s: SGen&lt;A&gt;) {}
 

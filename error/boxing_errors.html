@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.7" data-basepath=".." data-revision="1488445048233">
+    <div class="book" data-level="16.7" data-basepath=".." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2868,14 +2868,14 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_27">
+                    <section class="normal" id="section-gitbook_26">
                     
                         <h2 id="167-boxing-errors">16.7 <code>Box</code>ing errors</h2>
 <p>By implementing <code>Display</code> and <code>From</code> for our error type, we enabled
-almost all of the <code>std</code> library error handling tools. However, we missed 
+almost all of the <code>std</code> library error handling tools. However, we missed
 something: the ability to easily <code>Box</code> our error type.</p>
-<p>The <code>std</code> library automatically converts any type that implements the 
-<code>Error</code> trait into the trait object <code>Box&lt;Error&gt;</code>, via <code>From</code>. To a 
+<p>The <code>std</code> library automatically converts any type that implements the
+<code>Error</code> trait into the trait object <code>Box&lt;Error&gt;</code>, via <code>From</code>. To a
 library user, this conveniently allows the following:</p>
 <pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>(...) -&gt; Result&lt;T, Box&lt;Error&gt;&gt; { ... }
 </code></pre>
@@ -2886,17 +2886,17 @@ types. In order to define a valid <code>Result&lt;T, E&gt;</code> type, the user
 <li>convert the error types to <code>String</code> or another intermediate choice</li>
 <li><code>Box</code> the error types into <code>Box&lt;Error&gt;</code> via type erasure</li>
 </ul>
-<p>&quot;Boxing&quot; the error type is a common choice. The drawback is that the 
-underlying error type is only known at runtime and not 
-<a href="http://doc.rust-lang.org/book/trait-objects.html#dynamic-dispatch" target="_blank">statically determined</a>. As mentioned above, all that 
+<p>&quot;Boxing&quot; the error type is a common choice. The drawback is that the
+underlying error type is only known at runtime and not
+<a href="http://doc.rust-lang.org/book/trait-objects.html#dynamic-dispatch" target="_blank">statically determined</a>. As mentioned above, all that
 needs to be done is to implement the <code>Error</code> trait:</p>
 <pre><code class="lang-rust">trait Error: Debug + Display {
     fn description(&amp;self) -&gt; &amp;str;
     fn cause(&amp;self) -&gt; Option&lt;&amp;Error&gt;;
 }
 </code></pre>
-<p>With this implementation, let&#39;s look at our most recent example. Note that 
-it is just as valid with the error type of <code>Box&lt;Error&gt;</code> as it was before 
+<p>With this implementation, let&#39;s look at our most recent example. Note that
+it is just as valid with the error type of <code>Box&lt;Error&gt;</code> as it was before
 with <code>DoubleError</code>:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>

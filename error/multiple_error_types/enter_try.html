@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.4.2" data-basepath="../.." data-revision="1488445048233">
+    <div class="book" data-level="16.4.2" data-basepath="../.." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2868,19 +2868,19 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_30">
+                    <section class="normal" id="section-gitbook_29">
                     
                         <h3 id="1642-introducing-try">16.4.2 Introducing <code>try!</code></h3>
-<p>Sometimes we just want the simplicity of <code>unwrap</code> without the possibility of 
-a <code>panic</code>. Until now, <code>unwrap</code> has forced us to nest deeper and deeper when 
-what we really wanted was to get the variable <em>out</em>. This is exactly the purpose of <code>try!</code>. </p>
+<p>Sometimes we just want the simplicity of <code>unwrap</code> without the possibility of
+a <code>panic</code>. Until now, <code>unwrap</code> has forced us to nest deeper and deeper when
+what we really wanted was to get the variable <em>out</em>. This is exactly the purpose of <code>try!</code>.</p>
 <p>Upon finding an <code>Err</code>, there are two valid actions to take:</p>
 <ol>
 <li><code>panic!</code> which we already decided to try to avoid if possible</li>
 <li><code>return</code> because an <code>Err</code> means it cannot be handled</li>
 </ol>
-<p><code>try!</code> is <em>almost</em><sup><a href="#fn_1" id="reffn_1">1</a></sup> exactly equivalent to an <code>unwrap</code> which <code>return</code>s 
-instead of <code>panic</code>s on <code>Err</code>s. Let&#39;s see how we can simplify the earlier 
+<p><code>try!</code> is <em>almost</em><sup><a href="#fn_1" id="reffn_1">1</a></sup> exactly equivalent to an <code>unwrap</code> which <code>return</code>s
+instead of <code>panic</code>s on <code>Err</code>s. Let&#39;s see how we can simplify the earlier
 example that used combinators:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
@@ -2915,9 +2915,9 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<p>Note that up until now, we&#39;ve been using <code>String</code>s as errors. However, they 
-are somewhat limiting as an error type. In the next section, we&#39;ll learn how 
-to make more structured and informative errors by defining their types. </p>
+<p>Note that up until now, we&#39;ve been using <code>String</code>s as errors. However, they
+are somewhat limiting as an error type. In the next section, we&#39;ll learn how
+to make more structured and informative errors by defining their types.</p>
 <blockquote id="fn_1">
 <sup>1</sup>. See <a href="../../error/reenter_try.html">re-enter try!</a> for more details.<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
 </blockquote>

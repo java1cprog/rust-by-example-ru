@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="17.7" data-basepath=".." data-revision="1488445048233">
+    <div class="book" data-level="17.7" data-basepath=".." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2868,17 +2868,17 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_120">
+                    <section class="normal" id="section-gitbook_122">
                     
                         <h2 id="177-hashmap">17.7 HashMap</h2>
-<p>Where vectors store values by an integer index, <code>HashMap</code>s store values by key. 
-<code>HashMap</code> keys can be booleans, integers, strings, 
-or any other type that implements the <code>Eq</code> and <code>Hash</code> traits. 
+<p>Where vectors store values by an integer index, <code>HashMap</code>s store values by key.
+<code>HashMap</code> keys can be booleans, integers, strings,
+or any other type that implements the <code>Eq</code> and <code>Hash</code> traits.
 More on this in the next section.</p>
-<p>Like vectors, <code>HashMap</code>s are growable, but HashMaps can also shrink themselves 
-when they have excess space. 
-You can create a HashMap with a certain starting capacity using 
-<code>HashMap::with_capacity(uint)</code>, or use <code>HashMap::new()</code> to get a HashMap 
+<p>Like vectors, <code>HashMap</code>s are growable, but HashMaps can also shrink themselves
+when they have excess space.
+You can create a HashMap with a certain starting capacity using
+<code>HashMap::with_capacity(uint)</code>, or use <code>HashMap::new()</code> to get a HashMap
 with a default initial capacity (recommended).</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
@@ -2887,7 +2887,7 @@ with a default initial capacity (recommended).</p>
 
 fn call(number: &amp;str) -&gt; &amp;str {
     match number {
-        &quot;798-1364&quot; =&gt; &quot;We&#39;re sorry, the call cannot be completed as dialed. 
+        &quot;798-1364&quot; =&gt; &quot;We&#39;re sorry, the call cannot be completed as dialed.
             Please hang up and try again.&quot;,
         &quot;645-7689&quot; =&gt; &quot;Hello, this is Mr. Awesome&#39;s Pizza. My name is Fred.
             What can I get for you today?&quot;,
@@ -2895,7 +2895,7 @@ fn call(number: &amp;str) -&gt; &amp;str {
     }
 }
 
-fn main() { 
+fn main() {
     let mut contacts = HashMap::new();
 
     contacts.insert(&quot;Daniel&quot;, &quot;798-1364&quot;);
@@ -2918,19 +2918,19 @@ fn main() {
         &#95; =&gt; println!(&quot;Don&#39;t have Ashley&#39;s number.&quot;),
     }
 
-    contacts.remove(&amp;(&quot;Ashley&quot;)); 
+    contacts.remove(&amp;(&quot;Ashley&quot;));
 
-    // &#96;HashMap::iter()&#96; returns an iterator that yields 
+    // &#96;HashMap::iter()&#96; returns an iterator that yields
     // (&amp;&#39;a key, &amp;&#39;a value) pairs in arbitrary order.
     for (contact, &amp;number) in contacts.iter() {
-        println!(&quot;Calling {}: {}&quot;, contact, call(number)); 
+        println!(&quot;Calling {}: {}&quot;, contact, call(number));
     }
 }</pre></div>
 <div id="result"></div>
 </div>
 
-<p>For more information on how hashing and hash maps 
-(sometimes called hash tables) work, have a look at 
+<p>For more information on how hashing and hash maps
+(sometimes called hash tables) work, have a look at
 <a href="http://en.wikipedia.org/wiki/Hash_table" target="_blank">Hash Table Wikipedia</a></p>
 
                     

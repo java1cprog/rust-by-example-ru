@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.2.2" data-basepath="../.." data-revision="1488445048233">
+    <div class="book" data-level="16.2.2" data-basepath="../.." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2871,14 +2871,14 @@
                     <section class="normal" id="section-gitbook_32">
                     
                         <h3 id="1622-combinators-and_then">16.2.2 Combinators: <code>and_then</code></h3>
-<p><code>map()</code> was described as a chainable way to simplify <code>match</code> statements. 
-However, using <code>map()</code> on a function that returns an <code>Option&lt;T&gt;</code> results 
-in the nested <code>Option&lt;Option&lt;T&gt;&gt;</code>. Chaining multiple calls together can 
-then become confusing. That&#39;s where another combinator called <code>and_then()</code>, 
+<p><code>map()</code> was described as a chainable way to simplify <code>match</code> statements.
+However, using <code>map()</code> on a function that returns an <code>Option&lt;T&gt;</code> results
+in the nested <code>Option&lt;Option&lt;T&gt;&gt;</code>. Chaining multiple calls together can
+then become confusing. That&#39;s where another combinator called <code>and_then()</code>,
 known in some languages as flatmap, comes in.</p>
 <p><code>and_then()</code> calls its function input with the wrapped value and returns the result. If the <code>Option</code> is <code>None</code>, then it returns <code>None</code> instead.</p>
-<p>In the following example, <code>cookable_v2()</code> results in an <code>Option&lt;Food&gt;</code>. 
-Using <code>map()</code> instead of <code>and_then()</code> would have given an 
+<p>In the following example, <code>cookable_v2()</code> results in an <code>Option&lt;Food&gt;</code>.
+Using <code>map()</code> instead of <code>and_then()</code> would have given an
 <code>Option&lt;Option&lt;Food&gt;&gt;</code>, which is an invalid type for <code>eat()</code>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>

@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="12.7.1" data-basepath="../.." data-revision="1488445048233">
+    <div class="book" data-level="12.7.1" data-basepath="../.." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2873,12 +2873,12 @@
                         <h3 id="1271-the-problem">12.7.1 The Problem</h3>
 <p>A <code>trait</code> that is generic over its container type has type specification
 requirements - users of the <code>trait</code> <em>must</em> specify all of its generic types.</p>
-<p>In the example below, the <code>Contains</code> <code>trait</code> allows the use of the generic 
-types <code>A</code> and <code>B</code>. The trait is then implemented for the <code>Container</code> type, 
+<p>In the example below, the <code>Contains</code> <code>trait</code> allows the use of the generic
+types <code>A</code> and <code>B</code>. The trait is then implemented for the <code>Container</code> type,
 specifying <code>i32</code> for <code>A</code> and <code>B</code> so that it can be used with <code>fn difference()</code>.</p>
-<p>Because <code>Contains</code> is generic, we are forced to explicitly state <em>all</em> of the 
-generic types for <code>fn difference()</code>. In practice, we want a way to express that 
-<code>A</code> and <code>B</code> are determined by the <em>input</em> <code>C</code>. As you will see in the next 
+<p>Because <code>Contains</code> is generic, we are forced to explicitly state <em>all</em> of the
+generic types for <code>fn difference()</code>. In practice, we want a way to express that
+<code>A</code> and <code>B</code> are determined by the <em>input</em> <code>C</code>. As you will see in the next
 section, associated types provide exactly that capability.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>

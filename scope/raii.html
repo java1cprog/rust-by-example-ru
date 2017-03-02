@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="13.1" data-basepath=".." data-revision="1488445048233">
+    <div class="book" data-level="13.1" data-basepath=".." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2868,14 +2868,14 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_118">
+                    <section class="normal" id="section-gitbook_117">
                     
                         <h2 id="131-raii">13.1 RAII</h2>
 <p>Variables in Rust do more than just hold data in the stack: they also <em>own</em>
 resources, e.g. <code>Box&lt;T&gt;</code> owns memory in the heap. Rust enforces <a href="http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization" target="_blank">RAII</a>
-(Resource Acquisition Is Initialization), so whenever an object goes out of 
-scope, its destructor is called and its owned resources are freed. </p>
-<p>This behavior shields against <em>resource leak</em> bugs, so you&#39;ll never have to 
+(Resource Acquisition Is Initialization), so whenever an object goes out of
+scope, its destructor is called and its owned resources are freed.</p>
+<p>This behavior shields against <em>resource leak</em> bugs, so you&#39;ll never have to
 manually free memory or worry about memory leaks again! Here&#39;s a quick showcase:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>

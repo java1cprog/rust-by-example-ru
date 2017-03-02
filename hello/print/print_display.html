@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2.2" data-basepath="../.." data-revision="1488445048233">
+    <div class="book" data-level="1.2.2" data-basepath="../.." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2881,7 +2881,7 @@
 <span class="hljs-keyword">struct</span> Structure(<span class="hljs-keyword">i32</span>);
 
 <span class="hljs-comment">// Чтобы была возможность использовать маркер `{}`</span>
-<span class="hljs-comment">// `типаж (trait) fmt::Display` должен быть реализован вручную </span>
+<span class="hljs-comment">// `типаж (trait) fmt::Display` должен быть реализован вручную</span>
 <span class="hljs-comment">// для данного типа.</span>
 <span class="hljs-keyword">impl</span> fmt::Display <span class="hljs-keyword">for</span> Structure {
     <span class="hljs-comment">// Этот типаж требует реализацию метода `fmt` с данной сигнатурой:</span>
@@ -2903,7 +2903,7 @@
 <li><code>Vec&lt;number&gt;</code>: <code>1,2,3</code> (разделитель <code>,</code>)</li>
 </ul>
 <p>Нет, потому что не существует идеального стиля вывода для всех типов, поэтому
-<code>стандартная библиотека std</code> не может его предоставить. <code>fmt::Display</code> не реализован для 
+<code>стандартная библиотека std</code> не может его предоставить. <code>fmt::Display</code> не реализован для
 <code>Vec&lt;T&gt;</code> или для других обобщенных контейнеров. Для этих случаев подойдет <code>fmt::Debug</code>.</p>
 <p>Это не проблема, потому что для любых новых <em>контейнеров</em>, типы которых не обобщенные, может быть реализован <code>fmt::Display</code>.</p>
 <div id="active-code">
@@ -2911,7 +2911,7 @@
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>use std::fmt; // Импортируем &#96;fmt&#96;
 
-// Структура, которая хранит в себе два числа. 
+// Структура, которая хранит в себе два числа.
 //Вывод типажа &#96;Debug&#96; добавлен для сравнения с &#96;Display&#96;.
 #[derive(Debug)]
 struct MinMax(i64, i64);
@@ -2924,7 +2924,7 @@ impl fmt::Display for MinMax {
     }
 }
 
-// Определим структуру с именованными полями, для сравнения 
+// Определим структуру с именованными полями, для сравнения
 #[derive(Debug)]
 struct Point2D {
     x: f64,
@@ -2968,7 +2968,7 @@ fn main() {
 
 <p>И так, <code>fmt::Display</code> был реализован, но <code>fmt::Binary</code> нет, следовательно не может быть
 использован. <code>std::fmt</code> имеет много таких <a href="../../trait.html"><code>типажей</code></a> и
-каждый из них требует свою реализацию. Это более подробно описано в документации к 
+каждый из них требует свою реализацию. Это более подробно описано в документации к
 <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>.</p>
 <h3 id="">Задание</h3>
 <p>После того, как запустите код, представленный выше, используйте структуру <code>Point2D</code> как пример и добавьте новую структуру <code>Complex</code>, чтобы вывод был таким:</p>

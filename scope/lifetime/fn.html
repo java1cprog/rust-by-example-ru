@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="13.4.2" data-basepath="../.." data-revision="1488445048233">
+    <div class="book" data-level="13.4.2" data-basepath="../.." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2868,10 +2868,10 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_109">
+                    <section class="normal" id="section-gitbook_108">
                     
                         <h3 id="1342-functions">13.4.2 Functions</h3>
-<p>Ignoring <a href="../../scope/lifetime/elision.html">elision</a>, function signatures with lifetimes have a few constraints: </p>
+<p>Ignoring <a href="../../scope/lifetime/elision.html">elision</a>, function signatures with lifetimes have a few constraints:</p>
 <ul>
 <li>any reference <em>must</em> have an annotated lifetime.</li>
 <li>any reference being returned <em>must</em> have the same lifetime as an input or
@@ -2908,7 +2908,7 @@ fn pass&#95;x&lt;&#39;a, &#39;b&gt;(x: &amp;&#39;a i32, &#95;: &amp;&#39;b i32) 
 //fn invalid&#95;output&lt;&#39;a&gt;() -&gt; &amp;&#39;a i32 { &amp;7 }
 // The above is invalid: &#96;&#39;a&#96; must live longer than the function.
 // Here, &#96;&amp;7&#96; would create an &#96;i32&#96;, followed by a reference.
-// Then the data is dropped upon exiting the scope, leaving 
+// Then the data is dropped upon exiting the scope, leaving
 // a reference to invalid data to be returned.
 
 fn main() {

@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.2" data-basepath=".." data-revision="1488445048233">
+    <div class="book" data-level="16.2" data-basepath=".." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2871,24 +2871,24 @@
                     <section class="normal" id="section-gitbook_34">
                     
                         <h2 id="162-option--unwrap">16.2 <code>Option</code> &amp; <code>unwrap</code></h2>
-<p>In the last example, we showed that we can induce program failure at will. 
-We told our program to <code>panic</code> if the princess received an inappropriate 
-gift - a snake. But what if the princess expected a gift and didn&#39;t receive 
+<p>In the last example, we showed that we can induce program failure at will.
+We told our program to <code>panic</code> if the princess received an inappropriate
+gift - a snake. But what if the princess expected a gift and didn&#39;t receive
 one? That case would be just as bad, so it needs to be handled!</p>
-<p>We <em>could</em> test this against the null string (<code>&quot;&quot;</code>) as we do with a snake. 
-Since we&#39;re using Rust, let&#39;s instead have the compiler point out cases 
+<p>We <em>could</em> test this against the null string (<code>&quot;&quot;</code>) as we do with a snake.
+Since we&#39;re using Rust, let&#39;s instead have the compiler point out cases
 where there&#39;s no gift.</p>
-<p>An <code>enum</code> called <code>Option&lt;T&gt;</code> in the <code>std</code> library is used when absence is a 
+<p>An <code>enum</code> called <code>Option&lt;T&gt;</code> in the <code>std</code> library is used when absence is a
 possibility. It manifests itself as one of two &quot;options&quot;:</p>
 <ul>
 <li><code>Some(T)</code>: An element of type <code>T</code> was found</li>
 <li><code>None</code>: No element was found</li>
 </ul>
-<p>These cases can either be explicitly handled via <code>match</code> or implicitly with 
+<p>These cases can either be explicitly handled via <code>match</code> or implicitly with
 <code>unwrap</code>. Implicit handling will either return the inner element or <code>panic</code>.</p>
-<p>Note that it&#39;s possible to manually customize <code>panic</code> with <a href="http://doc.rust-lang.org/std/option/enum.Option.html#method.expect" target="_blank">expect</a>, 
-but <code>unwrap</code> otherwise leaves us with a less meaningful output than explicit 
-handling. In the following example, explicit handling yields a more 
+<p>Note that it&#39;s possible to manually customize <code>panic</code> with <a href="http://doc.rust-lang.org/std/option/enum.Option.html#method.expect" target="_blank">expect</a>,
+but <code>unwrap</code> otherwise leaves us with a less meaningful output than explicit
+handling. In the following example, explicit handling yields a more
 controlled result while retaining the option to <code>panic</code> if desired.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>

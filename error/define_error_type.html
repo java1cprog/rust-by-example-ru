@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.5" data-basepath=".." data-revision="1488445048233">
+    <div class="book" data-level="16.5" data-basepath=".." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2868,7 +2868,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_28">
+                    <section class="normal" id="section-gitbook_27">
                     
                         <h2 id="165-defining-an-error-type">16.5 Defining an error type</h2>
 <p>Rust allows us to define our own error types. In general, a &quot;good&quot; error type:</p>
@@ -2886,9 +2886,9 @@
 </ul>
 </li>
 </ul>
-<p>Note that a <code>String</code> (which we&#39;ve been using up to this point) fulfills the 
-first two criteria, but not the last two. This makes <code>String</code> errors verbose 
-to create and difficult to react to. It should not be necessary to pollute 
+<p>Note that a <code>String</code> (which we&#39;ve been using up to this point) fulfills the
+first two criteria, but not the last two. This makes <code>String</code> errors verbose
+to create and difficult to react to. It should not be necessary to pollute
 logic heavy code with <code>String</code> formatting simply to display nicely.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
@@ -2899,7 +2899,7 @@ use std::fmt;
 type Result&lt;T&gt; = std::result::Result&lt;T, DoubleError&gt;;
 
 #[derive(Debug)]
-// Define our error types. These may be customized for our error handling cases. 
+// Define our error types. These may be customized for our error handling cases.
 // Now we will be able to write our own errors, defer to an underlying error
 // implementation, or do something in between.
 enum DoubleError {

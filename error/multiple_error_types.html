@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.4" data-basepath=".." data-revision="1488445048233">
+    <div class="book" data-level="16.4" data-basepath=".." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2868,17 +2868,17 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_31">
+                    <section class="normal" id="section-gitbook_30">
                     
                         <h2 id="164-multiple-error-types">16.4 Multiple error types</h2>
-<p>The previous examples have always been very convenient; <code>Result</code>s interact 
-with other <code>Result</code>s and <code>Option</code>s interact with other <code>Option</code>s. </p>
-<p>Sometimes an <code>Option</code> needs to interact with a <code>Result</code>, or a 
-<code>Result&lt;T, Error1&gt;</code> needs to interact with a <code>Result&lt;T, Error2&gt;</code>. In those 
-cases, we want to manage our different error types in a way that makes them 
+<p>The previous examples have always been very convenient; <code>Result</code>s interact
+with other <code>Result</code>s and <code>Option</code>s interact with other <code>Option</code>s.</p>
+<p>Sometimes an <code>Option</code> needs to interact with a <code>Result</code>, or a
+<code>Result&lt;T, Error1&gt;</code> needs to interact with a <code>Result&lt;T, Error2&gt;</code>. In those
+cases, we want to manage our different error types in a way that makes them
 composable and easy to interact with.</p>
-<p>In the following code, two instances of <code>unwrap</code> generate different error 
-types. <code>Vec::first</code> returns an <code>Option</code>, while <code>parse::&lt;i32&gt;</code> returns a 
+<p>In the following code, two instances of <code>unwrap</code> generate different error
+types. <code>Vec::first</code> returns an <code>Option</code>, while <code>parse::&lt;i32&gt;</code> returns a
 <code>Result&lt;i32, ParseIntError&gt;</code>:</p>
 <pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">double_first</span></span>(vec: Vec&lt;&amp;<span class="hljs-keyword">str</span>&gt;) -&gt; <span class="hljs-keyword">i32</span> {
     <span class="hljs-keyword">let</span> first = vec.first().unwrap(); <span class="hljs-comment">// Generate error 1</span>
@@ -2896,10 +2896,10 @@ types. <code>Vec::first</code> returns an <code>Option</code>, while <code>parse
     <span class="hljs-comment">// Error 2: the element doesn't parse to a number</span>
 }
 </code></pre>
-<p>Using our knowledge of combinators, we can rewrite the above to explicitly 
-handle errors. Since two different types of errors can occur, we need to 
+<p>Using our knowledge of combinators, we can rewrite the above to explicitly
+handle errors. Since two different types of errors can occur, we need to
 convert them to a common type such as a <code>String</code>.</p>
-<p>To do so, we convert both the <code>Option</code> and <code>Result</code> into <code>Result</code>s, and 
+<p>To do so, we convert both the <code>Option</code> and <code>Result</code> into <code>Result</code>s, and
 then map their errors to the same type:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
@@ -2915,7 +2915,7 @@ fn double&#95;first(vec: Vec&lt;&amp;str&gt;) -&gt; Result&lt;i32&gt; {
        .and&#95;then(|s| s.parse::&lt;i32&gt;()
                       // Map any errors that &#96;parse&#96; yields to &#96;String&#96;.
                       .map&#95;err(|e| e.to&#95;string())
-                      // &#96;Result&lt;T, String&gt;&#96; is the new return type, 
+                      // &#96;Result&lt;T, String&gt;&#96; is the new return type,
                       // and we can now double the number inside.
                       .map(|i| 2 &#42; i))
 }

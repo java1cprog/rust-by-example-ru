@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2.1" data-basepath="../.." data-revision="1488445048233">
+    <div class="book" data-level="1.2.1" data-basepath="../.." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2876,12 +2876,12 @@
 типов из <code>стандартной библиотеки (std)</code>. Все остальные типы <em>должны</em> иметь собственную реализацию.</p>
 <p>C помощью <code>типажа</code> <code>fmt::Debug</code> это сделать очень просто. <em>Все</em> типы могут
 <code>выводить (derive)</code> (автоматически создавать) реализацию <code>fmt::Debug</code>. Сделать подобное с <code>fmt::Display</code> невозможно, он должен быть реализован вручную.</p>
-<pre><code class="lang-rust"><span class="hljs-comment">// Эта структура не может быть напечатана с помощью `fmt::Display` </span>
+<pre><code class="lang-rust"><span class="hljs-comment">// Эта структура не может быть напечатана с помощью `fmt::Display`</span>
 <span class="hljs-comment">// или с помощью `fmt::Debug`</span>
 <span class="hljs-keyword">struct</span> UnPrintable(<span class="hljs-keyword">i32</span>);
 
 <span class="hljs-comment">// Атрибут `выводить (derive)` автоматически реализует</span>
-<span class="hljs-comment">// необходимые методы, чтобы была возможность </span>
+<span class="hljs-comment">// необходимые методы, чтобы была возможность</span>
 <span class="hljs-comment">// печатать данную `структуру` с помощью `fmt::Debug`.</span>
 <span class="hljs-preprocessor">#[derive(Debug)]</span>
 <span class="hljs-keyword">struct</span> DebugPrintable(<span class="hljs-keyword">i32</span>);
@@ -2895,7 +2895,7 @@
 #[derive(Debug)]
 struct Structure(i32);
 
-// Добавим структуру &#96;Structure&#96; в структуру &#96;Deep&#96;. 
+// Добавим структуру &#96;Structure&#96; в структуру &#96;Deep&#96;.
 // Релазиуем для &#96;Deep&#96; возможность вывода с помощью fmt::Debug&#96;.
 #[derive(Debug)]
 struct Deep(Structure);
@@ -2913,7 +2913,7 @@ fn main() {
     println!(&quot;Now {:?} will print!&quot;, Structure(3));
 
     // Проблема с &#96;выводом (derive)&#96;, в том, что у нас не будет контроля
-    // над тем, как будет выглядить результат. 
+    // над тем, как будет выглядить результат.
     // Что если мы хотим напечатать просто &#96;7&#96;?
     println!(&quot;Now {:?} will print!&quot;, Deep(Structure(7)));
 }</pre></div>

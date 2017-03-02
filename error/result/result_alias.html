@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.3.2" data-basepath="../.." data-revision="1488445048233">
+    <div class="book" data-level="16.3.2" data-basepath="../.." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2871,11 +2871,11 @@
                     <section class="normal" id="section-gitbook_37">
                     
                         <h3 id="1632-aliases-for-result">16.3.2 aliases for <code>Result</code></h3>
-<p>How about when we want to reuse a specific <code>Result</code> type many times? 
-Recall that Rust allows us to create <a href="../../cast/alias.html">aliases</a>. Conveniently, 
+<p>How about when we want to reuse a specific <code>Result</code> type many times?
+Recall that Rust allows us to create <a href="../../cast/alias.html">aliases</a>. Conveniently,
 we can define one for the specific <code>Result</code> in question.</p>
-<p>At a module level, creating aliases can be particularly helpful. Errors 
-found in a specific module often have the same <code>Err</code> type, so a single alias 
+<p>At a module level, creating aliases can be particularly helpful. Errors
+found in a specific module often have the same <code>Err</code> type, so a single alias
 can succinctly define <em>all</em> associated <code>Results</code>. This is so useful that the <code>std</code> library even supplies one: <code>io::Result</code>!</p>
 <p>Here&#39;s a quick example to show off the syntax:</p>
 <div id="active-code">

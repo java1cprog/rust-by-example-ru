@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="14.4" data-basepath=".." data-revision="1488445048233">
+    <div class="book" data-level="14.4" data-basepath=".." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2868,16 +2868,16 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_148">
+                    <section class="normal" id="section-gitbook_147">
                     
                         <h2 id="144-iterators">14.4 Iterators</h2>
 <p>The <code>Iterator</code> trait is used to implement iterators over collections such as arrays.</p>
-<p>The trait requires only a method to be defined for the <code>next</code> element, 
-which may be manually defined in an <code>impl</code> block or automatically 
+<p>The trait requires only a method to be defined for the <code>next</code> element,
+which may be manually defined in an <code>impl</code> block or automatically
 defined (as in arrays and ranges).</p>
-<p>As a point of convenience for common situations, the <code>for</code> construct 
+<p>As a point of convenience for common situations, the <code>for</code> construct
 turns some collections into iterators using the <a href="https://doc.rust-lang.org/std/iter/trait.IntoIterator.html" target="_blank"><code>.into_iterator()</code></a> method.</p>
-<p>Methods that can be accessed using the <code>Iterator</code> trait in addition 
+<p>Methods that can be accessed using the <code>Iterator</code> trait in addition
 to those shown in the example below can be found <a href="http://doc.rust-lang.org/core/iter/trait.Iterator.html" target="_blank">here</a>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
@@ -2902,7 +2902,7 @@ impl Iterator for Fibonacci {
         self.curr = self.next;
         self.next = new&#95;next;
 
-        // Since there&#39;s no endpoint to a Fibonacci sequence, the &#96;Iterator&#96; 
+        // Since there&#39;s no endpoint to a Fibonacci sequence, the &#96;Iterator&#96;
         // will never return &#96;None&#96;, and &#96;Some&#96; is always returned.
         Some(self.curr)
     }

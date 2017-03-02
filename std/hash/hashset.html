@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="17.7.2" data-basepath="../.." data-revision="1488445048233">
+    <div class="book" data-level="17.7.2" data-basepath="../.." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2868,22 +2868,22 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_121">
+                    <section class="normal" id="section-gitbook_120">
                     
                         <h3 id="1772-hashset">17.7.2 HashSet</h3>
 <p>Consider a <code>HashSet</code> as a <code>HashMap</code> where we just care about the keys (
 <code>HashSet&lt;T&gt;</code> is, in actuality, just a wrapper around <code>HashMap&lt;T, ()&gt;</code>).</p>
 <p>&quot;What&#39;s the point of that?&quot; you ask. &quot;I could just store the keys in a <code>Vec</code>.&quot;</p>
-<p>A <code>HashSet</code>&#39;s unique feature is that 
-it is guaranteed to not have duplicate elements. 
-That&#39;s the contract that any set collection fulfills. 
+<p>A <code>HashSet</code>&#39;s unique feature is that
+it is guaranteed to not have duplicate elements.
+That&#39;s the contract that any set collection fulfills.
 <code>HashSet</code> is just one implementation. (see also: <a href="http://doc.rust-lang.org/std/collections/struct.BTreeSet.html" target="_blank"><code>BTreeSet</code></a>)</p>
-<p>If you insert a value that is already present in the <code>HashSet</code>, 
-(i.e. the new value is equal to the existing and they both have the same hash), 
+<p>If you insert a value that is already present in the <code>HashSet</code>,
+(i.e. the new value is equal to the existing and they both have the same hash),
 then the new value will replace the old.</p>
-<p>This is great for when you never want more than one of something, 
+<p>This is great for when you never want more than one of something,
 or when you want to know if you&#39;ve already got something.</p>
-<p>But sets can do more than that. </p>
+<p>But sets can do more than that.</p>
 <p>Sets have 4 primary operations (all of the following calls return an iterator):</p>
 <ul>
 <li><p><code>union</code>: get all the unique elements in both sets.</p>
@@ -2892,7 +2892,7 @@ or when you want to know if you&#39;ve already got something.</p>
 </li>
 <li><p><code>intersection</code>: get all the elements that are only in <em>both</em> sets.</p>
 </li>
-<li><p><code>symmetric_difference</code>: 
+<li><p><code>symmetric_difference</code>:
 get all the elements that are in one set or the other, but <em>not</em> both.</p>
 </li>
 </ul>

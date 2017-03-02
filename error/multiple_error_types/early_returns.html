@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.4.1" data-basepath="../.." data-revision="1488445048233">
+    <div class="book" data-level="16.4.1" data-basepath="../.." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2868,14 +2868,14 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_29">
+                    <section class="normal" id="section-gitbook_28">
                     
                         <h3 id="1641-early-returns">16.4.1 Early returns</h3>
-<p>In the previous example, we explicitly handled the errors using combinators. 
-Another way to deal with this case analysis is to use a combination of 
-<code>match</code> statements and <em>early returns</em>. </p>
-<p>That is, we can simply stop executing the function and return the error if 
-one occurs. For some, this form of code can be easier to both read and 
+<p>In the previous example, we explicitly handled the errors using combinators.
+Another way to deal with this case analysis is to use a combination of
+<code>match</code> statements and <em>early returns</em>.</p>
+<p>That is, we can simply stop executing the function and return the error if
+one occurs. For some, this form of code can be easier to both read and
 write. Consider this version of the previous example, rewritten using early returns:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
@@ -2916,11 +2916,11 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<p>At this point, we&#39;ve learned to explicitly handle errors using combinators 
-and early returns. While we generally want to avoid panicking, explicitly 
+<p>At this point, we&#39;ve learned to explicitly handle errors using combinators
+and early returns. While we generally want to avoid panicking, explicitly
 handling all of our errors is cumbersome.</p>
-<p>In the next section, we&#39;ll introduce <code>try!</code> for the cases where we simply 
-need to <code>unwrap</code> without possibly inducing <code>panic</code>. </p>
+<p>In the next section, we&#39;ll introduce <code>try!</code> for the cases where we simply
+need to <code>unwrap</code> without possibly inducing <code>panic</code>.</p>
 
                     
                     </section>

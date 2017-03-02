@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.6" data-basepath=".." data-revision="1488445048233">
+    <div class="book" data-level="16.6" data-basepath=".." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2868,24 +2868,24 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_36">
+                    <section class="normal" id="section-gitbook_38">
                     
                         <h2 id="166-other-uses-of-try">16.6 Other uses of <code>try!</code></h2>
-<p>Notice in the previous example that our immediate reaction to calling 
-<code>parse</code> is to <code>map</code> the error from a library error into our new custom 
+<p>Notice in the previous example that our immediate reaction to calling
+<code>parse</code> is to <code>map</code> the error from a library error into our new custom
 error type:</p>
 <pre><code class="lang-rust">.and_then(|s| s.parse::&lt;<span class="hljs-keyword">i32</span>&gt;()
     .map_err(DoubleError::Parse)
 </code></pre>
-<p>Since this is a simple and common operation, it would be convenient if it 
-could be elided. Alas, because <code>and_then</code> is not sufficiently flexible, it 
+<p>Since this is a simple and common operation, it would be convenient if it
+could be elided. Alas, because <code>and_then</code> is not sufficiently flexible, it
 cannot. However, we can instead use <code>try!</code>.</p>
-<p><code>try!</code> was previously explained as either <code>unwrap</code> or <code>return Err(err)</code>. 
-This is only mostly true. It actually means <code>unwrap</code> or 
-<code>return Err(From::from(err))</code>. Since <code>From::from</code> is a conversion utility 
-between different types, this means that if you <code>try!</code> where the error is 
+<p><code>try!</code> was previously explained as either <code>unwrap</code> or <code>return Err(err)</code>.
+This is only mostly true. It actually means <code>unwrap</code> or
+<code>return Err(From::from(err))</code>. Since <code>From::from</code> is a conversion utility
+between different types, this means that if you <code>try!</code> where the error is
 convertible to the return type, it will convert automatically.</p>
-<p>Here, we rewrite the previous example using <code>try!</code>. As a result, the 
+<p>Here, we rewrite the previous example using <code>try!</code>. As a result, the
 <code>map_err</code> will go away when <code>From::from</code> is implemented for our error type:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
@@ -2901,8 +2901,8 @@ enum DoubleError {
     Parse(ParseIntError),
 }
 
-// Implement the conversion from &#96;ParseIntError&#96; to &#96;DoubleError&#96;. 
-// This will be automatically called by &#96;try!&#96; if a &#96;ParseIntError&#96; 
+// Implement the conversion from &#96;ParseIntError&#96; to &#96;DoubleError&#96;.
+// This will be automatically called by &#96;try!&#96; if a &#96;ParseIntError&#96;
 // needs to be converted into a &#96;DoubleError&#96;.
 impl From&lt;ParseIntError&gt; for DoubleError {
     fn from(err: ParseIntError) -&gt; DoubleError {
@@ -2949,19 +2949,19 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<p>This is actually fairly clean now. Compared with the original <code>panic</code>, it 
-is very similar to replacing the <code>unwrap</code> calls with <code>try!</code> except that the 
-return types are <code>Result</code>. As a result, they must be destructured at the 
+<p>This is actually fairly clean now. Compared with the original <code>panic</code>, it
+is very similar to replacing the <code>unwrap</code> calls with <code>try!</code> except that the
+return types are <code>Result</code>. As a result, they must be destructured at the
 top level.</p>
-<p>Note that you should not expect error handling of this sort to always 
-replace <code>unwrap</code>. This type of error handling tripled our line count and 
-cannot really be considered simple (even when heavily biased by the small 
+<p>Note that you should not expect error handling of this sort to always
+replace <code>unwrap</code>. This type of error handling tripled our line count and
+cannot really be considered simple (even when heavily biased by the small
 code size).</p>
-<p>Indeed, moving a 1000 line library from <code>unwrap</code> to more proper error 
-handling might be feasible in an additional 100 lines of code. However, the 
+<p>Indeed, moving a 1000 line library from <code>unwrap</code> to more proper error
+handling might be feasible in an additional 100 lines of code. However, the
 necessary refactoring would most definitely not be trivial.</p>
-<p>Many libraries might get away with only implementing <code>Display</code> and 
-adding <code>From</code> on an as needed basis. However, more serious libraries will 
+<p>Many libraries might get away with only implementing <code>Display</code> and
+adding <code>From</code> on an as needed basis. However, more serious libraries will
 eventually need to meet higher expectations of error handling implementation.</p>
 <h3 id="-">Смотрите также:</h3>
 <p><a href="http://doc.rust-lang.org/std/convert/trait.From.html" target="_blank"><code>From::from</code></a> and <a href="http://doc.rust-lang.org/std/macro.try!.html" target="_blank"><code>try!</code></a></p>

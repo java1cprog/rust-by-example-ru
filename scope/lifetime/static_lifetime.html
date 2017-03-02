@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="13.4.7" data-basepath="../.." data-revision="1488445048233">
+    <div class="book" data-level="13.4.7" data-basepath="../.." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2871,9 +2871,9 @@
                     <section class="normal" id="section-gitbook_113">
                     
                         <h3 id="1347-static">13.4.7 static</h3>
-<p>A <code>&#39;static</code> lifetime is longest possible lifetime, and lasts for 
-the lifetime of the running program. A <code>&#39;static</code> lifetime may also be 
-coerced to a shorter lifetimes. There are two ways to make a variable 
+<p>A <code>&#39;static</code> lifetime is longest possible lifetime, and lasts for
+the lifetime of the running program. A <code>&#39;static</code> lifetime may also be
+coerced to a shorter lifetimes. There are two ways to make a variable
 with <code>&#39;static</code> lifetime, and both are stored in the read-only memory
 of the binary:</p>
 <ul>
@@ -2887,7 +2887,7 @@ of the binary:</p>
 <div id="editor"><pre>// Make a constant with &#96;&#39;static&#96; lifetime.
 static NUM: i32 = 18;
 
-// Returns a reference to &#96;NUM&#96; where its &#96;&#39;static&#96; 
+// Returns a reference to &#96;NUM&#96; where its &#96;&#39;static&#96;
 // lifetime is coerced to that of the input argument.
 fn coerce&#95;static&lt;&#39;a&gt;(&#95;: &amp;&#39;a i32) -&gt; &amp;&#39;a i32 {
     &amp;NUM

@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="12.6" data-basepath=".." data-revision="1488445048233">
+    <div class="book" data-level="12.6" data-basepath=".." data-revision="1488479458888">
     
 
 <div class="book-summary">
@@ -2868,12 +2868,12 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_81">
+                    <section class="normal" id="section-gitbook_80">
                     
                         <h2 id="126-where-clauses">12.6 Where clauses</h2>
 <p>A bound can also be expressed using a <code>where</code> clause immediately
-before the opening <code>{</code>, rather than at the type&#39;s first mention. 
-Additionally, <code>where</code> clauses can apply bounds to arbitrary types, 
+before the opening <code>{</code>, rather than at the type&#39;s first mention.
+Additionally, <code>where</code> clauses can apply bounds to arbitrary types,
 rather than just to type parameters.</p>
 <p>Some cases that a <code>where</code> clause is useful:</p>
 <ul>
@@ -2887,7 +2887,7 @@ rather than just to type parameters.</p>
     D: TraitE + TraitF {}
 </code></pre>
 <ul>
-<li>When using a <code>where</code> clause is more expressive than using normal syntax. 
+<li>When using a <code>where</code> clause is more expressive than using normal syntax.
 The <code>impl</code> in this example cannot be directly expressed without a <code>where</code> clause:</li>
 </ul>
 <div id="active-code">
@@ -2899,7 +2899,7 @@ trait PrintInOption {
     fn print&#95;in&#95;option(self);
 }
 
-// Because we would otherwise have to express this as &#96;T: Debug&#96; or 
+// Because we would otherwise have to express this as &#96;T: Debug&#96; or
 // use another method of indirect approach, this requires a &#96;where&#96; clause:
 impl&lt;T&gt; PrintInOption for T where
     Option&lt;T&gt;: Debug {
