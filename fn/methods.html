@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="8.1" data-basepath=".." data-revision="1488526130795">
+    <div class="book" data-level="8.1" data-basepath=".." data-revision="1488719642174">
     
 
 <div class="book-summary">
@@ -1221,7 +1221,7 @@
                         
                             <b>11.1.</b>
                         
-                         `Мертвый код`
+                         `Мёртвый код`
                     </a>
                 
             
@@ -1578,7 +1578,7 @@
                         
                             <b>13.2.1.</b>
                         
-                         Mutability
+                         Изменяемость
                     </a>
                 
             
@@ -1599,7 +1599,7 @@
                         
                             <b>13.3.</b>
                         
-                         Borrowing
+                         Заимствование
                     </a>
                 
             
@@ -1632,7 +1632,7 @@
                         
                             <b>13.3.2.</b>
                         
-                         Freezing
+                         Замораживание
                     </a>
                 
             
@@ -2868,10 +2868,10 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_66">
+                    <section class="normal" id="section-gitbook_67">
                     
                         <h2 id="81-">8.1 Методы</h2>
-<p>Методы - это функций прикрепленные к объектам. Эти методы имеют допуск к данным объекта и
+<p>Методы - это функций прикреплённые к объектам. Эти методы имеют допуск к данным объекта и
 его другим методам через ключевое слово <code>self</code>. Методы определяются под блоком <code>impl</code>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
@@ -2906,7 +2906,7 @@ impl Rectangle {
     // &#96;&amp;self&#96; это сахар для &#96;self: &amp;Self&#96;, где &#96;Self&#96; это тип
     // вызываемого объекта. В этом месте &#96;Self&#96; = &#96;Rectangle&#96;
     fn area(&amp;self) -&gt; f64 {
-        // &#96;self&#96; дает допуск к полям структуры через оператор точка
+        // &#96;self&#96; даёт допуск к полям структуры через оператор точка
         let Point { x: x1, y: y1 } = self.p1;
         let Point { x: x2, y: y2 } = self.p2;
 

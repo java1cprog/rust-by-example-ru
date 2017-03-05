@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Mutability | Rust на примерах</title>
+        <title>Изменяемость | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="13.2.1" data-basepath="../.." data-revision="1488526130795">
+    <div class="book" data-level="13.2.1" data-basepath="../.." data-revision="1488719642174">
     
 
 <div class="book-summary">
@@ -1221,7 +1221,7 @@
                         
                             <b>11.1.</b>
                         
-                         `Мертвый код`
+                         `Мёртвый код`
                     </a>
                 
             
@@ -1578,7 +1578,7 @@
                         
                             <b>13.2.1.</b>
                         
-                         Mutability
+                         Изменяемость
                     </a>
                 
             
@@ -1599,7 +1599,7 @@
                         
                             <b>13.3.</b>
                         
-                         Borrowing
+                         Заимствование
                     </a>
                 
             
@@ -1632,7 +1632,7 @@
                         
                             <b>13.3.2.</b>
                         
-                         Freezing
+                         Замораживание
                     </a>
                 
             
@@ -2868,30 +2868,30 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_116">
+                    <section class="normal" id="section-gitbook_114">
                     
-                        <h3 id="1321-mutability">13.2.1 Mutability</h3>
-<p>Mutability of data can be changed when ownership is transferred.</p>
+                        <h3 id="1321-">13.2.1 Изменяемость</h3>
+<p>Изменяемость данных может быть изменена при передаче владения.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn main() {
     let immutable&#95;box = Box::new(5u32);
 
-    println!(&quot;immutable&#95;box contains {}&quot;, immutable&#95;box);
+    println!(&quot;immutable&#95;box содержит в себе {}&quot;, immutable&#95;box);
 
-    // Mutability error
+    // Ошибка изменяемости
     //&#42;immutable&#95;box = 4;
 
-    // &#42;Move&#42; the box, changing the ownership (and mutability)
+    // &#42;Переместить&#42; упаковку, изменив её владение (и изменяемость)
     let mut mutable&#95;box = immutable&#95;box;
 
-    println!(&quot;mutable&#95;box contains {}&quot;, mutable&#95;box);
+    println!(&quot;mutable&#95;box содержит в себе {}&quot;, mutable&#95;box);
 
-    // Modify the contents of the box
+    // Изменяем данные внутри упаковки
     &#42;mutable&#95;box = 4;
 
-    println!(&quot;mutable&#95;box now contains {}&quot;, mutable&#95;box);
+    println!(&quot;mutable&#95;box now содержит в себе {}&quot;, mutable&#95;box);
 }</pre></div>
 <div id="result"></div>
 </div>
@@ -2908,7 +2908,7 @@
         <a href="../../scope/move.html" class="navigation navigation-prev " aria-label="Previous page: Ownership and moves"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../scope/borrow.html" class="navigation navigation-next " aria-label="Next page: Borrowing"><i class="fa fa-angle-right"></i></a>
+        <a href="../../scope/borrow.html" class="navigation navigation-next " aria-label="Next page: Заимствование"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

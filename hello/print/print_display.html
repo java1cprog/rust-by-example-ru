@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2.2" data-basepath="../.." data-revision="1488526130795">
+    <div class="book" data-level="1.2.2" data-basepath="../.." data-revision="1488719642174">
     
 
 <div class="book-summary">
@@ -1221,7 +1221,7 @@
                         
                             <b>11.1.</b>
                         
-                         `Мертвый код`
+                         `Мёртвый код`
                     </a>
                 
             
@@ -1578,7 +1578,7 @@
                         
                             <b>13.2.1.</b>
                         
-                         Mutability
+                         Изменяемость
                     </a>
                 
             
@@ -1599,7 +1599,7 @@
                         
                             <b>13.3.</b>
                         
-                         Borrowing
+                         Заимствование
                     </a>
                 
             
@@ -1632,7 +1632,7 @@
                         
                             <b>13.3.2.</b>
                         
-                         Freezing
+                         Замораживание
                     </a>
                 
             
@@ -2871,9 +2871,9 @@
                     <section class="normal" id="section-gitbook_5">
                     
                         <h3 id="122-display">1.2.2 Display</h3>
-<p><code>fmt::Debug</code> выглядит не очень компактно и красиво, 
-поэтому полезно настраивать внешний вид информации, которая будет напечатана. 
-Это можно сделать реализовав <code>типаж (trait)</code> <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>fmt::Display</code></a> вручную, 
+<p><code>fmt::Debug</code> выглядит не очень компактно и красиво,
+поэтому полезно настраивать внешний вид информации, которая будет напечатана.
+Это можно сделать реализовав <code>типаж</code> <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>fmt::Display</code></a> вручную,
 который использует маркер <code>{}</code> для печати. Его реализация выглядит следующим образом:</p>
 <pre><code class="lang-rust"><span class="hljs-comment">// Импортируем (с помощью `use`) модуль `fmt`, чтобы мы могли его использовать.</span>
 <span class="hljs-keyword">use</span> std::fmt;
@@ -2906,8 +2906,8 @@
 </ul>
 <p>Нет, потому что не существует идеального стиля вывода для всех типов, поэтому
 <code>стандартная библиотека std</code> не может его предоставить. <code>fmt::Display</code> не реализован для
-<code>Vec&lt;T&gt;</code> или для других обобщенных контейнеров. Для этих случаев подойдет <code>fmt::Debug</code>.</p>
-<p>Это не проблема, потому что для любых новых <em>контейнеров</em>, типы которых не обобщенные, 
+<code>Vec&lt;T&gt;</code> или для других обобщённых контейнеров. Для этих случаев подойдёт <code>fmt::Debug</code>.</p>
+<p>Это не проблема, потому что для любых новых <em>контейнеров</em>, типы которых не обобщённые,
 может быть реализован <code>fmt::Display</code>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
@@ -2915,14 +2915,14 @@
 <div id="editor"><pre>use std::fmt; // Импортируем &#96;fmt&#96;
 
 // Структура, которая хранит в себе два числа.
-//Вывод типажа &#96;Debug&#96; добавлен для сравнения с &#96;Display&#96;.
+// Вывод типажа &#96;Debug&#96; добавлен для сравнения с &#96;Display&#96;.
 #[derive(Debug)]
 struct MinMax(i64, i64);
 
 // Реализуем &#96;Display&#96; для &#96;MinMax&#96;.
 impl fmt::Display for MinMax {
     fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
-        // Используем &#96;self.number&#96;, чтобы получить доступ к каждому полю структуры.
+        // Используем &#96;self.номер&#96;, чтобы получить доступ к каждому полю структуры.
         write!(f, &quot;({}, {})&quot;, self.0, self.1)
     }
 }
@@ -2934,10 +2934,10 @@ struct Point2D {
     y: f64,
 }
 
-// По аналогии, реализуем &#96;Display&#96; для Point2
+// По аналогии, реализуем &#96;Display&#96; для Point2D
 impl fmt::Display for Point2D {
     fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
-        // Обращаться к полям структуры Point2 будет по имени
+        // Обращаться к полям структуры Point2D будет по имени
         write!(f, &quot;x: {}, y: {}&quot;, self.x, self.y)
     }
 }
@@ -2945,24 +2945,24 @@ impl fmt::Display for Point2D {
 fn main() {
     let minmax = MinMax(0, 14);
 
-    println!(&quot;Compare structures:&quot;);
+    println!(&quot;Сравниваем структуры:&quot;);
     println!(&quot;Display: {}&quot;, minmax);
     println!(&quot;Debug: {:?}&quot;, minmax);
 
     let big&#95;range =   MinMax(-300, 300);
     let small&#95;range = MinMax(-3, 3);
 
-    println!(&quot;The big range is {big} and the small is {small}&quot;,
+    println!(&quot;Большой диапозон - {big} и маленький диапозон {small}&quot;,
              small = small&#95;range,
              big = big&#95;range);
 
     let point = Point2D { x: 3.3, y: 7.2 };
 
-    println!(&quot;Compare points:&quot;);
+    println!(&quot;Сравниваем точки:&quot;);
     println!(&quot;Display: {}&quot;, point);
     println!(&quot;Debug: {:?}&quot;, point);
 
-    // Ошибка. Типажи &#96;Debug&#96; и &#96;Display&#96; были реализованны, но &#96;{:b}&#96;
+    // Ошибка. Типажи &#96;Debug&#96; и &#96;Display&#96; были реализованы, но &#96;{:b}&#96;
     // необходима реализация &#96;fmt::Binary&#96;. Следующий код не сработает.
     // println!(&quot;What does Point2D look like in binary: {:b}?&quot;, point);
 }</pre></div>
@@ -2979,8 +2979,8 @@ fn main() {
 <pre><code>Display: 3.3 + 7.2i
 Debug: Complex { real: 3.3, imag: 7.2 }
 </code></pre><h3 id="-">Смотрите также</h3>
-<p><a href="../../trait/derive.html"><code>derive</code></a>, <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>, <a href="../../macros.html">macros</a>, <a href="../../custom_types/structs.html"><code>struct</code></a>,
-<a href="../../trait.html"><code>trait</code></a>, и <a href="../../mod/use.html">use</a></p>
+<p><a href="../../trait/derive.html"><code>derive</code></a>, <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>, <a href="../../macros.html">macros</a>, <a href="../../custom_types/structs.html"><code>структуры</code></a>,
+<a href="../../trait.html"><code>типажи</code></a>, и <a href="../../mod/use.html">use</a></p>
 
                     
                     </section>

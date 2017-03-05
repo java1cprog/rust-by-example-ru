@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="8.3" data-basepath=".." data-revision="1488526130795">
+    <div class="book" data-level="8.3" data-basepath=".." data-revision="1488719642174">
     
 
 <div class="book-summary">
@@ -1221,7 +1221,7 @@
                         
                             <b>11.1.</b>
                         
-                         `Мертвый код`
+                         `Мёртвый код`
                     </a>
                 
             
@@ -1578,7 +1578,7 @@
                         
                             <b>13.2.1.</b>
                         
-                         Mutability
+                         Изменяемость
                     </a>
                 
             
@@ -1599,7 +1599,7 @@
                         
                             <b>13.3.</b>
                         
-                         Borrowing
+                         Заимствование
                     </a>
                 
             
@@ -1632,7 +1632,7 @@
                         
                             <b>13.3.2.</b>
                         
-                         Freezing
+                         Замораживание
                     </a>
                 
             
@@ -2882,7 +2882,7 @@
 }
 
 fn main() {
-    println!(&quot;Найти сумму всех квадратов нечетных числ не больше 1000&quot;);
+    println!(&quot;Найти сумму всех квадратов нечётных числ не больше 1000&quot;);
     let upper = 1000;
 
     // Императивный подход
@@ -2894,10 +2894,10 @@ fn main() {
         let n&#95;squared = n &#42; n;
 
         if n&#95;squared &gt;= upper {
-            // станавить цикл, если превысили верхний лимит
+            // Остановить цикл, если превысили верхний лимит
             break;
         } else if is&#95;odd(n&#95;squared) {
-            // Складывать число, если оно нечетное
+            // Складывать число, если оно нечётное
             acc += n&#95;squared;
         }
     }
@@ -2907,7 +2907,7 @@ fn main() {
     let sum&#95;of&#95;squared&#95;odd&#95;numbers: u32 =
         (0..).map(|n| n &#42; n)             // Все натуральные числа в квадрате
              .take&#95;while(|&amp;n| n &lt; upper) // Ниже верхнего предела
-             .filter(|n| is&#95;odd(&#42;n))     // Это нечетные
+             .filter(|n| is&#95;odd(&#42;n))     // Это нечётные
              .fold(0, |sum, i| sum + i); // Суммируем
     println!(&quot;functional style: {}&quot;, sum&#95;of&#95;squared&#95;odd&#95;numbers);
 }</pre></div>

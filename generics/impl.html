@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="12.2" data-basepath=".." data-revision="1488526130795">
+    <div class="book" data-level="12.2" data-basepath=".." data-revision="1488719642174">
     
 
 <div class="book-summary">
@@ -1221,7 +1221,7 @@
                         
                             <b>11.1.</b>
                         
-                         `Мертвый код`
+                         `Мёртвый код`
                     </a>
                 
             
@@ -1578,7 +1578,7 @@
                         
                             <b>13.2.1.</b>
                         
-                         Mutability
+                         Изменяемость
                     </a>
                 
             
@@ -1599,7 +1599,7 @@
                         
                             <b>13.3.</b>
                         
-                         Borrowing
+                         Заимствование
                     </a>
                 
             
@@ -1632,7 +1632,7 @@
                         
                             <b>13.3.2.</b>
                         
-                         Freezing
+                         Замораживание
                     </a>
                 
             
@@ -2868,7 +2868,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_78">
+                    <section class="normal" id="section-gitbook_105">
                     
                         <h2 id="122-">12.2 Реализация</h2>
 <p>Подобно функциям, реализации требуют выполнения некоторых условий, чтобы оставаться обобщенными.</p>
@@ -2893,12 +2893,12 @@ struct GenVal&lt;T&gt;{
     gen&#95;val: T
 }
 
-// Реалицация Val
+// Реализация Val
 impl Val {
     fn value(&amp;self) -&gt; &amp;f64 { &amp;self.val }
 }
 
-// Реалицация GenVal для обобщённого типа &#96;T&#96;
+// Реализация GenVal для обобщённого типа &#96;T&#96;
 impl &lt;T&gt; GenVal&lt;T&gt; {
     fn value(&amp;self) -&gt; &amp;T { &amp;self.gen&#95;val }
 }

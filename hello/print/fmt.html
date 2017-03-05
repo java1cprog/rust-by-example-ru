@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2.3" data-basepath="../.." data-revision="1488526130795">
+    <div class="book" data-level="1.2.3" data-basepath="../.." data-revision="1488719642174">
     
 
 <div class="book-summary">
@@ -1221,7 +1221,7 @@
                         
                             <b>11.1.</b>
                         
-                         `Мертвый код`
+                         `Мёртвый код`
                     </a>
                 
             
@@ -1578,7 +1578,7 @@
                         
                             <b>13.2.1.</b>
                         
-                         Mutability
+                         Изменяемость
                     </a>
                 
             
@@ -1599,7 +1599,7 @@
                         
                             <b>13.3.</b>
                         
-                         Borrowing
+                         Заимствование
                     </a>
                 
             
@@ -1632,7 +1632,7 @@
                         
                             <b>13.3.2.</b>
                         
-                         Freezing
+                         Замораживание
                     </a>
                 
             
@@ -2871,7 +2871,7 @@
                     <section class="normal" id="section-gitbook_1">
                     
                         <h3 id="123-">1.2.3 Форматирование</h3>
-<p>Мы видели, что форматирование задается <em>макросом форматирования</em>:</p>
+<p>Мы видели, что форматирование задаётся <em>макросом форматирования</em>:</p>
 <ul>
 <li><code>format!(&quot;{}&quot;, foo)</code> -&gt; <code>&quot;3735928559&quot;</code></li>
 <li><code>format!(&quot;0x{:X}&quot;, foo)</code> -&gt;
@@ -2879,10 +2879,10 @@
 <li><code>format!(&quot;0o{:o}&quot;, foo)</code> -&gt; <code>&quot;0o33653337357&quot;</code></li>
 </ul>
 <p>Одна и та же переменная (<code>foo</code>) может быть отображена по разному в зависимости от
-используемого <em>типа аргумента</em>: <code>X</code>, <code>o</code> или <em>неопределенный</em>.</p>
-<p>Функционал форматирования реализован благодаря типажу, 
-и для каждого типа аргумента существует свой. 
-Наиболее распространенный типаж для форматирования - <code>Display</code>, 
+используемого <em>типа аргумента</em>: <code>X</code>, <code>o</code> или <em>неопределённый</em>.</p>
+<p>Функционал форматирования реализован благодаря типажу,
+и для каждого типа аргумента существует свой.
+Наиболее распространённый типаж для форматирования - <code>Display</code>,
 который работает без аргументов: <code>{}</code>, например.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
@@ -2919,9 +2919,9 @@ struct Color {
 
 fn main() {
     for city in [
-        City { name: &quot;Dublin&quot;, lat: 53.347778, lon: -6.259722 },
-        City { name: &quot;Oslo&quot;, lat: 59.95, lon: 10.75 },
-        City { name: &quot;Vancouver&quot;, lat: 49.25, lon: -123.1 },
+        City { name: &quot;Дублин&quot;, lat: 53.347778, lon: -6.259722 },
+        City { name: &quot;Осло&quot;, lat: 59.95, lon: 10.75 },
+        City { name: &quot;Ванкувер&quot;, lat: 49.25, lon: -123.1 },
     ].iter() {
         println!(&quot;{}&quot;, &#42;city);
     }

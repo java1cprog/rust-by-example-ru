@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2.1" data-basepath="../.." data-revision="1488526130795">
+    <div class="book" data-level="1.2.1" data-basepath="../.." data-revision="1488719642174">
     
 
 <div class="book-summary">
@@ -1221,7 +1221,7 @@
                         
                             <b>11.1.</b>
                         
-                         `Мертвый код`
+                         `Мёртвый код`
                     </a>
                 
             
@@ -1578,7 +1578,7 @@
                         
                             <b>13.2.1.</b>
                         
-                         Mutability
+                         Изменяемость
                     </a>
                 
             
@@ -1599,7 +1599,7 @@
                         
                             <b>13.3.</b>
                         
-                         Borrowing
+                         Заимствование
                     </a>
                 
             
@@ -1632,7 +1632,7 @@
                         
                             <b>13.3.2.</b>
                         
-                         Freezing
+                         Замораживание
                     </a>
                 
             
@@ -2875,13 +2875,13 @@
 их реализации для возможности печати. Автоматическая реализация предоставлена только для
 типов из <code>стандартной библиотеки (std)</code>. Все остальные типы <em>должны</em> иметь собственную реализацию.</p>
 <p>C помощью <code>типажа</code> <code>fmt::Debug</code> это сделать очень просто. <em>Все</em> типы могут
-<code>выводить (derive)</code> (автоматически создавать) реализацию <code>fmt::Debug</code>. 
+<code>выводить</code> (автоматически создавать) реализацию <code>fmt::Debug</code>.
 Сделать подобное с <code>fmt::Display</code> невозможно, он должен быть реализован вручную.</p>
 <pre><code class="lang-rust"><span class="hljs-comment">// Эта структура не может быть напечатана с помощью `fmt::Display`</span>
 <span class="hljs-comment">// или с помощью `fmt::Debug`</span>
 <span class="hljs-keyword">struct</span> UnPrintable(<span class="hljs-keyword">i32</span>);
 
-<span class="hljs-comment">// Атрибут `выводить (derive)` автоматически реализует</span>
+<span class="hljs-comment">// Атрибут `derive` автоматически реализует</span>
 <span class="hljs-comment">// необходимые методы, чтобы была возможность</span>
 <span class="hljs-comment">// печатать данную `структуру` с помощью `fmt::Debug`.</span>
 <span class="hljs-preprocessor">#[derive(Debug)]</span>
@@ -2891,7 +2891,7 @@
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// Вывод и реализация &#96;fmt::Debug&#96; для &#96;Structure&#96;. &#96;Structure&#96;
+<div id="editor"><pre>// Вывод и реализация &#96;fmt::Debug&#96; для &#96;Structure&#96;.
 // &#96;Structure&#96; - это структура, которая содержит в себе один &#96;i32&#96;.
 #[derive(Debug)]
 struct Structure(i32);
@@ -2903,28 +2903,28 @@ struct Deep(Structure);
 
 fn main() {
     // Вывод с помощью &#96;{:?}&#96; аналогичен &#96;{}&#96;.
-    println!(&quot;{:?} months in a year.&quot;, 12);
-    println!(&quot;{1:?} {0:?} is the {actor:?} name.&quot;,
-             &quot;Slater&quot;,
-             &quot;Christian&quot;,
-             actor=&quot;actor&#39;s&quot;);
+    println!(&quot;{:?} месяцев в году.&quot;, 12);
+    println!(&quot;{1:?} {0:?} - это имя {actor:?}.&quot;,
+             &quot;Слэйтер&quot;,
+             &quot;Кристиан&quot;,
+             actor=&quot;актера&quot;);
 
     // &#96;Structure&#96; теперь можно напечатать!
-    println!(&quot;Now {:?} will print!&quot;, Structure(3));
+    println!(&quot;Теперь {:?} будет выведена на экран!&quot;, Structure(3));
 
     // Проблема с &#96;выводом (derive)&#96;, в том, что у нас не будет контроля
-    // над тем, как будет выглядить результат.
+    // над тем, как будет выглядеть результат.
     // Что если мы хотим напечатать просто &#96;7&#96;?
-    println!(&quot;Now {:?} will print!&quot;, Deep(Structure(7)));
+    println!(&quot;А теперь напечатаем {:?}&quot;, Deep(Structure(7)));
 }</pre></div>
 <div id="result"></div>
 </div>
 
-<p><code>fmt::Debug</code> дает возможность выводить информацию о обьектах на экран, 
+<p><code>fmt::Debug</code> даёт возможность выводить информацию о объектах на экран,
 жертвуя при этом элегантностью. Реализовав типаж <code>fmt::Display</code> вручную можно исправить это.</p>
 <h3 id="-">Смотрите также</h3>
-<p><a href="http://doc.rust-lang.org/reference.html#attributes" target="_blank">attributes</a>, <a href="../../trait/derive.html"><code>derive</code></a>, <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>,
-и <a href="../../custom_types/structs.html"><code>struct</code></a></p>
+<p><a href="http://doc.rust-lang.org/reference.html#attributes" target="_blank">атрибуты</a>, <a href="../../trait/derive.html"><code>derive</code></a>, <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>,
+и <a href="../../custom_types/structs.html"><code>структуры</code></a></p>
 
                     
                     </section>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Freezing | Rust на примерах</title>
+        <title>Замораживание | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="13.3.2" data-basepath="../.." data-revision="1488526130795">
+    <div class="book" data-level="13.3.2" data-basepath="../.." data-revision="1488719642174">
     
 
 <div class="book-summary">
@@ -1221,7 +1221,7 @@
                         
                             <b>11.1.</b>
                         
-                         `Мертвый код`
+                         `Мёртвый код`
                     </a>
                 
             
@@ -1578,7 +1578,7 @@
                         
                             <b>13.2.1.</b>
                         
-                         Mutability
+                         Изменяемость
                     </a>
                 
             
@@ -1599,7 +1599,7 @@
                         
                             <b>13.3.</b>
                         
-                         Borrowing
+                         Заимствование
                     </a>
                 
             
@@ -1632,7 +1632,7 @@
                         
                             <b>13.3.2.</b>
                         
-                         Freezing
+                         Замораживание
                     </a>
                 
             
@@ -2868,11 +2868,11 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_103">
+                    <section class="normal" id="section-gitbook_101">
                     
-                        <h3 id="1332-freezing">13.3.2 Freezing</h3>
-<p>When data is immutably borrowed, it also <em>freezes</em>. <em>Frozen</em> data can&#39;t be
-modified via the original object until all references to it go out of scope:</p>
+                        <h3 id="1332-">13.3.2 Замораживание</h3>
+<p>Когда данные заимствуются, они заодно и <em>замораживаются</em>. <em>Замороженные</em> данные
+не могут быть изменены до тех пор, пока все ссылки не выйдут за область видимости:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2880,17 +2880,17 @@ modified via the original object until all references to it go out of scope:</p>
     let mut &#95;mutable&#95;integer = 7i32;
 
     {
-        // Borrow &#96;&#95;mutable&#95;integer&#96;
+        // Заимствовать &#96;&#95;mutable&#95;integer&#96;
         let &#95;large&#95;integer = &amp;&#95;mutable&#95;integer;
 
-        // Error! &#96;&#95;mutable&#95;integer&#96; is frozen in this scope
+        // Ошибка! &#96;&#95;mutable&#95;integer&#96; заморожен в этой области видимости
         &#95;mutable&#95;integer = 50;
-        // ИСПРАВЬТЕ ^ Comment out this line
+        // ИСПРАВЬТЕ ^ Закомментируйте эту строку
 
-        // &#96;&#95;large&#95;integer&#96; goes out of scope
+        // &#96;&#95;large&#95;integer&#96; покидает область видимости
     }
 
-    // Ok! &#96;&#95;mutable&#95;integer&#96; is not frozen in this scope
+    // Ок! &#96;&#95;mutable&#95;integer&#96; не заморожен в этой области видимости
     &#95;mutable&#95;integer = 3;
 }</pre></div>
 <div id="result"></div>

@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2.2.1" data-basepath="../../.." data-revision="1488526130795">
+    <div class="book" data-level="1.2.2.1" data-basepath="../../.." data-revision="1488719642174">
     
 
 <div class="book-summary">
@@ -1221,7 +1221,7 @@
                         
                             <b>11.1.</b>
                         
-                         `Мертвый код`
+                         `Мёртвый код`
                     </a>
                 
             
@@ -1578,7 +1578,7 @@
                         
                             <b>13.2.1.</b>
                         
-                         Mutability
+                         Изменяемость
                     </a>
                 
             
@@ -1599,7 +1599,7 @@
                         
                             <b>13.3.</b>
                         
-                         Borrowing
+                         Заимствование
                     </a>
                 
             
@@ -1632,7 +1632,7 @@
                         
                             <b>13.3.2.</b>
                         
-                         Freezing
+                         Замораживание
                     </a>
                 
             
@@ -2887,7 +2887,7 @@
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>use std::fmt; // Импортируем модуль &#96;fmt&#96;.
 
-// Определим структуру с именим &#96;List&#96;, которая хранит в себе &#96;Vec&#96;.
+// Определим структуру с именем &#96;List&#96;, которая хранит в себе &#96;Vec&#96;.
 struct List(Vec&lt;i32&gt;);
 
 impl fmt::Display for List {
@@ -2898,7 +2898,7 @@ impl fmt::Display for List {
 
         try!(write!(f, &quot;[&quot;));
 
-        // Пройдемся по каждому &#96;v&#96; в &#96;vec&#96;.
+        // Пройдёмся по каждому &#96;v&#96; в &#96;vec&#96;.
         // Номер итерации хранится в &#96;count&#96;.
         for (count, v) in vec.iter().enumerate() {
             // Для каждого элемента, кроме первого, добавим запятую
@@ -2907,7 +2907,7 @@ impl fmt::Display for List {
             try!(write!(f, &quot;{}&quot;, v));
         }
 
-        // Закроем открытую скобку и вернем значение &#96;fmt::Result&#96;
+        // Закроем открытую скобку и вернём значение &#96;fmt::Result&#96;
         write!(f, &quot;]&quot;)
     }
 }

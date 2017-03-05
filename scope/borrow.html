@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Borrowing | Rust на примерах</title>
+        <title>Заимствование | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="13.3" data-basepath=".." data-revision="1488526130795">
+    <div class="book" data-level="13.3" data-basepath=".." data-revision="1488719642174">
     
 
 <div class="book-summary">
@@ -1221,7 +1221,7 @@
                         
                             <b>11.1.</b>
                         
-                         `Мертвый код`
+                         `Мёртвый код`
                     </a>
                 
             
@@ -1578,7 +1578,7 @@
                         
                             <b>13.2.1.</b>
                         
-                         Mutability
+                         Изменяемость
                     </a>
                 
             
@@ -1599,7 +1599,7 @@
                         
                             <b>13.3.</b>
                         
-                         Borrowing
+                         Заимствование
                     </a>
                 
             
@@ -1632,7 +1632,7 @@
                         
                             <b>13.3.2.</b>
                         
-                         Freezing
+                         Замораживание
                     </a>
                 
             
@@ -2868,51 +2868,51 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_106">
+                    <section class="normal" id="section-gitbook_104">
                     
-                        <h2 id="133-borrowing">13.3 Borrowing</h2>
-<p>Most of the time, we&#39;d like to access data without taking ownership over
-it. To accomplish this, Rust uses a <em>borrowing</em> mechanism. Instead of
-passing objects by-value (<code>T</code>), objects can be passed by reference (<code>&amp;T</code>).</p>
-<p>The compiler statically guarantees (via its borrow checker) that references
-<em>always</em> point to valid objects. That is, while references to an object
-exist, the object cannot be destroyed.</p>
+                        <h2 id="133-">13.3 Заимствование</h2>
+<p>Большую часть времени мы хотим обращаться к данным без получения владения над
+ними. Для этого Rust предоставляет механизм <em>заимствования.</em> Вместо передачи
+объектов по значению (<code>T</code>), объекты могут быть переданы по ссылке (<code>&amp;T</code>).</p>
+<p>Компилятор статически гарантирует, что ссылки <em>всегда</em> указывают на допустимые
+объекты посредством проверки заимствований. К примеру, исходные объект не может
+быть уничтожен, пока существуют ссылки на него.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// This function takes ownership of a box and destroys it
+<div id="editor"><pre>// Эта функция берёт во владение упаковку и уничтожает её
 fn eat&#95;box&#95;i32(boxed&#95;i32: Box&lt;i32&gt;) {
-    println!(&quot;Destroying box that contains {}&quot;, boxed&#95;i32);
+    println!(&quot;Уничтожаем упаковку в которой хранится {}&quot;, boxed&#95;i32);
 }
 
-// This function borrows an i32
+// Эта функция заимствует i32
 fn borrow&#95;i32(borrowed&#95;i32: &amp;i32) {
-    println!(&quot;This int is: {}&quot;, borrowed&#95;i32);
+    println!(&quot;Это число равно: {}&quot;, borrowed&#95;i32);
 }
 
 fn main() {
-    // Create a boxed i32, and a stacked i32
+    // Создаём упакованное i32, и i32 на стеке
     let boxed&#95;i32 = Box::new(5&#95;i32);
     let stacked&#95;i32 = 6&#95;i32;
 
-    // Borrow the contents of the box. Ownership is not taken,
-    // so the contents can be borrowed again.
+    // Заимствуем содержимое упаковки. При этом мы не владеем ресурсом.
+    // Содержимое может быть заимствовано снова.
     borrow&#95;i32(&amp;boxed&#95;i32);
     borrow&#95;i32(&amp;stacked&#95;i32);
 
     {
-        // Take a reference to the data contained inside the box
+        // Получаем ссылку на данные, которые хранятся внутри упаковки
         let &#95;ref&#95;to&#95;i32: &amp;i32 = &amp;boxed&#95;i32;
 
-        // Error!
-        // Can&#39;t destroy &#96;boxed&#95;i32&#96; while the inner value is borrowed.
+        // Ошибка!
+        // Нельзя уничтожать упаковку &#96;boxed&#95;i32&#96; пока данные внутри заимствованы.
         eat&#95;box&#95;i32(boxed&#95;i32);
-        // ИСПРАВЬТЕ ^ Comment out this line
+        // ИСПРАВЬТЕ ^ Закомментируйте эту строку
 
-        // &#96;&#95;ref&#95;to&#95;i32&#96; goes out of scope and is no longer borrowed.
+        // &#96;&#95;ref&#95;to&#95;i32&#96; покидает область видимости и больше не является заимствованным ресурсом.
     }
 
-    // &#96;boxed&#95;i32&#96; can now give up ownership to &#96;eat&#95;box&#96; and be destroyed
+    // &#96;boxed&#95;i32&#96; теперь может получить владение над &#96;eat&#95;box&#96; и быть уничтожено
     eat&#95;box&#95;i32(boxed&#95;i32);
 }</pre></div>
 <div id="result"></div>
@@ -2927,7 +2927,7 @@ fn main() {
         </div>
 
         
-        <a href="../scope/move/mut.html" class="navigation navigation-prev " aria-label="Previous page: Mutability"><i class="fa fa-angle-left"></i></a>
+        <a href="../scope/move/mut.html" class="navigation navigation-prev " aria-label="Previous page: Изменяемость"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../scope/borrow/mut.html" class="navigation navigation-next " aria-label="Next page: Mutability"><i class="fa fa-angle-right"></i></a>
