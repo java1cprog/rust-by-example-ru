@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Ownership and moves | Rust на примерах</title>
+        <title>Владение и перемещение | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="13.2" data-basepath=".." data-revision="1488813386946">
+    <div class="book" data-level="13.2" data-basepath=".." data-revision="1488816479262">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>13.2.</b>
                         
-                         Ownership and moves
+                         Владение и перемещение
                     </a>
                 
             
@@ -2868,62 +2868,61 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_116">
+                    <section class="normal" id="section-gitbook_115">
                     
-                        <h2 id="132-ownership-and-moves">13.2 Ownership and moves</h2>
-<p>Because variables are in charge of freeing their own resources,
-<strong>resources can only have one owner</strong>. This also prevents resources
-from being freed more than once. Note that not all variables own
-resources (e.g. <a href="../flow_control/match/destructuring/destructure_pointers.html">references</a>).</p>
-<p>When doing assignments (<code>let x = y</code>) or passing function arguments by value
-(<code>foo(x)</code>), the <em>ownership</em> of the resources is transferred. In Rust-speak,
-this is known as a <em>move</em>.</p>
-<p>After moving resources, the previous owner can no longer be used. This avoids
-creating dangling pointers.</p>
+                        <h2 id="132---">13.2 Владение и перемещение</h2>
+<p>Поскольку переменные ответственны за освобождение своих ресурсов,
+<strong>ресурсы могут иметь лишь одного владельца</strong>.  Это ограничение предотвращает
+возможность высвобождения ресурсов более одно раза. Обратите внимание,
+что не все переменные владеют своим ресурсом (например, <a href="../flow_control/match/destructuring/destructure_pointers.html">ссылки</a>).</p>
+<p>При присваивании (<code>let x = y</code>) или при передаче функции аргумента по значению (<code>foo(x)</code>),
+<em>владение</em> ресурсами передаётся. В языке Rust это называется <em>перемещением.</em></p>
+<p>После перемещения ресурсов, переменная, владевшая ресурсами ранее, не может быть
+использована. Это предотвращает создание висячих указателей.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// This function takes ownership of the heap allocated memory
+<div id="editor"><pre>// Эта функция берёт во владение память, выделенную в куче
 fn destroy&#95;box(c: Box&lt;i32&gt;) {
-    println!(&quot;Destroying a box that contains {}&quot;, c);
+    println!(&quot;Уничтожаем упаковку, в которой хранится {}&quot;, c);
 
-    // &#96;c&#96; is destroyed and the memory freed
+    // &#96;c&#96; уничтожится, а память будет освобождена
 }
 
 fn main() {
-    // &#95;Stack&#95; allocated integer
+    // Целое число выделенное в стеке
     let x = 5u32;
 
-    // &#42;Copy&#42; &#96;x&#96; into &#96;y&#96; - no resources are moved
+    // &#42;Копируем&#42; &#96;x&#96; в &#96;y&#96;. В данном случае нет ресурсов для перемещения
     let y = x;
 
-    // Both values can be independently used
-    println!(&quot;x is {}, and y is {}&quot;, x, y);
+    // Оба значения можно использовать независимо
+    println!(&quot;x равен {}, а y равен {}&quot;, x, y);
 
-    // &#96;a&#96; is a pointer to a &#95;heap&#95; allocated integer
+    // &#96;a&#96; - указатель на целое число, выделенное в куче
     let a = Box::new(5i32);
 
-    println!(&quot;a contains: {}&quot;, a);
+    println!(&quot;a содержит: {}&quot;, a);
 
-    // &#42;Move&#42; &#96;a&#96; into &#96;b&#96;
+    // &#42;Перемещаем&#42; &#96;a&#96; в &#96;b&#96;
     let b = a;
-    // The pointer address of &#96;a&#96; is copied (not the data) into &#96;b&#96;.
-    // Both are now pointers to the same heap allocated data, but
-    // &#96;b&#96; now owns it.
+    // Адрес указателя &#96;a&#96; копируется (но не данные) в &#96;b&#96;.
+    // Оба указателя указывают на одни и те же данные в куче, но
+    // &#96;b&#96; теперь владеет ими.
 
-    // Error! &#96;a&#96; can no longer access the data, because it no longer owns the
-    // heap memory
-    //println!(&quot;a contains: {}&quot;, a);
-    // ЗАДАНИЕ ^ Try uncommenting this line
+    // Ошибка! &#96;a&#96; больше не может получить доступ к данным, потому что
+    // больше не владеет данными в куче.
+    //println!(&quot;a содержит: {}&quot;, a);
+    // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
-    // This function takes ownership of the heap allocated memory from &#96;b&#96;
+    // Эта функция берет во владение память, выделенную в куче, которой ранее владела &#96;b&#96;
     destroy&#95;box(b);
 
-    // Since the heap memory has been freed at this point, this action would
-    // result in dereferencing freed memory, but it&#39;s forbidden by the compiler
-    // Error! Same reason as the previous Error
-    //println!(&quot;b contains: {}&quot;, b);
-    // ЗАДАНИЕ ^ Try uncommenting this line
+    // Поскольку в данный момент память в куче уже освобождена, это действие
+    // приведёт к разыменовании освобождённой памяти, но это запрещено компилятором
+    // Ошибка! Причина та же, что и в прошлый раз
+    //println!(&quot;b содержит: {}&quot;, b);
+    // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 }</pre></div>
 <div id="result"></div>
 </div>
