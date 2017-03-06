@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="3.2.3" data-basepath="../.." data-revision="1488788444793">
+    <div class="book" data-level="3.2.3" data-basepath="../.." data-revision="1488811948148">
     
 
 <div class="book-summary">
@@ -2868,7 +2868,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_23">
+                    <section class="normal" id="section-gitbook_22">
                     
                         <h3 id="323-testcase-linked-list">3.2.3 Testcase: linked-list</h3>
 <p>A common use for <code>enums</code> is to create a linked-list:</p>
@@ -2878,47 +2878,49 @@
 <div id="editor"><pre>use List::&#42;;
 
 enum List {
-    // Cons: Tuple struct that wraps an element and a pointer to the next node
+    // Cons: Кортежная структура, которая хранит элемент 
+    // и указатель на следующий узел
     Cons(u32, Box&lt;List&gt;),
-    // Nil: A node that signifies the end of the linked list
+    // Nil: Узел обозначающий конец связанного списка
     Nil,
 }
 
-// Methods can be attached to an enum
+// Методы могут быть присоединены к перечислению
 impl List {
-    // Create an empty list
+    // Создаём пустой список
     fn new() -&gt; List {
-        // &#96;Nil&#96; has type &#96;List&#96;
+        // &#96;Nil&#96; имеет тип &#96;List&#96;
         Nil
     }
 
-    // Consume a list, and return the same list with a new element at its front
+    // Функция, которая принимает список и возвращает тот же список, 
+    // но с новым элементом в начале
     fn prepend(self, elem: u32) -&gt; List {
-        // &#96;Cons&#96; also has type List
+        // &#96;Cons&#96; также имеет тип &#96;List&#96;
         Cons(elem, Box::new(self))
     }
 
-    // Return the length of the list
+    // Возвращаем длину списка
     fn len(&amp;self) -&gt; u32 {
-        // &#96;self&#96; has to be matched, because the behavior of this method
-        // depends on the variant of &#96;self&#96;
-        // &#96;self&#96; has type &#96;&amp;List&#96;, and &#96;&#42;self&#96; has type &#96;List&#96;, matching on a
-        // concrete type &#96;T&#96; is preferred over a match on a reference &#96;&amp;T&#96;
+        // &#96;self&#96; должен быть сопоставлен (проверен на соответствие), 
+        // поскольку поведение этого метода зависит от варианта &#96;self&#96;
+        // &#96;self&#96; имеет тип &#96;&amp;List&#96;, а &#96;&#42;self&#96; имеет тип &#96;List&#96;, сопоставление на
+        // конкретном типе &#96;T&#96; предпочтительнее, чем сопоставление по ссылке &#96;&amp;T&#96;
         match &#42;self {
-            // Can&#39;t take ownership of the tail, because &#96;self&#96; is borrowed;
-            // instead take a reference to the tail
+            // Мы не можем завладеть &#96;tale&#96;, т.к. &#96;self&#96; заимствован;
+            // вместо этого возьмём ссылку на &#96;tale&#96;
             Cons(&#95;, ref tail) =&gt; 1 + tail.len(),
-            // Base Case: An empty list has zero length
+            // Базовый случай: Пустой список имеет нулевую длину
             Nil =&gt; 0
         }
     }
 
-    // Return representation of the list as a (heap allocated) string
+    // Возвращаем представление списка в виде (размещённой в куче) строки
     fn stringify(&amp;self) -&gt; String {
         match &#42;self {
             Cons(head, ref tail) =&gt; {
-                // &#96;format!&#96; is similar to &#96;print!&#96;, but returns a heap
-                // allocated string instead of printing to the console
+                // &#96;format!&#96; похож на &#96;print!&#96;, но возвращает строку
+                // размещённую в куче, вместо вывода на консоль
                 format!(&quot;{}, {}&quot;, head, tail.stringify())
             },
             Nil =&gt; {
@@ -2929,15 +2931,15 @@ impl List {
 }
 
 fn main() {
-    // Create an empty linked list
+    // Создаём пустой связанный список
     let mut list = List::new();
 
-    // Append some elements
+    // Присоединяем несколько элементов
     list = list.prepend(1);
     list = list.prepend(2);
     list = list.prepend(3);
 
-    // Show the final state of the list
+    // Отображаем окончательное состояние списка
     println!(&quot;linked list has length: {}&quot;, list.len());
     println!(&quot;{}&quot;, list.stringify());
 }</pre></div>
