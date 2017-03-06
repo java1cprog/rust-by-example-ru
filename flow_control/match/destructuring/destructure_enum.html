@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>enums | Rust на примерах</title>
+        <title>Перечисления | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="7.5.1.2" data-basepath="../../.." data-revision="1488816479262">
+    <div class="book" data-level="7.5.1.2" data-basepath="../../.." data-revision="1488820686599">
     
 
 <div class="book-summary">
@@ -711,7 +711,7 @@
                         
                             <b>7.5.1.2.</b>
                         
-                         enums
+                         Перечисления
                     </a>
                 
             
@@ -743,7 +743,7 @@
                         
                             <b>7.5.1.4.</b>
                         
-                         structs
+                         Структуры
                     </a>
                 
             
@@ -2868,22 +2868,22 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_48">
+                    <section class="normal" id="section-gitbook_47">
                     
-                        <h4 id="7512-enums">7.5.1.2 enums</h4>
-<p>An <code>enum</code> is destructured similarly:</p>
+                        <h4 id="7512-">7.5.1.2 Перечисления</h4>
+<p>Деструктуризация <code>enum</code> происходит следующим образом:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// &#96;allow&#96; required to silence warnings because only
-// one variant is used.
+<div id="editor"><pre>// &#96;allow&#96; необходим, чтобы компилятор не выводил предупреждения,
+// т.к используется только один вариант
 #[allow(dead&#95;code)]
 enum Color {
-    // These 3 are specified solely by their name.
+    // Эти 3 перечисления определяют цвет по названию.
     Red,
     Blue,
     Green,
-    // These likewise tie &#96;u32&#96; tuples to different names: color models.
+    // Остальные используют &#96;u32&#96; кортежи для идентификации цветовых моделей.
     RGB(u32, u32, u32),
     HSV(u32, u32, u32),
     HSL(u32, u32, u32),
@@ -2893,33 +2893,33 @@ enum Color {
 
 fn main() {
     let color = Color::RGB(122, 17, 40);
-    // ЗАДАНИЕ ^ Try different variants for &#96;color&#96;
+    // ЗАДАНИЕ ^ Попробуйте другие значения для &#96;color&#96;
 
-    println!(&quot;What color is it?&quot;);
-    // An &#96;enum&#96; can be destructured using a &#96;match&#96;.
+    println!(&quot;Какой это цвет?&quot;);
+    // &#96;enum&#96; может быть деструктурирован с помощью &#96;match&#96;.
     match color {
-        Color::Red   =&gt; println!(&quot;The color is Red!&quot;),
-        Color::Blue  =&gt; println!(&quot;The color is Blue!&quot;),
-        Color::Green =&gt; println!(&quot;The color is Green!&quot;),
+        Color::Red   =&gt; println!(&quot;Красный цвет!&quot;),
+        Color::Blue  =&gt; println!(&quot;Синий цвет!&quot;),
+        Color::Green =&gt; println!(&quot;Зелёный цвет!&quot;),
         Color::RGB(r, g, b) =&gt;
-            println!(&quot;Red: {}, green: {}, and blue: {}!&quot;, r, g, b),
+            println!(&quot;Красный: {}, зелёный: {}, и синий: {}!&quot;, r, g, b),
         Color::HSV(h, s, v) =&gt;
-            println!(&quot;Hue: {}, saturation: {}, value: {}!&quot;, h, s, v),
+            println!(&quot;Тон: {}, насыщенность: {}, значение: {}!&quot;, h, s, v),
         Color::HSL(h, s, l) =&gt;
-            println!(&quot;Hue: {}, saturation: {}, lightness: {}!&quot;, h, s, l),
+            println!(&quot;Тон: {}, насыщенность: {}, светлота: {}!&quot;, h, s, l),
         Color::CMY(c, m, y) =&gt;
-            println!(&quot;Cyan: {}, magenta: {}, yellow: {}!&quot;, c, m, y),
+            println!(&quot;Голубой: {}, пурпурный: {}, жёлтый: {}!&quot;, c, m, y),
         Color::CMYK(c, m, y, k) =&gt;
-            println!(&quot;Cyan: {}, magenta: {}, yellow: {}, key (black): {}!&quot;,
+            println!(&quot;Голубой: {}, пурпурный: {}, жёлтый: {}, key (чёрный): {}!&quot;,
                 c, m, y, k),
-        // Don&#39;t need another arm because all variants have been examined
+        // Нет необходимости в других ветвях, т.к были рассмотрены все варианты
     }
 }</pre></div>
 <div id="result"></div>
 </div>
 
 <h3 id="-">Смотрите также:</h3>
-<p><a href="../../../attribute/unused.html"><code>#[allow(...)]</code></a>, <a href="http://en.wikipedia.org/wiki/Color_model" target="_blank">color models</a> and <a href="../../../custom_types/enum.html"><code>enum</code></a></p>
+<p><a href="../../../attribute/unused.html"><code>#[allow(...)]</code></a>, <a href="https://ru.wikipedia.org/wiki/Цветовая_модель" target="_blank">цветовая модель</a> and <a href="../../../custom_types/enum.html"><code>enum</code></a></p>
 
                     
                     </section>

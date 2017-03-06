@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>structs | Rust на примерах</title>
+        <title>Структуры | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="7.5.1.4" data-basepath="../../.." data-revision="1488816479262">
+    <div class="book" data-level="7.5.1.4" data-basepath="../../.." data-revision="1488820686599">
     
 
 <div class="book-summary">
@@ -711,7 +711,7 @@
                         
                             <b>7.5.1.2.</b>
                         
-                         enums
+                         Перечисления
                     </a>
                 
             
@@ -743,7 +743,7 @@
                         
                             <b>7.5.1.4.</b>
                         
-                         structs
+                         Структуры
                     </a>
                 
             
@@ -2870,38 +2870,38 @@
                 
                     <section class="normal" id="section-gitbook_50">
                     
-                        <h4 id="7514-structs">7.5.1.4 structs</h4>
-<p>Similarly, a <code>struct</code> can be destructured as shown:</p>
+                        <h4 id="7514-">7.5.1.4 Структуры</h4>
+<p><code>Структуры</code> могут быть деструктурированы следующим образом:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn main() {
     struct Foo { x: (u32, u32), y: u32 }
 
-    // destructure members of the struct
+    // деструктуризация члена структуры
     let foo = Foo { x: (1, 2), y: 3 };
     let Foo { x: (a, b), y } = foo;
 
     println!(&quot;a = {}, b = {},  y = {} &quot;, a, b, y);
 
-    // you can destructure structs and rename the variables,
-    // the order is not important
+    // Вы можете деструктурировать структуру и переименовывать переменный,
+    // порядок при этом не важен
 
     let Foo { y: i, x: j } = foo;
     println!(&quot;i = {:?}, j = {:?}&quot;, i, j);
 
-    // and you can also ignore some variables:
+    // а так же можно проигнорировать часть переменных:
     let Foo { y, .. } = foo;
     println!(&quot;y = {}&quot;, y);
 
-    // this will give an error: pattern does not mention field &#96;x&#96;
+    // следующий код выдаст ошибку: в шаблоне нет упоминания поля &#96;x&#96;
     // let Foo { y } = foo;
 }</pre></div>
 <div id="result"></div>
 </div>
 
 <h3 id="-">Смотрите также:</h3>
-<p><a href="/custom_types/structs.html">Structs</a>, <a href="/scope/borrow/ref.html">The ref pattern</a></p>
+<p><a href="/custom_types/structs.html">структуры</a>, <a href="/scope/borrow/ref.html">The ref pattern</a></p>
 
                     
                     </section>
