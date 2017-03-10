@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Struct visibility | Rust на примерах</title>
+        <title>Видимость структуры | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="9.2" data-basepath=".." data-revision="1489051890157">
+    <div class="book" data-level="9.2" data-basepath=".." data-revision="1489123533965">
     
 
 <div class="book-summary">
@@ -1081,7 +1081,7 @@
                         
                             <b>9.2.</b>
                         
-                         Struct visibility
+                         Видимость структуры
                     </a>
                 
             
@@ -2868,30 +2868,30 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_90">
+                    <section class="normal" id="section-gitbook_92">
                     
-                        <h2 id="92-struct-visibility">9.2 Struct visibility</h2>
-<p>Structs have an extra level of visibility with their fields. The visibility
-defaults to private, and can be overridden with the <code>pub</code> modifier. This
-visibility only matters when a struct is accessed from outside the module
-where it is defined, and has the goal of hiding information (encapsulation).</p>
+                        <h2 id="92--">9.2 Видимость структуры</h2>
+<p>Структуры имеют дополнительный уровень видимости благодаря полями. По умолчанию
+видимость полей приватная, но, это можно изменить с помощью модификатора <code>pub</code>.
+Приватная видимость имеет значение только при обращении к структуре извне модуля,
+где она определена, и необходимо скрыть информацию (инкапсуляция).</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>mod my {
-    // A public struct with a public field of generic type &#96;T&#96;
+    // Публичная структура с публичным полем обобщённого типа &#96;T&#96;
     pub struct WhiteBox&lt;T&gt; {
         pub contents: T,
     }
 
-    // A public struct with a private field of generic type &#96;T&#96;
+    // Публичная структура с приватным полем обобщённого типа &#96;T&#96;
     #[allow(dead&#95;code)]
     pub struct BlackBox&lt;T&gt; {
         contents: T,
     }
 
     impl&lt;T&gt; BlackBox&lt;T&gt; {
-        // A public constructor method
+        // Публичный конструктор
         pub fn new(contents: T) -&gt; BlackBox&lt;T&gt; {
             BlackBox {
                 contents: contents,
@@ -2901,31 +2901,31 @@ where it is defined, and has the goal of hiding information (encapsulation).</p>
 }
 
 fn main() {
-    // Public structs with public fields can be constructed as usual
-    let white&#95;box = my::WhiteBox { contents: &quot;public information&quot; };
+    // Публичная структура с публичным полем может быть создана, как обычно
+    let white&#95;box = my::WhiteBox { contents: &quot;публичную информацию&quot; };
 
-    // and their fields can be normally accessed.
-    println!(&quot;The white box contains: {}&quot;, white&#95;box.contents);
+    // а их поля доступны всем.
+    println!(&quot;Белая упаковка хранит: {}&quot;, white&#95;box.contents);
 
-    // Public structs with private fields cannot be constructed using field names.
-    // Error! &#96;BlackBox&#96; has private fields
-    //let black&#95;box = my::BlackBox { contents: &quot;classified information&quot; };
-    // ЗАДАНИЕ ^ Try uncommenting this line
+    // Публичные структуры с приватными полями не могут быть созданы, используя имя полей
+    // Ошибка! &#96;BlackBox&#96; имеет приватные поля
+    //let black&#95;box = my::BlackBox { contents: &quot;классифицированную информацию&quot; };
+    // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
-    // However, structs with private fields can be created using
-    // public constructors
-    let &#95;black&#95;box = my::BlackBox::new(&quot;classified information&quot;);
+    // Однако, структуры с приватными полями могут быть созданы с помощью
+    // публичного конструктора
+    let &#95;black&#95;box = my::BlackBox::new(&quot;классифицированную информацию&quot;);
 
-    // and the private fields of a public struct cannot be accessed.
-    // Error! The &#96;contents&#96; field is private
-    //println!(&quot;The black box contains: {}&quot;, &#95;black&#95;box.contents);
-    // ЗАДАНИЕ ^ Try uncommenting this line
+    // нельзя получить доступ к приватным полям публичных структур.
+    // Ошибка! Поле &#96;contents&#96; приватное
+    //println!(&quot;Чёрная упаковка хранит: {}&quot;, &#95;black&#95;box.contents);
+    // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 }</pre></div>
 <div id="result"></div>
 </div>
 
 <h3 id="-">Смотрите также:</h3>
-<p><a href="../generics.html">generics</a> and <a href="../fn/methods.html">methods</a></p>
+<p><a href="../generics.html">обобщённость</a> and <a href="../fn/methods.html">методы</a></p>
 
                     
                     </section>
