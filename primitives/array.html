@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="2.3" data-basepath=".." data-revision="1489177997304">
+    <div class="book" data-level="2.3" data-basepath=".." data-revision="1489227791902">
     
 
 <div class="book-summary">
@@ -225,7 +225,7 @@
                         
                             <b>2.1.</b>
                         
-                         Литералов и операторы
+                         Литералы и операторы
                     </a>
                 
             
@@ -2871,11 +2871,11 @@
                     <section class="normal" id="section-gitbook_98">
                     
                         <h2 id="23---">2.3 Массив и Срезы</h2>
-<p><code>Массив (arrays)</code> - это коллекция объектов одинакового типа <code>T</code>,
+<p><code>Массив</code> - это коллекция объектов одинакового типа <code>T</code>,
 расположенных в памяти непосредственно друг за другом.
 Массивы создаются с помощью квадратных скобок <code>[]</code>,
-а их размер должен быть известен во время компиляции и являются частью сигнатуры типа <code>[T; size]</code>.</p>
-<p><code>Срезы slices</code> похожи на массивы, но из размер не известен в момент компиляции программы.
+а их размер должен быть известен во время компиляции и является частью сигнатуры типа <code>[T; size]</code>.</p>
+<p><code>Срезы</code> похожи на массивы, но из размер не известен в момент компиляции программы.
 Срезы представляют собой объекты, состоящие из указателя на данные и размер среза.
 Срезы могут быть использованы для заимствования части массива и будут иметь сигнатуру типа <code>&amp;[T]</code>.</p>
 <div id="active-code">
@@ -2885,8 +2885,8 @@
 
 // Эта функция заимствует срез
 fn analyze&#95;slice(slice: &amp;[i32]) {
-    println!(&quot;first element of the slice: {}&quot;, slice[0]);
-    println!(&quot;the slice has {} elements&quot;, slice.len());
+    println!(&quot;первый элемент среза: {}&quot;, slice[0]);
+    println!(&quot;в срезе {} элементов&quot;, slice.len());
 }
 
 fn main() {
@@ -2897,21 +2897,21 @@ fn main() {
     let ys: [i32; 500] = [0; 500];
 
     // Индекс начинается с 0
-    println!(&quot;first element of the array: {}&quot;, xs[0]);
-    println!(&quot;second element of the array: {}&quot;, xs[1]);
+    println!(&quot;первый элемент массива: {}&quot;, xs[0]);
+    println!(&quot;второй элемент массива: {}&quot;, xs[1]);
 
     // &#96;len&#96; возвращает длину массива
-    println!(&quot;array size: {}&quot;, xs.len());
+    println!(&quot;размер массива: {}&quot;, xs.len());
 
     // Память для массивов выделяется в стеке
-    println!(&quot;array occupies {} bytes&quot;, mem::size&#95;of&#95;val(&amp;xs));
+    println!(&quot;массив занимает {} байт&quot;, mem::size&#95;of&#95;val(&amp;xs));
 
     // Массивы могут быть автоматически заимствованы как срез
-    println!(&quot;borrow the whole array as a slice&quot;);
+    println!(&quot;заимствуем весь массив, используя срез&quot;);
     analyze&#95;slice(&amp;xs);
 
     // Срезы могут указывать на часть массива
-    println!(&quot;borrow a section of the array as a slice&quot;);
+    println!(&quot;заимствуем часть массива как срез&quot;);
     analyze&#95;slice(&amp;ys[1 .. 4]);
 
     // Выход за границу массива заставит компилятор паниковать.

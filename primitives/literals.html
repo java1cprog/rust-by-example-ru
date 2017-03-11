@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Литералов и операторы | Rust на примерах</title>
+        <title>Литералы и операторы | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="2.1" data-basepath=".." data-revision="1489177997304">
+    <div class="book" data-level="2.1" data-basepath=".." data-revision="1489227791902">
     
 
 <div class="book-summary">
@@ -225,7 +225,7 @@
                         
                             <b>2.1.</b>
                         
-                         Литералов и операторы
+                         Литералы и операторы
                     </a>
                 
             
@@ -2868,9 +2868,9 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_99">
+                    <section class="normal" id="section-gitbook_102">
                     
-                        <h2 id="21---">2.1 Литералов и операторы</h2>
+                        <h2 id="21---">2.1 Литералы и операторы</h2>
 <p>Целочисленное <code>1</code>, вещественное <code>1.2</code>, символ <code>&#39;a&#39;</code>, строка <code>&quot;abc&quot;</code>, логическое <code>true</code>
 и единичный тип <code>()</code> могут быть выражены с помощью литералов.</p>
 <p>Целочисленные значения так же могут быть выражены с помощью шестнадцатеричного,
@@ -2896,19 +2896,19 @@
     // чтобы убедится насколько важен тип данных
 
     // Булева логика
-    println!(&quot;true AND false is {}&quot;, true &amp;&amp; false);
-    println!(&quot;true OR false is {}&quot;, true || false);
-    println!(&quot;NOT true is {}&quot;, !true);
+    println!(&quot;true И false будет {}&quot;, true &amp;&amp; false);
+    println!(&quot;true ИЛИ false будет {}&quot;, true || false);
+    println!(&quot;НЕ true будет {}&quot;, !true);
 
     // Побитовые операции
-    println!(&quot;0011 AND 0101 is {:04b}&quot;, 0b0011u32 &amp; 0b0101);
-    println!(&quot;0011 OR 0101 is {:04b}&quot;, 0b0011u32 | 0b0101);
-    println!(&quot;0011 XOR 0101 is {:04b}&quot;, 0b0011u32 ^ 0b0101);
-    println!(&quot;1 &lt;&lt; 5 is {}&quot;, 1u32 &lt;&lt; 5);
-    println!(&quot;0x80 &gt;&gt; 2 is 0x{:x}&quot;, 0x80u32 &gt;&gt; 2);
+    println!(&quot;0011 И 0101 будет {:04b}&quot;, 0b0011u32 &amp; 0b0101);
+    println!(&quot;0011 ИЛИ 0101 будет {:04b}&quot;, 0b0011u32 | 0b0101);
+    println!(&quot;0011 исключающее ИЛИ 0101 будет {:04b}&quot;, 0b0011u32 ^ 0b0101);
+    println!(&quot;1 &lt;&lt; 5 будет {}&quot;, 1u32 &lt;&lt; 5);
+    println!(&quot;0x80 &gt;&gt; 2 будет 0x{:x}&quot;, 0x80u32 &gt;&gt; 2);
 
     // Использование подчёркивания для улучшения читаемости!
-    println!(&quot;One million is written as {}&quot;, 1&#95;000&#95;000u32);
+    println!(&quot;Один миллион записан как {}&quot;, 1&#95;000&#95;000u32);
 }</pre></div>
 <div id="result"></div>
 </div>

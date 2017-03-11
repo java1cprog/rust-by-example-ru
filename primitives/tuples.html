@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="2.2" data-basepath=".." data-revision="1489177997304">
+    <div class="book" data-level="2.2" data-basepath=".." data-revision="1489227791902">
     
 
 <div class="book-summary">
@@ -225,7 +225,7 @@
                         
                             <b>2.1.</b>
                         
-                         Литералов и операторы
+                         Литералы и операторы
                     </a>
                 
             
@@ -2868,7 +2868,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_100">
+                    <section class="normal" id="section-gitbook_99">
                     
                         <h2 id="22-">2.2 Кортежи</h2>
 <p>Кортежи - коллекция, которая хранит в себе переменные разных типов. Кортежи создаются с помощью
@@ -2899,27 +2899,27 @@ fn main() {
                       &#39;a&#39;, true);
 
     // К значениям переменных внутри кортежа можно обратиться по индексу
-    println!(&quot;long tuple first value: {}&quot;, long&#95;tuple.0);
-    println!(&quot;long tuple second value: {}&quot;, long&#95;tuple.1);
+    println!(&quot;первое значение длинного кортежа: {}&quot;, long&#95;tuple.0);
+    println!(&quot;второе значение длинного кортежа: {}&quot;, long&#95;tuple.1);
 
     // Кортежи могут содержать в себе кортежи
     let tuple&#95;of&#95;tuples = ((1u8, 2u16, 2u32), (4u64, -1i8), -2i16);
 
     // Кортежи можно напечатать
-    println!(&quot;tuple of tuples: {:?}&quot;, tuple&#95;of&#95;tuples);
+    println!(&quot;кортеж из кортежей: {:?}&quot;, tuple&#95;of&#95;tuples);
 
     let pair = (1, true);
-    println!(&quot;pair is {:?}&quot;, pair);
+    println!(&quot;pair хранит в себе {:?}&quot;, pair);
 
-    println!(&quot;the reversed pair is {:?}&quot;, reverse(pair));
+    println!(&quot;перевёрнутая pair будет {:?}&quot;, reverse(pair));
 
     // Для создания кортежа, содержащего один элемент, необходимо написать элемент и
     // поставить запятую внутри круглых скобок.
-    println!(&quot;one element tuple: {:?}&quot;, (5u32,));
-    println!(&quot;just an integer: {:?}&quot;, (5u32));
+    println!(&quot;кортеж из одного элемента: {:?}&quot;, (5u32,));
+    println!(&quot;просто целочисленное значение: {:?}&quot;, (5u32));
 
     // Кортежи можно разобрать на части (деструктурировать) для создания связи
-    let tuple = (1, &quot;hello&quot;, 4.5, true);
+    let tuple = (1, &quot;привет&quot;, 4.5, true);
 
     let (a, b, c, d) = tuple;
     println!(&quot;{:?}, {:?}, {:?}, {:?}&quot;, a, b, c, d);
@@ -2960,7 +2960,7 @@ Transpose:
         </div>
 
         
-        <a href="../primitives/literals.html" class="navigation navigation-prev " aria-label="Previous page: Литералов и операторы"><i class="fa fa-angle-left"></i></a>
+        <a href="../primitives/literals.html" class="navigation navigation-prev " aria-label="Previous page: Литералы и операторы"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../primitives/array.html" class="navigation navigation-next " aria-label="Next page: Массив и Срезы"><i class="fa fa-angle-right"></i></a>
