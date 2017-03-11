@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="3.3" data-basepath=".." data-revision="1489227791902">
+    <div class="book" data-level="3.3" data-basepath=".." data-revision="1489235321634">
     
 
 <div class="book-summary">
@@ -2868,17 +2868,17 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_21">
+                    <section class="normal" id="section-gitbook_20">
                     
                         <h2 id="33-">3.3 константы</h2>
 <p>В Rust есть два типа констант, которые могут быть объявлены
 в любой области видимости, включая глобальную. Оба требуют явной аннотации типа:</p>
 <ul>
 <li><code>const</code>: Неизменяемая переменная (в общем случае).</li>
-<li><code>static</code>: Возможно, изменяемая переменная со [<code>&#39;static</code>][статическим] временем жизни.</li>
+<li><code>static</code>: Возможно, изменяемая переменная с временем жизни <a href="../scope/lifetime/static_lifetime.html"><code>&#39;static</code></a>.</li>
 </ul>
 <p>Частным случаем является литерал <code>&quot;string&quot;</code>. Он может быть напрямую
-назначен переменной с временем жизни <code>static</code>, т.к сигнатура его типа:
+назначен переменной с временем жизни <code>&#39;static</code>, т.к сигнатура его типа:
 <code>&amp;&#39;static str</code> требует время жизни <code>&#39;static</code>. Для всех остальных ссылочных типов
 должно быть указано время жизни <code>&#39;static</code>. Это может показаться
 незначительным, но в требовании явной аннотации типов и скрываются различия.</p>
@@ -2898,9 +2898,9 @@ fn main() {
     let n = 16;
 
     // Получаем доступ к константе внутри функции main
-    println!(&quot;This is {}&quot;, LANGUAGE);
-    println!(&quot;The threshold is {}&quot;, THRESHOLD);
-    println!(&quot;{} is {}&quot;, n, if is&#95;big(n) { &quot;big&quot; } else { &quot;small&quot; });
+    println!(&quot;Это язык {}&quot;, LANGUAGE);
+    println!(&quot;Установим предел, равный {}&quot;, THRESHOLD);
+    println!(&quot;Число {} {} предела&quot;, n, if is&#95;big(n) { &quot;больше&quot; } else { &quot;меньше&quot; });
 
     // Ошибка! &#96;константы&#96; нельзя изменить.
     THRESHOLD = 5;
@@ -2910,8 +2910,8 @@ fn main() {
 </div>
 
 <h3 id="-">Смотрите также:</h3>
-<p><a href="https://github.com/rust-lang/rfcs/blob/master/text/0246-const-vs-static.md" target="_blank">The <code>const</code>/<code>static</code> RFC</a>,
-<a href="../scope/lifetime/static_lifetime.html"><code>&#39;static</code> lifetime</a></p>
+<p><a href="https://github.com/rust-lang/rfcs/blob/master/text/0246-const-vs-static.md" target="_blank">RFC для <code>const</code>/<code>static</code></a>,
+<a href="../scope/lifetime/static_lifetime.html"><code>время жизни &#39;static</code></a></p>
 
                     
                     </section>

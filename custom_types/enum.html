@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="3.2" data-basepath=".." data-revision="1489227791902">
+    <div class="book" data-level="3.2" data-basepath=".." data-revision="1489235321634">
     
 
 <div class="book-summary">
@@ -2873,7 +2873,7 @@
                         <h2 id="32-">3.2 Перечисления</h2>
 <p>Ключевое слово <code>enum</code> позволяет создавать тип данных, 
 который представляет собой один из нескольких возможных вариантов. 
-Any variant which is valid as a <code>struct</code> is also valid as an <code>enum</code>.</p>
+Любой вариант, действительный как <code>struct</code>, также действителен как <code>enum</code>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2903,14 +2903,14 @@ fn inspect(p: Person) {
     // что нужно делать при каждом из возможных вариантов.
     // Для этого мы используем &#96;match&#96;.
     match p {
-        Person::Engineer  =&gt; println!(&quot;Is an engineer!&quot;),
-        Person::Scientist =&gt; println!(&quot;Is a scientist!&quot;),
+        Person::Engineer  =&gt; println!(&quot;Инженер!&quot;),
+        Person::Scientist =&gt; println!(&quot;Учёный!&quot;),
         // Деструктурируем &#96;i&#96; из &#96;enum&#96;.
-        Person::Height(i) =&gt; println!(&quot;Has a height of {}.&quot;, i),
-        Person::Weight(i) =&gt; println!(&quot;Has a weight of {}.&quot;, i),
+        Person::Height(i) =&gt; println!(&quot;Рост {}.&quot;, i),
+        Person::Weight(i) =&gt; println!(&quot;Вес {}.&quot;, i),
         // Деструктурируем &#96;Info&#96; в &#96;name&#96; и &#96;height&#96;.
         Person::Info { name, height } =&gt; {
-            println!(&quot;{} is {} tall!&quot;, name, height);
+            println!(&quot;{} довольно высокий! Рост {}!&quot;, name, height);
         },
     }
 }
@@ -2919,7 +2919,7 @@ fn main() {
     let person   = Person::Height(18);
     let amira    = Person::Weight(10);
     // &#96;to&#95;owned()&#96; создаёт копию &#96;String&#96; из среза строки.
-    let dave     = Person::Info { name: &quot;Dave&quot;.to&#95;owned(), height: 72 };
+    let dave     = Person::Info { name: &quot;Дейв&quot;.to&#95;owned(), height: 72 };
     let rebecca  = Person::Scientist;
     let rohan    = Person::Engineer;
 
@@ -2933,7 +2933,7 @@ fn main() {
 </div>
 
 <h3 id="-">Смотрите также:</h3>
-<p><a href="../attribute.html"><code>attributes</code></a>, <a href="../flow_control/match.html"><code>match</code></a>, <a href="../fn.html"><code>fn</code></a>, и <a href="../std/str.html"><code>String</code></a></p>
+<p><a href="../attribute.html"><code>атрибуты</code></a>, <a href="../flow_control/match.html"><code>сопоставление с образцом</code></a>, <a href="../fn.html"><code>функции</code></a>, и <a href="../std/str.html"><code>строки</code></a></p>
 
                     
                     </section>

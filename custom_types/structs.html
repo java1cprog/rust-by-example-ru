@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="3.1" data-basepath=".." data-revision="1489227791902">
+    <div class="book" data-level="3.1" data-basepath=".." data-revision="1489235321634">
     
 
 <div class="book-summary">
@@ -2874,8 +2874,8 @@
 <p>Существует три типа структур, которые можно создать с помощью ключевого слова <code>struct</code>:</p>
 <ul>
 <li>Кортежная структура, которая, в общем, является именованным кортежем.</li>
-<li>Классическую <a href="http://en.wikipedia.org/wiki/Struct_(C_programming_language)" target="_blank">C структуру</a></li>
-<li>Единичную (unit) структуру, которая не имеет полей, но может быть полезна для обобщённых типов.</li>
+<li>Классическую <a href="https://ru.wikipedia.org/wiki/Структура_(язык_Си)" target="_blank">C структуру</a></li>
+<li>Единичную структуру, которая не имеет полей, но может быть полезна для обобщённых типов.</li>
 </ul>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
@@ -2904,7 +2904,7 @@ fn main() {
     let point: Point = Point { x: 0.3, y: 0.4 };
 
     // Получаем доступ к полям структуры &#96;point&#96;
-    println!(&quot;point coordinates: ({}, {})&quot;, point.x, point.y);
+    println!(&quot;координаты точки: ({}, {})&quot;, point.x, point.y);
 
     // Деструктурируем &#96;point&#96; создавая связь с помощью &#96;let&#96;
     let Point { x: my&#95;x, y: my&#95;y } = point;
@@ -2924,7 +2924,7 @@ fn main() {
     // Деструктурируем кортежную структуру
     let Pair(integer, decimal) = pair;
 
-    println!(&quot;pair contains {:?} and {:?}&quot;, integer, decimal);
+    println!(&quot;Pair хранит в себе {:?} и {:?}&quot;, integer, decimal);
 }</pre></div>
 <div id="result"></div>
 </div>
@@ -2938,7 +2938,7 @@ fn main() {
 а ширина и высота соответствуют <code>f32</code>.</li>
 </ol>
 <h3 id="-">Смотрите также:</h3>
-<p><a href="../attribute.html"><code>attributes</code></a> и <a href="../flow_control/match/destructuring.html">destructuring</a></p>
+<p><a href="../attribute.html"><code>атрибуты</code></a> и <a href="../flow_control/match/destructuring.html">деструктуризация</a></p>
 
                     
                     </section>
