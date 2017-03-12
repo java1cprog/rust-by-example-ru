@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="17.6" data-basepath=".." data-revision="1489235341032">
+    <div class="book" data-level="17.6" data-basepath=".." data-revision="1489314591163">
     
 
 <div class="book-summary">
@@ -2868,43 +2868,44 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_122">
+                    <section class="normal" id="section-gitbook_123">
                     
                         <h2 id="176-panic">17.6 <code>panic!</code></h2>
-<p>The <code>panic!</code> macro can be used to generate a panic and start unwinding
-its stack. While unwinding, the runtime will take care of freeing all the
-resources <em>owned</em> by the thread by calling the destructor of all its objects.</p>
-<p>Since we are dealing with programs with only one thread, <code>panic!</code> will cause the
-program to report the panic message and exit.</p>
+<p>Макрос <code>panic!</code> используется для генерации паники и раскрутки стека.
+Во время раскрутки стека, среда выполнения возьмёт на себя всю ответственность по
+освобождению ресурсов, которыми <em>владеет</em> текущий поток, вызывая деструкторы
+всех объектов.</p>
+<p>Так как в данном случае мы имеем дело с однопоточной программой, <code>panic!</code> заставит
+программу вывести сообщение с ошибкой и завершится.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// Re-implementation of integer division (/)
+<div id="editor"><pre>// Реализуем свою версию целочисленного деления (/)
 fn division(dividend: i32, divisor: i32) -&gt; i32 {
     if divisor == 0 {
-        // Division by zero triggers a panic
+        // Деление на ноль вызывает панику
         panic!(&quot;division by zero&quot;);
     } else {
         dividend / divisor
     }
 }
 
-// The &#96;main&#96; task
+// Основной поток &#96;main&#96;
 fn main() {
-    // Heap allocated integer
+    // Целочисленное значение, выделенное в куче
     let &#95;x = Box::new(0i32);
 
-    // This operation will trigger a task failure
+    // Это операция вызовет панику в основном потоке
     division(3, 0);
 
-    println!(&quot;This point won&#39;t be reached!&quot;);
+    println!(&quot;Эта часть кода не будет достигнута&quot;);
 
-    // &#96;&#95;x&#96; should get destroyed at this point
+    // &#96;&#95;x&#96; должен быть уничтожен в этой точке
 }</pre></div>
 <div id="result"></div>
 </div>
 
-<p>Let&#39;s check that <code>panic!</code> doesn&#39;t leak memory.</p>
+<p>Давайте убедимся, что <code>panic!</code> не приводит к утечки памяти.</p>
 <pre><code>$ rustc panic.rs &amp;&amp; valgrind ./panic
 ==4401== Memcheck, a memory error detector
 ==4401== Copyright (C) 2002-2013, and GNU GPL&#39;d, by Julian Seward et al.
