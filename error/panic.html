@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.1" data-basepath=".." data-revision="1489314607194">
+    <div class="book" data-level="16.1" data-basepath=".." data-revision="1489558660987">
     
 
 <div class="book-summary">
@@ -2028,7 +2028,7 @@
                         
                             <b>16.</b>
                         
-                         Error handling
+                         Обработка ошибок
                     </a>
                 
             
@@ -2871,22 +2871,23 @@
                     <section class="normal" id="section-gitbook_35">
                     
                         <h2 id="161-panic">16.1 <code>panic</code></h2>
-<p>The simplest error handling mechanism we will see is <code>panic</code>. It prints an
-error message, starts unwinding the task, and usually exits the program.
-Here, we explicitly call <code>panic</code> on our error condition:</p>
+<p>Самый простой механизм обработки ошибок, с которым мы познакомимся – это <code>panic</code>.
+Он печатает сообщение с ошибкой, начинает процедуру
+раскрутки стека и, чаще всего, завершает программу.</p>
+<p>В данном примере мы явно вызывает <code>panic</code> в случае ошибки:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn give&#95;princess(gift: &amp;str) {
-    // Princesses hate snakes, so we need to stop if she disapproves!
-    if gift == &quot;snake&quot; { panic!(&quot;AAAaaaaa!!!!&quot;); }
+    // Принцесса ненавидит змей, поэтому нам нужно остановиться, если она не одобрит!
+    if gift == &quot;змея&quot; { panic!(&quot;AAAaaaaa!!!!&quot;); }
 
-    println!(&quot;I love {}s!!!!!&quot;, gift);
+    println!(&quot;Я люблю тебя, {}!!!!!&quot;, gift);
 }
 
 fn main() {
-    give&#95;princess(&quot;teddy bear&quot;);
-    give&#95;princess(&quot;snake&quot;);
+    give&#95;princess(&quot;плюшевый мишка&quot;);
+    give&#95;princess(&quot;змея&quot;);
 }</pre></div>
 <div id="result"></div>
 </div>
@@ -2900,7 +2901,7 @@ fn main() {
         </div>
 
         
-        <a href="../error.html" class="navigation navigation-prev " aria-label="Previous page: Error handling"><i class="fa fa-angle-left"></i></a>
+        <a href="../error.html" class="navigation navigation-prev " aria-label="Previous page: Обработка ошибок"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../error/option_unwrap.html" class="navigation navigation-next " aria-label="Next page: `Option` &amp; `unwrap`"><i class="fa fa-angle-right"></i></a>

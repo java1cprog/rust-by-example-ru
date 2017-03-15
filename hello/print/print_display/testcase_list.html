@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2.2.1" data-basepath="../../.." data-revision="1489314607194">
+    <div class="book" data-level="1.2.2.1" data-basepath="../../.." data-revision="1489558660987">
     
 
 <div class="book-summary">
@@ -2028,7 +2028,7 @@
                         
                             <b>16.</b>
                         
-                         Error handling
+                         Обработка ошибок
                     </a>
                 
             
@@ -2872,16 +2872,20 @@
                     
                         <h4 id="1221--">1.2.2.1 Тест: Список</h4>
 <p>Реализовать <code>fmt::Display</code> для структуры, в которой каждый элемент должен обрабатываться
-последовательно не так то просто. 
+последовательно не так то просто.
 Проблема в том, что <code>write!</code> каждый раз возвращает <code>fmt::Result</code>.
 Правильная обработка <code>fmt::Result</code> требует работы с <em>каждым</em> результатом.
-Для подобных случаев Rust предоставляет макрос <code>try!</code>.</p>
+Для подобных случаев Rust предоставляет макрос <code>try!</code> или эквивалентный ему оператор <code>?</code>,
+который больше подходит для данного примера.</p>
 <p>Использование <code>try!</code> для <code>write!</code> выглядит следующим образом:</p>
 <pre><code class="lang-rust"><span class="hljs-comment">// Попробуй исполнить `write!`, чтобы узнать, вернется ли ошибка. Если ошибка, верни ее.</span>
 <span class="hljs-comment">// Если нет, то продолжи.</span>
 <span class="hljs-built_in">try!</span>(<span class="hljs-built_in">write!</span>(f, <span class="hljs-string">"{}"</span>, value));
 </code></pre>
-<p>С помощью макроса <code>try!</code> реализация <code>fmt::Display</code> для <code>Vec</code> довольно простая:</p>
+<p>Более компактная версия примера с использованием оператора <code>?</code>:</p>
+<pre><code class="lang-rust"><span class="hljs-built_in">write!</span>(f, <span class="hljs-string">"{}"</span>, value)?;
+</code></pre>
+<p>С помощью оператора <code>?</code> реализация <code>fmt::Display</code> для <code>Vec</code> довольно простая:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2892,19 +2896,20 @@ struct List(Vec&lt;i32&gt;);
 
 impl fmt::Display for List {
     fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
-        // Разыменуем &#96;self&#96; и создадим связь с &#96;vec&#96;
-        // с помощью ссылки.
-        let List(ref vec) = &#42;self;
+        // Получаем значение с помощью индекса кортежа
+        // и создаём ссылку на &#96;vec&#96;.
+        let vec = &amp;self.0;
 
-        try!(write!(f, &quot;[&quot;));
+        write!(f, &quot;[&quot;)?;
 
         // Пройдёмся по каждому &#96;v&#96; в &#96;vec&#96;.
         // Номер итерации хранится в &#96;count&#96;.
         for (count, v) in vec.iter().enumerate() {
             // Для каждого элемента, кроме первого, добавим запятую
-            // до вызова &#96;write!&#96;. Используем &#96;try!&#96;, чтобы вернуться при наличие ошибок.
-            if count != 0 { try!(write!(f, &quot;, &quot;)); }
-            try!(write!(f, &quot;{}&quot;, v));
+            // до вызова &#96;write!&#96;. Используем оператор &#96;?&#96; или &#96;try!&#96;,
+            // чтобы вернуться при наличие ошибок.
+            if count != 0 { write!(f, &quot;, &quot;)?; }
+            write!(f, &quot;{}&quot;, v)?;
         }
 
         // Закроем открытую скобку и вернём значение &#96;fmt::Result&#96;

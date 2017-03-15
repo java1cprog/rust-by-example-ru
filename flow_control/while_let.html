@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="7.7" data-basepath=".." data-revision="1489314607194">
+    <div class="book" data-level="7.7" data-basepath=".." data-revision="1489558660987">
     
 
 <div class="book-summary">
@@ -2028,7 +2028,7 @@
                         
                             <b>16.</b>
                         
-                         Error handling
+                         Обработка ошибок
                     </a>
                 
             
@@ -2868,57 +2868,57 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_56">
+                    <section class="normal" id="section-gitbook_54">
                     
                         <h2 id="77-while-let">7.7 while let</h2>
-<p>Similar to <code>if let</code>, <code>while let</code> can make awkward <code>match</code> sequences
-more tolerable. Consider the following sequence that increments <code>i</code>:</p>
-<pre><code class="lang-rust"><span class="hljs-comment">// Make `optional` of type `Option&lt;i32&gt;`</span>
+<p>Так же, как и<code>if let</code>, <code>while let</code> может сделать неудобный <code>match</code>
+более терпимым. Рассмотрим следующий пример, в котором мы увеличиваем значение <code>i</code>:</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// Создадим переменную `optional` с типом `Option&lt;i32&gt;`</span>
 <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> optional = Some(<span class="hljs-number">0</span>);
 
-<span class="hljs-comment">// Repeatedly try this test.</span>
+<span class="hljs-comment">// Неоднократно повторим наш тест.</span>
 <span class="hljs-keyword">loop</span> {
     <span class="hljs-keyword">match</span> optional {
-        <span class="hljs-comment">// If `optional` destructures, evaluate the block.</span>
+        <span class="hljs-comment">// Если `optional` деструктурируется, выполним следующий блок.</span>
         Some(i) =&gt; {
             <span class="hljs-keyword">if</span> i &gt; <span class="hljs-number">9</span> {
-                <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Greater than 9, quit!"</span>);
+                <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Больше 9, уходим отсюда!"</span>);
                 optional = None;
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-built_in">println!</span>(<span class="hljs-string">"`i` is `{:?}`. Try again."</span>, i);
+                <span class="hljs-built_in">println!</span>(<span class="hljs-string">"`i` равен `{:?}`. Попробуем еще раз."</span>, i);
                 optional = Some(i + <span class="hljs-number">1</span>);
             }
-            <span class="hljs-comment">// ^ Requires 3 indentations!</span>
+            <span class="hljs-comment">// ^ Требует 3 уровня вложенности!</span>
         },
-        <span class="hljs-comment">// Quit the loop when the destructure fails:</span>
+        <span class="hljs-comment">// Выходим из цикла в случаи ошибки деструктуризации:</span>
         <span class="hljs-number">_</span> =&gt; { <span class="hljs-keyword">break</span>; }
-        <span class="hljs-comment">// ^ Why should this be required? There must be a better way!</span>
+        <span class="hljs-comment">// ^ Зачем это нужно? Должен быть способ сделать это лучше!</span>
     }
 }
 </code></pre>
-<p>Using <code>while let</code> makes this sequence much nicer:</p>
+<p>Использование <code>while let</code> делает этот пример немного приятнее:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn main() {
-    // Make &#96;optional&#96; of type &#96;Option&lt;i32&gt;&#96;
+    // Создадим переменную &#96;optional&#96; с типом &#96;Option&lt;i32&gt;&#96;
     let mut optional = Some(0);
 
-    // This reads: &quot;while &#96;let&#96; destructures &#96;optional&#96; into
-    // &#96;Some(i)&#96;, evaluate the block (&#96;{}&#96;). Else &#96;break&#96;.
+    // Это можно прочитать так: &quot;Пока &#96;let&#96; деструктурирует &#96;optional&#96; в
+    // &#96;Some(i)&#96;, выполняем блок (&#96;{}&#96;). В противном случае &#96;break&#96;.
     while let Some(i) = optional {
         if i &gt; 9 {
-            println!(&quot;Greater than 9, quit!&quot;);
+            println!(&quot;Больше 9, уходим отсюда!&quot;);
             optional = None;
         } else {
-            println!(&quot;&#96;i&#96; is &#96;{:?}&#96;. Try again.&quot;, i);
+            println!(&quot;&#96;i&#96; равен &#96;{:?}&#96;. Попробуем ещё раз.&quot;, i);
             optional = Some(i + 1);
         }
-        // ^ Less rightward drift and doesn&#39;t require
-        // explicitly handling the failing case.
+        // ^ Меньше смещаемся вправо, к тому же
+        // нет необходимости обрабатывать ошибки.
     }
-    // ^ &#96;if let&#96; had additional optional &#96;else&#96;/&#96;else if&#96;
-    // clauses. &#96;while let&#96; does not have these.
+    // ^ К &#96;if let&#96; можно добавить дополнительный блок &#96;else&#96;/&#96;else if&#96;
+    // &#96;while let&#96; подобного нет.
 }</pre></div>
 <div id="result"></div>
 </div>
