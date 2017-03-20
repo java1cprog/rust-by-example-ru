@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>As output parameters | Rust на примерах</title>
+        <title>Как выходные параметры | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="8.2.5" data-basepath="../.." data-revision="1489782358926">
+    <div class="book" data-level="8.2.5" data-basepath="../.." data-revision="1490026585164">
     
 
 <div class="book-summary">
@@ -888,7 +888,7 @@
                         
                             <b>8.2.1.</b>
                         
-                         Capturing
+                         Захват
                     </a>
                 
             
@@ -904,7 +904,7 @@
                         
                             <b>8.2.2.</b>
                         
-                         As input parameters
+                         Как входные параметры
                     </a>
                 
             
@@ -920,7 +920,7 @@
                         
                             <b>8.2.3.</b>
                         
-                         Type anonymity
+                         Анонимность типов
                     </a>
                 
             
@@ -936,7 +936,7 @@
                         
                             <b>8.2.4.</b>
                         
-                         Input functions
+                         Входные функции
                     </a>
                 
             
@@ -952,7 +952,7 @@
                         
                             <b>8.2.5.</b>
                         
-                         As output parameters
+                         Как выходные параметры
                     </a>
                 
             
@@ -968,7 +968,7 @@
                         
                             <b>8.2.6.</b>
                         
-                         Examples in `std`
+                         Примеры из `std`
                     </a>
                 
             
@@ -2868,40 +2868,40 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_63">
+                    <section class="normal" id="section-gitbook_64">
                     
-                        <h3 id="825-as-output-parameters">8.2.5 As output parameters</h3>
-<p>Closures as input parameters are possible, so returning closures as
-output parameters should also be possible. However, returning closure types
-are problematic because Rust currently only supports returning concrete
-(non-generic) types. Anonymous closure types are, by definition, unknown
-and so returning a closure is only possible by making it concrete. This
-can be done via boxing.</p>
-<p>The valid traits for returns are slightly different than before:</p>
+                        <h3 id="825---">8.2.5 Как выходные параметры</h3>
+<p>Замыкания могут использоваться как входные параметры, следовательно их возврат в
+качестве выходных параметров также должен быть возможен. Однако, это сопряжено
+с трудностями из-за того, что Rust в настоящее время поддерживает только возврат
+конкретных (не обобщённых) типов. Типы анонимных замыканий, по определению,
+неизвестны. И поэтому возвращение замыканий возможно только путём конкретизации
+их типов. Это можно реализовать упаковав замыкание.</p>
+<p>Возможные типажи для возвращаемых значений немного отличаются от прежних:</p>
 <ul>
-<li><code>Fn</code>: normal</li>
-<li><code>FnMut</code>: normal</li>
-<li><code>FnOnce</code>: There are some unusual things at play here, so the <a href="http://doc.rust-lang.org/std/boxed/trait.FnBox.html" target="_blank"><code>FnBox</code></a>
-type is currently needed, and is unstable. This is expected to change in
-the future.</li>
+<li><code>Fn</code>: как раньше</li>
+<li><code>FnMut</code>: как раньше</li>
+<li><code>FnOnce</code>: здесь присутствуют некоторые неожиданности, поэтому необходим тип
+<a href="http://doc.rust-lang.org/std/boxed/trait.FnBox.html" target="_blank"><code>FnBox</code></a>, но он нестабилен в настоящее время. В будущем ожидаются
+изменения этой ситуации.</li>
 </ul>
-<p>Beyond this, the <code>move</code> keyword must be used, which signals that all captures
-occur by value. This is required because any captures by reference would be
-dropped as soon as the function exited, leaving invalid references in the
-closure.</p>
+<p>Помимо этого, должно быть использовано ключевое слово <code>move</code>, чтобы
+сигнализировать о том, что все переменные захватываются по значению. Это
+необходимо, так как любые захваченные по ссылке значения будут удалены после
+выхода из функции, оставляя недопустимые ссылки в замыкании.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>fn create&#95;fn() -&gt; Box&lt;Fn()&gt; {
     let text = &quot;Fn&quot;.to&#95;owned();
 
-    Box::new(move || println!(&quot;This is a: {}&quot;, text))
+    Box::new(move || println!(&quot;Это a: {}&quot;, text))
 }
 
 fn create&#95;fnmut() -&gt; Box&lt;FnMut()&gt; {
     let text = &quot;FnMut&quot;.to&#95;owned();
 
-    Box::new(move || println!(&quot;This is a: {}&quot;, text))
+    Box::new(move || println!(&quot;Это a: {}&quot;, text))
 }
 
 fn main() {
@@ -2915,7 +2915,7 @@ fn main() {
 </div>
 
 <h3 id="-">Смотрите также:</h3>
-<p><a href="../../std/box.html">Boxing</a>, <a href="http://doc.rust-lang.org/std/ops/trait.Fn.html" target="_blank"><code>Fn</code></a>, <a href="http://doc.rust-lang.org/std/ops/trait.FnMut.html" target="_blank"><code>FnMut</code></a>, and <a href="../../generics.html">Generics</a>.</p>
+<p><a href="../../std/box.html">Упаковка</a>, <a href="http://doc.rust-lang.org/std/ops/trait.Fn.html" target="_blank"><code>Fn</code></a>, <a href="http://doc.rust-lang.org/std/ops/trait.FnMut.html" target="_blank"><code>FnMut</code></a>, и <a href="../../generics.html">Обобщённые типы</a>.</p>
 
                     
                     </section>
@@ -2926,10 +2926,10 @@ fn main() {
         </div>
 
         
-        <a href="../../fn/closures/input_functions.html" class="navigation navigation-prev " aria-label="Previous page: Input functions"><i class="fa fa-angle-left"></i></a>
+        <a href="../../fn/closures/input_functions.html" class="navigation navigation-prev " aria-label="Previous page: Входные функции"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../fn/closures/closure_examples.html" class="navigation navigation-next " aria-label="Next page: Examples in `std`"><i class="fa fa-angle-right"></i></a>
+        <a href="../../fn/closures/closure_examples.html" class="navigation navigation-next " aria-label="Next page: Примеры из `std`"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

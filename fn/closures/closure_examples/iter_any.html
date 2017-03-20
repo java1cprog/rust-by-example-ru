@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="8.2.6.1" data-basepath="../../.." data-revision="1489782358926">
+    <div class="book" data-level="8.2.6.1" data-basepath="../../.." data-revision="1490026585164">
     
 
 <div class="book-summary">
@@ -888,7 +888,7 @@
                         
                             <b>8.2.1.</b>
                         
-                         Capturing
+                         Захват
                     </a>
                 
             
@@ -904,7 +904,7 @@
                         
                             <b>8.2.2.</b>
                         
-                         As input parameters
+                         Как входные параметры
                     </a>
                 
             
@@ -920,7 +920,7 @@
                         
                             <b>8.2.3.</b>
                         
-                         Type anonymity
+                         Анонимность типов
                     </a>
                 
             
@@ -936,7 +936,7 @@
                         
                             <b>8.2.4.</b>
                         
-                         Input functions
+                         Входные функции
                     </a>
                 
             
@@ -952,7 +952,7 @@
                         
                             <b>8.2.5.</b>
                         
-                         As output parameters
+                         Как выходные параметры
                     </a>
                 
             
@@ -968,7 +968,7 @@
                         
                             <b>8.2.6.</b>
                         
-                         Examples in `std`
+                         Примеры из `std`
                     </a>
                 
             
@@ -2868,22 +2868,22 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_58">
+                    <section class="normal" id="section-gitbook_60">
                     
                         <h4 id="8261-iteratorany">8.2.6.1 Iterator::any</h4>
-<p><code>Iterator::any</code> is a function which when passed an iterator, will return
-<code>true</code> if any element satisfies the predicate. Otherwise <code>false</code>. Its
-signature:</p>
+<p><code>Iterator::any</code> - это функция, которая принимает итератор и возвращает <code>true</code>,
+если любой элемент удовлетворяет предикату. Иначе возвращает <code>false</code>. Ее
+объявление:</p>
 <pre><code class="lang-rust">pub trait Iterator {
-    // The type being iterated over.
+    // Тип, по которому выполняется итерирование
     type Item;
 
-    // `any` takes `&amp;mut self` meaning the caller may be borrowed
-    // and modified, but not consumed.
+    // `any` принимает `&amp;mut self`, что означает заимствование
+    // и изменение, но не поглощение `self`.
     fn any&lt;F&gt;(&amp;mut self, f: F) -&gt; bool where
-        // `FnMut` meaning any captured variable may at most be
-        // modified, not consumed. `Self::Item` states it takes
-        // arguments to the closure by value.
+        // `FnMut` означает, что любая захваченная переменная
+        // может быть изменена, но не поглощена. `Self::Item`
+        // указывает на захват аргументов замыкания по значению.
         F: FnMut(Self::Item) -&gt; bool {}
 }
 </code></pre>
@@ -2894,18 +2894,18 @@ signature:</p>
     let vec1 = vec![1, 2, 3];
     let vec2 = vec![4, 5, 6];
 
-    // &#96;iter()&#96; for vecs yields &#96;&amp;i32&#96;. Destructure to &#96;i32&#96;.
-    println!(&quot;2 in vec1: {}&quot;, vec1.iter()     .any(|&amp;x| x == 2));
-    // &#96;into&#95;iter()&#96; for vecs yields &#96;i32&#96;. No destructuring required.
-    println!(&quot;2 in vec2: {}&quot;, vec2.into&#95;iter().any(| x| x == 2));
+    // &#96;iter()&#96; для векторов даёт &#96;&amp;i32&#96;. Приводим к &#96;i32&#96;.
+    println!(&quot;2 в vec1: {}&quot;, vec1.iter()     .any(|&amp;x| x == 2));
+    // &#96;into&#95;iter()&#96; для векторов даёт &#96;i32&#96;. Приведения не требуется.
+    println!(&quot;2 в vec2: {}&quot;, vec2.into&#95;iter().any(| x| x == 2));
 
     let array1 = [1, 2, 3];
     let array2 = [4, 5, 6];
 
-    // &#96;iter()&#96; for arrays yields &#96;&amp;i32&#96;.
-    println!(&quot;2 in array1: {}&quot;, array1.iter()     .any(|&amp;x| x == 2));
-    // &#96;into&#95;iter()&#96; for arrays unusually yields &#96;&amp;i32&#96;.
-    println!(&quot;2 in array2: {}&quot;, array2.into&#95;iter().any(|&amp;x| x == 2));
+    // &#96;iter()&#96; для массивов даёт &#96;&amp;i32&#96;.
+    println!(&quot;2 в array1: {}&quot;, array1.iter()     .any(|&amp;x| x == 2));
+    // &#96;into&#95;iter()&#96; для массивов неожиданно даёт &#96;&amp;i32&#96;.
+    println!(&quot;2 в array2: {}&quot;, array2.into&#95;iter().any(|&amp;x| x == 2));
 }</pre></div>
 <div id="result"></div>
 </div>
@@ -2922,7 +2922,7 @@ signature:</p>
         </div>
 
         
-        <a href="../../../fn/closures/closure_examples.html" class="navigation navigation-prev " aria-label="Previous page: Examples in `std`"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../fn/closures/closure_examples.html" class="navigation navigation-prev " aria-label="Previous page: Примеры из `std`"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../../../fn/closures/closure_examples/iter_find.html" class="navigation navigation-next " aria-label="Next page: Iterator::find"><i class="fa fa-angle-right"></i></a>

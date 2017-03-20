@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Type anonymity | Rust на примерах</title>
+        <title>Анонимность типов | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="8.2.3" data-basepath="../.." data-revision="1489782358926">
+    <div class="book" data-level="8.2.3" data-basepath="../.." data-revision="1490026585164">
     
 
 <div class="book-summary">
@@ -888,7 +888,7 @@
                         
                             <b>8.2.1.</b>
                         
-                         Capturing
+                         Захват
                     </a>
                 
             
@@ -904,7 +904,7 @@
                         
                             <b>8.2.2.</b>
                         
-                         As input parameters
+                         Как входные параметры
                     </a>
                 
             
@@ -920,7 +920,7 @@
                         
                             <b>8.2.3.</b>
                         
-                         Type anonymity
+                         Анонимность типов
                     </a>
                 
             
@@ -936,7 +936,7 @@
                         
                             <b>8.2.4.</b>
                         
-                         Input functions
+                         Входные функции
                     </a>
                 
             
@@ -952,7 +952,7 @@
                         
                             <b>8.2.5.</b>
                         
-                         As output parameters
+                         Как выходные параметры
                     </a>
                 
             
@@ -968,7 +968,7 @@
                         
                             <b>8.2.6.</b>
                         
-                         Examples in `std`
+                         Примеры из `std`
                     </a>
                 
             
@@ -2868,34 +2868,35 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_55">
+                    <section class="normal" id="section-gitbook_62">
                     
-                        <h3 id="823-type-anonymity">8.2.3 Type anonymity</h3>
-<p>Closures succinctly capture variables from enclosing scopes. Does this have
-any consequences? It surely does. Observe how using a closure as a function
-parameter requires <a href="../../generics.html">generics</a>, which is necessary because of how they are
-defined:</p>
-<pre><code class="lang-rust"><span class="hljs-comment">// `F` must be generic.</span>
+                        <h3 id="823--">8.2.3 Анонимность типов</h3>
+<p>Замыкания временно захватывают переменные из окружающих областей видимости.
+Имеет ли это какие-либо последствия? Конечно. Как видите, использование
+замыкания в аргументах функции требует <a href="../../generics.html">обобщённых типов</a> из-за
+особенностей реализации замыканий:</p>
+<pre><code class="lang-rust"><span class="hljs-comment">// `F` должен быть обобщённым типом.</span>
 <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">apply</span></span>&lt;F&gt;(f: F) where
     F: FnOnce() {
     f();
 }
 </code></pre>
-<p>When a closure is defined, the compiler implicitly creates a new
-anonymous structure to store the captured variables inside, meanwhile
-implementing the functionality via one of the <code>traits</code>: <code>Fn</code>, <code>FnMut</code>, or
-<code>FnOnce</code> for this unknown type. This type is assigned to the variable which
-is stored until calling.</p>
-<p>Since this new type is of unknown type, any usage in a function will require
-generics. However, an unbounded type parameter <code>&lt;T&gt;</code> would still be ambiguous
-and not be allowed. Thus, bounding by one of the <code>traits</code>: <code>Fn</code>, <code>FnMut</code>, or
-<code>FnOnce</code> (which it implements) is sufficient to specify its type.</p>
+<p>Во время определения замыкания компилятор неявно создаёт новую анонимную
+структуру для хранения захваченных переменных, тем временем реализуя
+функциональность для некого неизвестного типа с помощью одного из типажей: <code>Fn</code>,
+<code>FnMut</code>, или <code>FnOnce</code>. Этот тип присваивается переменной, которая хранится до
+самого вызова замыкания.</p>
+<p>Так как этот новый тип заранее неизвестен, любое его использование в функции
+потребует обобщённых типов. Тем не менее, неограниченный параметр типа <code>&lt;T&gt;</code>
+по прежнему будет неоднозначным и недопустим. Таким образом, ограничение по
+одному из типажей: <code>Fn</code>, <code>FnMut</code>, или <code>FnOnce</code> (которые он реализует) необходимо
+для использования этого типа.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// &#96;F&#96; must implement &#96;Fn&#96; for a closure which takes no
-// inputs and returns nothing - exactly what is required
-// for &#96;print&#96;.
+<div id="editor"><pre>// &#96;F&#96; должен реализовать &#96;Fn&#96; для замыкания, которое
+// ничего не принимает и не возвращает - именно то,
+// что нужно для &#96;print&#96;.
 fn apply&lt;F&gt;(f: F) where
     F: Fn() {
     f();
@@ -2904,8 +2905,8 @@ fn apply&lt;F&gt;(f: F) where
 fn main() {
     let x = 7;
 
-    // Capture &#96;x&#96; into an anonymous type and implement
-    // &#96;Fn&#96; for it. Store it in &#96;print&#96;.
+    // Захватываем &#96;x&#96; в анонимный тип и реализуем
+    // &#96;Fn&#96; для него. Сохраняем его как &#96;print&#96;.
     let print = || println!(&quot;{}&quot;, x);
 
     apply(print);
@@ -2914,7 +2915,7 @@ fn main() {
 </div>
 
 <h3 id="-">Смотрите также:</h3>
-<p><a href="http://huonw.github.io/blog/2015/05/finding-closure-in-rust/" target="_blank">A thorough analysis</a>, <a href="http://doc.rust-lang.org/std/ops/trait.Fn.html" target="_blank"><code>Fn</code></a>, <a href="http://doc.rust-lang.org/std/ops/trait.FnMut.html" target="_blank"><code>FnMut</code></a>,
+<p><a href="http://huonw.github.io/blog/2015/05/finding-closure-in-rust/" target="_blank">Подробный разбор</a>, <a href="http://doc.rust-lang.org/std/ops/trait.Fn.html" target="_blank"><code>Fn</code></a>, <a href="http://doc.rust-lang.org/std/ops/trait.FnMut.html" target="_blank"><code>FnMut</code></a>,
 and <a href="http://doc.rust-lang.org/std/ops/trait.FnOnce.html" target="_blank"><code>FnOnce</code></a></p>
 
                     
@@ -2926,10 +2927,10 @@ and <a href="http://doc.rust-lang.org/std/ops/trait.FnOnce.html" target="_blank"
         </div>
 
         
-        <a href="../../fn/closures/input_parameters.html" class="navigation navigation-prev " aria-label="Previous page: As input parameters"><i class="fa fa-angle-left"></i></a>
+        <a href="../../fn/closures/input_parameters.html" class="navigation navigation-prev " aria-label="Previous page: Как входные параметры"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../fn/closures/input_functions.html" class="navigation navigation-next " aria-label="Next page: Input functions"><i class="fa fa-angle-right"></i></a>
+        <a href="../../fn/closures/input_functions.html" class="navigation navigation-next " aria-label="Next page: Входные функции"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

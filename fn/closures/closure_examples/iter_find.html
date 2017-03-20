@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="8.2.6.2" data-basepath="../../.." data-revision="1489782358926">
+    <div class="book" data-level="8.2.6.2" data-basepath="../../.." data-revision="1490026585164">
     
 
 <div class="book-summary">
@@ -888,7 +888,7 @@
                         
                             <b>8.2.1.</b>
                         
-                         Capturing
+                         Захват
                     </a>
                 
             
@@ -904,7 +904,7 @@
                         
                             <b>8.2.2.</b>
                         
-                         As input parameters
+                         Как входные параметры
                     </a>
                 
             
@@ -920,7 +920,7 @@
                         
                             <b>8.2.3.</b>
                         
-                         Type anonymity
+                         Анонимность типов
                     </a>
                 
             
@@ -936,7 +936,7 @@
                         
                             <b>8.2.4.</b>
                         
-                         Input functions
+                         Входные функции
                     </a>
                 
             
@@ -952,7 +952,7 @@
                         
                             <b>8.2.5.</b>
                         
-                         As output parameters
+                         Как выходные параметры
                     </a>
                 
             
@@ -968,7 +968,7 @@
                         
                             <b>8.2.6.</b>
                         
-                         Examples in `std`
+                         Примеры из `std`
                     </a>
                 
             
@@ -2868,22 +2868,21 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_62">
+                    <section class="normal" id="section-gitbook_59">
                     
                         <h4 id="8262-iteratorfind">8.2.6.2 Iterator::find</h4>
-<p><code>Iterator::find</code> is a function which when passed an iterator, will return
-the first element which satisfies the predicate as an <code>Option</code>. Its
-signature:</p>
+<p><code>Iterator::find</code> - это функция, которая принимает итератор и возвращает первый
+элемент, который удовлетворяет предикату, в виде <code>Option</code>. Её объявление:</p>
 <pre><code class="lang-rust">pub trait Iterator {
-    // The type being iterated over.
+    // Тип, по которому выполняется итерирование
     type Item;
 
-    // `find` takes `&amp;mut self` meaning the caller may be borrowed
-    // and modified, but not consumed.
+    // `find` принимает `&amp;mut self`, что означает заимствование и
+    // изменение, но не поглощение `self`.
     fn find&lt;P&gt;(&amp;mut self, predicate: P) -&gt; Option&lt;Self::Item&gt; where
-        // `FnMut` meaning any captured variable may at most be
-        // modified, not consumed. `&amp;Self::Item` states it takes
-        // arguments to the closure by reference.
+        // `FnMut` означает, что любая захваченная переменная
+        // может быть изменена, но не поглощена. `&amp;Self::Item`
+        // указывает на захват аргументов замыкания по ссылке.
         P: FnMut(&amp;Self::Item) -&gt; bool {}
 }
 </code></pre>
@@ -2894,23 +2893,23 @@ signature:</p>
     let vec1 = vec![1, 2, 3];
     let vec2 = vec![4, 5, 6];
 
-    // &#96;iter()&#96; for vecs yields &#96;&amp;i32&#96;.
+    // &#96;iter()&#96; для векторов даёт &#96;&amp;i32&#96;.
     let mut iter = vec1.iter();
-    // &#96;into&#95;iter()&#96; for vecs yields &#96;i32&#96;.
+    // &#96;into&#95;iter()&#96; для векторов даёт &#96;i32&#96;.
     let mut into&#95;iter = vec2.into&#95;iter();
 
-    // A reference to what is yielded is &#96;&amp;&amp;i32&#96;. Destructure to &#96;i32&#96;.
-    println!(&quot;Find 2 in vec1: {:?}&quot;, iter     .find(|&amp;&amp;x| x == 2));
-    // A reference to what is yielded is &#96;&amp;i32&#96;. Destructure to &#96;i32&#96;.
-    println!(&quot;Find 2 in vec2: {:?}&quot;, into&#95;iter.find(| &amp;x| x == 2));
+    // Ссылка на это даёт &#96;&amp;&amp;i32&#96;. Приводим к &#96;i32&#96;.
+    println!(&quot;Найти 2 в vec1: {:?}&quot;, iter     .find(|&amp;&amp;x| x == 2));
+    // Ссылка на это даёт &#96;&amp;i32&#96;. Приводим к &#96;i32&#96;.
+    println!(&quot;Найти 2 в vec2: {:?}&quot;, into&#95;iter.find(| &amp;x| x == 2));
 
     let array1 = [1, 2, 3];
     let array2 = [4, 5, 6];
 
-    // &#96;iter()&#96; for arrays yields &#96;&amp;i32&#96;
-    println!(&quot;Find 2 in array1: {:?}&quot;, array1.iter()     .find(|&amp;&amp;x| x == 2));
-    // &#96;into&#95;iter()&#96; for arrays unusually yields &#96;&amp;i32&#96;
-    println!(&quot;Find 2 in array2: {:?}&quot;, array2.into&#95;iter().find(|&amp;&amp;x| x == 2));
+    // &#96;iter()&#96; для массивов даёт &#96;&amp;i32&#96;
+    println!(&quot;Найти 2 в array1: {:?}&quot;, array1.iter()     .find(|&amp;&amp;x| x == 2));
+    // &#96;into&#95;iter()&#96; для массивов неожиданно даёт &#96;&amp;i32&#96;
+    println!(&quot;Найти 2 в array2: {:?}&quot;, array2.into&#95;iter().find(|&amp;&amp;x| x == 2));
 }</pre></div>
 <div id="result"></div>
 </div>

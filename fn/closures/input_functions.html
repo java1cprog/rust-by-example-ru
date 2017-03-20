@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Input functions | Rust на примерах</title>
+        <title>Входные функции | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="8.2.4" data-basepath="../.." data-revision="1489782358926">
+    <div class="book" data-level="8.2.4" data-basepath="../.." data-revision="1490026585164">
     
 
 <div class="book-summary">
@@ -888,7 +888,7 @@
                         
                             <b>8.2.1.</b>
                         
-                         Capturing
+                         Захват
                     </a>
                 
             
@@ -904,7 +904,7 @@
                         
                             <b>8.2.2.</b>
                         
-                         As input parameters
+                         Как входные параметры
                     </a>
                 
             
@@ -920,7 +920,7 @@
                         
                             <b>8.2.3.</b>
                         
-                         Type anonymity
+                         Анонимность типов
                     </a>
                 
             
@@ -936,7 +936,7 @@
                         
                             <b>8.2.4.</b>
                         
-                         Input functions
+                         Входные функции
                     </a>
                 
             
@@ -952,7 +952,7 @@
                         
                             <b>8.2.5.</b>
                         
-                         As output parameters
+                         Как выходные параметры
                     </a>
                 
             
@@ -968,7 +968,7 @@
                         
                             <b>8.2.6.</b>
                         
-                         Examples in `std`
+                         Примеры из `std`
                     </a>
                 
             
@@ -2868,30 +2868,31 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_61">
+                    <section class="normal" id="section-gitbook_63">
                     
-                        <h3 id="824-input-functions">8.2.4 Input functions</h3>
-<p>Since closures may be used as arguments, you might wonder if the same can be said
-about functions. And indeed they can! If you declare a function that takes a
-closure as parameter, then any function that satisfies the trait bound of that
-closure can be passed as a parameter.</p>
+                        <h3 id="824--">8.2.4 Входные функции</h3>
+<p>Так как замыкания могут использоваться в аргументах, вы можете ожидать, что то
+же самое можно сказать и про функции. И это действительно так! Если вы
+объявляете функцию, принимающую замыкание как аргумент, то любая функция,
+удовлетворяющая ограничениям типажа этого замыкания, может быть передана как
+аргумент.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// Define a function which takes a generic &#96;F&#96; argument
-// bounded by &#96;Fn&#96;, and calls it
+<div id="editor"><pre>// Объявляем функцию, которая принимает обобщённый тип &#96;F&#96;,
+// ограниченный типажом &#96;Fn&#96;, и вызывает его.
 fn call&#95;me&lt;F: Fn()&gt;(f: F) {
     f();
 }
 
-// Define a wrapper function satisfying the &#96;Fn&#96; bound
+// Объявляем функцию-обёртку, удовлетворяющую ограничению &#96;Fn&#96;
 fn function() {
-    println!(&quot;I&#39;m a function!&quot;);
+    println!(&quot;Я функция!&quot;);
 }
 
 fn main() {
-    // Define a closure satisfying the &#96;Fn&#96; bound
-    let closure = || println!(&quot;I&#39;m a closure!&quot;);
+    // Определяем замыкание, удовлетворяющее ограничению &#96;Fn&#96;
+    let closure = || println!(&quot;Я замыкание!&quot;);
 
     call&#95;me(closure);
     call&#95;me(function);
@@ -2899,10 +2900,10 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<p>As an additional note, the <code>Fn</code>, <code>FnMut</code>, and <code>FnOnce</code> <code>traits</code> dictate how
-a closure captures variables from the enclosing scope.</p>
+<p>Стоит отметить, что типажи <code>Fn</code>, <code>FnMut</code> и <code>FnOnce</code> указывают, как
+замыкание захватывает переменные из своей области видимости.</p>
 <h3 id="-">Смотрите также:</h3>
-<p><a href="http://doc.rust-lang.org/std/ops/trait.Fn.html" target="_blank"><code>Fn</code></a>, <a href="http://doc.rust-lang.org/std/ops/trait.FnMut.html" target="_blank"><code>FnMut</code></a>, and <a href="http://doc.rust-lang.org/std/ops/trait.FnOnce.html" target="_blank"><code>FnOnce</code></a></p>
+<p><a href="http://doc.rust-lang.org/std/ops/trait.Fn.html" target="_blank"><code>Fn</code></a>, <a href="http://doc.rust-lang.org/std/ops/trait.FnMut.html" target="_blank"><code>FnMut</code></a>, и <a href="http://doc.rust-lang.org/std/ops/trait.FnOnce.html" target="_blank"><code>FnOnce</code></a></p>
 
                     
                     </section>
@@ -2913,10 +2914,10 @@ a closure captures variables from the enclosing scope.</p>
         </div>
 
         
-        <a href="../../fn/closures/anonymity.html" class="navigation navigation-prev " aria-label="Previous page: Type anonymity"><i class="fa fa-angle-left"></i></a>
+        <a href="../../fn/closures/anonymity.html" class="navigation navigation-prev " aria-label="Previous page: Анонимность типов"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../fn/closures/output_parameters.html" class="navigation navigation-next " aria-label="Next page: As output parameters"><i class="fa fa-angle-right"></i></a>
+        <a href="../../fn/closures/output_parameters.html" class="navigation navigation-next " aria-label="Next page: Как выходные параметры"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

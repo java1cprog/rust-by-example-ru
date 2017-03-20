@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Capturing | Rust на примерах</title>
+        <title>Захват | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="8.2.1" data-basepath="../.." data-revision="1489782358926">
+    <div class="book" data-level="8.2.1" data-basepath="../.." data-revision="1490026585164">
     
 
 <div class="book-summary">
@@ -888,7 +888,7 @@
                         
                             <b>8.2.1.</b>
                         
-                         Capturing
+                         Захват
                     </a>
                 
             
@@ -904,7 +904,7 @@
                         
                             <b>8.2.2.</b>
                         
-                         As input parameters
+                         Как входные параметры
                     </a>
                 
             
@@ -920,7 +920,7 @@
                         
                             <b>8.2.3.</b>
                         
-                         Type anonymity
+                         Анонимность типов
                     </a>
                 
             
@@ -936,7 +936,7 @@
                         
                             <b>8.2.4.</b>
                         
-                         Input functions
+                         Входные функции
                     </a>
                 
             
@@ -952,7 +952,7 @@
                         
                             <b>8.2.5.</b>
                         
-                         As output parameters
+                         Как выходные параметры
                     </a>
                 
             
@@ -968,7 +968,7 @@
                         
                             <b>8.2.6.</b>
                         
-                         Examples in `std`
+                         Примеры из `std`
                     </a>
                 
             
@@ -2868,20 +2868,20 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_56">
+                    <section class="normal" id="section-gitbook_58">
                     
-                        <h3 id="821-capturing">8.2.1 Capturing</h3>
-<p>Closures are inherently flexible and will do what the functionality requires
-to make the closure work without annotation. This allows capturing to
-flexibly adapt to the use case, sometimes moving and sometimes borrowing.
-Closures can capture variables:</p>
+                        <h3 id="821-">8.2.1 Захват</h3>
+<p>Замыкания довольно гибкие и делают всё, что требуется для работы с ними без
+дополнительных указаний. Это позволяет захватывать переменные, перемещая их или
+заимствуя, в зависимости от необходимости.
+Замыкания могут захватывать переменные:</p>
 <ul>
-<li>by reference: <code>&amp;T</code></li>
-<li>by mutable reference: <code>&amp;mut T</code></li>
-<li>by value: <code>T</code></li>
+<li>по ссылке: <code>&amp;T</code></li>
+<li>по изменяемой ссылке: <code>&amp;mut T</code></li>
+<li>по значению: <code>T</code></li>
 </ul>
-<p>They preferentially capture variables by reference and only go lower when
-required.</p>
+<p>Они преимущественно захватывают переменные по ссылке, если явно не указан другой
+способ.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2890,60 +2890,59 @@ required.</p>
 
     let color = &quot;green&quot;;
 
-    // A closure to print &#96;color&#96; which immediately borrows (&#96;&amp;&#96;)
-    // &#96;color&#96; and stores the borrow and closure in the &#96;print&#96;
-    // variable. It will remain borrowed until &#96;print&#96; goes out of
-    // scope. &#96;println!&#96; only requires &#96;by reference&#96; so it doesn&#39;t
-    // impose anything more restrictive.
+    // Замыкание для вывода &#96;color&#96;, которое немедленно заимствует (&#96;&amp;&#96;)
+    // &#96;color&#96; и сохраняет его и замыкание в переменной &#96;print&#96;.
+    // &#96;color&#96; будет оставаться заимствованным до выхода &#96;print&#96; из области
+    // видимости. &#96;println!&#96; требует только ссылку, поэтому он не накладывает
+    // дополнительных ограничений.
     let print = || println!(&quot;&#96;color&#96;: {}&quot;, color);
 
-    // Call the closure using the borrow.
+    // Вызываем замыкание, используя заимствование.
     print();
     print();
 
     let mut count = 0;
 
-    // A closure to increment &#96;count&#96; could take either &#96;&amp;mut count&#96;
-    // or &#96;count&#96; but &#96;&amp;mut count&#96; is less restrictive so it takes
-    // that. Immediately borrows &#96;count&#96;.
+    // Замыкание для увеличения &#96;count&#96; может принимать как &#96;&amp;mut count&#96;,
+    // так и &#96;count&#96;, но использование &#96;&amp;mut count&#96; менее ограничено, так что
+    // замыкание выбирает первый способ, т.е. немедленно заимствует &#96;count&#96;.
     //
-    // A &#96;mut&#96; is required on &#96;inc&#96; because a &#96;&amp;mut&#96; is stored inside.
-    // Thus, calling the closure mutates the closure which requires
-    // a &#96;mut&#96;.
+    // &#96;inc&#96; должен быть &#96;mut&#96;, поскольку внутри него хранится &#96;&amp;mut&#96;.
+    // Таким образом, вызов замыкания изменяет его, что недопустимо без &#96;mut&#96;.
     let mut inc = || {
         count += 1;
         println!(&quot;&#96;count&#96;: {}&quot;, count);
     };
 
-    // Call the closure.
+    // Вызываем замыкание.
     inc();
     inc();
 
     //let reborrow = &amp;mut count;
-    // ^ TODO: try uncommenting this line.
+    // ^ TODO: попробуйте раскомментировать эту строку.
 
-    // A non-copy type.
+    // Тип без возможности копирования.
     let movable = Box::new(3);
 
-    // &#96;mem::drop&#96; requires &#96;T&#96; so this must take by value. A copy type
-    // would copy into the closure leaving the original untouched.
-    // A non-copy must move and so &#96;movable&#96; immediately moves into
-    // the closure.
+    // &#96;mem::drop&#96; требует &#96;T&#96;, так что захват производится по значению.
+    // Копируемый тип будет скопирован в замыкание, оставив оригинальное
+    // значение без изменения. Некопируемый тип должен быть перемещён, так что
+    // &#96;movable&#96; немедленно перемещается в замыкание.
     let consume = || {
         println!(&quot;&#96;movable&#96;: {:?}&quot;, movable);
         mem::drop(movable);
     };
 
-    // &#96;consume&#96; consumes the variable so this can only be called once.
+    // &#96;consume&#96; поглощает переменную, так что оно может быть вызвано только раз.
     consume();
     //consume();
-    // ^ TODO: Try uncommenting this line.
+    // ^ TODO: Попробуйте раскомментировать эту строку.
 }</pre></div>
 <div id="result"></div>
 </div>
 
 <h3 id="-">Смотрите также:</h3>
-<p><a href="../../std/box.html"><code>Box</code></a> and <a href="http://doc.rust-lang.org/std/mem/fn.drop.html" target="_blank"><code>std::mem::drop</code></a></p>
+<p><a href="../../std/box.html"><code>Box</code></a> и <a href="http://doc.rust-lang.org/std/mem/fn.drop.html" target="_blank"><code>std::mem::drop</code></a></p>
 
                     
                     </section>
@@ -2957,7 +2956,7 @@ required.</p>
         <a href="../../fn/closures.html" class="navigation navigation-prev " aria-label="Previous page: Замыкания"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../fn/closures/input_parameters.html" class="navigation navigation-next " aria-label="Next page: As input parameters"><i class="fa fa-angle-right"></i></a>
+        <a href="../../fn/closures/input_parameters.html" class="navigation navigation-next " aria-label="Next page: Как входные параметры"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
