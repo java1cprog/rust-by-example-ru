@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>`map` for `Result` | Rust на примерах</title>
+        <title>Testcase: map-reduce | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -19,10 +19,10 @@
         
     
     
-    <link rel="next" href="../../error/result/result_alias.html" />
+    <link rel="next" href="../../std_misc/channels.html" />
     
     
-    <link rel="prev" href="../../error/result.html" />
+    <link rel="prev" href="../../std_misc/threads.html" />
     
 
         
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.3.1" data-basepath="../.." data-revision="1494910697815">
+    <div class="book" data-level="18.1.1" data-basepath="../.." data-revision="1494910697815">
     
 
 <div class="book-summary">
@@ -2124,7 +2124,7 @@
                 
     
         
-        <li class="chapter active" data-level="16.3.1" data-path="error/result/result_map.html">
+        <li class="chapter " data-level="16.3.1" data-path="error/result/result_map.html">
             
                 
                     <a href="../../error/result/result_map.html">
@@ -2496,7 +2496,7 @@
                 
     
         
-        <li class="chapter " data-level="18.1.1" data-path="std_misc/threads/testcase_mapreduce.html">
+        <li class="chapter active" data-level="18.1.1" data-path="std_misc/threads/testcase_mapreduce.html">
             
                 
                     <a href="../../std_misc/threads/testcase_mapreduce.html">
@@ -2890,58 +2890,146 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_38">
+                    <section class="normal" id="section-gitbook_143">
                     
-                        <h3 id="1631-map-for-result">16.3.1 <code>map</code> for <code>Result</code></h3>
-<p>Panicking in the previous example gave us an unhelpful error message.
-To avoid that, we need to be more specific about the return type. There, the
-regular element is of type <code>i32</code>.</p>
-<p>To determine the <code>Err</code> type, we look to
-<a href="https://doc.rust-lang.org/std/primitive.str.html#method.parse" target="_blank"><code>parse()</code></a>, which is implemented with the <a href="http://doc.rust-lang.org/std/str/trait.FromStr.html" target="_blank"><code>FromStr</code></a> trait for
-<a href="http://doc.rust-lang.org/std/primitive.i32.html" target="_blank"><code>i32</code></a>. As a result, the <code>Err</code> type is specified as <a href="http://doc.rust-lang.org/std/num/struct.ParseIntError.html" target="_blank"><code>ParseIntError</code></a>.</p>
-<p>In the example below, the straightforward <code>match</code> statement leads to code
-that is overall more cumbersome. Luckily, the <code>map</code> method of <code>Option</code> is
-one of many combinators also implemented for <code>Result</code>. <a href="http://doc.rust-lang.org/std/result/enum.Result.html" target="_blank"><code>enum.Result</code></a>
-contains a complete listing.</p>
+                        <h3 id="1811-testcase-map-reduce">18.1.1 Testcase: map-reduce</h3>
+<p>Rust makes it very easy to parallelise data processing,
+without many of the headaches traditionally associated with such an attempt.</p>
+<p>The standard library provides great threading primitives out of the box.
+These, combined with Rust&#39;s concept of Ownership and aliasing rules, automatically prevent
+data races.</p>
+<p>The aliasing rules (one writable reference XOR many readable references) automatically prevent
+you from manipulating state that is visible to other threads. (Where synchronisation is needed,
+there are synchronisation
+primitives like <code>Mutex</code>es or <code>Channel</code>s.)</p>
+<p>In this example, we will calculate the sum of all digits in a block of numbers.
+We will do this by parcelling out chunks of the block into different threads. Each thread will sum
+its tiny block of digits, and subsequently we will sum the intermediate sums produced by each
+thread.</p>
+<p>Note that, although we&#39;re passing references across thread boundaries, Rust understands that we&#39;re
+only passing read-only references, and that thus no unsafety or data races can occur. Because
+we&#39;re <code>move</code>-ing the data segments into the thread, Rust will also ensure the data is kept alive
+until the threads exit, so no dangling pointers occur.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>use std::num::ParseIntError;
+<div id="editor"><pre>use std::thread;
 
-// With the return type rewritten, we use pattern matching without &#96;unwrap()&#96;.
-fn double&#95;number(number&#95;str: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
-    match number&#95;str.parse::&lt;i32&gt;() {
-        Ok(n)  =&gt; Ok(2 &#42; n),
-        Err(e) =&gt; Err(e),
-    }
-}
-
-// As with &#96;Option&#96;, we can use combinators such as &#96;map()&#96;.
-// This function is otherwise identical to the one above and reads:
-// Modify n if the value is valid, otherwise pass on the error.
-fn double&#95;number&#95;map(number&#95;str: &amp;str) -&gt; Result&lt;i32, ParseIntError&gt; {
-    number&#95;str.parse::&lt;i32&gt;().map(|n| 2 &#42; n)
-}
-
-fn print(result: Result&lt;i32, ParseIntError&gt;) {
-    match result {
-        Ok(n)  =&gt; println!(&quot;n is {}&quot;, n),
-        Err(e) =&gt; println!(&quot;Error: {}&quot;, e),
-    }
-}
-
+// This is the &#96;main&#96; thread
 fn main() {
-    // This still presents a reasonable answer.
-    let twenty = double&#95;number(&quot;10&quot;);
-    print(twenty);
 
-    // The following now provides a much more helpful error message.
-    let tt = double&#95;number&#95;map(&quot;t&quot;);
-    print(tt);
+    // This is our data to process.
+    // We will calculate the sum of all digits via a threaded  map-reduce algorithm.
+    // Each whitespace separated chunk will be handled in a different thread.
+    //
+    // TODO: see what happens to the output if you insert spaces!
+    let data = &quot;86967897737416471853297327050364959
+11861322575564723963297542624962850
+70856234701860851907960690014725639
+38397966707106094172783238747669219
+52380795257888236525459303330302837
+58495327135744041048897885734297812
+69920216438980873548808413720956532
+16278424637452589860345374828574668&quot;;
+
+    // Make a vector to hold the child-threads which we will spawn.
+    let mut children = vec![];
+
+    /&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;
+     &#42; &quot;Map&quot; phase
+     &#42;
+     &#42; Divide our data into segments, and apply initial processing
+     &#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;/
+
+    // split our data into segments for individual calculation
+    // each chunk will be a reference (&amp;str) into the actual data
+    let chunked&#95;data = data.split&#95;whitespace();
+
+    // Iterate over the data segments.
+    // .enumerate() adds the current loop index to whatever is iterated
+    // the resulting tuple &quot;(index, element)&quot; is then immediately
+    // &quot;destructured&quot; into two variables, &quot;i&quot; and &quot;data&#95;segment&quot; with a
+    // &quot;destructuring assignment&quot;
+    for (i, data&#95;segment) in chunked&#95;data.enumerate() {
+        println!(&quot;data segment {} is &#92;&quot;{}&#92;&quot;&quot;, i, data&#95;segment);
+
+        // Process each data segment in a separate thread
+        //
+        // spawn() returns a handle to the new thread,
+        // which we MUST keep to access the returned value
+        //
+        // &#39;move || -&gt; u32&#39; is syntax for a closure that:
+        // &#42; takes no arguments (&#39;||&#39;)
+        // &#42; takes ownership of its captured variables (&#39;move&#39;) and
+        // &#42; returns an unsigned 32-bit integer (&#39;-&gt; u32&#39;)
+        //
+        // Rust is smart enough to infer the &#39;-&gt; u32&#39; from 
+        // the closure itself so we could have left that out.
+        //
+        // TODO: try removing the &#39;move&#39; and see what happens
+        children.push(thread::spawn(move || -&gt; u32 {
+            // Calculate the intermediate sum of this segment:
+            let result = data&#95;segment
+                        // iterate over the characters of our segment..
+                        .chars()
+                        // .. convert text-characters to their number value..
+                        .map(|c| c.to&#95;digit(10).expect(&quot;should be a digit&quot;))
+                        // .. and sum the resulting iterator of numbers
+                        .sum();
+
+            // println! locks stdout, so no text-interleaving occurs
+            println!(&quot;processed segment {}, result={}&quot;, i, result);
+
+            // &quot;return&quot; not needed, because Rust is an &quot;expression language&quot;, the
+            // last evaluated expression in each block is automatically its value.
+            result
+
+        }));
+    }
+
+
+    /&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;
+     &#42; &quot;Reduce&quot; phase
+     &#42;
+     &#42; Collect our intermediate results, and combine them into a final result
+     &#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;&#42;/
+
+    // collect each thread&#39;s intermediate results into a new Vec
+    let mut intermediate&#95;sums = vec![];
+    for child in children {
+        // collect each child thread&#39;s return-value
+        let intermediate&#95;sum = child.join().unwrap();
+        intermediate&#95;sums.push(intermediate&#95;sum);
+    }
+
+    // combine all intermediate sums into a single final sum.
+    //
+    // we use the &quot;turbofish&quot; ::&lt;&gt; to provide sum() with a type hint.
+    //
+    // TODO: try without the turbofish, by instead explicitly 
+    // specifying the type of intermediate&#95;sums
+    let final&#95;result = intermediate&#95;sums.iter().sum::&lt;u32&gt;();
+
+    println!(&quot;Final sum result: {}&quot;, final&#95;result);
 }</pre></div>
 <div id="result"></div>
 </div>
 
+<h3 id="assignments">Assignments</h3>
+<p>It is not wise to let our number of threads depend on user inputted data.
+What if the user decides to insert a lot of spaces? Do we <em>really</em> want to spawn 2,000 threads?
+Modify the program so that the data is always chunked into a limited number of chunks,
+defined by a static constant at the beginning of the program.</p>
+<h3 id="see-also">See also:</h3>
+<ul>
+<li><a href="../../std_misc/threads.html">Threads</a></li>
+<li><a href="../../std/vec.html">vectors</a> and <a href="../../trait/iter.html">iterators</a></li>
+<li><a href="../../fn/closures.html">closures</a>, <a href="../../scope/move.html">move</a> semantics and <a href="https://doc.rust-lang.org/book/closures.html#move-closures" target="_blank"><code>move</code> closures</a></li>
+<li><a href="https://doc.rust-lang.org/book/patterns.html#destructuring" target="_blank">destructuring</a> assignments</li>
+<li><a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.collect" target="_blank">turbofish notation</a> to help type inference</li>
+<li><a href="../../error/option_unwrap.html">unwrap vs. expect</a></li>
+<li><a href="https://doc.rust-lang.org/book/loops.html#enumerate" target="_blank">enumerate</a></li>
+</ul>
 
                     
                     </section>
@@ -2952,10 +3040,10 @@ fn main() {
         </div>
 
         
-        <a href="../../error/result.html" class="navigation navigation-prev " aria-label="Previous page: `Result`"><i class="fa fa-angle-left"></i></a>
+        <a href="../../std_misc/threads.html" class="navigation navigation-prev " aria-label="Previous page: Потоки"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../error/result/result_alias.html" class="navigation navigation-next " aria-label="Next page: aliases for `Result`"><i class="fa fa-angle-right"></i></a>
+        <a href="../../std_misc/channels.html" class="navigation navigation-next " aria-label="Next page: Channels"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
