@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Generics | Rust на примерах</title>
+        <title>Обобщения | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="12" data-basepath="." data-revision="1494693634272">
+    <div class="book" data-level="12" data-basepath="." data-revision="1494906020741">
     
 
 <div class="book-summary">
@@ -1296,7 +1296,7 @@
                         
                             <b>12.</b>
                         
-                         Generics
+                         Обобщения
                     </a>
                 
             
@@ -2868,63 +2868,62 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_79">
+                    <section class="normal" id="section-gitbook_81">
                     
-                        <h1 id="12-generics">12 Generics</h1>
-<p><em>Generics</em> is the topic of generalizing types and functionalities to broader
-cases. This is extremely useful for reducing code duplication in many ways,
-but can call for rather involving syntax. Namely, being generic requires
-taking great care to specify over which types a generic type
-is actually considered valid. The simplest and most common use of generics
-is for type parameters.</p>
-<p>A type parameter is specified as generic by the use of angle brackets and upper
-<a href="https://en.wikipedia.org/wiki/CamelCase" target="_blank">camel case</a>: <code>&lt;Aaa, Bbb, ...&gt;</code>. &quot;Generic type parameters&quot; are
-typically represented as <code>&lt;T&gt;</code>. In Rust, &quot;generic&quot; also describes anything that
-accepts one or more generic type parameters <code>&lt;T&gt;</code>. Any type specified as a
-generic type parameter is generic, and everything else is concrete (non-generic).</p>
-<p>For example, defining a <em>generic function</em> named <code>foo</code> that takes an argument
-<code>T</code> of any type:</p>
+                        <h1 id="12-">12 Обобщения</h1>
+<p><em>Обобщения</em> позволяют генерализировать типы и функционал для более общих случаев. Они
+чрезвычайно полезны благодаря уменьшению дублирования кода, однако могут привести к
+сравнительному усложнению синтаксиса. А именно, использование обобщений требует особого
+внимания при определении допустимых реальных типов которыми могут заменяться обобщённые.
+Наиболее простым и распространённым применением обобщений является обобщение параметров
+типа.</p>
+<p>Обобщить параметр типа можно используя угловые скобки и верхний <a href="https://ru.wikipedia.org/wiki/CamelCase" target="_blank">верблюжий регистр</a>:
+<code>&lt;Aaa, Bbb, ...&gt;</code>. &quot;Обобщённые параметры типа&quot; обычно представлены как <code>&lt;T&gt;</code>. В Rust,
+&quot;обобщённым&quot; также принято называть все, что может принимать один или более обобщённых
+параметров типа <code>&lt;T&gt;</code>. Любой тип, указанный в качестве параметра обобщённого типа,
+является обобщённым, а всё остальное является конкретным (не обобщённым).</p>
+<p>Например, объявление <em>обобщённой функции</em> <code>foo</code> принимающей аргумент <code>T</code> любого типа:</p>
 <pre><code class="lang-rust"><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">foo</span></span>&lt;T&gt;(T) { ... }
 </code></pre>
-<p>Because <code>T</code> has been specified as a generic type parameter using <code>&lt;T&gt;</code>, it
-is considered generic when used here as <code>(T)</code>. This is the case even if <code>T</code>
-has previously been defined as a <code>struct</code>.</p>
-<p>This example shows some of the syntax in action:</p>
+<p>Поскольку <code>T</code> был объявлен как обобщённый тип, посредством <code>&lt;T&gt;</code>, он считается обобщённым
+когда используется как <code>(T)</code>. Это работает даже если <code>T</code> был определён как <a href="custom_types/structs.html">структура</a>.</p>
+<p>Пример ниже демонстрирует синтаксис в действии:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// A concrete type &#96;A&#96;.
+<div id="editor"><pre>// Конкретный тип &#96;A&#96;.
 struct A;
 
-// In defining the type &#96;Single&#96;, the first use of &#96;A&#96; is not preceded by &#96;&lt;A&gt;&#96;.
-// Therefore, &#96;Single&#96; is a concrete type, and &#96;A&#96; is defined as above.
+// В определении типа &#96;Single&#96; первому использованию &#96;A&#96; не предшествует &#96;&lt;A&gt;&#96;.
+// Поэтому &#96;Single&#96; имеет конкретный тип, и &#96;A&#96; определена выше.
 struct Single(A);
-//            ^ Here is &#96;Single&#96;s first use of the type &#96;A&#96;.
+//            ^ Здесь &#96;A&#96; в первый раз используется в &#96;Single&#96;.
 
-// Here, &#96;&lt;T&gt;&#96; precedes the first use of &#96;T&#96;, so &#96;SingleGen&#96; is a generic type.
-// Because the type parameter &#96;T&#96; is generic, it could be anything, including
-// the concrete type &#96;A&#96; defined at the top.
+// В данном примере, &#96;&lt;T&gt;&#96; предшествует первому использованию &#96;T&#96;,
+// поэтому &#96;SingleGen&#96; является обобщённым типом.
+// Поскольку тип параметра &#96;T&#96; является обобщённым, он может быть чем угодно, включая
+// конкретный тип &#96;A&#96;, определённый выше.
 struct SingleGen&lt;T&gt;(T);
 
 fn main() {
-    // &#96;Single&#96; is concrete and explicitly takes &#96;A&#96;.
+    // &#96;Single&#96; имеет конкретный тип и явно принимает параметр &#96;A&#96;.
     let &#95;s = Single(A);
 
-    // Create a variable &#96;&#95;char&#96; of type &#96;SingleGen&lt;char&gt;&#96;
-    // and give it the value &#96;SingleGen(&#39;a&#39;)&#96;.
-    // Here, &#96;SingleGen&#96; has a type parameter explicitly specified.
+    // Создаём переменную &#96;&#95;char&#96; типа &#96;SingleGen&lt;char&gt;&#96;
+    // и присваиваем ей значение &#96;SingleGen(&#39;a&#39;)&#96;.
+    // В примере ниже, тип параметра &#96;SingleGen&#96; явно определён.
     let &#95;char: SingleGen&lt;char&gt; = SingleGen(&#39;a&#39;);
 
-    // &#96;SingleGen&#96; can also have a type parameter implicitly specified:
-    let &#95;t    = SingleGen(A); // Uses &#96;A&#96; defined at the top.
-    let &#95;i32  = SingleGen(6); // Uses &#96;i32&#96;.
-    let &#95;char = SingleGen(&#39;a&#39;); // Uses &#96;char&#96;.
+    // Здесь, &#96;SingleGen&#96; также может иметь неявно определённый параметр типа:
+    let &#95;t    = SingleGen(A); // Используется структура &#96;A&#96;, объявленная выше.
+    let &#95;i32  = SingleGen(6); // Используется &#96;i32&#96;.
+    let &#95;char = SingleGen(&#39;a&#39;); // Используется &#96;char&#96;.
 }</pre></div>
 <div id="result"></div>
 </div>
 
 <h3 id="-">Смотрите также:</h3>
-<p><a href="custom_types/structs.html"><code>struct</code>s</a></p>
+<p><a href="custom_types/structs.html">Структуры</a></p>
 
                     
                     </section>
