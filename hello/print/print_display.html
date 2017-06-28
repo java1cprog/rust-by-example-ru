@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="1.2.2" data-basepath="../.." data-revision="1494910697815">
+    <div class="book" data-level="1.2.2" data-basepath="../.." data-revision="1498628288918">
     
 
 <div class="book-summary">
@@ -2895,7 +2895,7 @@
                         <h3 id="122-display">1.2.2 Display</h3>
 <p><code>fmt::Debug</code> выглядит не очень компактно и красиво,
 поэтому полезно настраивать внешний вид информации, которая будет напечатана.
-Это можно сделать реализовав <code>типаж</code> <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>fmt::Display</code></a> вручную,
+Это можно сделать реализовав <code>типаж</code> <a href="https://doc.rust-lang.org/std/fmt/" target="_blank"><code>fmt::Display</code></a> вручную,
 который использует маркер <code>{}</code> для печати. Его реализация выглядит следующим образом:</p>
 <pre><code class="lang-rust"><span class="hljs-comment">// Импортируем (с помощью `use`) модуль `fmt`, чтобы мы могли его использовать.</span>
 <span class="hljs-keyword">use</span> std::fmt;
@@ -2994,14 +2994,14 @@ fn main() {
 <p>И так, <code>fmt::Display</code> был реализован, но <code>fmt::Binary</code> нет, следовательно не может быть
 использован. <code>std::fmt</code> имеет много таких <a href="../../trait.html"><code>типажей</code></a> и
 каждый из них требует свою реализацию. Это более подробно описано в документации к
-<a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>.</p>
+<a href="https://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>.</p>
 <h3 id="">Задание</h3>
 <p>После того, как запустите код, представленный выше, используйте структуру <code>Point2D</code> как пример и
 добавьте новую структуру <code>Complex</code>, чтобы вывод был таким:</p>
 <pre><code>Display: 3.3 + 7.2i
 Debug: Complex { real: 3.3, imag: 7.2 }
 </code></pre><h3 id="-">Смотрите также</h3>
-<p><a href="../../trait/derive.html"><code>derive</code></a>, <a href="http://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>, <a href="../../macros.html">macros</a>, <a href="../../custom_types/structs.html"><code>структуры</code></a>,
+<p><a href="../../trait/derive.html"><code>derive</code></a>, <a href="https://doc.rust-lang.org/std/fmt/" target="_blank"><code>std::fmt</code></a>, <a href="../../macros.html">macros</a>, <a href="../../custom_types/structs.html"><code>структуры</code></a>,
 <a href="../../trait.html"><code>типажи</code></a>, и <a href="../../mod/use.html">use</a></p>
 
                     

@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="17.4" data-basepath=".." data-revision="1494910697815">
+    <div class="book" data-level="17.4" data-basepath=".." data-revision="1498628288918">
     
 
 <div class="book-summary">
@@ -2890,35 +2890,36 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_125">
+                    <section class="normal" id="section-gitbook_123">
                     
                         <h2 id="174-option">17.4 <code>Option</code></h2>
-<p>Sometimes it&#39;s desirable to catch the failure of some parts of a program
-instead of calling <code>panic!</code>; this can be accomplished using the <code>Option</code> enum.</p>
-<p>The <code>Option&lt;T&gt;</code> enum has two variants:</p>
+<p>Иногда желательно перехватить ошибку в какой-либо части программы
+вместо вызова паники с помощью макроса <code>panic!</code>. Это можно сделать
+с помощью перечисления <code>Option</code>.</p>
+<p>Перечисление <code>Option&lt;T&gt;</code> имеет два варианта:</p>
 <ul>
-<li><code>None</code>, to indicate failure or lack of value, and</li>
-<li><code>Some(value)</code>, a tuple struct that wraps a <code>value</code> with type <code>T</code>.</li>
+<li><code>None</code>, указывающий о наличии ошибки или отсутствия значений</li>
+<li><code>Some(value)</code>, кортежная структура, обёртка для <code>значения</code> типа <code>T</code>.</li>
 </ul>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// An integer division that doesn&#39;t &#96;panic!&#96;
+<div id="editor"><pre>// Целочисленное деление, которое не вызывает &#96;panic!&#96;
 fn checked&#95;division(dividend: i32, divisor: i32) -&gt; Option&lt;i32&gt; {
     if divisor == 0 {
-        // Failure is represented as the &#96;None&#96; variant
+        // В случае ошибки возвращаем &#96;None&#96;
         None
     } else {
-        // Result is wrapped in a &#96;Some&#96; variant
+        // Результат деления возвращаем в варианте &#96;Some&#96;
         Some(dividend / divisor)
     }
 }
 
-// This function handles a division that may not succeed
+// Эта функция обрабатывает деление, которое может выполнится с ошибкой
 fn try&#95;division(dividend: i32, divisor: i32) {
-    // &#96;Option&#96; values can be pattern matched, just like other enums
+    // Значение типа &#96;Option&#96; могут быть сопоставлены по шаблону
     match checked&#95;division(dividend, divisor) {
-        None =&gt; println!(&quot;{} / {} failed!&quot;, dividend, divisor),
+        None =&gt; println!(&quot;{} / {} вызвало ошибку!&quot;, dividend, divisor),
         Some(quotient) =&gt; {
             println!(&quot;{} / {} = {}&quot;, dividend, divisor, quotient)
         },
@@ -2929,17 +2930,17 @@ fn main() {
     try&#95;division(4, 2);
     try&#95;division(1, 0);
 
-    // Binding &#96;None&#96; to a variable needs to be type annotated
+    // Привязка &#96;None&#96; к переменной должна быть аннотированной по типу
     let none: Option&lt;i32&gt; = None;
     let &#95;equivalent&#95;none = None::&lt;i32&gt;;
 
     let optional&#95;float = Some(0f32);
 
-    // Unwrapping a &#96;Some&#96; variant will extract the value wrapped.
-    println!(&quot;{:?} unwraps to {:?}&quot;, optional&#95;float, optional&#95;float.unwrap());
+    // Распаковка варианта &#96;Some&#96; будет извлекать данные, которые в нем находятся.
+    println!(&quot;{:?} распаковывается в {:?}&quot;, optional&#95;float, optional&#95;float.unwrap());
 
-    // Unwrapping a &#96;None&#96; variant will &#96;panic!&#96;
-    println!(&quot;{:?} unwraps to {:?}&quot;, none, none.unwrap());
+    // Распаковка варианта &#96;None&#96; вызовет &#96;panic!&#96;
+    println!(&quot;{:?} распаковывается в {:?}&quot;, none, none.unwrap());
 }</pre></div>
 <div id="result"></div>
 </div>

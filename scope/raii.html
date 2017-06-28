@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="13.1" data-basepath=".." data-revision="1494910697815">
+    <div class="book" data-level="13.1" data-basepath=".." data-revision="1498628288918">
     
 
 <div class="book-summary">
@@ -2890,12 +2890,12 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_116">
+                    <section class="normal" id="section-gitbook_131">
                     
                         <h2 id="131-raii">13.1 RAII</h2>
 <p>Переменные в Rust не только держат данные в стеке, они также могут <em>владеть</em>
 ресурсами; к примеру, <code>Box&lt;T&gt;</code> владеет памятью в куче. Поскольку Rust строго
-придерживается идиоме <a href="http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization" target="_blank">RAII</a>, то когда объект выходит за зону видимости, вызывается
+придерживается идиоме <a href="https://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization" target="_blank">RAII</a>, то когда объект выходит за зону видимости, вызывается
 его деструктор, а ресурс, которым он <em>владеет</em> освобождается. </p>
 <p>Такое поведение защищает от багов, связанных с <em>утечкой ресурсов.</em> 
 Вам больше никогда не потребуется вручную освобождать память или же беспокоятся об её утечках!</p>

@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="9.2" data-basepath=".." data-revision="1494910697815">
+    <div class="book" data-level="9.2" data-basepath=".." data-revision="1498628288918">
     
 
 <div class="book-summary">
@@ -2890,7 +2890,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_97">
+                    <section class="normal" id="section-gitbook_92">
                     
                         <h2 id="92--">9.2 Видимость структуры</h2>
 <p>Структуры имеют дополнительный уровень видимости благодаря полями. По умолчанию
@@ -2902,20 +2902,20 @@
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>mod my {
     // Публичная структура с публичным полем обобщённого типа &#96;T&#96;
-    pub struct WhiteBox&lt;T&gt; {
+    pub struct OpenBox&lt;T&gt; {
         pub contents: T,
     }
 
     // Публичная структура с приватным полем обобщённого типа &#96;T&#96;
     #[allow(dead&#95;code)]
-    pub struct BlackBox&lt;T&gt; {
+    pub struct ClosedBox&lt;T&gt; {
         contents: T,
     }
 
-    impl&lt;T&gt; BlackBox&lt;T&gt; {
+    impl&lt;T&gt; ClosedBox&lt;T&gt; {
         // Публичный конструктор
-        pub fn new(contents: T) -&gt; BlackBox&lt;T&gt; {
-            BlackBox {
+        pub fn new(contents: T) -&gt; ClosedBox&lt;T&gt; {
+            ClosedBox {
                 contents: contents,
             }
         }
@@ -2924,23 +2924,23 @@
 
 fn main() {
     // Публичная структура с публичным полем может быть создана, как обычно
-    let white&#95;box = my::WhiteBox { contents: &quot;публичную информацию&quot; };
+    let open&#95;box = my::OpenBox { contents: &quot;публичную информацию&quot; };
 
     // а их поля доступны всем.
-    println!(&quot;Белая упаковка хранит: {}&quot;, white&#95;box.contents);
+    println!(&quot;Открытая упаковка хранит: {}&quot;, open&#95;box.contents);
 
     // Публичные структуры с приватными полями не могут быть созданы, используя имя полей
-    // Ошибка! &#96;BlackBox&#96; имеет приватные поля
-    //let black&#95;box = my::BlackBox { contents: &quot;классифицированную информацию&quot; };
+    // Ошибка! &#96;ClosedBox&#96; имеет приватные поля
+    //let closed&#95;box = my::ClosedBox { contents: &quot;классифицированную информацию&quot; };
     // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
     // Однако, структуры с приватными полями могут быть созданы с помощью
     // публичного конструктора
-    let &#95;black&#95;box = my::BlackBox::new(&quot;классифицированную информацию&quot;);
+    let &#95;closed&#95;box = my::ClosedBox::new(&quot;классифицированную информацию&quot;);
 
     // нельзя получить доступ к приватным полям публичных структур.
     // Ошибка! Поле &#96;contents&#96; приватное
-    //println!(&quot;Чёрная упаковка хранит: {}&quot;, &#95;black&#95;box.contents);
+    //println!(&quot;Закрытая упаковка хранит: {}&quot;, &#95;closed&#95;box.contents);
     // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 }</pre></div>
 <div id="result"></div>

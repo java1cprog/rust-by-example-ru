@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="3.1" data-basepath=".." data-revision="1494910697815">
+    <div class="book" data-level="3.1" data-basepath=".." data-revision="1498628288918">
     
 
 <div class="book-summary">
@@ -2902,7 +2902,13 @@
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// Единичная структура
+<div id="editor"><pre>#[derive(Debug)]
+struct Person&lt;&#39;a&gt; {
+    name: &amp;&#39;a str,
+    age: u8
+}
+
+// Единичная структура
 struct Nil;
 
 // Кортежная структура
@@ -2922,13 +2928,22 @@ struct Rectangle {
 }
 
 fn main() {
-    // Создаём связь со структурой &#96;Point&#96;
+    // Создаём структуру с помощью короткой инициализации полей
+    let name = &quot;Петя&quot;;
+    let age = 27;
+    let peter = Person { name, age };
+
+    // Дебаг вывод структуры
+    println!(&quot;{:?}&quot;, peter);
+
+
+    // Создаём структуру &#96;Point&#96;
     let point: Point = Point { x: 0.3, y: 0.4 };
 
-    // Получаем доступ к полям структуры &#96;point&#96;
-    println!(&quot;координаты точки: ({}, {})&quot;, point.x, point.y);
+    // Получаем доступ к полям структуры &#96;Point&#96;
+    println!(&quot;Координаты точки: ({}, {})&quot;, point.x, point.y);
 
-    // Деструктурируем &#96;point&#96; создавая связь с помощью &#96;let&#96;
+    // Деструктурируем &#96;Point&#96; создавая связь с помощью &#96;let&#96;
     let Point { x: my&#95;x, y: my&#95;y } = point;
 
     let &#95;rectangle = Rectangle {

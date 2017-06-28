@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="9.1" data-basepath=".." data-revision="1494910697815">
+    <div class="book" data-level="9.1" data-basepath=".." data-revision="1498628288918">
     
 
 <div class="book-summary">
@@ -2899,42 +2899,74 @@
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// Модуль по имени &#96;my&#96;
-mod my {
+<div id="editor"><pre>// Модуль по имени &#96;my&#95;mod&#96;
+mod my&#95;mod {
     // Все элементы модуля по умолчанию являются приватными.
     fn private&#95;function() {
-        println!(&quot;вызвана &#96;my::private&#95;function()&#96;&quot;);
+        println!(&quot;вызвана &#96;my&#95;mod::private&#95;function()&#96;&quot;);
     }
 
     // Используем модификатор &#96;pub&#96;, чтобы сделать элемент публичным.
     pub fn function() {
-        println!(&quot;вызвана &#96;my::function()&#96;&quot;);
+        println!(&quot;вызвана &#96;my&#95;mod::function()&#96;&quot;);
     }
 
     // Приватные элементы модуля доступны другим элементам
     // данного модуля.
     pub fn indirect&#95;access() {
-        print!(&quot;вызвана &#96;my::indirect&#95;access()&#96;, that&#92;n&gt; &quot;);
+        print!(&quot;вызвана &#96;my&#95;mod::indirect&#95;access()&#96;, которая&#92;n&gt; &quot;);
         private&#95;function();
     }
 
     // Модули так же могут быть вложенными
     pub mod nested {
         pub fn function() {
-            println!(&quot;вызвана &#96;my::nested::function()&#96;&quot;);
+            println!(&quot;вызвана &#96;my&#95;mod::nested::function()&#96;&quot;);
         }
 
         #[allow(dead&#95;code)]
         fn private&#95;function() {
-            println!(&quot;вызвана &#96;my::nested::private&#95;function()&#96;&quot;);
+            println!(&quot;вызвана &#96;my&#95;mod::nested::private&#95;function()&#96;&quot;);
         }
+
+        // Функции объявленные с использованием синтаксиса &#96;pub(in path)&#96; будет видна
+        // только в пределах заданного пути.
+        // &#96;path&#96; должен быть родительским или наследуемым модулем
+        pub(in my&#95;mod) fn public&#95;function&#95;in&#95;my&#95;mod() {
+            print!(&quot;вызвана &#96;my&#95;mod::nested::public&#95;function&#95;in&#95;my&#95;mod()&#96;, которая&#92;n &gt; &quot;);
+            public&#95;function&#95;in&#95;nested()
+        }
+
+        // Функции объявленные с использованием синтаксиса &#96;pub(self)&#96; будет видна
+        // только в текущем модуле
+        pub(self) fn public&#95;function&#95;in&#95;nested() {
+            println!(&quot;вызвана &#96;my&#95;mod::nested::public&#95;function&#95;in&#95;nested&quot;);
+        }
+
+        // Функции объявленные с использованием синтаксиса &#96;pub(super)&#96; будет видна
+        // только в родительском модуле
+        pub(super) fn public&#95;function&#95;in&#95;super&#95;mod() {
+            println!(&quot;вызвана my&#95;mod::nested::public&#95;function&#95;in&#95;super&#95;mod&quot;);
+        }
+    }
+
+    pub fn call&#95;public&#95;function&#95;in&#95;my&#95;mod() {
+        print!(&quot;вызвана &#96;my&#95;mod::call&#95;public&#95;funcion&#95;in&#95;my&#95;mod()&#96;, которая&#92;n&gt; &quot;);
+        nested::public&#95;function&#95;in&#95;my&#95;mod();
+        print!(&quot;&gt; &quot;);
+        nested::public&#95;function&#95;in&#95;super&#95;mod();
+    }
+
+    // pub(crate) сделает функцию видимой для всего текущего контейнера
+    pub(crate) fn public&#95;function&#95;in&#95;crate() {
+        println!(&quot;called &#96;my&#95;mod::public&#95;function&#95;in&#95;crate()&quot;);
     }
 
     // Вложенные модули подчиняются тем же правилам видимости
     mod private&#95;nested {
         #[allow(dead&#95;code)]
         pub fn function() {
-            println!(&quot;вызвана &#96;my::private&#95;nested::function()&#96;&quot;);
+            println!(&quot;вызвана &#96;my&#95;mod::private&#95;nested::function()&#96;&quot;);
         }
     }
 }
@@ -2946,26 +2978,26 @@ fn function() {
 fn main() {
     // Модули позволяют устранить противоречия между элементами, которые имеют одинаковые названия.
     function();
-    my::function();
+    my&#95;mod::function();
 
     // Публичные элементы, включая те, что находятся во вложенном модуле,
     // доступны извне родительского модуля
-    my::indirect&#95;access();
-    my::nested::function();
+    my&#95;mod::indirect&#95;access();
+    my&#95;mod::nested::function();
 
     // Приватные элементы модуля не доступны напрямую,
     // даже если вложенный модуль является публичным:
 
     // Ошибка! функция &#96;private&#95;function&#96; приватная
-    //my::private&#95;function();
+    //my&#95;mod::private&#95;function();
     // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
     // Ошибка! функция &#96;private&#95;function&#96; приватная
-    //my::nested::private&#95;function();
+    //my&#95;modmy::nested::private&#95;function();
     // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
     // Ошибка! Модуль &#96;private&#95;nested&#96; является приватным
-    //my::private&#95;nested::function();
+    //my&#95;mod::private&#95;nested::function();
     // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 }</pre></div>
 <div id="result"></div>

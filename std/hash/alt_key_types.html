@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="17.7.1" data-basepath="../.." data-revision="1494910697815">
+    <div class="book" data-level="17.7.1" data-basepath="../.." data-revision="1498628288918">
     
 
 <div class="book-summary">
@@ -2890,7 +2890,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_123">
+                    <section class="normal" id="section-gitbook_120">
                     
                         <h3 id="1771-alternatecustom-key-types">17.7.1 Alternate/custom key types</h3>
 <p>Any type that implements the <code>Eq</code> and <code>Hash</code> traits can be a key in <code>HashMap</code>.
@@ -2902,7 +2902,7 @@ This includes:</p>
 and call <code>.get()</code> with an <code>&amp;str</code>)</li>
 </ul>
 <p>Note that <code>f32</code> and <code>f64</code> do <em>not</em> implement <code>Hash</code>,
-likely because <a href="http://en.wikipedia.org/wiki/Floating_point#Accuracy_problems" target="_blank">floating-point precision errors</a>
+likely because <a href="https://en.wikipedia.org/wiki/Floating_point#Accuracy_problems" target="_blank">floating-point precision errors</a>
 would make using them as hashmap keys horribly error-prone.</p>
 <p>All collection classes implement <code>Eq</code> and <code>Hash</code>
 if their contained type also respectively implements <code>Eq</code> and <code>Hash</code>.
