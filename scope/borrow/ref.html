@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="13.3.4" data-basepath="../.." data-revision="1499627800603">
+    <div class="book" data-level="13.3.4" data-basepath="../.." data-revision="1501074528262">
     
 
 <div class="book-summary">
@@ -609,6 +609,22 @@
                             <b>7.2.1.</b>
                         
                          Вложенность и метки
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.2.2" data-path="flow_control/loop/return.html">
+            
+                
+                    <a href="../../flow_control/loop/return.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.2.</b>
+                        
+                         Returning from loops
                     </a>
                 
             
@@ -2890,7 +2906,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_102">
+                    <section class="normal" id="section-gitbook_105">
                     
                         <h3 id="1334-the-ref-pattern">13.3.4 The ref pattern</h3>
 <p>When doing pattern matching or destructuring via the <code>let</code> binding, the <code>ref</code>
@@ -2941,7 +2957,7 @@ fn main() {
     let mut mutable&#95;tuple = (Box::new(5u32), 3u32);
 
     {
-        // Destructure &#96;mutable&#95; tuple&#96; to change the value of &#96;last&#96;.
+        // Destructure &#96;mutable&#95;tuple&#96; to change the value of &#96;last&#96;.
         let (&#95;, ref mut last) = mutable&#95;tuple;
         &#42;last = 2u32;
     }
