@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Functions | Rust на примерах</title>
+        <title>Функции | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="12.1" data-basepath=".." data-revision="1501074528262">
+    <div class="book" data-level="12.1" data-basepath=".." data-revision="1504097664628">
     
 
 <div class="book-summary">
@@ -1329,7 +1329,7 @@
                         
                             <b>12.1.</b>
                         
-                         Functions
+                         Функции
                     </a>
                 
             
@@ -2908,60 +2908,62 @@
                 
                     <section class="normal" id="section-gitbook_75">
                     
-                        <h2 id="121-functions">12.1 Functions</h2>
-<p>The same set of rules can be applied to functions: a type <code>T</code> becomes
-generic when preceded by <code>&lt;T&gt;</code>.</p>
-<p>Using generic functions sometimes requires explicitly specifying type
-parameters. This may be the case if the function is called where the return type
-is generic, or if the compiler doesn&#39;t have enough information to infer
-the necessary type parameters.</p>
-<p>A function call with explicitly specified type parameters looks like:
+                        <h2 id="121-">12.1 Функции</h2>
+<p>Тот же набор правил применяется и к функциям: тип <code>T</code> становится
+обобщённым, когда предшествует <code>&lt;T&gt;</code>.</p>
+<p>При использовании обобщённых функций, иногда требуется явно указывать тип
+данных параметров. Это может быть необходимо в случае, если вызываемая функция возвращает
+обобщённый тип или у компилятора недостаточно информации для вывода необходимого
+типа данных.</p>
+<p>Вызов функции с явно указанными типами данных параметров выглядит так:
 <code>fun::&lt;A, B, ...&gt;()</code>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>struct A;          // Concrete type &#96;A&#96;.
-struct S(A);       // Concrete type &#96;S&#96;.
-struct SGen&lt;T&gt;(T); // Generic type &#96;SGen&#96;.
+<div id="editor"><pre>struct A; // Конкретный тип &#96;A&#96;.
+struct S(A); // Конкретный тип &#96;S&#96;.
+struct SGen&lt;T&gt;(T); // Обобщённый тип &#96;SGen&#96;.
 
-// The following functions all take ownership of the variable passed into
-// them and immediately go out of scope, freeing the variable.
+// Все следующие функции становятся владельцем переменной, переданной в них.
+// После передачи, она сразу выходит из области видимости и освобождается.
 
-// Define a function &#96;reg&#95;fn&#96; that takes an argument &#96;&#95;s&#96; of type &#96;S&#96;.
-// This has no &#96;&lt;T&gt;&#96; so this is not a generic function.
+// Объявляем функцию &#96;reg&#95;fn&#96;, которая принимает аргумент &#96;&#95;s&#96; типа &#96;S&#96;.
+// Здесь отсутствует &#96;&lt;T&gt;&#96;, поэтому это не обобщённая функция.
 fn reg&#95;fn(&#95;s: S) {}
 
-// Define a function &#96;gen&#95;spec&#95;t&#96; that takes an argument &#96;&#95;s&#96; of type &#96;SGen&lt;T&gt;&#96;.
-// It has been explicitly given the type parameter &#96;A&#96;, but because &#96;A&#96; has not
-// been specified as a generic type parameter for &#96;gen&#95;spec&#95;t&#96;, it is not generic.
+// Объявляем функцию &#96;gen&#95;spec&#95;t&#96;, которая принимает аргумент &#96;&#95;s&#96; типа &#96;SGen&lt;T&gt;&#96;.
+// В ней явно задан параметр типа &#96;A&#96;, но поскольку &#96;A&#96; не был указан
+// как параметр обобщённого типа для &#96;gen&#95;spec&#95;t&#96;, то он не является обобщённым.
 fn gen&#95;spec&#95;t(&#95;s: SGen&lt;A&gt;) {}
 
-// Define a function &#96;gen&#95;spec&#95;i32&#96; that takes an argument &#96;&#95;s&#96; of type &#96;SGen&lt;i32&gt;&#96;.
-// It has been explicitly given the type parameter &#96;i32&#96;, which is a specific type.
-// Because &#96;i32&#96; is not a generic type, this function is also not generic.
+// Объявляем функцию &#96;gen&#95;spec&#95;i32&#96;, которая принимает аргумент &#96;&#95;s&#96; типа &#96;SGen&lt;i32&gt;&#96;.
+// В ней явно задан тип &#96;i32&#96;, который является определённым типом.
+// Поскольку &#96;i32&#96; не является обобщённым типом, эта функция
+// также не является обобщённой.
 fn gen&#95;spec&#95;i32(&#95;s: SGen&lt;i32&gt;) {}
 
-// Define a function &#96;generic&#96; that takes an argument &#96;&#95;s&#96; of type &#96;SGen&lt;T&gt;&#96;.
-// Because &#96;SGen&lt;T&gt;&#96; is preceded by &#96;&lt;T&gt;&#96;, this function is generic over &#96;T&#96;.
+// Объявляем функцию &#96;generic&#96;, которая принимает аргумент &#96;&#95;s&#96; типа &#96;SGen&lt;T&gt;&#96;.
+// Поскольку &#96;SGen&lt;T&gt;&#96; предшествует &#96;&lt;T&gt;&#96;, эта функция
+// является обобщённой над &#96;T&#96;.
 fn generic&lt;T&gt;(&#95;s: SGen&lt;T&gt;) {}
 
 fn main() {
-    // Using the non-generic functions
-    reg&#95;fn(S(A));          // Concrete type.
-    gen&#95;spec&#95;t(SGen(A));   // Implicitly specified type parameter &#96;A&#96;.
-    gen&#95;spec&#95;i32(SGen(6)); // Implicitly specified type parameter &#96;i32&#96;.
+    // Используем не обобщённые функции.
+    reg&#95;fn(S(A)); // Конкретный тип.
+    gen&#95;spec&#95;t(SGen(A)); // Неявно определён тип параметра &#96;A&#96;.
+    gen&#95;spec&#95;i32(SGen(6)); // Неявно определён тип параметра &#96;i32&#96;.
 
-    // Explicitly specified type parameter &#96;char&#96; to &#96;generic()&#96;.
+    // Явно определён тип параметра &#96;char&#96; в &#96;generic()&#96;.
     generic::&lt;char&gt;(SGen(&#39;a&#39;));
 
-    // Implicitly specified type parameter &#96;char&#96; to &#96;generic()&#96;.
+    // Неявно определён параметр типа &#96;char&#96; в &#96;generic()&#96;.
     generic(SGen(&#39;c&#39;));
 }</pre></div>
 <div id="result"></div>
 </div>
 
 <h3 id="-">Смотрите также:</h3>
-<p><a href="../fn.html">functions</a> and <a href="../custom_types/structs.html"><code>struct</code>s</a></p>
+<p><a href="../fn.html">Функции</a> и <a href="../custom_types/structs.html">структуры</a></p>
 
                     
                     </section>
