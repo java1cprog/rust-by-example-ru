@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.6" data-basepath=".." data-revision="1504119740554">
+    <div class="book" data-level="16.6" data-basepath=".." data-revision="1504120090534">
     
 
 <div class="book-summary">
@@ -2912,7 +2912,7 @@
 <p>Notice in the previous example that our immediate reaction to calling
 <code>parse</code> is to <code>map</code> the error from a library error into our new custom
 error type:</p>
-<pre><code class="lang-rust">.and_then(|s| s.parse::&lt;<span class="hljs-keyword">i32</span>&gt;()
+<pre><code class="lang-rust">.and_then(|s| s.parse::&lt;<span class="hljs-keyword">i32</span>&gt;())
     .map_err(DoubleError::Parse)
 </code></pre>
 <p>Since this is a simple and common operation, it would be convenient if it
