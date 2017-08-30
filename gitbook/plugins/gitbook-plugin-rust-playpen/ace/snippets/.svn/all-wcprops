@@ -3,6 +3,84 @@ svn:wc:ra_dav:version-url
 V 54
 /ajaxorg/ace-builds/!svn/ver/94/trunk/src-min/snippets
 END
+golang.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/golang.js
+END
+wollok.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/ajaxorg/ace-builds/!svn/ver/62/trunk/src-min/snippets/wollok.js
+END
+sh.js
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/ajaxorg/ace-builds/!svn/ver/94/trunk/src-min/snippets/sh.js
+END
+textile.js
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/textile.js
+END
+turtle.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/ajaxorg/ace-builds/!svn/ver/94/trunk/src-min/snippets/turtle.js
+END
+ejs.js
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/ejs.js
+END
+c_cpp.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/c_cpp.js
+END
+ftl.js
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/ftl.js
+END
+mask.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/ajaxorg/ace-builds/!svn/ver/51/trunk/src-min/snippets/mask.js
+END
+autohotkey.js
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/autohotkey.js
+END
+vhdl.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/vhdl.js
+END
+nix.js
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/nix.js
+END
+kotlin.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/ajaxorg/ace-builds/!svn/ver/72/trunk/src-min/snippets/kotlin.js
+END
 snippets.js
 K 25
 svn:wc:ra_dav:version-url
@@ -800,82 +878,4 @@ K 25
 svn:wc:ra_dav:version-url
 V 62
 /ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/jade.js
-END
-golang.js
-K 25
-svn:wc:ra_dav:version-url
-V 64
-/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/golang.js
-END
-wollok.js
-K 25
-svn:wc:ra_dav:version-url
-V 64
-/ajaxorg/ace-builds/!svn/ver/62/trunk/src-min/snippets/wollok.js
-END
-sh.js
-K 25
-svn:wc:ra_dav:version-url
-V 60
-/ajaxorg/ace-builds/!svn/ver/94/trunk/src-min/snippets/sh.js
-END
-textile.js
-K 25
-svn:wc:ra_dav:version-url
-V 65
-/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/textile.js
-END
-turtle.js
-K 25
-svn:wc:ra_dav:version-url
-V 64
-/ajaxorg/ace-builds/!svn/ver/94/trunk/src-min/snippets/turtle.js
-END
-ejs.js
-K 25
-svn:wc:ra_dav:version-url
-V 61
-/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/ejs.js
-END
-c_cpp.js
-K 25
-svn:wc:ra_dav:version-url
-V 63
-/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/c_cpp.js
-END
-ftl.js
-K 25
-svn:wc:ra_dav:version-url
-V 61
-/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/ftl.js
-END
-mask.js
-K 25
-svn:wc:ra_dav:version-url
-V 62
-/ajaxorg/ace-builds/!svn/ver/51/trunk/src-min/snippets/mask.js
-END
-autohotkey.js
-K 25
-svn:wc:ra_dav:version-url
-V 68
-/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/autohotkey.js
-END
-vhdl.js
-K 25
-svn:wc:ra_dav:version-url
-V 62
-/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/vhdl.js
-END
-nix.js
-K 25
-svn:wc:ra_dav:version-url
-V 61
-/ajaxorg/ace-builds/!svn/ver/42/trunk/src-min/snippets/nix.js
-END
-kotlin.js
-K 25
-svn:wc:ra_dav:version-url
-V 64
-/ajaxorg/ace-builds/!svn/ver/72/trunk/src-min/snippets/kotlin.js
 END
