@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Methods | Rust на примерах</title>
+        <title>Методы | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="13.4.3" data-basepath="../.." data-revision="1504097702965">
+    <div class="book" data-level="13.4.3" data-basepath="../.." data-revision="1504119740554">
     
 
 <div class="book-summary">
@@ -1750,7 +1750,7 @@
                         
                             <b>13.4.3.</b>
                         
-                         Methods
+                         Методы
                     </a>
                 
             
@@ -1766,7 +1766,7 @@
                         
                             <b>13.4.4.</b>
                         
-                         Structs
+                         Структуры
                     </a>
                 
             
@@ -2908,23 +2908,25 @@
                 
                     <section class="normal" id="section-gitbook_113">
                     
-                        <h3 id="1343-methods">13.4.3 Methods</h3>
-<p>Methods are annotated similarly to functions:</p>
+                        <h3 id="1343-">13.4.3 Методы</h3>
+<p>Методы аннотируются аналогично функциям:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>struct Owner(i32);
 
 impl Owner {
-    // Annotate lifetimes as in a standalone function.
-    fn add&#95;one&lt;&#39;a&gt;(&amp;&#39;a mut self) { self.0 += 1; }
+    // Время жизни аннотируется как в отдельной функции.
+    fn add&#95;one&lt;&#39;a&gt;(&amp;&#39;a mut self) {
+        self.0 += 1;
+    }
     fn print&lt;&#39;a&gt;(&amp;&#39;a self) {
         println!(&quot;&#96;print&#96;: {}&quot;, self.0);
     }
 }
 
 fn main() {
-    let mut owner  = Owner(18);
+    let mut owner = Owner(18);
 
     owner.add&#95;one();
     owner.print();
@@ -2933,7 +2935,7 @@ fn main() {
 </div>
 
 <h3 id="-">Смотрите также:</h3>
-<p><a href="../../fn/methods.html">methods</a></p>
+<p><a href="../../fn/methods.html"><code>Методы</code></a></p>
 
                     
                     </section>
@@ -2947,7 +2949,7 @@ fn main() {
         <a href="../../scope/lifetime/fn.html" class="navigation navigation-prev " aria-label="Previous page: Functions"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../scope/lifetime/struct.html" class="navigation navigation-next " aria-label="Next page: Structs"><i class="fa fa-angle-right"></i></a>
+        <a href="../../scope/lifetime/struct.html" class="navigation navigation-next " aria-label="Next page: Структуры"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
