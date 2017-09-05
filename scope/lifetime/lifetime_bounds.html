@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="13.4.5" data-basepath="../.." data-revision="1504120210646">
+    <div class="book" data-level="13.4.5" data-basepath="../.." data-revision="1504612323853">
     
 
 <div class="book-summary">
@@ -1377,7 +1377,7 @@
                         
                             <b>12.4.</b>
                         
-                         Bounds
+                         Ограничения
                     </a>
                 
             
@@ -2906,39 +2906,39 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_108">
+                    <section class="normal" id="section-gitbook_111">
                     
                         <h3 id="1345-bounds">13.4.5 Bounds</h3>
-<p>Just like generic types can be bounded, lifetimes (themselves generic)
-use bounds as well. The <code>:</code> character has a slightly different meaning here,
-but <code>+</code> is the same. Note how the following read:</p>
+<p>Так же как и обобщённые типы, время жизни (обобщённое само по себе) могут быть ограничены.
+Знак <code>:</code> имеет немного другое значение,
+но  знак <code>+</code> такое же. Прочитайте следующую заметку:</p>
 <ol>
-<li><code>T: &#39;a</code>: <em>All</em> references in <code>T</code> must outlive lifetime <code>&#39;a</code>.</li>
-<li><code>T: Trait + &#39;a</code>: Type <code>T</code> must implement trait <code>Trait</code> and <em>all</em> references
-in <code>T</code> must outlive <code>&#39;a</code>.</li>
+<li><code>T: &#39;a</code>: <em>Все</em> ссылки в <code>T</code> должны пережить время жизни <code>&#39;a</code>.</li>
+<li><code>T: Trait + &#39;a</code>: Тип <code>T</code> должен реализовать типаж <code>Trait</code> и <em>все</em> ссылки
+в <code>T</code> должны пережить <code>&#39;a</code>.</li>
 </ol>
-<p>The example below shows the above syntax in action:</p>
+<p>Пример ниже демонстрирует синтаксис в действии:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>use std::fmt::Debug; // Trait to bound with.
+<div id="editor"><pre>use std::fmt::Debug; // Типаж с ограничениями.
 
 #[derive(Debug)]
 struct Ref&lt;&#39;a, T: &#39;a&gt;(&amp;&#39;a T);
-// &#96;Ref&#96; contains a reference to a generic type &#96;T&#96; that has
-// an unknown lifetime &#96;&#39;a&#96;. &#96;T&#96; is bounded such that any
-// &#42;references&#42; in &#96;T&#96; must outlive &#96;&#39;a&#96;. Additionally, the lifetime
-// of &#96;Ref&#96; may not exceed &#96;&#39;a&#96;.
+// &#96;Ref&#96; содержит ссылки на обобщённый тип &#96;T&#96; который имеет
+// неизвестное время жизни &#96;&#39;a&#96;. &#96;T&#96; ограничен так, что любые
+// &#42;ссылки&#42; в &#96;T&#96; должны пережить &#96;&#39;a&#96;.
+// Кроме того, время жизни &#96;Ref&#96; не может превышать &#96;&#39;a&#96;.
 
-// A generic function which prints using the &#96;Debug&#96; trait.
+// Обобщённая функция, которая показывает использование типажа &#96;Debug&#96;.
 fn print&lt;T&gt;(t: T) where
     T: Debug {
     println!(&quot;&#96;print&#96;: t is {:?}&quot;, t);
 }
 
-// Here a reference to &#96;T&#96; is taken where &#96;T&#96; implements
-// &#96;Debug&#96; and all &#42;references&#42; in &#96;T&#96; outlive &#96;&#39;a&#96;. In
-// addition, &#96;&#39;a&#96; must outlive the function.
+// Здесь приводится ссылка на &#96;T&#96;, где &#96;T&#96; реализует
+// &#96;Debug&#96; и все &#42;ссылки&#42; в &#96;T&#96; переживут &#96;&#39;a&#96;.
+// К тому же, &#96;&#39;a&#96; должен пережить функцию.
 fn print&#95;ref&lt;&#39;a, T&gt;(t: &amp;&#39;a T) where
     T: Debug + &#39;a {
     println!(&quot;&#96;print&#95;ref&#96;: t is {:?}&quot;, t);
@@ -2955,7 +2955,7 @@ fn main() {
 </div>
 
 <h3 id="-">Смотрите также:</h3>
-<p><a href="../../generics.html">generics</a>, <a href="../../generics/bounds.html">bounds in generics</a>, and
+<p><a href="../../generics.html"><code>Обобщения</code></a>, <a href="../../generics/bounds.html">bounds in generics</a>, and
 <a href="../../generics/multi_bounds.html">multiple bounds in generics</a></p>
 
                     
