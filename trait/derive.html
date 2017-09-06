@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="14.1" data-basepath=".." data-revision="1504612418913">
+    <div class="book" data-level="14.1" data-basepath=".." data-revision="1504711697279">
     
 
 <div class="book-summary">
@@ -381,7 +381,7 @@
                         
                             <b>3.3.</b>
                         
-                         константы
+                         Константы
                     </a>
                 
             
@@ -2906,31 +2906,31 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_148">
+                    <section class="normal" id="section-gitbook_147">
                     
                         <h2 id="141-derive">14.1 Derive</h2>
-<p>The compiler is capable of providing basic implementations for some traits via
-the <code>#[derive]</code> <a href="../attribute.html">attribute</a>. These traits can still be
-manually implemented if a more complex behavior is required.</p>
-<p>The following is a list of derivable traits:</p>
+<p>Компилятор способен предоставить основные реализации для некоторых типажей
+с помощью <a href="../attribute.html">атрибута</a> <code>#[derive]</code>. Эти типажи могут быть
+реализованы вручную, если необходимо более сложное поведение.</p>
+<p>Ниже приводится список выводимых типажей:</p>
 <ul>
-<li>Comparison traits:
+<li>Типажи сравнения:
 <a href="https://doc.rust-lang.org/std/cmp/trait.Eq.html" target="_blank"><code>Eq</code></a>, <a href="https://doc.rust-lang.org/std/cmp/trait.PartialEq.html" target="_blank"><code>PartialEq</code></a>, <a href="https://doc.rust-lang.org/std/cmp/trait.Ord.html" target="_blank"><code>Ord</code></a>, <a href="https://doc.rust-lang.org/std/cmp/trait.PartialOrd.html" target="_blank"><code>PartialOrd</code></a></li>
-<li><a href="https://doc.rust-lang.org/std/clone/trait.Clone.html" target="_blank"><code>Clone</code></a>, to create <code>T</code> from <code>&amp;T</code> via a copy.</li>
-<li><a href="https://doc.rust-lang.org/core/marker/trait.Copy.html" target="_blank"><code>Copy</code></a>, to give a type &#39;copy semantics&#39; instead of &#39;move semantics&#39;</li>
-<li><a href="https://doc.rust-lang.org/std/hash/trait.Hash.html" target="_blank"><code>Hash</code></a>, to compute a hash from <code>&amp;T</code>.</li>
-<li><a href="https://doc.rust-lang.org/std/default/trait.Default.html" target="_blank"><code>Default</code></a>, to create an empty instance of a data type.</li>
-<li><code>Zero</code>, to create a zero instance of a numeric data type.</li>
-<li><a href="https://doc.rust-lang.org/std/fmt/trait.Debug.html" target="_blank"><code>Debug</code></a>, to format a value using the <code>{:?}</code> formatter.</li>
+<li><a href="https://doc.rust-lang.org/std/clone/trait.Clone.html" target="_blank"><code>Clone</code></a>, для создания <code>T</code> из <code>&amp;T</code> с помощью копии.</li>
+<li><a href="https://doc.rust-lang.org/core/marker/trait.Copy.html" target="_blank"><code>Copy</code></a>, чтобы создать тип семантикой копирования, вместо семантики перемещения.</li>
+<li><a href="https://doc.rust-lang.org/std/hash/trait.Hash.html" target="_blank"><code>Hash</code></a>, чтобы вычислить хэш из <code>&amp;T</code>.</li>
+<li><a href="https://doc.rust-lang.org/std/default/trait.Default.html" target="_blank"><code>Default</code></a>, чтобы создать пустой экземпляр типа данных.</li>
+<li><code>Zero</code>, для создания нулевого экземпляра числового типа данных.</li>
+<li><a href="https://doc.rust-lang.org/std/fmt/trait.Debug.html" target="_blank"><code>Debug</code></a>, чтобы отформатировать значение с помощью <code>{:?}</code>.</li>
 </ul>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// &#96;Centimeters&#96;, a tuple struct that can be compared
+<div id="editor"><pre>// &#96;Centimeters&#96;, кортежная структура, которую можно сравнить
 #[derive(PartialEq, PartialOrd)]
 struct Centimeters(f64);
 
-// &#96;Inches&#96;, a tuple struct that can be printed
+// &#96;Inches&#96;, кортежная структура, которую можно напечатать
 #[derive(Debug)]
 struct Inches(i32);
 
@@ -2942,19 +2942,19 @@ impl Inches {
     }
 }
 
-// &#96;Seconds&#96;, a tuple struct no additional attributes
+// &#96;Seconds&#96;, кортежная структура без дополнительных атрибутов
 struct Seconds(i32);
 
 fn main() {
     let &#95;one&#95;second = Seconds(1);
 
-    // Error: &#96;Seconds&#96; can&#39;t be printed; it doesn&#39;t implement the &#96;Debug&#96; trait
+    // Ошибка: &#96;Seconds&#96; не может быть напечатана; не реализован типаж &#96;Debug&#96;
     //println!(&quot;One second looks like: {:?}&quot;, &#95;one&#95;second);
-    // ЗАДАНИЕ ^ Try uncommenting this line
+    // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
-    // Error: &#96;Seconds&#96; can&#39;t be compared; it doesn&#39;t implement the &#96;PartialEq&#96; trait
+    // Ошибка: &#96;Seconds&#96; нельзя сравнить; не реализован типаж &#96;PartialEq&#96;
     //let &#95;this&#95;is&#95;true = (&#95;one&#95;second == &#95;one&#95;second);
-    // ЗАДАНИЕ ^ Try uncommenting this line
+    // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
     let foot = Inches(12);
 
