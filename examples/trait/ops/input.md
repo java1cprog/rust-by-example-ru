@@ -1,14 +1,15 @@
-In Rust, many of the operators can be overloaded via traits. That is, some operators can
-be used to accomplish different tasks based on their input arguments. This is possible
-because operators are syntactic sugar for method calls. For example, the `+` operator in
-`a + b` calls the `add` method (as in `a.add(b)`). This `add` method is part of the `Add`
-trait. Hence, the `+` operator can be used by any implementor of the `Add` trait.
+В Rust, множество операторов могут быть перегружены с помощью типажей. То есть, некоторые
+операторы могут использоваться для выполнения различных задач на основе вводимых аргументов.
+Это возможно, потому что операторы являются синтаксическим сахаром для вызова методов. Например,
+оператор `+` в `a + b` вызывает метод `add` (как в `a.add(b)`).
+Метод `add` является частью типажа `Add`.
+Следовательно, оператор `+` могут использовать все, кто реализуют типаж `Add`.
 
-A list of the traits, such as `Add`, that overload operators is available [here][ops].
+Список типажей, таких как `Add`, которые перегружают операторы, доступен [здесь][ops].
 
 {operator.play}
 
-###See Also
+###Смотрите также
 
 [Add][add], [Syntax Index][syntax]
 
