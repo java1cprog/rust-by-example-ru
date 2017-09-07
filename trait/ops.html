@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Operator Overloading | Rust на примерах</title>
+        <title>Перегрузка операторов | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="14.2" data-basepath=".." data-revision="1504711854338">
+    <div class="book" data-level="14.2" data-basepath=".." data-revision="1504809424839">
     
 
 <div class="book-summary">
@@ -1889,7 +1889,7 @@
                         
                             <b>14.2.</b>
                         
-                         Operator Overloading
+                         Перегрузка операторов
                     </a>
                 
             
@@ -2906,15 +2906,16 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_152">
+                    <section class="normal" id="section-gitbook_151">
                     
-                        <h2 id="142-operator-overloading">14.2 Operator Overloading</h2>
-<p>In Rust, many of the operators can be overloaded via traits. That is, some operators can
-be used to accomplish different tasks based on their input arguments. This is possible
-because operators are syntactic sugar for method calls. For example, the <code>+</code> operator in
-<code>a + b</code> calls the <code>add</code> method (as in <code>a.add(b)</code>). This <code>add</code> method is part of the <code>Add</code>
-trait. Hence, the <code>+</code> operator can be used by any implementor of the <code>Add</code> trait.</p>
-<p>A list of the traits, such as <code>Add</code>, that overload operators is available <a href="https://doc.rust-lang.org/core/ops/" target="_blank">here</a>.</p>
+                        <h2 id="142--">14.2 Перегрузка операторов</h2>
+<p>В Rust, множество операторов могут быть перегружены с помощью типажей. То есть, некоторые
+операторы могут использоваться для выполнения различных задач на основе вводимых аргументов.
+Это возможно, потому что операторы являются синтаксическим сахаром для вызова методов. Например,
+оператор <code>+</code> в <code>a + b</code> вызывает метод <code>add</code> (как в <code>a.add(b)</code>).
+Метод <code>add</code> является частью типажа <code>Add</code>.
+Следовательно, оператор <code>+</code> могут использовать все, кто реализуют типаж <code>Add</code>.</p>
+<p>Список типажей, таких как <code>Add</code>, которые перегружают операторы, доступен <a href="https://doc.rust-lang.org/core/ops/" target="_blank">здесь</a>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2929,9 +2930,10 @@ struct FooBar;
 #[derive(Debug)]
 struct BarFoo;
 
-// The &#96;std::ops::Add&#96; trait is used to specify the functionality of &#96;+&#96;.
-// Here, we make &#96;Add&lt;Bar&gt;&#96; - the trait for addition with a RHS of type &#96;Bar&#96;.
-// The following block implements the operation: Foo + Bar = FooBar
+// Типаж &#96;std::ops::Add&#96; используется для указания функциональности &#96;+&#96;.
+// Здесь мы объявим &#96;Add&lt;Bar&gt;&#96; - типаж сложения, со вторым
+// операндом типа &#96;Bar&#96;.
+// Следующий блок реализует операцию: Foo + Bar = FooBar
 impl ops::Add&lt;Bar&gt; for Foo {
     type Output = FooBar;
 
@@ -2942,9 +2944,10 @@ impl ops::Add&lt;Bar&gt; for Foo {
     }
 }
 
-// By reversing the types, we end up implementing non-commutative addition.
-// Here, we make &#96;Add&lt;Foo&gt;&#96; - the trait for addition with a RHS of type &#96;Foo&#96;.
-// This block implements the operation: Bar + Foo = BarFoo
+// Если мы поменяем местами типы, то получим реализацию некоммутативного сложения.
+// Здесь мы объявим &#96;Add&lt;Foo&gt;&#96; - типаж сложения, со вторым
+// операндом типа &#96;Foo&#96;.
+// Этот блок реализует операцию: Bar + Foo = BarFoo
 impl ops::Add&lt;Foo&gt; for Bar {
     type Output = BarFoo;
 
@@ -2962,7 +2965,7 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<h3 id="see-also">See Also</h3>
+<h3 id="-">Смотрите также</h3>
 <p><a href="https://doc.rust-lang.org/core/ops/trait.Add.html" target="_blank">Add</a>, <a href="https://doc.rust-lang.org/book/syntax-index.html" target="_blank">Syntax Index</a></p>
 
                     
