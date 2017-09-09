@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="14.3" data-basepath=".." data-revision="1504809508242">
+    <div class="book" data-level="14.3" data-basepath=".." data-revision="1504967888684">
     
 
 <div class="book-summary">
@@ -2909,14 +2909,14 @@
                     <section class="normal" id="section-gitbook_149">
                     
                         <h2 id="143-drop">14.3 Drop</h2>
-<p>The <a href="https://doc.rust-lang.org/std/ops/trait.Drop.html" target="_blank"><code>Drop</code></a> trait only has one method: <code>drop</code>, which is called automatically
-when an object goes out of scope. The main use of the <code>Drop</code> trait is to free the
-resources that the implementor instance owns.</p>
-<p><code>Box</code>, <code>Vec</code>, <code>String</code>, <code>File</code>, and <code>Process</code> are some examples of types that
-implement the <code>Drop</code> trait to free resources. The <code>Drop</code> trait can also be
-manually implemented for any custom data type.</p>
-<p>The following example adds a print to console to the <code>drop</code> function to announce
-when it is called.</p>
+<p>Типаж <a href="https://doc.rust-lang.org/std/ops/trait.Drop.html" target="_blank"><code>Drop</code></a> имеет только один метод: <code>drop</code>, который вызывается автоматически,
+когда объект выходит из области видимости. Основное применение типажа <code>Drop</code>
+заключается в том, чтобы освободить ресурсы, которыми владеет экземпляр реализации.</p>
+<p><code>Box</code>, <code>Vec</code>, <code>String</code>, <code>File</code>, и <code>Process</code> - это некоторые примеры типов, которые
+реализуют типаж <code>Drop</code> для освобождения ресурсов. Типаж <code>Drop</code> также может быть
+реализован вручную для любых индивидуальных типов данных.</p>
+<p>В следующем примере мы добавим вывод в консоль к функции <code>drop</code>, чтобы было видно,
+когда она вызывается.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2924,7 +2924,7 @@ when it is called.</p>
     name: &amp;&#39;static str,
 }
 
-// This trivial implementation of &#96;drop&#96; adds a print to console.
+// Это простая реализация &#96;drop&#96;, которая добавляет вывод в консоль.
 impl Drop for Droppable {
     fn drop(&amp;mut self) {
         println!(&quot;&gt; Dropping {}&quot;, self.name);
@@ -2934,11 +2934,11 @@ impl Drop for Droppable {
 fn main() {
     let &#95;a = Droppable { name: &quot;a&quot; };
 
-    // block A
+    // блок A
     {
         let &#95;b = Droppable { name: &quot;b&quot; };
 
-        // block B
+        // блок B
         {
             let &#95;c = Droppable { name: &quot;c&quot; };
             let &#95;d = Droppable { name: &quot;d&quot; };
@@ -2951,14 +2951,14 @@ fn main() {
     }
     println!(&quot;Just exited block A&quot;);
 
-    // Variable can be manually dropped using the &#96;drop&#96; function
+    // Переменную можно сбросить вручную с помощью функции &#96;drop&#96;.
     drop(&#95;a);
-    // ЗАДАНИЕ ^ Try commenting this line
+    // ЗАДАНИЕ ^ Попробуйте закомментировать эту строку
 
     println!(&quot;end of the main function&quot;);
 
-    // &#96;&#95;a&#96; &#42;won&#39;t&#42; be &#96;drop&#96;ed again here, because it already has been
-    // (manually) &#96;drop&#96;ed
+    // &#42;Нельзя&#42; сбросить &#96;&#95;a&#96; снова, потому что переменная уже
+    // (вручную) сброшена.
 }</pre></div>
 <div id="result"></div>
 </div>
