@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="14.5" data-basepath=".." data-revision="1504967987534">
+    <div class="book" data-level="14.5" data-basepath=".." data-revision="1505111140761">
     
 
 <div class="book-summary">
@@ -2906,57 +2906,57 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_145">
+                    <section class="normal" id="section-gitbook_151">
                     
                         <h2 id="145-clone">14.5 Clone</h2>
-<p>When dealing with resources, the default behavior is to transfer them during
-assignments or function calls. However, sometimes we need to make a
-copy of the resource as well.</p>
-<p>The <a href="https://doc.rust-lang.org/std/clone/trait.Clone.html" target="_blank"><code>Clone</code></a> trait helps us do exactly this. Most commonly, we can
-use the <code>.clone()</code> method defined by the <code>Clone</code> trait.</p>
+<p>При работе с ресурсами, стандартным поведением является передача их (ресурсов)
+в ходе выполнения или вызов функции. Однако, иногда нам нужно
+также объявить копию ресурса.</p>
+<p>Типаж <a href="https://doc.rust-lang.org/std/clone/trait.Clone.html" target="_blank"><code>Clone</code></a> помогает нам сделать именно это. Чаще всего, мы можем
+использовать метод <code>.clone()</code> объявленный типажом <code>Clone</code>.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// A unit struct without resources
+<div id="editor"><pre>// Единичная структура без ресурсов
 #[derive(Debug, Clone, Copy)]
 struct Nil;
 
-// A tuple struct with resources that implements the &#96;Clone&#96; trait
+// Кортежная структура с ресурсами, которая реализует типаж &#96;Clone&#96;
 #[derive(Clone, Debug)]
 struct Pair(Box&lt;i32&gt;, Box&lt;i32&gt;);
 
 fn main() {
-    // Instantiate &#96;Nil&#96;
+    // Объявим экземпляр &#96;Nil&#96;
     let nil = Nil;
-    // Copy &#96;Nil&#96;, there are no resources to move
+    // Скопируем &#96;Nil&#96;, который не имеет ресурсов для перемещения
     let copied&#95;nil = nil;
 
-    // Both &#96;Nil&#96;s can be used independently
+    // Оба &#96;Nil&#96;s могут быть использованы независимо
     println!(&quot;original: {:?}&quot;, nil);
     println!(&quot;copy: {:?}&quot;, copied&#95;nil);
 
-    // Instantiate &#96;Pair&#96;
+    // Объявим экземпляр &#96;Pair&#96;
     let pair = Pair(Box::new(1), Box::new(2));
     println!(&quot;original: {:?}&quot;, pair);
 
-    // Copy &#96;pair&#96; into &#96;moved&#95;pair&#96;, moves resources
+    // Скопируем &#96;pair&#96; в &#96;moved&#95;pair&#96;, перенаправляя ресурсы
     let moved&#95;pair = pair;
     println!(&quot;copy: {:?}&quot;, moved&#95;pair);
 
-    // Error! &#96;pair&#96; has lost its resources
+    // Ошибка! &#96;pair&#96; потеряла свои ресурсы
     //println!(&quot;original: {:?}&quot;, pair);
-    // ЗАДАНИЕ ^ Try uncommenting this line
+    // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
-    // Clone &#96;moved&#95;pair&#96; into &#96;cloned&#95;pair&#96; (resources are included)
+    // Скопируем &#96;moved&#95;pair&#96; в &#96;cloned&#95;pair&#96; (включая ресурсы)
     let cloned&#95;pair = moved&#95;pair.clone();
-    // Drop the original pair using std::mem::drop
+    // Сбросим оригинальную пару используя std::mem::drop
     drop(moved&#95;pair);
 
-    // Error! &#96;moved&#95;pair&#96; has been dropped
+    // Ошибка! &#96;moved&#95;pair&#96; была сброшена
     //println!(&quot;copy: {:?}&quot;, moved&#95;pair);
-    // ЗАДАНИЕ ^ Try uncommenting this line
+    // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
-    // The result from .clone() can still be used!
+    // Полученный результат из .clone() все ещё можно использовать!
     println!(&quot;clone: {:?}&quot;, cloned&#95;pair);
 }</pre></div>
 <div id="result"></div>
