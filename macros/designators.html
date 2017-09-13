@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Designators | Rust на примерах</title>
+        <title>Указатели | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="15.1" data-basepath=".." data-revision="1505111241765">
+    <div class="book" data-level="15.1" data-basepath=".." data-revision="1505326930680">
     
 
 <div class="book-summary">
@@ -1975,7 +1975,7 @@
                         
                             <b>15.1.</b>
                         
-                         Designators
+                         Указатели
                     </a>
                 
             
@@ -2906,37 +2906,37 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_82">
+                    <section class="normal" id="section-gitbook_83">
                     
-                        <h2 id="151-designators">15.1 Designators</h2>
-<p>The arguments of a macro are prefixed by a dollar sign <code>$</code> and type annotated
-with a <em>designator</em>:</p>
+                        <h2 id="151-">15.1 Указатели</h2>
+<p>Аргументы макроса имеют префикс знака доллара <code>$</code> и тип аннотируется
+с помощью <em>указателей фрагмента</em>:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>macro&#95;rules! create&#95;function {
-    // This macro takes an argument of designator &#96;ident&#96; and
-    // creates a function named &#96;&#36;func&#95;name&#96;.
-    // The &#96;ident&#96; designator is used for variable/function names.
+    // Этот макрос принимает аргумент идентификатора &#96;ident&#96; и
+    // создаёт функцию с именем &#96;&#36;func&#95;name&#96;.
+    // Идентификатор &#96;ident&#96; используют для обозначения имени переменной/функции.
     (&#36;func&#95;name:ident) =&gt; (
         fn &#36;func&#95;name() {
-            // The &#96;stringify!&#96; macro converts an &#96;ident&#96; into a string.
-            println!(&quot;You called {:?}()&quot;,
+            // Макрос &#96;stringify!&#96; преобразует &#96;ident&#96; в строку.
+            println!(&quot;Вызвана функция {:?}()&quot;,
                      stringify!(&#36;func&#95;name))
         }
     )
 }
 
-// Create functions named &#96;foo&#96; and &#96;bar&#96; with the above macro.
+// Создадим функции с именами &#96;foo&#96; и &#96;bar&#96; используя макрос, указанный выше.
 create&#95;function!(foo);
 create&#95;function!(bar);
 
 macro&#95;rules! print&#95;result {
-    // This macro takes an expression of type &#96;expr&#96; and prints
-    // it as a string along with its result.
-    // The &#96;expr&#96; designator is used for expressions.
+    // Этот макрос принимает выражение типа &#96;expr&#96; и напечатает
+    // его как строку вместе с результатом.
+    // Указатель &#96;expr&#96; используют для обозначения выражений.
     (&#36;expression:expr) =&gt; (
-        // &#96;stringify!&#96; will convert the expression &#42;as it is&#42; into a string.
+        // &#96;stringify!&#96; преобразует выражение &#42;как есть&#42; в строку.
         println!(&quot;{:?} = {:?}&quot;,
                  stringify!(&#36;expression),
                  &#36;expression)
@@ -2949,7 +2949,7 @@ fn main() {
 
     print&#95;result!(1u32 + 1);
 
-    // Recall that blocks are expressions too!
+    // Напомним, что блоки тоже являются выражениями!
     print&#95;result!({
         let x = 1u32;
 
@@ -2959,17 +2959,17 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<p>This is a list of all the designators:</p>
+<p>Это список всех указателей:</p>
 <ul>
-<li><code>block</code></li>
-<li><code>expr</code> is used for expressions</li>
-<li><code>ident</code> is used for variable/function names</li>
-<li><code>item</code></li>
-<li><code>pat</code> (<em>pattern</em>)</li>
-<li><code>path</code></li>
-<li><code>stmt</code> (<em>statement</em>)</li>
-<li><code>tt</code> (<em>token tree</em>)</li>
-<li><code>ty</code> (<em>type</em>)</li>
+<li><code>block</code> (<em>последовательность операторов</em>)</li>
+<li><code>expr</code> используют для обозначения выражений</li>
+<li><code>ident</code> используют для обозначения имени переменной/функции</li>
+<li><code>item</code> (<em>элемент</em>)</li>
+<li><code>pat</code> (<em>образец</em>)</li>
+<li><code>path</code> (<em>квалифицированное имя</em>)</li>
+<li><code>stmt</code> (<em>единственный оператор</em>)</li>
+<li><code>tt</code> (<em>единственное дерево лексем</em>)</li>
+<li><code>ty</code> (<em>тип</em>)</li>
 </ul>
 
                     
