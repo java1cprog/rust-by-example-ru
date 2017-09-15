@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="14.3" data-basepath=".." data-revision="1505489501086">
+    <div class="book" data-level="14.3" data-basepath=".." data-revision="1505493140029">
     
 
 <div class="book-summary">
@@ -2927,35 +2927,35 @@
 // Это простая реализация &#96;drop&#96;, которая добавляет вывод в консоль.
 impl Drop for Droppable {
     fn drop(&amp;mut self) {
-        println!(&quot;&gt; Dropping {}&quot;, self.name);
+        println!(&quot;&gt; Сбросили {}&quot;, self.name);
     }
 }
 
 fn main() {
     let &#95;a = Droppable { name: &quot;a&quot; };
 
-    // блок A
+    // блок А
     {
         let &#95;b = Droppable { name: &quot;b&quot; };
 
-        // блок B
+        // блок Б
         {
             let &#95;c = Droppable { name: &quot;c&quot; };
             let &#95;d = Droppable { name: &quot;d&quot; };
 
-            println!(&quot;Exiting block B&quot;);
+            println!(&quot;Выходим из блока Б&quot;);
         }
-        println!(&quot;Just exited block B&quot;);
+        println!(&quot;Вышли из блока Б&quot;);
 
-        println!(&quot;Exiting block A&quot;);
+        println!(&quot;Выходим из блока А&quot;);
     }
-    println!(&quot;Just exited block A&quot;);
+    println!(&quot;Вышли из блока А&quot;);
 
     // Переменную можно сбросить вручную с помощью функции &#96;drop&#96;.
     drop(&#95;a);
     // ЗАДАНИЕ ^ Попробуйте закомментировать эту строку
 
-    println!(&quot;end of the main function&quot;);
+    println!(&quot;Конец главной функции.&quot;);
 
     // &#42;Нельзя&#42; сбросить &#96;&#95;a&#96; снова, потому что переменная уже
     // (вручную) сброшена.

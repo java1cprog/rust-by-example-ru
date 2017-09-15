@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="14.2" data-basepath=".." data-revision="1505489501086">
+    <div class="book" data-level="14.2" data-basepath=".." data-revision="1505493140029">
     
 
 <div class="book-summary">
@@ -2938,7 +2938,7 @@ impl ops::Add&lt;Bar&gt; for Foo {
     type Output = FooBar;
 
     fn add(self, &#95;rhs: Bar) -&gt; FooBar {
-        println!(&quot;&gt; Foo.add(Bar) was called&quot;);
+        println!(&quot;&gt; Вызвали Foo.add(Bar)&quot;);
 
         FooBar
     }
@@ -2952,7 +2952,7 @@ impl ops::Add&lt;Foo&gt; for Bar {
     type Output = BarFoo;
 
     fn add(self, &#95;rhs: Foo) -&gt; BarFoo {
-        println!(&quot;&gt; Bar.add(Foo) was called&quot;);
+        println!(&quot;&gt; Вызвали Bar.add(Foo)&quot;);
 
         BarFoo
     }

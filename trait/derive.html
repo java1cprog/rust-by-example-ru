@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="14.1" data-basepath=".." data-revision="1505489501086">
+    <div class="book" data-level="14.1" data-basepath=".." data-revision="1505493140029">
     
 
 <div class="book-summary">
@@ -2949,7 +2949,7 @@ fn main() {
     let &#95;one&#95;second = Seconds(1);
 
     // Ошибка: &#96;Seconds&#96; не может быть напечатана; не реализован типаж &#96;Debug&#96;
-    //println!(&quot;One second looks like: {:?}&quot;, &#95;one&#95;second);
+    //println!(&quot;Одна секунда выглядит как: {:?}&quot;, &#95;one&#95;second);
     // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
     // Ошибка: &#96;Seconds&#96; нельзя сравнить; не реализован типаж &#96;PartialEq&#96;
@@ -2958,18 +2958,18 @@ fn main() {
 
     let foot = Inches(12);
 
-    println!(&quot;One foot equals {:?}&quot;, foot);
+    println!(&quot;Один фут равен {:?}&quot;, foot);
 
     let meter = Centimeters(100.0);
 
     let cmp =
         if foot.to&#95;centimeters() &lt; meter {
-            &quot;smaller&quot;
+            &quot;меньше&quot;
         } else {
-            &quot;bigger&quot;
+            &quot;больше&quot;
         };
 
-    println!(&quot;One foot is {} than one meter.&quot;, cmp);
+    println!(&quot;Один фут {} одного метра.&quot;, cmp);
 }</pre></div>
 <div id="result"></div>
 </div>

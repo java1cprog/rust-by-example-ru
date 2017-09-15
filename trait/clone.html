@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="14.5" data-basepath=".." data-revision="1505489501086">
+    <div class="book" data-level="14.5" data-basepath=".." data-revision="1505493140029">
     
 
 <div class="book-summary">
@@ -2932,19 +2932,19 @@ fn main() {
     let copied&#95;nil = nil;
 
     // Оба &#96;Nil&#96;s могут быть использованы независимо
-    println!(&quot;original: {:?}&quot;, nil);
-    println!(&quot;copy: {:?}&quot;, copied&#95;nil);
+    println!(&quot;оригинал: {:?}&quot;, nil);
+    println!(&quot;копия: {:?}&quot;, copied&#95;nil);
 
     // Объявим экземпляр &#96;Pair&#96;
     let pair = Pair(Box::new(1), Box::new(2));
-    println!(&quot;original: {:?}&quot;, pair);
+    println!(&quot;оригинал: {:?}&quot;, pair);
 
     // Скопируем &#96;pair&#96; в &#96;moved&#95;pair&#96;, перенаправляя ресурсы
     let moved&#95;pair = pair;
-    println!(&quot;copy: {:?}&quot;, moved&#95;pair);
+    println!(&quot;копия: {:?}&quot;, moved&#95;pair);
 
     // Ошибка! &#96;pair&#96; потеряла свои ресурсы
-    //println!(&quot;original: {:?}&quot;, pair);
+    //println!(&quot;оригинал: {:?}&quot;, pair);
     // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
     // Скопируем &#96;moved&#95;pair&#96; в &#96;cloned&#95;pair&#96; (включая ресурсы)
@@ -2953,11 +2953,11 @@ fn main() {
     drop(moved&#95;pair);
 
     // Ошибка! &#96;moved&#95;pair&#96; была сброшена
-    //println!(&quot;copy: {:?}&quot;, moved&#95;pair);
+    //println!(&quot;копия: {:?}&quot;, moved&#95;pair);
     // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
     // Полученный результат из .clone() все ещё можно использовать!
-    println!(&quot;clone: {:?}&quot;, cloned&#95;pair);
+    println!(&quot;клон: {:?}&quot;, cloned&#95;pair);
 }</pre></div>
 <div id="result"></div>
 </div>

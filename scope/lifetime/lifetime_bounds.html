@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="13.4.5" data-basepath="../.." data-revision="1505489501086">
+    <div class="book" data-level="13.4.5" data-basepath="../.." data-revision="1505493140029">
     
 
 <div class="book-summary">
@@ -2906,7 +2906,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_109">
+                    <section class="normal" id="section-gitbook_111">
                     
                         <h3 id="1345-bounds">13.4.5 Bounds</h3>
 <p>Так же как и обобщённые типы, время жизни (обобщённое само по себе) могут быть ограничены.
@@ -2933,7 +2933,7 @@ struct Ref&lt;&#39;a, T: &#39;a&gt;(&amp;&#39;a T);
 // Обобщённая функция, которая показывает использование типажа &#96;Debug&#96;.
 fn print&lt;T&gt;(t: T) where
     T: Debug {
-    println!(&quot;&#96;print&#96;: t is {:?}&quot;, t);
+    println!(&quot;&#96;print&#96;: t это {:?}&quot;, t);
 }
 
 // Здесь приводится ссылка на &#96;T&#96;, где &#96;T&#96; реализует
@@ -2941,7 +2941,7 @@ fn print&lt;T&gt;(t: T) where
 // К тому же, &#96;&#39;a&#96; должен пережить функцию.
 fn print&#95;ref&lt;&#39;a, T&gt;(t: &amp;&#39;a T) where
     T: Debug + &#39;a {
-    println!(&quot;&#96;print&#95;ref&#96;: t is {:?}&quot;, t);
+    println!(&quot;&#96;print&#95;ref&#96;: t это {:?}&quot;, t);
 }
 
 fn main() {
