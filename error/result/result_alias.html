@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>aliases for `Result` | Rust на примерах</title>
+        <title>Псевдонимы для `Result` | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="16.3.2" data-basepath="../.." data-revision="1505758087135">
+    <div class="book" data-level="16.3.2" data-basepath="../.." data-revision="1505758486813">
     
 
 <div class="book-summary">
@@ -2164,7 +2164,7 @@
                         
                             <b>16.3.2.</b>
                         
-                         aliases for `Result`
+                         Псевдонимы для `Result`
                     </a>
                 
             
@@ -2906,35 +2906,36 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_37">
+                    <section class="normal" id="section-gitbook_38">
                     
-                        <h3 id="1632-aliases-for-result">16.3.2 aliases for <code>Result</code></h3>
-<p>How about when we want to reuse a specific <code>Result</code> type many times?
-Recall that Rust allows us to create <a href="../../cast/alias.html">aliases</a>. Conveniently,
-we can define one for the specific <code>Result</code> in question.</p>
-<p>At a module level, creating aliases can be particularly helpful. Errors
-found in a specific module often have the same <code>Err</code> type, so a single alias
-can succinctly define <em>all</em> associated <code>Results</code>.
-This is so useful that the <code>std</code> library even supplies one: <code>io::Result</code>!</p>
-<p>Here&#39;s a quick example to show off the syntax:</p>
+                        <h3 id="1632---result">16.3.2 Псевдонимы для <code>Result</code></h3>
+<p>Как насчёт случая, когда мы хотим использовать конкретный тип <code>Result</code> много раз?
+Напомним, что Rust позволяет нам создавать <a href="../../cast/alias.html">псевдонимы</a>. Мы можем
+удобно объявить псевдоним для конкретного <code>Result</code>.</p>
+<p>Особенно полезным может быть создание псевдонимов на уровне модулей. Ошибки,
+найденные в конкретном модуле, часто имеют один и тот же тип <code>Err</code>, поэтому один
+псевдоним может лаконично объявить <em>все</em> ассоциированные <code>Results</code>.
+Это настолько полезно, что библиотека <code>std</code> обеспечивает даже один: <code>io::Result</code>!</p>
+<p>Ниже приведён краткий пример для демонстрации синтаксиса:</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
 <div id="editor"><pre>use std::num::ParseIntError;
 
-// Define a generic alias for a &#96;Result&#96; with the error type &#96;ParseIntError&#96;.
+// Объявим обобщённый псевдоним для &#96;Result&#96; с типом ошибки &#96;ParseIntError&#96;.
 type AliasedResult&lt;T&gt; = Result&lt;T, ParseIntError&gt;;
 
-// Use the above alias to refer to our specific &#96;Result&#96; type.
+// Используем вышеуказанный псевдоним для обозначения
+// нашего конкретного типа &#96;Result&#96;.
 fn double&#95;number(number&#95;str: &amp;str) -&gt; AliasedResult&lt;i32&gt; {
     number&#95;str.parse::&lt;i32&gt;().map(|n| 2 &#42; n)
 }
 
-// Here, the alias again allows us to save some space.
+// Здесь псевдоним снова позволяет нам сэкономить место.
 fn print(result: AliasedResult&lt;i32&gt;) {
     match result {
-        Ok(n)  =&gt; println!(&quot;n is {}&quot;, n),
-        Err(e) =&gt; println!(&quot;Error: {}&quot;, e),
+        Ok(n) =&gt; println!(&quot;n это {}&quot;, n),
+        Err(e) =&gt; println!(&quot;Ошибка: {}&quot;, e),
     }
 }
 
