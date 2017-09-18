@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Overload | Rust на примерах</title>
+        <title>Перегрузка | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="15.2" data-basepath=".." data-revision="1505758626454">
+    <div class="book" data-level="15.2" data-basepath=".." data-revision="1505758751132">
     
 
 <div class="book-summary">
@@ -1991,7 +1991,7 @@
                         
                             <b>15.2.</b>
                         
-                         Overload
+                         Перегрузка
                     </a>
                 
             
@@ -2007,7 +2007,7 @@
                         
                             <b>15.3.</b>
                         
-                         Repeat
+                         Повторение
                     </a>
                 
             
@@ -2023,7 +2023,7 @@
                         
                             <b>15.4.</b>
                         
-                         DRY (Don&#39;t Repeat Yourself)
+                         DRY (Не повторяйся)
                     </a>
                 
             
@@ -2906,28 +2906,28 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_86">
+                    <section class="normal" id="section-gitbook_85">
                     
-                        <h2 id="152-overload">15.2 Overload</h2>
-<p>Macros can be overloaded to accept different combinations of arguments.
-In that regard, <code>macro_rules!</code> can work similarly to a match block:</p>
+                        <h2 id="152-">15.2 Перегрузка</h2>
+<p>Макросы могут быть перегружены, принимая различные комбинации аргументов.
+В этом плане, <code>macro_rules!</code> может работать аналогично блоку сопоставления (match):</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// &#96;test!&#96; will compare &#96;&#36;left&#96; and &#96;&#36;right&#96;
-// in different ways depending on how you invoke it:
+<div id="editor"><pre>// &#96;test!&#96; будет сравнивать &#96;&#36;left&#96; и &#96;&#36;right&#96;
+// по разному, в зависимости от того, как вы объявите их:
 macro&#95;rules! test {
-    // Arguments don&#39;t need to be separated by a comma.
-    // Any template can be used!
+    // Не нужно разделять аргументы запятой.
+    // Можно использовать любой шаблон!
     (&#36;left:expr; and &#36;right:expr) =&gt; (
-        println!(&quot;{:?} and {:?} is {:?}&quot;,
+        println!(&quot;{:?} и {:?} это {:?}&quot;,
                  stringify!(&#36;left),
                  stringify!(&#36;right),
                  &#36;left &amp;&amp; &#36;right)
     );
-    // ^ each arm must end with a semicolon.
+    // ^ каждый блок должен заканчиваться точкой с запятой.
     (&#36;left:expr; or &#36;right:expr) =&gt; (
-        println!(&quot;{:?} or {:?} is {:?}&quot;,
+        println!(&quot;{:?} или {:?} это {:?}&quot;,
                  stringify!(&#36;left),
                  stringify!(&#36;right),
                  &#36;left || &#36;right)
@@ -2953,7 +2953,7 @@ fn main() {
         <a href="../macros/designators.html" class="navigation navigation-prev " aria-label="Previous page: Указатели"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../macros/repeat.html" class="navigation navigation-next " aria-label="Next page: Repeat"><i class="fa fa-angle-right"></i></a>
+        <a href="../macros/repeat.html" class="navigation navigation-next " aria-label="Next page: Повторение"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

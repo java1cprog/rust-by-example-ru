@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>DRY (Don&#39;t Repeat Yourself) | Rust на примерах</title>
+        <title>DRY (Не повторяйся) | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="15.4" data-basepath=".." data-revision="1505758626454">
+    <div class="book" data-level="15.4" data-basepath=".." data-revision="1505758751132">
     
 
 <div class="book-summary">
@@ -1991,7 +1991,7 @@
                         
                             <b>15.2.</b>
                         
-                         Overload
+                         Перегрузка
                     </a>
                 
             
@@ -2007,7 +2007,7 @@
                         
                             <b>15.3.</b>
                         
-                         Repeat
+                         Повторение
                     </a>
                 
             
@@ -2023,7 +2023,7 @@
                         
                             <b>15.4.</b>
                         
-                         DRY (Don&#39;t Repeat Yourself)
+                         DRY (Не повторяйся)
                     </a>
                 
             
@@ -2906,21 +2906,21 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_85">
+                    <section class="normal" id="section-gitbook_84">
                     
-                        <h2 id="154-dry-dont-repeat-yourself">15.4 DRY (Don&#39;t Repeat Yourself)</h2>
-<p>Macros allow writing DRY code by factoring out the common parts of functions
-and/or test suites. Here is an example that implements and tests the <code>+=</code>, <code>*=</code>
-and <code>-=</code> operators on <code>Vec&lt;T&gt;</code>:</p>
+                        <h2 id="154-dry--">15.4 DRY (Не повторяйся)</h2>
+<p>Макросы позволяют писать DRY код, путём разделения общих частей функций
+и/или набор тестов. Вот пример, который реализует и тестирует операторы
+<code>+=</code>, <code>*=</code> и <code>-=</code> на <code>Vec&lt;T&gt;</code>:</p>
 <pre><code class="lang-rust"><span class="hljs-comment">// dry.rs</span>
 <span class="hljs-keyword">use</span> std::ops::{Add, Mul, Sub};
 
 macro_rules! assert_equal_len {
-    <span class="hljs-comment">// The `tt` (token tree) designator is used for</span>
-    <span class="hljs-comment">// operators and tokens.</span>
+    <span class="hljs-comment">// Указатель `tt` (единственное дерево лексем) используют для</span>
+    <span class="hljs-comment">// операторов и лексем.</span>
     ($a:ident, $b: ident, $func:ident, $op:tt) =&gt; (
         <span class="hljs-built_in">assert!</span>($a.len() == $b.len(),
-                <span class="hljs-string">"{:?}: dimension mismatch: {:?} {:?} {:?}"</span>,
+                <span class="hljs-string">"{:?}: несоответствие размеров: {:?} {:?} {:?}"</span>,
                 <span class="hljs-built_in">stringify!</span>($func),
                 ($a.len(),),
                 <span class="hljs-built_in">stringify!</span>($op),
@@ -2941,7 +2941,7 @@ macro_rules! op {
     )
 }
 
-<span class="hljs-comment">// Implement `add_assign`, `mul_assign`, and `sub_assign` functions.</span>
+<span class="hljs-comment">// Реализуем функции `add_assign`, `mul_assign`, и `sub_assign`.</span>
 op!(add_assign, Add, +=, add);
 op!(mul_assign, Mul, *=, mul);
 op!(sub_assign, Sub, -=, sub);
@@ -2965,7 +2965,7 @@ op!(sub_assign, Sub, -=, sub);
         }
     }
 
-    <span class="hljs-comment">// Test `add_assign`, `mul_assign` and `sub_assign`</span>
+    <span class="hljs-comment">// Протестируем `add_assign`, `mul_assign` и `sub_assign`</span>
     test!(add_assign, <span class="hljs-number">1u32</span>, <span class="hljs-number">2u32</span>, <span class="hljs-number">3u32</span>);
     test!(mul_assign, <span class="hljs-number">2u32</span>, <span class="hljs-number">3u32</span>, <span class="hljs-number">6u32</span>);
     test!(sub_assign, <span class="hljs-number">3u32</span>, <span class="hljs-number">2u32</span>, <span class="hljs-number">1u32</span>);
@@ -2988,7 +2988,7 @@ test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured
         </div>
 
         
-        <a href="../macros/repeat.html" class="navigation navigation-prev " aria-label="Previous page: Repeat"><i class="fa fa-angle-left"></i></a>
+        <a href="../macros/repeat.html" class="navigation navigation-prev " aria-label="Previous page: Повторение"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../error.html" class="navigation navigation-next " aria-label="Next page: Обработка ошибок"><i class="fa fa-angle-right"></i></a>

@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Repeat | Rust на примерах</title>
+        <title>Повторение | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="15.3" data-basepath=".." data-revision="1505758626454">
+    <div class="book" data-level="15.3" data-basepath=".." data-revision="1505758751132">
     
 
 <div class="book-summary">
@@ -1991,7 +1991,7 @@
                         
                             <b>15.2.</b>
                         
-                         Overload
+                         Перегрузка
                     </a>
                 
             
@@ -2007,7 +2007,7 @@
                         
                             <b>15.3.</b>
                         
-                         Repeat
+                         Повторение
                     </a>
                 
             
@@ -2023,7 +2023,7 @@
                         
                             <b>15.4.</b>
                         
-                         DRY (Don&#39;t Repeat Yourself)
+                         DRY (Не повторяйся)
                     </a>
                 
             
@@ -2906,25 +2906,26 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_87">
+                    <section class="normal" id="section-gitbook_86">
                     
-                        <h2 id="153-repeat">15.3 Repeat</h2>
-<p>Macros can use <code>+</code> in the argument list to indicate that an argument may
-repeat at least once, or <code>*</code>, to indicate that the argument may repeat zero or
-more times.</p>
-<p>In the following example, surrounding the matcher with <code>$(...),+</code> will
-match one or more expression, separated by commas.
-Also note that the semicolon is optional on the last case.</p>
+                        <h2 id="153-">15.3 Повторение</h2>
+<p>Макросы могут использовать знак <code>+</code> в списке аргументов, чтобы указать, какие аргументы
+могут повторяться хоть один раз, или знак <code>*</code>, чтобы указать, какие аргументы могут
+повторяться ноль или несколько раз.</p>
+<p>В следующем примере, шаблон, окружённый <code>$(...),+</code> будет
+сопоставлять одно или несколько выражений, разделённых запятыми.
+Также обратите внимание, что точка с запятой является
+необязательной в последнем случае.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// &#96;min!&#96; will calculate the minimum of any number of arguments.
+<div id="editor"><pre>// &#96;min!&#96; посчитает минимальное число аргументов.
 macro&#95;rules! find&#95;min {
-    // Base case:
+    // Простой вариант:
     (&#36;x:expr) =&gt; (&#36;x);
-    // &#96;&#36;x&#96; followed by at least one &#96;&#36;y,&#96;
+    // &#96;&#36;x&#96; следует хотя бы одному &#96;&#36;y,&#96;
     (&#36;x:expr, &#36;(&#36;y:expr),+) =&gt; (
-        // Call &#96;find&#95;min!&#96; on the tail &#96;&#36;y&#96;
+        // Вызовем &#96;find&#95;min!&#96; на конце &#96;&#36;y&#96;
         std::cmp::min(&#36;x, find&#95;min!(&#36;(&#36;y),+))
     )
 }
@@ -2946,10 +2947,10 @@ fn main() {
         </div>
 
         
-        <a href="../macros/overload.html" class="navigation navigation-prev " aria-label="Previous page: Overload"><i class="fa fa-angle-left"></i></a>
+        <a href="../macros/overload.html" class="navigation navigation-prev " aria-label="Previous page: Перегрузка"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../macros/dry.html" class="navigation navigation-next " aria-label="Next page: DRY (Don&#39;t Repeat Yourself)"><i class="fa fa-angle-right"></i></a>
+        <a href="../macros/dry.html" class="navigation navigation-next " aria-label="Next page: DRY (Не повторяйся)"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
