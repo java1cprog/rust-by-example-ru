@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="13.1" data-basepath=".." data-revision="1505493176125">
+    <div class="book" data-level="13.1" data-basepath=".." data-revision="1505709539802">
     
 
 <div class="book-summary">
@@ -2906,7 +2906,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_118">
+                    <section class="normal" id="section-gitbook_157">
                     
                         <h2 id="131-raii">13.1 RAII</h2>
 <p>Переменные в Rust не только держат данные в стеке, они также могут <em>владеть</em>
@@ -2914,7 +2914,7 @@
 придерживается идиоме <a href="https://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization" target="_blank">RAII</a>, то когда объект выходит за зону видимости, вызывается
 его деструктор, а ресурс, которым он <em>владеет</em> освобождается. </p>
 <p>Такое поведение защищает от багов, связанных с <em>утечкой ресурсов.</em> 
-Вам больше никогда не потребуется вручную освобождать память или же беспокоятся об её утечках!</p>
+Вам больше никогда не потребуется вручную освобождать память или же беспокоиться об её утечках!</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2927,12 +2927,12 @@ fn create&#95;box() {
 }
 
 fn main() {
-    // Выделить память для целого число в куче
+    // Выделить память для целого числа в куче
     let &#95;box2 = Box::new(5i32);
 
     // Вложенная область видимости:
     {
-        // Выделить память для ещё одного целого число в куче
+        // Выделить память для ещё одного целого числа в куче
         let &#95;box3 = Box::new(4i32);
 
         // &#96;&#95;box3&#96; здесь уничтожается, а память освобождается
@@ -2949,7 +2949,7 @@ fn main() {
 <div id="result"></div>
 </div>
 
-<p>Конечно, мы можем убедится, что в нашей программе нет ошибок с памятью,
+<p>Конечно, мы можем убедиться, что в нашей программе нет ошибок с памятью,
 используя <a href="http://valgrind.org/info/" target="_blank"><code>valgrind</code></a>:</p>
 <pre><code>$ rustc raii.rs &amp;&amp; valgrind ./raii
 ==26873== Memcheck, a memory error detector
