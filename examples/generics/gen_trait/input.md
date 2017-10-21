@@ -1,11 +1,12 @@
-Of course `trait`s can also be generic. Here we define one which reimplements
-the `Drop` `trait` as a generic method to `drop` itself and an input.
+Конечно `типажи` тоже могут быть обобщёнными. Здесь мы определяем, тот
+который повторно реализует `типаж` `Drop` как обобщённый метод, чтобы
+удалить себя и входные данные.
 
 {trait.play}
 
 ### Смотрите также:
 
-[`Drop`][Drop], [`struct`][structs], and [`trait`][traits]
+[`Drop`][Drop], [`Структуры`][structs], и [`Типажи`][traits]
 
 [Drop]: https://doc.rust-lang.org/std/ops/trait.Drop.html
 [structs]: ../custom_types/structs.html
