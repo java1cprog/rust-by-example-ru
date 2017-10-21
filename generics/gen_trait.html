@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="12.3" data-basepath=".." data-revision="1506024448570">
+    <div class="book" data-level="12.3" data-basepath=".." data-revision="1508570168235">
     
 
 <div class="book-summary">
@@ -2909,27 +2909,28 @@
                     <section class="normal" id="section-gitbook_69">
                     
                         <h2 id="123-traits">12.3 Traits</h2>
-<p>Of course <code>trait</code>s can also be generic. Here we define one which reimplements
-the <code>Drop</code> <code>trait</code> as a generic method to <code>drop</code> itself and an input.</p>
+<p>Конечно <code>типажи</code> тоже могут быть обобщёнными. Здесь мы определяем, тот
+который повторно реализует <code>типаж</code> <code>Drop</code> как обобщённый метод, чтобы
+удалить себя и входные данные.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
-<div id="editor"><pre>// Non-copyable types.
+<div id="editor"><pre>// Некопируемые типы.
 struct Empty;
 struct Null;
 
-// A trait generic over &#96;T&#96;.
+// Обобщённый типаж от &#96;T&#96;.
 trait DoubleDrop&lt;T&gt; {
-    // Define a method on the caller type which takes an
-    // additional single parameter &#96;T&#96; and does nothing with it.
+    // Определим метод для типа вызывающего объекта,
+    // который принимает один дополнительный параметр &#96;T&#96; и ничего с ним не делает.
     fn double&#95;drop(self, &#95;: T);
 }
 
-// Implement &#96;DoubleDrop&lt;T&gt;&#96; for any generic parameter &#96;T&#96; and
-// caller &#96;U&#96;.
+// Реализация &#96;DoubleDrop&lt;T&gt;&#96; для любого общего параметра &#96;T&#96; и
+// вызывающего объекта &#96;U&#96;.
 impl&lt;T, U&gt; DoubleDrop&lt;T&gt; for U {
-    // This method takes ownership of both passed arguments,
-    // deallocating both.
+    // Этот метод получает право владения на оба переданных аргумента и
+    // освобождает их.
     fn double&#95;drop(self, &#95;: T) {}
 }
 
@@ -2937,18 +2938,18 @@ fn main() {
     let empty = Empty;
     let null  = Null;
 
-    // Deallocate &#96;empty&#96; and &#96;null&#96;.
+    // Освободить &#96;empty&#96; и &#96;null&#96;.
     empty.double&#95;drop(null);
 
     //empty;
     //null;
-    // ^ TODO: Try uncommenting these lines.
+    // ^ TODO: Попробуйте раскомментировать эти строки.
 }</pre></div>
 <div id="result"></div>
 </div>
 
 <h3 id="-">Смотрите также:</h3>
-<p><a href="https://doc.rust-lang.org/std/ops/trait.Drop.html" target="_blank"><code>Drop</code></a>, <a href="../custom_types/structs.html"><code>struct</code></a>, and <a href="../trait.html"><code>trait</code></a></p>
+<p><a href="https://doc.rust-lang.org/std/ops/trait.Drop.html" target="_blank"><code>Drop</code></a>, <a href="../custom_types/structs.html"><code>Структуры</code></a>, и <a href="../trait.html"><code>Типажи</code></a></p>
 
                     
                     </section>
