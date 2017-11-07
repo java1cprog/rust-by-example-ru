@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
-        <title>Testcase: empty bounds | Rust на примерах</title>
+        <title>Пример: пустые ограничения | Rust на примерах</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.5.0">
@@ -38,7 +38,7 @@
 
 
         
-    <div class="book" data-level="12.4.1" data-basepath="../.." data-revision="1508758567487">
+    <div class="book" data-level="12.4.1" data-basepath="../.." data-revision="1510069498987">
     
 
 <div class="book-summary">
@@ -1394,7 +1394,7 @@
                         
                             <b>12.4.1.</b>
                         
-                         Testcase: empty bounds
+                         Пример: пустые ограничения
                     </a>
                 
             
@@ -2906,12 +2906,13 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_73">
+                    <section class="normal" id="section-gitbook_71">
                     
-                        <h3 id="1241-testcase-empty-bounds">12.4.1 Testcase: empty bounds</h3>
-<p>A consequence of how bounds work is that even if a <code>trait</code> doesn&#39;t
-include any functionality, you can still use it as a bound. <code>Eq</code> and
-<code>Ord</code> are examples of such <code>trait</code>s from the <code>std</code> library.</p>
+                        <h3 id="1241---">12.4.1 Пример: пустые ограничения</h3>
+<p>Следствием того, как работают ограничения по типажу, является то,
+что даже если <code>типаж</code> не включает в себя какие-либо функциональные
+возможности, вы все равно можете использовать его в качестве ограничения.
+Примерами таких типажей являются <code>Eq</code> и <code>Ord</code> из стандартной библиотеки.</p>
 <div id="active-code">
 <button class="btn btn-primary" type="button" id="run-code">Run</button>
 <button class="btn btn-primary" type="button" id="reset-code">Reset</button>
@@ -2925,28 +2926,28 @@ trait Blue {}
 impl Red for Cardinal {}
 impl Blue for BlueJay {}
 
-// These functions are only valid for types which implement these
-// traits. The fact that the traits are empty is irrelevant.
-fn red&lt;T: Red&gt;(&#95;: &amp;T)   -&gt; &amp;&#39;static str { &quot;red&quot; }
-fn blue&lt;T: Blue&gt;(&#95;: &amp;T) -&gt; &amp;&#39;static str { &quot;blue&quot; }
+// Эти функции действительны только для типов реализующих эти типажи.
+// То, что типажи пусты, не имеет значения.
+fn red&lt;T: Red&gt;(&#95;: &amp;T)   -&gt; &amp;&#39;static str { &quot;красная&quot; }
+fn blue&lt;T: Blue&gt;(&#95;: &amp;T) -&gt; &amp;&#39;static str { &quot;синяя&quot; }
 
 fn main() {
     let cardinal = Cardinal;
     let blue&#95;jay = BlueJay;
     let &#95;turkey   = Turkey;
 
-    // &#96;red()&#96; won&#39;t work on a blue jay nor vice versa
-    // because of the bounds.
-    println!(&quot;A cardinal is {}&quot;, red(&amp;cardinal));
-    println!(&quot;A blue jay is {}&quot;, blue(&amp;blue&#95;jay));
-    //println!(&quot;A turkey is {}&quot;, red(&amp;&#95;turkey));
-    // ^ TODO: Try uncommenting this line.
+    // &#96;red()&#96; не будет работать для blue&#95;jay, ни наоборот,
+    // из-за ограничений по типажу.
+    println!(&quot;Кардинал {} птица&quot;, red(&amp;cardinal));
+    println!(&quot;Голубая сойка {} птица&quot;, blue(&amp;blue&#95;jay));
+    //println!(&quot;Индюк {} птица&quot;, red(&amp;&#95;turkey));
+    // ^ TODO: Попробуйте раскомментировать эту строку.
 }</pre></div>
 <div id="result"></div>
 </div>
 
 <h3 id="-">Смотрите также:</h3>
-<p><a href="https://doc.rust-lang.org/std/cmp/trait.Eq.html" target="_blank"><code>std::cmp::Eq</code></a>, <a href="https://doc.rust-lang.org/std/cmp/trait.Ord.html" target="_blank"><code>std::cmp::Ord</code>s</a>, and <a href="../../trait.html"><code>trait</code>s</a></p>
+<p><a href="https://doc.rust-lang.org/std/cmp/trait.Eq.html" target="_blank"><code>std::cmp::Eq</code></a>, <a href="https://doc.rust-lang.org/std/cmp/trait.Ord.html" target="_blank"><code>std::cmp::Ord</code>s</a>, и <a href="../../trait.html"><code>типажи</code></a></p>
 
                     
                     </section>
