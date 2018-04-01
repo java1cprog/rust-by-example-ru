@@ -1,85 +1,87 @@
-# Formatted print
+# Форматированный вывод
 
-Printing is handled by a series of [`macros`][macros] defined in [`std::fmt`][fmt]
-some of which include:
+Вывод обрабатывается несколькими [`макросами`][macros], которые определены в [`std::fmt`][fmt].
+Вот некоторые из них:
 
-* `format!`: write formatted text to [`String`][string]
-* `print!`: same as `format!` but the text is printed to the console (io::stdout).
-* `println!`: same as `print!` but a newline is appended.
-* `eprint!`: same as `format!` but the text is printed to the standard error (io::stderr).
-* `eprintln!`: sames as `eprint!`but a newline is appended.
+* `format!`: записывает форматированный текст в [`String`][string].
+* `print!`: работает аналогично с `format!`, но текст выводится в консоль (io::stdout).
+* `println!`: аналогично `print!`, но в конце добавляется переход на новую строку.
+* `eprint!`: аналогично `format!`, но текст выводится в стандартный поток ошибок (io::stderr).
+* `eprintln!`: аналогично `eprint!`, но в конце добавляется переход на новую строку.
 
-All parse text in the same fashion. A plus is that the formatting correctness will
-be checked at compile time.
+Весь текст обрабатывается аналогичным образом. Плюс данного метода в том, что корректность
+форматирования будет проверена на этапе компиляции программы.
 
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
-    // In general, the `{}` will be automatically replaced with any
-    // arguments. These will be stringified.
-    println!("{} days", 31);
+    // `{}` автоматически будет заменено на
+    // аргументы. Они будут преобразованы в строку.
+    println!("{} дней", 31);
 
-    // Without a suffix, 31 becomes an i32. You can change what type 31 is,
-    // with a suffix.
+    // Без суффиксов, 31 является i32. Можно изменить тип 31,
+    // используя суффикс.
 
-    // There are various optional patterns this works with. Positional
-    // arguments can be used.
-    println!("{0}, this is {1}. {1}, this is {0}", "Alice", "Bob");
+    // Существует множество способов работы с форматированным выводом. Можно указать
+    // позицию для каждого аргумента.
+    println!("{0}, это {1}. {1}, это {0}", "Алиса", "Боб");
 
-    // As can named arguments.
+    // Так же можно именовать аргументы.
     println!("{subject} {verb} {object}",
-             object="the lazy dog",
-             subject="the quick brown fox",
-             verb="jumps over");
+             object="ленивую собаку",
+             subject="быстрая коричневая лиса",
+             verb="прыгает через");
 
-    // Special formatting can be specified after a `:`.
-    println!("{} of {:b} people know binary, the other half doesn't", 1, 2);
+    println!("{} из {:b} людей знают, что такое двоичный код, а остальные нет.", 1, 2);
 
-    // You can right-align text with a specified width. This will output
-    // "     1". 5 white spaces and a "1".
+    // Можно выравнивать текст, сдвигая его на указанную ширину.
+    // Данный макрос отобразит в консоли
+    // "     1". 5 пробелов и "1".
     println!("{number:>width$}", number=1, width=6);
 
-    // You can pad numbers with extra zeroes. This will output "000001".
+    // Можно добавить к цифрам пару нулей. Данный макрос выведет "000001".
     println!("{number:>0width$}", number=1, width=6);
 
-    // It will even check to make sure the correct number of arguments are
-    // used.
-    println!("My name is {0}, {1} {0}", "Bond");
-    // FIXME ^ Add the missing argument: "James"
-    
-    // Create a structure which contains an `i32`. Name it `Structure`.
+    // Компилятор обязательно проверит, что в макрос передано правильное количество
+    // аргументов.
+    println!("Меня зовут {0}, {1} {0}", "Бонд");
+    // ИСПРАВЬТЕ ^ Добавьте недостающий аргумент: "Джеймс"
+
+    // Создаём структуру, которая хранит в себе `i32`. Назовём её `Structure`.
     #[allow(dead_code)]
     struct Structure(i32);
 
-    // However, custom types such as this structure require more complicated
-    // handling. This will not work.
-    println!("This struct `{}` won't print...", Structure(3));
-    // FIXME ^ Comment out this line.
+    // Однако, пользовательские типы данных, например, как эта структура
+    // требуют более сложной обработки для вывода. Данный код не будет работать.
+    println!("Эта структура `{}` не хочет выводится на экран...", Structure(3));
+    // ИСПРАВЬТЕ ^ Закомментируйте эту строку.
 }
 ```
 
-[`std::fmt`][fmt] contains many [`traits`][traits] which govern the display
-of text. The base form of two important ones are listed below:
+[`std::fmt`][fmt] содержит в себе много [`типажей`][traits], которые управляют
+отображением текста. Базовая форма двух самых важных рассмотрена ниже:
 
-* `fmt::Debug`: Uses the `{:?}` marker. Format text for debugging purposes.
-* `fmt::Display`: Uses the `{}` marker. Format text in a more elegant, user
-friendly fashion.
+* `fmt::Debug`: Использует маркер `{:?}`. Форматирует текст для отладочных целей.
+* `fmt::Display`: Использует маркер `{}`. Форматирует текст в более элегантном,
+удобном для пользователя стиле.
 
-Here, `fmt::Display` was used because the std library provides implementations
-for these types. To print text for custom types, more steps are required.
+В данном примере используется `fmt::Display`, потому что стандартная библиотека предоставляет
+реализацию для данного типа. Для отображения собственных типов потребуется
+больше дополнительных шагов.
 
-### Activities
+### Задания
 
- * Fix the two issues in the above code (see FIXME) so that it runs without
-   error.
- * Add a `println!` macro that prints: `Pi is roughly 3.142` by controlling
-   the number of decimal places shown. For the purposes of this exercise,
-   use `let pi = 3.141592` as an estimate for Pi. (Hint: you may need to
-   check the [`std::fmt`][fmt] documentation for setting the number of
-   decimals to display)
+ * Исправьте две ошибки в коде выше (смотрите `ИСПРАВЬТЕ`), чтобы код
+   компилировался без ошибок
+ * Добавьте макрос `println!`, который выводит: `Pi is roughly 3.142` c помощью
+   управления количеством знаков после запятой. Для выполнения данного задания создайте
+   переменную, которая будет хранить в себе значение числа Пи: `let pi = 3.141592`.
+   (Подсказка: вам необходимо ознакомиться с документация по
+   [`std::fmt`][fmt], чтобы узнать,
+   как отобразить только часть знаков после запятой в консоли.)
 
-### See also
+### Смотрите также
 
-[`std::fmt`][fmt], [`macros`][macros], [`struct`][structs],
+[`std::fmt`][fmt], [`макросы`][macros], [`структуры`][structs],
 and [`traits`][traits]
 
 [fmt]: https://doc.rust-lang.org/std/fmt/
