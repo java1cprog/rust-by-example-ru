@@ -59,7 +59,7 @@ impl fmt::Display for MinMax {
     }
 }
 
-// Определим структуру с именованными полями, для сравнения
+// Объявим структуру с именованными полями, для сравнения
 #[derive(Debug)]
 struct Point2D {
     x: f64,
@@ -96,7 +96,7 @@ fn main() {
 
     // Ошибка. Типажи `Debug` и `Display` были реализованы, но `{:b}`
     // необходима реализация `fmt::Binary`. Следующий код не сработает.
-    // println!("What does Point2D look like in binary: {:b}?", point);
+    // println!("Как выглядит Point2D в виде двоичного кода: {:b}?", point);
 }
 ```
 
