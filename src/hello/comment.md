@@ -1,51 +1,51 @@
-# Comments
+# Комментарии
 
-Any program requires comments and indeed Rust supports
-a few different varieties:
+Каждая программа, безусловно, нуждается в комментариях и
+Rust предоставляет несколько способов комментирования кода:
 
-* *Regular comments* which are ignored by the compiler:
- - `// Line comments which go to the end of the line.`
- - `/* Block comments which go to the closing delimiter. */`
-* *Doc comments* which are parsed into HTML library
-[documentation][docs]:
- - `/// Generate library docs for the following item.`
- - `//! Generate library docs for the enclosing item.`
+* *Обычные комментарии*, которые игнорируются компилятором:
+ - `// Однострочный комментарий. Который завершается в конце строки.`
+ - `/* Блочный комментарий, который продолжается до завершающего символа. */`
+* *Doc комментарии*, которые будут сгенерированы в HTML
+[документацию][docs]:
+ - `/// Генерация документации для функции.`
+ - `//! Генерация документации для модуля.`
 
 ```rust,editable
 fn main() {
-    // This is an example of a line comment
-    // Notice how there are two slashes at the beginning of the line
-    // And that nothing written inside these will be read by the compiler
+    // Это пример однострочного комментария
+    // Обратите внимание на то, что строка комментария начинается с двух косых черт
+    // Компилятор проигнорирует все, что написано внутри комментария
 
     // println!("Hello, world!");
 
-    // Run it. See? Now try deleting the two slashes, and run it again.
-
-    /* 
-     * This is another type of comment, the block comment. In general,
-     * the line comment is the recommended comment style however the
-     * block comment is extremely useful for temporarily disabling
-     * a large chunk of code. /* Block comments can be /* nested, */ */
-     * so it takes only a few keystrokes to comment out all the lines
-     * in this main() function. /*/*/* Try it yourself! */*/*/
-     */
+    // Запустите данный код. Видите? Теперь попробуйте удалить комментарий и запустить ещё раз.
 
     /*
-    Note, the previous column of `*` was entirely for style. There's
-    no actual need for it.
-    */
+     * Это другой тип комментария - блочный. В целом, рекомендованным стилем
+     * комментирования кода является однострочный комментарий, но блочный комментарий
+     * является очень полезным в случае, когда необходимо проигнорировать какую-то
+     * большую часть кода. /* Блочные комментарии могут быть /* вложенными, */ */
+     * так что комментирование всего кода в функции main займёт всего пару нажатий
+     * клавиш на клавиатуре. /*/*/* Попробуйте сами! */*/*/
+     */
 
-    // Observe how block comments allow easy expression manipulation
-    // which line comments do not. Deleting the comment delimiters
-    // will change the result:
-    let x = 5 + /* 90 + */ 5;
-    println!("Is `x` 10 or 100? x = {}", x);
+     /*
+     Обратите внимание, что столбец из * в прошлом комментарии был добавлен
+     для стиля. Он является необязательным.
+     */
+
+     // Обратите внимание, как блочный комментарий позволяет легко управлять выражениями
+     // однострочный комментарии не подходит для этой цели. Удалите блочный комментарий
+     // и посмотрите, как изменится результат:
+     let x = 5 + /* 90 + */ 5;
+     println!("`x` равен 10 или 100? x = {}", x);
 }
 
 ```
 
-### See also:
+### Смотрите также:
 
-[Library documentation][docs]
+[Документирование библиотек][docs]
 
 [docs]: meta/doc.html
