@@ -1,57 +1,59 @@
-# Tuples
+# Кортежи
 
-A tuple is a collection of values of different types. Tuples are constructed
-using parentheses `()`, and each tuple itself is a value with type signature
-`(T1, T2, ...)`, where `T1`, `T2` are the types of its members. Functions can
-use tuples to return multiple values, as tuples can hold any number of values.
+Кортежи - коллекция, которая хранит в себе переменные разных типов. Кортежи
+создаются с помощью круглых скобок `()`, и каждый кортеж является переменной
+с сигнатурой типов `(T1, T2, ...)`, где `T1`, `T2` тип члена кортежа.
+Функции могут использовать кортежи для возвращения нескольких значений,
+так кортежи могут хранить любое количество значений.
 
 ```rust,editable
-// Tuples can be used as function arguments and as return values
+// Кортежи могут быть использованы как аргументы функции
+// и как возвращаемые значения
 fn reverse(pair: (i32, bool)) -> (bool, i32) {
-    // `let` can be used to bind the members of a tuple to variables
+    // `let` можно использовать для создания связи между кортежем и переменной
     let (integer, boolean) = pair;
 
     (boolean, integer)
 }
 
-// The following struct is for the activity.
+// Это структура используется для задания
 #[derive(Debug)]
 struct Matrix(f32, f32, f32, f32);
 
 fn main() {
-    // A tuple with a bunch of different types
+    // Кортеж с множеством различных типов данных
     let long_tuple = (1u8, 2u16, 3u32, 4u64,
                       -1i8, -2i16, -3i32, -4i64,
                       0.1f32, 0.2f64,
                       'a', true);
 
-    // Values can be extracted from the tuple using tuple indexing
-    println!("long tuple first value: {}", long_tuple.0);
-    println!("long tuple second value: {}", long_tuple.1);
+    // К значениям переменных внутри кортежа можно обратиться по индексу
+    println!("первое значение длинного кортежа: {}", long_tuple.0);
+    println!("второе значение длинного кортежа: {}", long_tuple.1);
 
-    // Tuples can be tuple members
+    // Кортежи могут содержать в себе кортежи
     let tuple_of_tuples = ((1u8, 2u16, 2u32), (4u64, -1i8), -2i16);
 
-    // Tuples are printable
-    println!("tuple of tuples: {:?}", tuple_of_tuples);
+    // Кортежи можно напечатать
+    println!("кортеж из кортежей: {:?}", tuple_of_tuples);
     
-    // But long Tuples cannot be printed
+    // Но длинные Кортежи не могут быть напечатаны
     // let too_long_tuple = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13);
-    // println!("too long tuple: {:?}", too_long_tuple);
-    // TODO ^ Uncomment the above 2 lines to see the compiler error
+    // println!("слишком длинный кортеж: {:?}", too_long_tuple);
+    // TODO ^ Раскомментируйте выше 2 строки, чтобы увидеть ошибку компилятораr
 
     let pair = (1, true);
-    println!("pair is {:?}", pair);
+    println!("pair хранит в себе {:?}", pair);
 
-    println!("the reversed pair is {:?}", reverse(pair));
+    println!("перевёрнутая pair будет {:?}", reverse(pair));
 
-    // To create one element tuples, the comma is required to tell them apart
-    // from a literal surrounded by parentheses
-    println!("one element tuple: {:?}", (5u32,));
-    println!("just an integer: {:?}", (5u32));
+    // Для создания кортежа, содержащего один элемент, необходимо написать элемент и
+    // поставить запятую внутри круглых скобок.
+    println!("кортеж из одного элемента: {:?}", (5u32,));
+    println!("просто целочисленное значение: {:?}", (5u32));
 
-    //tuples can be destructured to create bindings
-    let tuple = (1, "hello", 4.5, true);
+    // Кортежи можно разобрать на части (деструктурировать) для создания связи
+    let tuple = (1, "привет", 4.5, true);
 
     let (a, b, c, d) = tuple;
     println!("{:?}, {:?}, {:?}, {:?}", a, b, c, d);
@@ -62,28 +64,29 @@ fn main() {
 }
 ```
 
-### Activity
+### Задание
 
- 1. *Recap*: Add the `fmt::Display` trait to the Matrix `struct` in the above example,
-    so that if you switch from printing the debug format `{:?}` to the display
-    format `{}`, you see the following output:
+ 1. *Повторение*: Добавьте реализацию типажа `fmt::Display` для `структуры`
+    Matrix в примерах выше,
+    чтобы, когда вы измените формат вывода с `{:?}` на `{}`
+    на консоль вывелось:
 
     ```text
     ( 1.1 1.2 )
     ( 2.1 2.2 )
     ```
 
-    You may want to refer back to the example for [print display][print_display].
- 2. Add a `transpose` function using the `reverse` function as a template, which
-    accepts a matrix as an argument, and returns a matrix in which two elements
-    have been swapped. For example:
+    Вы можете вернуться на пример [print display][print_display].
+ 2. Добавьте функцию `transpose`, используя функцию `reverse`, как пример, которая принимает
+    матрицу, как аргумент и возвращает матрицу, в которой два элемента поменялись местами.
+    Например:
 
     ```rust,ignore
     println!("Matrix:\n{}", matrix);
     println!("Transpose:\n{}", transpose(matrix));
     ```
 
-    results in the output:
+    Результат:
 
     ```text
     Matrix:
