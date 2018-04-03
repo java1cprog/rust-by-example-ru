@@ -1,58 +1,60 @@
-# Primitives
+# Примитивы
 
-Rust provides access to a wide variety of `primitives`. A sample includes:
+Rust предоставляет доступ к большому количеству `примитивов`:
 
 
-### Scalar Types
+### Скалярные типы
 
-* signed integers: `i8`, `i16`, `i32`, `i64` and `isize` (pointer size)
-* unsigned integers: `u8`, `u16`, `u32`, `u64` and `usize` (pointer size)
-* floating point: `f32`, `f64`
-* `char` Unicode scalar values like `'a'`, `'α'` and `'∞'` (4 bytes each)
-* `bool` either `true` or `false`
-* and the unit type `()`, whose only possible value is an empty tuple: `()`
+* знаковые целочисленные: `i8`, `i16`, `i32`, `i64` и `isize` (размер указателя)
+* беззнаковые целочисленные: `u8`, `u16`, `u32`, `u64` и `usize` (размер указателя)
+* вещественные: `f32`, `f64`
+* `char` скалярное значение Unicode, например: `'a'`, `'α'` и `'∞'` (4 байта каждый)
+* `bool`: `true` или `false`
+* единичный тип `()`, значение которого так же `()`
 
-Despite the value of a unit type being a tuple, it is not considered a
-compound type because it does not contain multiple values. 
+Несмотря на то, что значение единичного типа является кортежем, оно не считается
+составным типом, потому что не содержит нескольких значений.
 
-### Compound Types
+### Составные типы
 
-* arrays like `[1, 2, 3]`
-* tuples like `(1, true)`
+* массивы, например `[1, 2, 3]`
+* кортежи, например `(1, true)`
 
-Variables can always be *type annotated*. Numbers may additionally be
-annotated via a *suffix* or *by default*. Integers default to `i32` and
-floats to `f64`. Note that Rust can also infer types from context.
+Переменные всегда должны быть *аннотированы*.
+Числам можно указать определённый тип с помощью *суффикса*,
+иначе будет присвоен *тип по умолчанию*.
+Целочисленные значения по умолчанию `i32`, а вещественные `f64`.
+Note that Rust can also infer types from context.
 
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
-    // Variables can be type annotated.
+    // Переменные могут быть аннотированы.
     let logical: bool = true;
 
-    let a_float: f64 = 1.0;  // Regular annotation
-    let an_integer   = 5i32; // Suffix annotation
+    let a_float: f64 = 1.0;  // Обычная аннотация
+    let an_integer   = 5i32; // Суффиксная аннотация
 
-    // Or a default will be used.
+    // Этим переменным будет присвоен тип по умолчанию.
     let default_float   = 3.0; // `f64`
     let default_integer = 7;   // `i32`
     
-    // A type can also be inferred from context 
-    let mut inferred_type = 12; // Type i64 is inferred from another line
+    // Тип также может быть выведен из контекста.
+    let mut inferred_type = 12; // Тип i64 выводится из другой строки
     inferred_type = 4294967296i64;
     
-    // A mutable variable's value can be changed.
+    // Значение изменяемой переменной может быть изменено.
     let mut mutable = 12; // Mutable `i32`
     mutable = 21;
     
-    // Error! The type of a variable can't be changed.
+    // Ошибка! Тип переменной изменить нельзя.
     mutable = true;
     
-    // Variables can be overwritten with shadowing.
+    // Переменные могут быть переопределены с помощью затемнения.
     let mutable = true;
 }
 ```
 
-### See also:
+### Смотрите также:
 
 [the `std` library][std], [`mut`][mut], [inference], and [shadowing]
 
