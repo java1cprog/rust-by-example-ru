@@ -1,46 +1,45 @@
-# constants
+# Константы
 
-Rust has two different types of constants which can be declared in any scope
-including global. Both require explicit type annotation:
+В Rust есть два типа констант, которые могут быть объявлены
+в любой области видимости, включая глобальную. Оба требуют явной аннотации типа:
 
-* `const`: An unchangeable value (the common case).
-* `static`: A possibly `mut`able variable with [`'static`][static] lifetime.
+* `const`: Неизменяемая переменная (в общем случае).
+* `static`: Возможно, изменяемая переменная с временем жизни [`'static`][static].
 
-One special case is the `"string"` literal. It can be assigned directly to a
-`static` variable without modification because its type signature:
-`&'static str` has the required lifetime of `'static`. All other reference
-types must be specifically annotated so that they fulfill the `'static`
-lifetime. This may seem minor though because the required explicit annotation
-hides the distinction.
+Частным случаем является литерал `"string"`. Он может быть напрямую
+назначен переменной с временем жизни `'static`, т.к сигнатура его типа:
+`&'static str` требует время жизни `'static`. Для всех остальных ссылочных типов
+должно быть указано время жизни `'static`. Это может показаться
+незначительным, но в требовании явной аннотации типов и скрываются различия.
 
 ```rust,editable,ignore,mdbook-runnable
-// Globals are declared outside all other scopes.
+// Константы объявлены в глобальной области видимости.
 static LANGUAGE: &'static str = "Rust";
 const  THRESHOLD: i32 = 10;
 
 fn is_big(n: i32) -> bool {
-    // Access constant in some function
+    // Получаем доступ к константе внутри функции
     n > THRESHOLD
 }
 
 fn main() {
     let n = 16;
 
-    // Access constant in the main thread
-    println!("This is {}", LANGUAGE);
-    println!("The threshold is {}", THRESHOLD);
-    println!("{} is {}", n, if is_big(n) { "big" } else { "small" });
+    // Получаем доступ к константе внутри функции main
+    println!("Это язык {}", LANGUAGE);
+    println!("Установим предел, равный {}", THRESHOLD);
+    println!("Число {} {} предела", n, if is_big(n) { "больше" } else { "меньше" });
 
-    // Error! Cannot modify a `const`.
+    // Ошибка! `константы` нельзя изменить.
     THRESHOLD = 5;
-    // FIXME ^ Comment out this line
+    // ИСПРАВЬТЕ ^ Закомментируйте эту строчку
 }
 ```
 
-### See also:
+### Смотрите также:
 
-[The `const`/`static` RFC](
+[RFC для `const`/`static`](
 https://github.com/rust-lang/rfcs/blob/master/text/0246-const-vs-static.md),
-[`'static` lifetime][static]
+[`время жизни 'static`][static]
 
 [static]: scope/lifetime/static_lifetime.html
