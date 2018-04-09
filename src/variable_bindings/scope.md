@@ -1,37 +1,37 @@
-# Scope and Shadowing
+# Область и Затенение
 
-Variable bindings have a scope, and are constrained to live in a *block*. A
-block is a collection of statements enclosed by braces `{}`. Also, [variable
-shadowing][variable-shadow] is allowed.
+Связывание переменных имеет локальную область видимости, и живут эти переменные в *блоке*.
+Блок — набор инструкций, заключённый между фигурными скобками `{}`.
+Кроме того, допускается [затенение переменных.][variable-shadow].
 
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
-    // This binding lives in the main function
+    // Эта переменная живёт в функции main
     let long_lived_binding = 1;
 
-    // This is a block, and has a smaller scope than the main function
+    // Это блок, он имеет меньшую область видимости, чем функция main
     {
-        // This binding only exists in this block
+        // Эта переменная существует только в этом блоке
         let short_lived_binding = 2;
 
         println!("inner short: {}", short_lived_binding);
 
-        // This binding *shadows* the outer one
+        // Эта переменная *скрывает* собой внешнюю
         let long_lived_binding = 5_f32;
 
         println!("inner long: {}", long_lived_binding);
     }
-    // End of the block
+    // Конец блока
 
-    // Error! `short_lived_binding` doesn't exist in this scope
+    // Ошибка! `short_lived_binding` нет в этой области видимости
     println!("outer short: {}", short_lived_binding);
-    // FIXME ^ Comment out this line
+    // ИСПРАВЬТЕ ^ Закомментируйте строку
 
     println!("outer long: {}", long_lived_binding);
-    
-    // This binding also *shadows* the previous binding
+
+    // Это связывание так же *скрывает* собой предыдущие
     let long_lived_binding = 'a';
-    
+
     println!("outer long: {}", long_lived_binding);
 }
 ```
