@@ -16,7 +16,7 @@ fn main() {
 
         println!("inner short: {}", short_lived_binding);
 
-        // Эта переменная *скрывает* собой внешнюю
+        // Эта переменная *затеняет* собой внешнюю
         let long_lived_binding = 5_f32;
 
         println!("inner long: {}", long_lived_binding);
