@@ -1,32 +1,31 @@
-# Structures
+# Структуры
 
-There are three types of structures ("structs") that can be created using the
-`struct` keyword:
+Существует три типа структур, которые можно создать с помощью ключевого слова `struct`:
 
-* Tuple structs, which are, basically, named tuples.
-* The classic [C structs][c_struct]
-* Unit structs, which are field-less, are useful for generics.
+* Кортежная структура, которая, в общем, является именованным кортежем.
+* Классическую [C структуру][c_struct]
+* Единичную структуру, которая не имеет полей, но может быть полезна для обобщённых типов.
 
 ```rust,editable
 #[derive(Debug)]
 struct Person<'a> {
     name: &'a str,
-    age: u8,
+    age: u8
 }
 
-// A unit struct
+// Единичная структура
 struct Nil;
 
-// A tuple struct
-struct Pair(i32, f32);
+// Кортежная структура
+struct Pair(i32, f64);
 
-// A struct with two fields
+// Структура с двумя полями
 struct Point {
-    x: f32,
-    y: f32,
+    x: f64,
+    y: f64,
 }
 
-// Structs can be reused as fields of another struct
+// Структуры могут быть использованы как поля другой структуры
 #[allow(dead_code)]
 struct Rectangle {
     p1: Point,
@@ -34,61 +33,55 @@ struct Rectangle {
 }
 
 fn main() {
-    // Create struct with field init shorthand
-    let name = "Peter";
+    // Создаём структуру с помощью короткой инициализации полей
+    let name = "Петя";
     let age = 27;
     let peter = Person { name, age };
-
-    // Print debug struct
+    
+    // Дебаг вывод структуры
     println!("{:?}", peter);
-
-
-    // Instantiate a `Point`
+    
+    
+    // Создаём структуру `Point`
     let point: Point = Point { x: 0.3, y: 0.4 };
 
-    // Access the fields of the point
-    println!("point coordinates: ({}, {})", point.x, point.y);
+    // Получаем доступ к полям структуры `Point`
+    println!("Координаты точки: ({}, {})", point.x, point.y);
 
-    // Make a new point by using struct update syntax to use the fields of our other one
-    let new_point = Point { x: 0.1, ..point };
-    // `new_point.y` will be the same as `point.y` because we used that field from `point`
-    println!("second point: ({}, {})", new_point.x, new_point.y);
-
-    // Destructure the point using a `let` binding
+    // Деструктурируем `Point` создавая связь с помощью `let`
     let Point { x: my_x, y: my_y } = point;
 
     let _rectangle = Rectangle {
-        // struct instantiation is an expression too
+        // инициализация структуры так же является выражением
         p1: Point { x: my_y, y: my_x },
         p2: point,
     };
 
-    // Instantiate a unit struct
+    // Создаём связь с единичной структурой
     let _nil = Nil;
 
-    // Instantiate a tuple struct
+    // Создаём связь с кортежной структурой
     let pair = Pair(1, 0.1);
 
-    // Access the fields of a tuple struct
-    println!("pair contains {:?} and {:?}", pair.0, pair.1);
-
-    // Destructure a tuple struct
+    // Деструктурируем кортежную структуру
     let Pair(integer, decimal) = pair;
 
-    println!("pair contains {:?} and {:?}", integer, decimal);
+    println!("Pair хранит в себе {:?} и {:?}", integer, decimal);
 }
 ```
 
-### Activity
+### Задание
 
-1. Add a function `rect_area` which calculates the area of a rectangle (try 
-   using nested destructuring). 
-2. Add a function `square` which takes a `Point` and a `f32` as arguments, and returns a `Rectangle` with its lower left corner on the point, and a width and height corresponding to the `f32`.
+1. Добавьте функцию `rect_area`, которая рассчитывает площадь прямоугольника.
+(попробуйте использовать "деструктуризацию" (разбор на части) ).
+2. Добавьте функцию `square`, которая принимает в качестве аргументов `Point` и `f32`,
+а возвращает `Rectangle`, левый нижний угол которого соответствует `Point`,
+а ширина и высота соответствуют `f32`.
 
-### See also:
+### Смотрите также:
 
-[`attributes`][attributes] and [destructuring][destructuring]
+[`атрибуты`][attributes] и [деструктуризация][destructuring]
 
 [attributes]: attribute.html
-[c_struct]: https://en.wikipedia.org/wiki/Struct_(C_programming_language)
+[c_struct]: https://ru.wikipedia.org/wiki/Структура_(язык_Си)
 [destructuring]: flow_control/match/destructuring.html
