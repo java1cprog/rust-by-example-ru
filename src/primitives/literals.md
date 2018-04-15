@@ -1,44 +1,45 @@
-# Literals and operators
+# Литералы и операторы
 
-Integers `1`, floats `1.2`, characters `'a'`, strings `"abc"`, booleans `true`
-and the unit type `()` can be expressed using literals.
+Целочисленное `1`, вещественное `1.2`, символ `'a'`, строка `"abc"`, логическое `true`
+и единичный тип `()` могут быть выражены с помощью литералов.
 
-Integers can, alternatively, be expressed using hexadecimal, octal or binary
-notation using either of these prefixes: `0x`, `0o` or `0b`.
+Целочисленные значения так же могут быть выражены с помощью шестнадцатеричного,
+восьмеричного или двоичного обозначения используя соответствующие префиксы: `0x`, `0o` или `0b`.
 
-Underscores can be inserted in numeric literals to improve readability, e.g.
-`1_000` is the same as `1000`, and `0.000_001` is the same as `0.000001`.
+Для улучшения читаемости числовых литералов можно использовать подчёркивания, например
+`1_000` тоже самое, что и `1000`, и `0.000_001` равно `0.000001`.
 
-We need to tell the compiler the type of the literals we use. For now,
-we'll use the `u32` suffix to indicate that the literal is an unsigned 32-bit
-integer, and the `i32` suffix to indicate that it's a signed 32-bit integer.
+Нам необходимо указать компилятору какой тип для литерала мы используем.
+Сейчас мы используем суффикс `u32`, чтобы указать, что литерал - беззнаковое целое
+число 32-х бит и суффикс `i32` - знаковое целое 32-х битное число.
 
-The operators available and their precedence [in Rust][rust op-prec] are similar to other
-[C-like languages][op-prec].
+Доступные операторы и их приоритет [в Rust][rust op-prec] такой же как и в других
+[C-подобных языках][op-prec].
 
 ```rust,editable
 fn main() {
-    // Integer addition
+    // Целочисленное сложение
     println!("1 + 2 = {}", 1u32 + 2);
 
-    // Integer subtraction
+    // Целочисленное вычитание
     println!("1 - 2 = {}", 1i32 - 2);
-    // TODO ^ Try changing `1i32` to `1u32` to see why the type is important
+    // ЗАДАНИЕ ^ Попробуйте изменить `1i32` на `1u32`
+    // чтобы убедится насколько важен тип данных
 
-    // Short-circuiting boolean logic
-    println!("true AND false is {}", true && false);
-    println!("true OR false is {}", true || false);
-    println!("NOT true is {}", !true);
+    // Булева логика
+    println!("true И false будет {}", true && false);
+    println!("true ИЛИ false будет {}", true || false);
+    println!("НЕ true будет {}", !true);
 
-    // Bitwise operations
-    println!("0011 AND 0101 is {:04b}", 0b0011u32 & 0b0101);
-    println!("0011 OR 0101 is {:04b}", 0b0011u32 | 0b0101);
-    println!("0011 XOR 0101 is {:04b}", 0b0011u32 ^ 0b0101);
-    println!("1 << 5 is {}", 1u32 << 5);
-    println!("0x80 >> 2 is 0x{:x}", 0x80u32 >> 2);
+    // Побитовые операции
+    println!("0011 И 0101 будет {:04b}", 0b0011u32 & 0b0101);
+    println!("0011 ИЛИ 0101 будет {:04b}", 0b0011u32 | 0b0101);
+    println!("0011 исключающее ИЛИ 0101 будет {:04b}", 0b0011u32 ^ 0b0101);
+    println!("1 << 5 будет {}", 1u32 << 5);
+    println!("0x80 >> 2 будет 0x{:x}", 0x80u32 >> 2);
 
-    // Use underscores to improve readability!
-    println!("One million is written as {}", 1_000_000u32);
+    // Использование подчёркивания для улучшения читаемости!
+    println!("Один миллион записан как {}", 1_000_000u32);
 }
 ```
 
