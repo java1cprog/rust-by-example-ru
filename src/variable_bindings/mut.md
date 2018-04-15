@@ -1,24 +1,24 @@
-# Mutability
+# Изменяемость
 
-Variable bindings are immutable by default, but this can be overridden using
-the `mut` modifier.
+По умолчанию связывание переменных является неизменяемым,
+но с помощью модификатора `mut` можно разрешить изменения.
 
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
     let _immutable_binding = 1;
     let mut mutable_binding = 1;
 
-    println!("Before mutation: {}", mutable_binding);
+    println!("Перед изменением: {}", mutable_binding);
 
     // Ok
     mutable_binding += 1;
 
-    println!("After mutation: {}", mutable_binding);
+    println!("После изменения: {}", mutable_binding);
 
-    // Error!
+    // Ошибка!
     _immutable_binding += 1;
-    // FIXME ^ Comment out this line
+    // ИСПРАВЬТЕ ^ Закомментируйте эту строку
 }
 ```
 
-The compiler will throw a detailed diagnostic about mutability errors.
+Компилятор будет выводить подробные сообщения об ошибках, связанных с изменяемостью.
