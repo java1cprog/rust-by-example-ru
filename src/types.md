@@ -1,11 +1,11 @@
-# Types
+# Типы
 
-Rust provides several mechanisms to change or define the type of primitive and
-user defined types. The following sections cover:
-* [Casting] between primitive types
-* Specifying the desired type of [literals]
-* Using [type inference]
-* [Aliasing] types
+Rust предоставляет несколько механизмов изменения или определения примитивных
+и пользовательских типов:
+* [Приведение][Casting] между примитивными типами
+* Указание желаемого типа [литералы][literals]
+* Использование [вывода типов][type inference]
+* [Псевдонимы][Aliasing] типов
 
 [Casting]: types/cast.html
 [literals]: types/literals.html
