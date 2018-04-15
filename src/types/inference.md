@@ -1,31 +1,30 @@
-# Inference
+# Вывод типов
 
-The type inference engine is pretty smart. It does more than looking at the
-type of the
-[r-value][rvalue]
-during an initialization. It also looks at how the variable is used afterwards 
-to infer its type. Here's an advanced example of type inference:
+Движок вывода типов весьма умён. Он делает куда больше,
+чем просто смотрит на тип [r-value][rvalue] при инициализации.
+Он также смотрит, как используется значение после инициализации, чтобы
+вывести его тип. Вот расширенный пример вывода типов:
 
 ```rust,editable
 fn main() {
-    // Because of the annotation, the compiler knows that `elem` has type u8.
+    // Благодаря выведению типов компилятор знает, `elem` имеет тип - u8.
     let elem = 5u8;
 
-    // Create an empty vector (a growable array).
+    // Создадим пустой вектор (расширяемый массив).
     let mut vec = Vec::new();
-    // At this point the compiler doesn't know the exact type of `vec`, it
-    // just knows that it's a vector of something (`Vec<_>`).
+    // В данном месте компилятор не знает точный тип `vec`, он лишь знает,
+    // что это вектор чего-то там (`Vec<_>`).
 
-    // Insert `elem` in the vector.
+    // Добавляем `elem` в вектор.
     vec.push(elem);
-    // Aha! Now the compiler knows that `vec` is a vector of `u8`s (`Vec<u8>`)
-    // TODO ^ Try commenting out the `vec.push(elem)` line
+    // Ага! Теперь компилятор знает, что `vec` - это вектор, который хранит в себе тип `u8`
+    // (`Vec<u8>`)
+    // ЗАДАНИЕ ^ Попробуйте закомментировать строку `vec.push(elem)`
 
     println!("{:?}", vec);
 }
 ```
 
-No type annotation of variables was needed, the compiler is happy and so is the
-programmer!
+Не потребовалось никакой аннотации типов переменных, компилятор счастлив, как и программист!
 
 [rvalue]: https://en.wikipedia.org/wiki/Value_%28computer_science%29#lrvalue
