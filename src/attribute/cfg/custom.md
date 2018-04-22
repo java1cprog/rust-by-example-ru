@@ -1,7 +1,8 @@
-# Custom
+# Собственные условия
 
-Some conditionals like `target_os` are implicitly provided by `rustc`, but
-custom conditionals must be passed to `rustc` using the `--cfg` flag.
+Некоторые условия, например, `target_os` предоставляются компилятором.
+Если мы хотим создать собственные условия, 
+то их необходимо передать компилятору используя флаг `--cfg`.
 
 ```rust,editable,ignore,mdbook-runnable
 #[cfg(some_condition)]
@@ -14,9 +15,9 @@ fn main() {
 }
 ```
 
-Try to run this to see what happens without the custom `cfg` flag.
+Попробуйте запустить без указания флага `cfg`.
 
-With the custom `cfg` flag:
+С указанием флага `cfg`:
 
 ```bash
 $ rustc --cfg some_condition custom.rs && ./custom

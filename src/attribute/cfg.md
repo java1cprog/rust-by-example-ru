@@ -1,20 +1,20 @@
 # `cfg`
 
-Conditional compilation is possible through two different operators:
+Условная компиляция возможна благодаря двум операторам:
 
-* the `cfg` attribute: `#[cfg(...)]` in attribute position
-* the `cfg!` macro: `cfg!(...)` in boolean expressions
+* Атрибуту `cfg`: `#[cfg(...)]`, который указывается на месте атрибута
+* Макросу `cfg!`: `cfg!(...)`, который можно использовать в условных выражениях
 
-Both utilize identical argument syntax.
+Обе инициализации имеют идентичный синтаксис для принятия аргументов.
 
 ```rust,editable
-// This function only gets compiled if the target OS is linux
+// Эта функция будет скомпилирована только в том случае, если целевая OS будет linux
 #[cfg(target_os = "linux")]
 fn are_you_on_linux() {
     println!("You are running linux!");
 }
 
-// And this function only gets compiled if the target OS is *not* linux
+// А эта функция будет скомпилирована только в том случае *не* linux
 #[cfg(not(target_os = "linux"))]
 fn are_you_on_linux() {
     println!("You are *not* running linux!");
@@ -32,9 +32,9 @@ fn main() {
 }
 ```
 
-### See also:
+### Смотрите также:
 
-[the reference][ref], [`cfg!`][cfg], and [macros][macros].
+[the reference][ref], [`cfg!`][cfg], и [macros][macros].
 
 [cfg]: https://doc.rust-lang.org/std/macro.cfg!.html
 [macros]: macros.html
