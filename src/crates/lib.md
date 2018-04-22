@@ -1,18 +1,18 @@
-# Library
+# Библиотеки
 
-Let's create a library, and then see how to link it to another crate.
+Давайте создадим библиотеку и посмотрим, как связать её с другим контейнером.
 
 ```rust,editable
 pub fn public_function() {
-    println!("called rary's `public_function()`");
+    println!("вызвана `public_function()` контейнера rary");
 }
 
 fn private_function() {
-    println!("called rary's `private_function()`");
+    println!("вызвана `private_function()` контейнера rary");
 }
 
 pub fn indirect_access() {
-    print!("called rary's `indirect_access()`, that\n> ");
+    print!("вызвана `indirect_access()` контейнера rary, которая\n> ");
 
     private_function();
 }
@@ -24,8 +24,8 @@ $ ls lib*
 library.rlib
 ```
 
-Libraries get prefixed with "lib", and by default they get named after their
-crate file, but this default name can be overridden using the [`crate_name`
-attribute][crate-name].
+Библиотеки получают префикс «lib», и по умолчанию имеют то же имя,
+что и их контейнеры, но это имя можно изменить
+с помощью [атрибута `crate_name`][crate-name].
 
 [crate-name]: attribute/crate.html
