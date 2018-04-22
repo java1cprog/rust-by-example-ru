@@ -1,75 +1,75 @@
 # Display
 
-`fmt::Debug` hardly looks compact and clean, so it is often advantageous to
-customize the output appearance. This is done by manually implementing
-[`fmt::Display`][fmt], which uses the `{}` print marker. Implementing it
-looks like this:
+`fmt::Debug` выглядит не очень компактно и красиво,
+поэтому полезно настраивать внешний вид информации, которая будет напечатана.
+Это можно сделать реализовав `типаж` [`fmt::Display`][fmt] вручную,
+который использует маркер `{}` для печати. Его реализация выглядит следующим образом:
 
 ```rust
-// Import (via `use`) the `fmt` module to make it available.
+// Импортируем (с помощью `use`) модуль `fmt`, чтобы мы могли его использовать.
 use std::fmt;
 
-// Define a structure which `fmt::Display` will be implemented for. This is simply
-// a tuple struct containing an `i32` bound to the name `Structure`.
+// Определяем структуру, для которой будет реализован `fmt::Display`.
+// Это простая кортежная структура c именем `Structure`, которая хранит в себе `i32`.
 struct Structure(i32);
 
-// In order to use the `{}` marker, the trait `fmt::Display` must be implemented
-// manually for the type.
+// Чтобы была возможность использовать маркер `{}`
+// `типаж (trait) fmt::Display` должен быть реализован вручную
+// для данного типа.
 impl fmt::Display for Structure {
-    // This trait requires `fmt` with this exact signature.
+    // Этот типаж требует реализацию метода `fmt` с данной сигнатурой:
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        // Write strictly the first element into the supplied output
-        // stream: `f`. Returns `fmt::Result` which indicates whether the
-        // operation succeeded or failed. Note that `write!` uses syntax which
-        // is very similar to `println!`.
+        // Записываем первый элемент в предоставленный выходной поток: `f`.
+        // Возвращаем `fmt::Result`, который показывает выполнилась операция
+        // успешно или нет. Обратите внимание на то, что синтаксис `write!`
+        // похож на синтаксис `println!`.
         write!(f, "{}", self.0)
     }
 }
 ```
 
-`fmt::Display` may be cleaner than `fmt::Debug` but this presents
-a problem for the `std` library. How should ambiguous types be displayed?
-For example, if the `std` library implemented a single style for all
-`Vec<T>`, what style should it be? Either of these two?
+Вывод `fmt::Display` может быть более чистым чем `fmt::Debug`, но может быть
+проблемой для `стандартной библиотеки (std)`. Как нестандартные типы должны отображаться?
+Например, если `стандартная библиотека (std)` предоставляет единый стиль вывода для
+`Vec<T>`, каким этот вывод должен быть? Любой из этих двух?
 
-* `Vec<path>`: `/:/etc:/home/username:/bin` (split on `:`)
-* `Vec<number>`: `1,2,3` (split on `,`)
+* `Vec<path>`: `/:/etc:/home/username:/bin` (разделитель `:`)
+* `Vec<number>`: `1,2,3` (разделитель `,`)
 
-No, because there is no ideal style for all types and the `std` library
-doesn't presume to dictate one. `fmt::Display` is not implemented for `Vec<T>`
-or for any other generic containers. `fmt::Debug` must then be used for these
-generic cases.
+Нет, потому что не существует идеального стиля вывода для всех типов, поэтому
+`стандартная библиотека std` не может его предоставить. `fmt::Display` не реализован для
+`Vec<T>` или для других обобщённых контейнеров. Для этих случаев подойдёт `fmt::Debug`.
 
-This is not a problem though because for any new *container* type which is
-*not* generic,`fmt::Display` can be implemented.
+Это не проблема, потому что для любых новых *контейнеров*, типы которых не обобщённые,
+может быть реализован `fmt::Display`.
 
 ```rust,editable
-use std::fmt; // Import `fmt`
+use std::fmt; // Импортируем `fmt`
 
-// A structure holding two numbers. `Debug` will be derived so the results can
-// be contrasted with `Display`.
+// Структура, которая хранит в себе два числа.
+// Вывод типажа `Debug` добавлен для сравнения с `Display`.
 #[derive(Debug)]
 struct MinMax(i64, i64);
 
-// Implement `Display` for `MinMax`.
+// Реализуем `Display` для `MinMax`.
 impl fmt::Display for MinMax {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        // Use `self.number` to refer to each positional data point.
+        // Используем `self.номер`, чтобы получить доступ к каждому полю структуры.
         write!(f, "({}, {})", self.0, self.1)
     }
 }
 
-// Define a structure where the fields are nameable for comparison.
+// Объявим структуру с именованными полями, для сравнения
 #[derive(Debug)]
 struct Point2D {
     x: f64,
     y: f64,
 }
 
-// Similarly, implement for Point2D
+// По аналогии, реализуем `Display` для Point2D
 impl fmt::Display for Point2D {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        // Customize so only `x` and `y` are denoted.
+        // Обращаться к полям структуры Point2D будет по имени
         write!(f, "x: {}, y: {}", self.x, self.y)
     }
 }
@@ -77,49 +77,48 @@ impl fmt::Display for Point2D {
 fn main() {
     let minmax = MinMax(0, 14);
 
-    println!("Compare structures:");
+    println!("Сравниваем структуры:");
     println!("Display: {}", minmax);
     println!("Debug: {:?}", minmax);
 
     let big_range =   MinMax(-300, 300);
     let small_range = MinMax(-3, 3);
 
-    println!("The big range is {big} and the small is {small}",
+    println!("Большой диапазон - {big} и маленький диапазон {small}",
              small = small_range,
              big = big_range);
 
     let point = Point2D { x: 3.3, y: 7.2 };
 
-    println!("Compare points:");
+    println!("Сравниваем точки:");
     println!("Display: {}", point);
     println!("Debug: {:?}", point);
 
-    // Error. Both `Debug` and `Display` were implemented but `{:b}`
-    // requires `fmt::Binary` to be implemented. This will not work.
-    // println!("What does Point2D look like in binary: {:b}?", point);
+    // Ошибка. Типажи `Debug` и `Display` были реализованы, но `{:b}`
+    // необходима реализация `fmt::Binary`. Следующий код не сработает.
+    // println!("Как выглядит Point2D в виде двоичного кода: {:b}?", point);
 }
 ```
 
-So, `fmt::Display` has been implemented but `fmt::Binary` has not, and
-therefore cannot be used. `std::fmt` has many such [`traits`][traits] and
-each requires its own implementation. This is detailed further in
+И так, `fmt::Display` был реализован, но `fmt::Binary` нет, следовательно не может быть
+использован. `std::fmt` имеет много таких [`типажей`][traits] и
+каждый из них требует свою реализацию. Это более подробно описано в документации к
 [`std::fmt`][fmt].
 
-### Activity
+### Задание
 
-After checking the output of the above example, use the `Point2D` struct as
-guide to add a Complex struct to the example. When printed in the same
-way, the output should be:
+После того, как запустите код, представленный выше, используйте структуру `Point2D` как пример и
+добавьте новую структуру `Complex`, чтобы вывод был таким:
 
 ```txt
 Display: 3.3 +7.2i
 Debug: Complex { real: 3.3, imag: 7.2 }
 ```
 
-### See also
+### Смотрите также
 
-[`derive`][derive], [`std::fmt`][fmt], [macros], [`struct`][structs],
-[`trait`][traits], and [use][use]
+[`derive`][derive], [`std::fmt`][fmt], [macros], [`структуры`][structs],
+[`типажи`][traits], and [use][use]
 
 [derive]: trait/derive.html
 [fmt]: https://doc.rust-lang.org/std/fmt/

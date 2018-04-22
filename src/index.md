@@ -1,57 +1,64 @@
-# Rust by Example
+# Rust на примерах
 
-[Rust][rust] is a modern systems programming language focusing on safety, speed,
-and concurrency. It accomplishes these goals by being memory safe without using 
-garbage collection.
+[Rust][rust] - современный язык программирования, нацеленный на безопасность,
+скорость и параллелизм. Данные цели выполняются при условии безопасной работы с памятью
+без использования сборщика мусора.
 
-Rust by Example (RBE) is a collection of runnable examples that illustrate various Rust
-concepts and standard libraries. To get even more out of these examples, don't forget
-to [install Rust locally][install] and check out the [official docs][std]. 
-Additionally for the curious, you can also [check out the source code for this site][home].
+Rust на примерах - это набор исполняемых примеров, которые иллюстрируют различные
+концепции языка Rust, а так же возможности его стандартной библиотеки.
+Для того, чтобы подчеркнуть ещё больше из этих примеров,
+не забудьте [установить Rust на своём компьютере][install] и
+проверить [официальную документацию][std].
 
-Now let's begin!
+Если вы ранее не сталкивались с языком программирования Rust,
+то советую вам для начала ознакомиться с [русскоязычной книгой по Rust][rustbookru].
 
-- [Hello World](hello.html) - Start with a traditional Hello World program.
+Кроме этого можно [посмотреть исходный код этого сайта][home]
+или [оригинала][originalhome].
 
-- [Primitives](primitives.html) - Learn about signed integers, unsigned integers and other primitives.
+И так, давайте начнём!
 
-- [Custom Types](custom_types.html) - `struct` and `enum`.
+- [Hello World](hello.html) - Начните с традиционной программы Hello World.
 
-- [Variable Bindings](variable_bindings.html) - mutable bindings, scope, shadowing.
+- [Примитивы](primitives.html) - Узнайте о целых числах со знаком, целых числах без знака и других примитивах.
 
-- [Types](types.html) - Learn about changing and defining types.
+- [Пользовательские типы](custom_types.html) - `struct` и `enum`.
 
-- [Conversion](conversion.html)
+- [Связывание переменных](variable_bindings.html) - изменяемые связывания, область видимости, затенение.
 
-- [Expressions](expression.html)
+- [Типы](types.html) - Узнаете об изменении и определении типов.
 
-- [Flow Control](flow_control.html) - `if`/`else`, `for`, and others.
+- [Преобразование](conversion.html)
 
-- [Functions](fn.html) - Learn about Methods, Closures and High Order Functions.
+- [Выражения](expression.html)
 
-- [Modules](mod.html) - Organize code using modules
+- [Управление потоком](flow_control.html) - `if`/`else`, `for`, и другие.
 
-- [Crates](crates.html) - A crate is a compilation unit in Rust. Learn to create a library.
+- [Функции](fn.html) - Узнайте о методах, замыканиях и функциях высокого порядка.
 
-- [Attributes](attribute.html) - An attribute is metadata applied to some module, crate or item.
+- [Модули](mod.html) - Организация кода с помощью модулей
 
-- [Generics](generics.html) - Learn about writing a function or data type which can work for multiple types of arguments.
+- [Контейнеры](crates.html) -Пакет -это еденица компиляции в Rust. Научитесь создавать библиотеку.
 
-- [Scoping rules](scope.html) - Scopes play an important part in ownership, borrowing, and lifetimes.
+- [Атрибуты](attribute.html) - Атрибут-это метаданные, применяемые к какому-либо модулю, пакету или элементу.
 
-- [Traits](trait.html) - A trait is a collection of methods defined for an unknown type: `Self`
+- [Обобщения](generics.html) - Узнайте о написании функции или типа данных, которые могут работать для нескольких типов аргументов.
 
-- [Macros](macros.html)
+- [Scoping rules](scope.html) - Области видимости играют важную роль во владении, заимствовании и продолжительности жизни.
 
-- [Error handling](error.html) - Learn Rust way of handling failures.
+- [Traits](trait.html) - Типаж - это набор методов, определенных для неизвестного типа: `Self`
 
-- [Std library types](std.html) - Learn about some custom types provided by `std` library.
+- [Макросы](macros.html)
 
-- [Std misc](std_misc.html) - More custom types for file handling, threads.
+- [Обработка ошибок](error.html) - Узнаете как в Rust обрабатывать ошибки.
 
-- [Testing](testing.html) - All sorts of testing in Rust.
+- [Типы стандартной библиотеки](std.html) - Узнайте о некоторых пользовательских типах, предоставляемых библиотекой `std`.
 
-- [Meta](meta.html) - Documentation, Benchmarking.
+- [Разное в стандартной библиотеке](std_misc.html) - Больше пользовательских типов для обработки файлов, потоков.
+
+- [Testing](testing.html) - Все виды тестов в Rust.
+
+- [Meta](meta.html) - Документация, Бенчмаркинг.
 
 - [Unsafe Operations](unsafe.html)
 
@@ -59,4 +66,6 @@ Now let's begin!
 [rust]: https://www.rust-lang.org/
 [install]: https://www.rust-lang.org/install.html
 [std]: https://doc.rust-lang.org/std/
-[home]: https://github.com/rust-lang/rust-by-example
+[originalhome]: https://github.com/rust-lang/rust-by-example
+[home]: https://github.com/ruRust/rust-by-example-ru
+[rustbookru]: https://rurust.github.io/rust_book_ru

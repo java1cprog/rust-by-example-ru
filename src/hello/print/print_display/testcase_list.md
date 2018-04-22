@@ -1,53 +1,54 @@
-# Testcase: List
+# Пример: Список
 
-Implementing `fmt::Display` for a structure where the elements must each be
-handled sequentially is tricky. The problem is that each `write!` generates a
-`fmt::Result`. Proper handling of this requires dealing with *all* the
-results. Rust provides the `?` operator for exactly this purpose.
+Реализовать `fmt::Display` для структуры, в которой каждый элемент должен обрабатываться
+последовательно не так то просто.
+Проблема в том, что `write!` каждый раз возвращает `fmt::Result`.
+Для правильного обращения с этим необходимо обрабатывать *все*
+результаты. Для этой цели Rust предоставляет оператор `?`.
 
-Using `?` on `write!` looks like this:
+Использование `?` для `write!` выглядит следующим образом:
 
 ```rust,ignore
-// Try `write!` to see if it errors. If it errors, return
-// the error. Otherwise continue.
+// Попробуй исполнить `write!`, чтобы узнать, вернется ли ошибка. Если ошибка, верни ее.
+// Если нет, то продолжи.
 write!(f, "{}", value)?;
 ```
 
-Alternatively, you can also use the `try!` macro, which works the same way. 
-This is a bit more verbose and no longer recommended, but you may still see it in
-older Rust code. Using `try!` looks like this:
+Кроме того, Вы также можете использовать макрос `try!', который работает так же. 
+Это немного более подробно и больше не рекомендуется, но вы все равно можете увидеть его в
+старом коде на Rust. Использование `try!` выглядит так:
 
 ```rust,ignore
 try!(write!(f, "{}", value));
 ```
 
-With `?` available, implementing `fmt::Display` for a `Vec` is
-straightforward:
+С помощью оператора `?` реализация `fmt::Display` для `Vec` довольно простая:
 
 ```rust,editable
-use std::fmt; // Import the `fmt` module.
+use std::fmt; // Импортируем модуль `fmt`.
 
-// Define a structure named `List` containing a `Vec`.
+// Определим структуру с именем `List`, которая хранит в себе `Vec`.
 struct List(Vec<i32>);
 
 impl fmt::Display for List {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        // Extract the value using tuple indexing
-        // and create a reference to `vec`.
+        // Получаем значение с помощью индекса кортежа
+        // и создаём ссылку на `vec`.
         let vec = &self.0;
 
         write!(f, "[")?;
 
-        // Iterate over `vec` in `v` while enumerating the iteration
-        // count in `count`.
+        // Пройдёмся по каждому `v` в `vec`.
+        // Номер итерации хранится в `count`.
         for (count, v) in vec.iter().enumerate() {
-            // For every element except the first, add a comma.
-            // Use the ? operator, or try!, to return on errors.
+            // Для каждого элемента, кроме первого, добавим запятую
+            // до вызова `write!`. Используем оператор `?` или `try!`,
+            // чтобы вернуться при наличие ошибок.
             if count != 0 { write!(f, ", ")?; }
             write!(f, "{}", v)?;
         }
 
-        // Close the opened bracket and return a fmt::Result value
+        // Закроем открытую скобку и вернём значение `fmt::Result`
         write!(f, "]")
     }
 }
@@ -58,15 +59,16 @@ fn main() {
 }
 ```
 
-### Activity
+### Задание
 
-Try changing the program so that the index of each element in the vector is also printed. The new output should look like this:
+Попробуйте изменить программу так, чтобы индекс элемента так же выводился в консоль.
+Новый вывод должен выглядеть примерно вот так:
 
 ```rust,ignore
 [0: 1, 1: 2, 2: 3]
 ```
 
-### See also
+### Смотрите также
 
 [`for`][for], [`ref`][ref], [`Result`][result], [`struct`][struct],
 [`?`][q_mark], and [`vec!`][vec]

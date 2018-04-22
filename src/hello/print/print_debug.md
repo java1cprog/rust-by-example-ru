@@ -1,57 +1,57 @@
 # Debug
 
-All types which want to use `std::fmt` formatting `traits` require an
-implementation to be printable. Automatic implementations are only provided
-for types such as in the `std` library. All others *must* be manually
-implemented somehow.
+Все типы, которые будут использовать `типажи (traits)` форматирования `std::fmt` требуют
+их реализации для возможности печати. Автоматическая реализация предоставлена только для
+типов из `стандартной библиотеки (std)`. Все остальные типы *должны* иметь собственную реализацию.
 
-The `fmt::Debug` `trait` makes this very straightforward. *All* types can
-`derive` (automatically create) the `fmt::Debug` implementation. This is
-not true for `fmt::Display` which must be manually implemented.
+C помощью `типажа` `fmt::Debug` это сделать очень просто. *Все* типы могут
+`выводить` (автоматически создавать) реализацию `fmt::Debug`.
+Сделать подобное с `fmt::Display` невозможно, он должен быть реализован вручную.
 
 ```rust
-// This structure cannot be printed either with `fmt::Display` or
-// with `fmt::Debug`
+// Эта структура не может быть напечатана с помощью `fmt::Display`
+// или с помощью `fmt::Debug`
 struct UnPrintable(i32);
 
-// The `derive` attribute automatically creates the implementation
-// required to make this `struct` printable with `fmt::Debug`.
+// Атрибут `derive` автоматически реализует
+// необходимые методы, чтобы была возможность
+// печатать данную `структуру` с помощью `fmt::Debug`.
 #[derive(Debug)]
 struct DebugPrintable(i32);
 ```
 
-All `std` library types automatically are printable with `{:?}` too:
+Все типы в `стандартной библиотеке (std)` могут быть напечатаны с `{:?}`:
 
 ```rust,editable
-// Derive the `fmt::Debug` implementation for `Structure`. `Structure`
-// is a structure which contains a single `i32`.
+// Вывод и реализация `fmt::Debug` для `Structure`.
+// `Structure` - это структура, которая содержит в себе один `i32`.
 #[derive(Debug)]
 struct Structure(i32);
 
-// Put a `Structure` inside of the structure `Deep`. Make it printable
-// also.
+// Добавим структуру `Structure` в структуру `Deep`.
+// Реализуем для `Deep` возможность вывода с помощью fmt::Debug`.
 #[derive(Debug)]
 struct Deep(Structure);
 
 fn main() {
-    // Printing with `{:?}` is similar to with `{}`.
-    println!("{:?} months in a year.", 12);
-    println!("{1:?} {0:?} is the {actor:?} name.",
-             "Slater",
-             "Christian",
-             actor="actor's");
+    // Вывод с помощью `{:?}` аналогичен `{}`.
+    println!("{:?} месяцев в году.", 12);
+    println!("{1:?} {0:?} - это имя {actor:?}.",
+             "Слэйтер",
+             "Кристиан",
+             actor="актёра");
 
-    // `Structure` is printable!
-    println!("Now {:?} will print!", Structure(3));
-    
-    // The problem with `derive` is there is no control over how
-    // the results look. What if I want this to just show a `7`?
-    println!("Now {:?} will print!", Deep(Structure(7)));
-}
+    // `Structure` теперь можно напечатать!
+    println!("Теперь {:?} будет выведена на экран!", Structure(3));
+
+    // Проблема с `выводом (derive)`, в том, что у нас не будет контроля
+    // над тем, как будет выглядеть результат.
+    // Что если мы хотим напечатать просто `7`?
+    println!("А теперь напечатаем {:?}", Deep(Structure(7)));
 ```
 
-So `fmt::Debug` definitely makes this printable but sacrifices some
-elegance. Rust also provides "pretty printing" with `{:#?}`.
+Так что 'fmt:: Debug' определенно делает это для печати, но жертвует некоторыми
+изящество. Rust также обеспечивает "красивую печать " с помощью" {:#?}'.
 
 ```rust,editable
 #[derive(Debug)]
@@ -70,12 +70,12 @@ fn main() {
 }
 ```
 
-One can manually implement `fmt::Display` to control the display.
+Можно вручную реализовать 'fmt:: Display' для управления отображением.
 
-### See also
+### Смотрите также
 
-[attributes][attributes], [`derive`][derive], [`std::fmt`][fmt],
-and [`struct`][structs]
+[атрибуты][attributes], [`derive`][derive], [`std::fmt`][fmt],
+and [`структуры`][structs]
 
 [attributes]: https://doc.rust-lang.org/reference/attributes.html
 [derive]: trait/derive.html
