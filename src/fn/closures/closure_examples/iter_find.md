@@ -1,20 +1,19 @@
 # Iterator::find
 
-`Iterator::find` is a function which when passed an iterator, will return
-the first element which satisfies the predicate as an `Option`. Its
-signature:
+`Iterator::find` - это функция, которая принимает итератор и возвращает первый
+элемент, который удовлетворяет предикату, в виде `Option`. Её объявление:
 
-```rust,ignore
+```rust
 pub trait Iterator {
-    // The type being iterated over.
+    // Тип, по которому выполняется итерирование
     type Item;
 
-    // `find` takes `&mut self` meaning the caller may be borrowed
-    // and modified, but not consumed.
+    // `find` принимает `&mut self`, что означает заимствование и
+    // изменение, но не поглощение `self`.
     fn find<P>(&mut self, predicate: P) -> Option<Self::Item> where
-        // `FnMut` meaning any captured variable may at most be
-        // modified, not consumed. `&Self::Item` states it takes
-        // arguments to the closure by reference.
+        // `FnMut` означает, что любая захваченная переменная
+        // может быть изменена, но не поглощена. `&Self::Item`
+        // указывает на захват аргументов замыкания по ссылке.
         P: FnMut(&Self::Item) -> bool {}
 }
 ```
@@ -24,27 +23,27 @@ fn main() {
     let vec1 = vec![1, 2, 3];
     let vec2 = vec![4, 5, 6];
 
-    // `iter()` for vecs yields `&i32`.
+    // `iter()` для векторов даёт `&i32`.
     let mut iter = vec1.iter();
-    // `into_iter()` for vecs yields `i32`.
+    // `into_iter()` для векторов даёт `i32`.
     let mut into_iter = vec2.into_iter();
 
-    // A reference to what is yielded is `&&i32`. Destructure to `i32`.
-    println!("Find 2 in vec1: {:?}", iter     .find(|&&x| x == 2));
-    // A reference to what is yielded is `&i32`. Destructure to `i32`.
-    println!("Find 2 in vec2: {:?}", into_iter.find(| &x| x == 2));
+    // Ссылка на это даёт `&&i32`. Приводим к `i32`.
+    println!("Найти 2 в vec1: {:?}", iter     .find(|&&x| x == 2));
+    // Ссылка на это даёт `&i32`. Приводим к `i32`.
+    println!("Найти 2 в vec2: {:?}", into_iter.find(| &x| x == 2));
 
     let array1 = [1, 2, 3];
     let array2 = [4, 5, 6];
 
-    // `iter()` for arrays yields `&i32`
-    println!("Find 2 in array1: {:?}", array1.iter()     .find(|&&x| x == 2));
-    // `into_iter()` for arrays unusually yields `&i32`
-    println!("Find 2 in array2: {:?}", array2.into_iter().find(|&&x| x == 2));
+    // `iter()` для массивов даёт `&i32`
+    println!("Найти 2 в array1: {:?}", array1.iter()     .find(|&&x| x == 2));
+    // `into_iter()` для массивов неожиданно даёт `&i32`
+    println!("Найти 2 в array2: {:?}", array2.into_iter().find(|&&x| x == 2));
 }
 ```
 
-### See also:
+### Смотрите также:
 
 [`std::iter::Iterator::find`][find]
 

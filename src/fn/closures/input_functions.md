@@ -1,35 +1,36 @@
-# Input functions
+# Входные функции
 
-Since closures may be used as arguments, you might wonder if the same can be said
-about functions. And indeed they can! If you declare a function that takes a
-closure as parameter, then any function that satisfies the trait bound of that
-closure can be passed as a parameter.
+Так как замыкания могут использоваться в аргументах, вы можете ожидать, что то
+же самое можно сказать и про функции. И это действительно так! Если вы
+объявляете функцию, принимающую замыкание как аргумент, то любая функция,
+удовлетворяющая ограничениям типажа этого замыкания, может быть передана как
+аргумент.
 
 ```rust,editable
-// Define a function which takes a generic `F` argument
-// bounded by `Fn`, and calls it
+// Объявляем функцию, которая принимает обобщённый тип `F`,
+// ограниченный типажом `Fn`, и вызывает его.
 fn call_me<F: Fn()>(f: F) {
     f();
 }
 
-// Define a wrapper function satisfying the `Fn` bound
+// Объявляем функцию-обёртку, удовлетворяющую ограничению `Fn`
 fn function() {
-    println!("I'm a function!");
+    println!("Я функция!");
 }
 
 fn main() {
-    // Define a closure satisfying the `Fn` bound
-    let closure = || println!("I'm a closure!");
+    // Определяем замыкание, удовлетворяющее ограничению `Fn`
+    let closure = || println!("Я замыкание!");
 
     call_me(closure);
     call_me(function);
 }
 ```
 
-As an additional note, the `Fn`, `FnMut`, and `FnOnce` `traits` dictate how
-a closure captures variables from the enclosing scope.
+Стоит отметить, что типажи `Fn`, `FnMut` и `FnOnce` указывают, как
+замыкание захватывает переменные из своей области видимости.
 
-### See also:
+### Смотрите также:
 
 [`Fn`][fn], [`FnMut`][fn_mut], and [`FnOnce`][fn_once]
 
