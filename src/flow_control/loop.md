@@ -1,34 +1,33 @@
 # loop
 
-Rust provides a `loop` keyword to indicate an infinite loop.
+Rust предоставляет ключевое слово `loop` для обозначения бесконечного цикла.
 
-The `break` statement can be used to exit a loop at anytime, whereas the
-`continue` statement can be used to skip the rest of the iteration and start a
-new one.
+Оператор `break` используется чтобы выйти из цикла в любое время, оператор
+`continue` используется чтобы пропустить оставшуюся часть цикла и начать новую итерацию.
 
 ```rust,editable
 fn main() {
     let mut count = 0u32;
 
-    println!("Let's count until infinity!");
+    println!("Давайте считать до бесконечности!");
 
-    // Infinite loop
+    // Бесконечный цикл
     loop {
         count += 1;
 
         if count == 3 {
-            println!("three");
+            println!("три");
 
-            // Skip the rest of this iteration
+            // Пропустить оставшуюся часть цикла
             continue;
         }
 
         println!("{}", count);
 
         if count == 5 {
-            println!("OK, that's enough");
+            println!("Всё, достаточно");
 
-            // Exit this loop
+            // Выйти из цикла
             break;
         }
     }

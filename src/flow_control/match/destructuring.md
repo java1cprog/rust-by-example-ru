@@ -1,6 +1,6 @@
-# Destructuring
+# Деструктуризация
 
-A `match` block can destructure items in a variety of ways.
+Блок `match` может  деструктурировать элементы в различных формах.
 
 * [Destructuring Enums][enum]
 * [Destructuring Pointers][refs]

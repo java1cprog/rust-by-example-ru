@@ -1,32 +1,32 @@
-# structs
+# Структуры
 
-Similarly, a `struct` can be destructured as shown:
+`Структуры` могут быть деструктурированы следующим образом:
 
 ```rust,editable
 fn main() {
     struct Foo { x: (u32, u32), y: u32 }
 
-    // destructure members of the struct
+    // деструктуризация члена структуры
     let foo = Foo { x: (1, 2), y: 3 };
     let Foo { x: (a, b), y } = foo;
 
     println!("a = {}, b = {},  y = {} ", a, b, y);
 
-    // you can destructure structs and rename the variables,
-    // the order is not important
+    // Вы можете деструктурировать структуру и переименовывать переменные,
+    // порядок при этом не важен
 
     let Foo { y: i, x: j } = foo;
     println!("i = {:?}, j = {:?}", i, j);
 
-    // and you can also ignore some variables:
+    // а так же можно проигнорировать часть переменных:
     let Foo { y, .. } = foo;
     println!("y = {}", y);
 
-    // this will give an error: pattern does not mention field `x`
+    // следующий код выдаст ошибку: в шаблоне нет упоминания поля `x`
     // let Foo { y } = foo;
 }
 ```
 
-### See also:
+### Смотрите также:
 
-[Structs](custom_types/structs.html), [The ref pattern](scope/borrow/ref.html)
+[структуры](custom_types/structs.html), [The ref pattern](scope/borrow/ref.html)

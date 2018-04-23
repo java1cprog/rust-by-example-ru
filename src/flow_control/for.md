@@ -2,16 +2,16 @@
 
 ## for and range
 
-The `for in` construct can be used to iterate through an `Iterator`.
-One of the easiest ways to create an iterator is to use the range
-notation `a..b`. This yields values from `a` (inclusive) to `b`
-(exclusive) in steps of one.
+Конструкция `for in` может быть использована для итерации по `Итераторам (Iterator)`.
+Один из самых простых способов создать итератор это использовать
+диапазон значений `a..b`. Это вернёт нам значения от `a` (включительно) до `b`
+(исключительно) за один шаг.
 
-Let's write FizzBuzz using `for` instead of `while`.
+Давайте напишем FizzBuzz, используя `for` вместо `while`.
 
 ```rust,editable
 fn main() {
-    // `n` will take the values: 1, 2, ..., 100 in each iteration
+    // `n` будет принимать значения: 1, 2, ..., 100 с каждой итерации
     for n in 1..101 {
         if n % 15 == 0 {
             println!("fizzbuzz");
@@ -111,8 +111,8 @@ In the above snippets note the type of `match` branch, that is the key
 difference in the types or iteration. The difference in type then of course
 implies differing actions that are able to be performed.
 
-### See also
+### Смотрите также:
 
-[Iterator][iter]
+[Итераторы (Iterator)][iter]
 
 [iter]: trait/iter.html
