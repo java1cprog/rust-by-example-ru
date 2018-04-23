@@ -1,64 +1,65 @@
-# Generics
+# Обобщения
 
-*Generics* is the topic of generalizing types and functionalities to broader
-cases. This is extremely useful for reducing code duplication in many ways,
-but can call for rather involving syntax. Namely, being generic requires 
-taking great care to specify over which types a generic type 
-is actually considered valid. The simplest and most common use of generics 
-is for type parameters.
+*Обобщения* позволяют генерализировать типы и функционал для более общих случаев. Они
+чрезвычайно полезны благодаря уменьшению дублирования кода, однако могут привести к
+сравнительному усложнению синтаксиса. А именно, использование обобщений требует особого
+внимания при определении допустимых реальных типов которыми могут заменяться обобщённые.
+Наиболее простым и распространённым применением обобщений является обобщение параметров
+типа.
 
-A type parameter is specified as generic by the use of angle brackets and upper
-[camel case][camelcase]: `<Aaa, Bbb, ...>`. "Generic type parameters" are
-typically represented as `<T>`. In Rust, "generic" also describes anything that
-accepts one or more generic type parameters `<T>`. Any type specified as a 
-generic type parameter is generic, and everything else is concrete (non-generic).
+Обобщить параметр типа можно используя угловые скобки и верхний [верблюжий регистр][camelcase]:
+`<Aaa, Bbb, ...>`. "Обобщённые параметры типа" обычно представлены как `<T>`. В Rust,
+"обобщённым" также принято называть все, что может принимать один или более обобщённых
+параметров типа `<T>`. Любой тип, указанный в качестве параметра обобщённого типа,
+является обобщённым, а всё остальное является конкретным (не обобщённым).
 
-For example, defining a *generic function* named `foo` that takes an argument
-`T` of any type:
+Например, объявление *обобщённой функции* `foo` принимающей аргумент `T` любого типа:
 
 ```rust,ignore
 fn foo<T>(arg: T) { ... }
 ```
 
-Because `T` has been specified as a generic type parameter using `<T>`, it 
-is considered generic when used here as `(arg: T)`. This is the case even if `T` 
-has previously been defined as a `struct`.
+Поскольку `T` был объявлен как обобщённый тип, посредством `<T>`, он считается обобщённым
+когда используется как `(arg: T)`. Это работает даже если `T` был определён как [структура]
+[structs].
 
-This example shows some of the syntax in action:
+Пример ниже демонстрирует синтаксис в действии:
 
 ```rust,editable
 // A concrete type `A`.
+// Конкретный тип `A`.
 struct A;
 
-// In defining the type `Single`, the first use of `A` is not preceded by `<A>`.
-// Therefore, `Single` is a concrete type, and `A` is defined as above.
+// В определении типа `Single` первому использованию `A` не предшествует `<A>`.
+// Поэтому `Single` имеет конкретный тип, и `A` определена выше.
 struct Single(A);
-//            ^ Here is `Single`s first use of the type `A`.
+//            ^ Здесь `A` в первый раз используется в `Single`.
 
-// Here, `<T>` precedes the first use of `T`, so `SingleGen` is a generic type.
-// Because the type parameter `T` is generic, it could be anything, including
-// the concrete type `A` defined at the top.
+// В данном примере, `<T>` предшествует первому использованию `T`,
+// поэтому `SingleGen` является обобщённым типом.
+// Поскольку тип параметра `T` является обобщённым, он может быть чем угодно, включая
+// конкретный тип `A`, определённый выше.
 struct SingleGen<T>(T);
 
 fn main() {
-    // `Single` is concrete and explicitly takes `A`.
+    // `Single` имеет конкретный тип и явно принимает параметр `A`.
     let _s = Single(A);
-    
-    // Create a variable `_char` of type `SingleGen<char>`
-    // and give it the value `SingleGen('a')`.
-    // Here, `SingleGen` has a type parameter explicitly specified.
+
+    // Создаём переменную `_char` типа `SingleGen<char>`
+    // и присваиваем ей значение `SingleGen('a')`.
+    // В примере ниже, тип параметра `SingleGen` явно определён.
     let _char: SingleGen<char> = SingleGen('a');
 
-    // `SingleGen` can also have a type parameter implicitly specified:
-    let _t    = SingleGen(A); // Uses `A` defined at the top.
-    let _i32  = SingleGen(6); // Uses `i32`.
-    let _char = SingleGen('a'); // Uses `char`.
+    // Здесь, `SingleGen` также может иметь неявно определённый параметр типа:
+    let _t    = SingleGen(A); // Используется структура `A`, объявленная выше.
+    let _i32  = SingleGen(6); // Используется `i32`.
+    let _char = SingleGen('a'); // Используется `char`.
 }
 ```
 
-### See also:
+### Смотрите также:
 
-[`struct`s][structs]
+[Структуры][structs]
 
 [structs]: custom_types/structs.html
 [camelcase]: https://en.wikipedia.org/wiki/CamelCase

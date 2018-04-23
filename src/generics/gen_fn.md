@@ -1,59 +1,61 @@
-# Functions
+# Функции
 
-The same set of rules can be applied to functions: a type `T` becomes
-generic when preceded by `<T>`.
+Тот же набор правил применяется и к функциям: тип `T` становится
+обобщённым, когда предшествует `<T>`.
 
-Using generic functions sometimes requires explicitly specifying type 
-parameters. This may be the case if the function is called where the return type 
-is generic, or if the compiler doesn't have enough information to infer 
-the necessary type parameters.
+При использовании обобщённых функций, иногда требуется явно указывать тип
+данных параметров. Это может быть необходимо в случае, если вызываемая функция возвращает
+обобщённый тип или у компилятора недостаточно информации для вывода необходимого
+типа данных.
 
-A function call with explicitly specified type parameters looks like:
+Вызов функции с явно указанными типами данных параметров выглядит так:
 `fun::<A, B, ...>()`.
 
 ```rust,editable
-struct A;          // Concrete type `A`.
-struct S(A);       // Concrete type `S`.
-struct SGen<T>(T); // Generic type `SGen`.
+struct A; // Конкретный тип `A`.
+struct S(A); // Конкретный тип `S`.
+struct SGen<T>(T); // Обобщённый тип `SGen`.
 
-// The following functions all take ownership of the variable passed into
-// them and immediately go out of scope, freeing the variable.
+// Все следующие функции становятся владельцем переменной, переданной в них.
+// После передачи, она сразу выходит из области видимости и освобождается.
 
-// Define a function `reg_fn` that takes an argument `_s` of type `S`.
-// This has no `<T>` so this is not a generic function.
+// Объявляем функцию `reg_fn`, которая принимает аргумент `_s` типа `S`.
+// Здесь отсутствует `<T>`, поэтому это не обобщённая функция.
 fn reg_fn(_s: S) {}
 
-// Define a function `gen_spec_t` that takes an argument `_s` of type `SGen<T>`.
-// It has been explicitly given the type parameter `A`, but because `A` has not 
-// been specified as a generic type parameter for `gen_spec_t`, it is not generic.
+// Объявляем функцию `gen_spec_t`, которая принимает аргумент `_s` типа `SGen<T>`.
+// В ней явно задан параметр типа `A`, но поскольку `A` не был указан
+// как параметр обобщённого типа для `gen_spec_t`, то он не является обобщённым.
 fn gen_spec_t(_s: SGen<A>) {}
 
-// Define a function `gen_spec_i32` that takes an argument `_s` of type `SGen<i32>`.
-// It has been explicitly given the type parameter `i32`, which is a specific type.
-// Because `i32` is not a generic type, this function is also not generic.
+// Объявляем функцию `gen_spec_i32`, которая принимает аргумент `_s` типа `SGen<i32>`.
+// В ней явно задан тип `i32`, который является определённым типом.
+// Поскольку `i32` не является обобщённым типом, эта функция
+// также не является обобщённой.
 fn gen_spec_i32(_s: SGen<i32>) {}
 
-// Define a function `generic` that takes an argument `_s` of type `SGen<T>`.
-// Because `SGen<T>` is preceded by `<T>`, this function is generic over `T`.
+// Объявляем функцию `generic`, которая принимает аргумент `_s` типа `SGen<T>`.
+// Поскольку `SGen<T>` предшествует `<T>`, эта функция
+// является обобщённой над `T`.
 fn generic<T>(_s: SGen<T>) {}
 
 fn main() {
-    // Using the non-generic functions
-    reg_fn(S(A));          // Concrete type.
-    gen_spec_t(SGen(A));   // Implicitly specified type parameter `A`.
-    gen_spec_i32(SGen(6)); // Implicitly specified type parameter `i32`.
+    // Используем не обобщённые функции.
+    reg_fn(S(A)); // Конкретный тип.
+    gen_spec_t(SGen(A)); // Неявно определён тип параметра `A`.
+    gen_spec_i32(SGen(6)); // Неявно определён тип параметра `i32`.
 
-    // Explicitly specified type parameter `char` to `generic()`.
+    // Явно определён тип параметра `char` в `generic()`.
     generic::<char>(SGen('a'));
 
-    // Implicitly specified type parameter `char` to `generic()`.
+    // Неявно определён параметр типа `char` в `generic()`.
     generic(SGen('c'));
 }
 ```
 
-### See also:
+### Смотрите также:
 
-[functions][fn] and [`struct`s][structs]
+[Функции][fn] и [структуры][structs]
 
 [fn]: fn.html
 [structs]: custom_types/structs.html

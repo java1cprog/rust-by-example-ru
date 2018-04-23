@@ -1,7 +1,7 @@
-# Multiple bounds
+# Множественные ограничения
 
-Multiple bounds can be applied with a `+`. Like normal, different types are
-separated with `,`.
+Множественные ограничения по типажу могут быть применены с помощью `+`.
+Разные типы разделяются с помощью `,`.
 
 ```rust,editable
 use std::fmt::{Debug, Display};
@@ -23,15 +23,15 @@ fn main() {
 
     compare_prints(&string);
     //compare_prints(&array);
-    // TODO ^ Try uncommenting this.
+    // ЗАДАНИЕ ^ Попробуйте удалить комментарий.
 
     compare_types(&array, &vec);
 }
 ```
 
-### See also:
+### Смотрите также:
 
-[`std::fmt`][fmt] and [`trait`s][traits]
+[`std::fmt`][fmt] и [`типажи`][traits]
 
 [fmt]: hello/print.html
 [traits]: trait.html
