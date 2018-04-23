@@ -1,7 +1,7 @@
-# File hierarchy
+# Иерархия файлов
 
-Modules can be mapped to a file/directory hierarchy. Let's break down the
-[visibility example][visibility] in files:
+Модули могут быть отображены на иерархию файлов и директорий.
+Давайте разобьём [пример с видимостью модулей][visibility] на файлы:
 
 ```bash
 $ tree .
@@ -13,15 +13,15 @@ $ tree .
 `-- split.rs
 ```
 
-In `split.rs`:
+В `split.rs`:
 
 ```rust,ignore
-// This declaration will look for a file named `my.rs` or `my/mod.rs` and will
-// insert its contents inside a module named `my` under this scope
+// Эта декларация найдёт файл с именем `my.rs` или `my/mod.rs` и вставит
+// его содержимое внутрь модуля с именем `my` в этой области видимости
 mod my;
 
 fn function() {
-    println!("called `function()`");
+    println!("вызвана `function()`");
 }
 
 fn main() {
@@ -36,61 +36,61 @@ fn main() {
 
 ```
 
-In `my/mod.rs`:
+В `my/mod.rs`:
 
 ```rust,ignore
-// Similarly `mod inaccessible` and `mod nested` will locate the `nested.rs`
-// and `inaccessible.rs` files and insert them here under their respective
-// modules
+// Точно так же, `mod inaccessible` и `mod nested` обнаружат файлы `nested.rs`
+// и `inaccessible.rs`, и затем вставят их здесь в соответствующие модули
+
 mod inaccessible;
 pub mod nested;
 
 pub fn function() {
-    println!("called `my::function()`");
+    println!("вызвана `my::function()`");
 }
 
 fn private_function() {
-    println!("called `my::private_function()`");
+    println!("вызывает `my::private_function()`");
 }
 
 pub fn indirect_access() {
-    print!("called `my::indirect_access()`, that\n> ");
+    print!("вызвана `my::indirect_access()`, которая\n> ");
 
     private_function();
 }
 ```
 
-In `my/nested.rs`:
+В `my/nested.rs`:
 
 ```rust,ignore
 pub fn function() {
-    println!("called `my::nested::function()`");
+    println!("вызвана `my::nested::function()`");
 }
 
 #[allow(dead_code)]
 fn private_function() {
-    println!("called `my::nested::private_function()`");
+    println!("вызвана `my::nested::private_function()`");
 }
 ```
 
-In `my/inaccessible.rs`:
+В `my/inaccessible.rs`:
 
 ```rust,ignore
 #[allow(dead_code)]
 pub fn public_function() {
-    println!("called `my::inaccessible::public_function()`");
+    println!("вызвана `my::inaccessible::public_function()`");
 }
 ```
 
-Let's check that things still work as before:
+Давайте проверим, что все еще работает, как раньше:
 
 ```bash
 $ rustc split.rs && ./split
-called `my::function()`
-called `function()`
-called `my::indirect_access()`, that
-> called `my::private_function()`
-called `my::nested::function()`
+вызвана `my::function()`
+вызвана `function()`
+вызвана `my::indirect_access()`, которая
+> вызвана `my::private_function()`
+вызвана `my::nested::function()`
 ```
 
 [visibility]: mod/visibility.html
