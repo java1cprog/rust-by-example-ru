@@ -8,26 +8,26 @@
 Обе инициализации имеют идентичный синтаксис для принятия аргументов.
 
 ```rust,editable
-// Эта функция будет скомпилирована только в том случае, если целевая OS будет linux
+// Эта функция будет скомпилирована только в том случае, если целевая ОС будет linux
 #[cfg(target_os = "linux")]
 fn are_you_on_linux() {
-    println!("You are running linux!");
+    println!("Вы работаете в linux!");
 }
 
-// А эта функция будет скомпилирована только в том случае *не* linux
+// А эта функция будет скомпилирована, если целевая ОС *не* linux
 #[cfg(not(target_os = "linux"))]
 fn are_you_on_linux() {
-    println!("You are *not* running linux!");
+    println!("Вы работаете *не* в linux!");
 }
 
 fn main() {
     are_you_on_linux();
     
-    println!("Are you sure?");
+    println!("Вы уверены?");
     if cfg!(target_os = "linux") {
-        println!("Yes. It's definitely linux!");
+        println!("Да. Это точно linux!");
     } else {
-        println!("Yes. It's definitely *not* linux!");
+        println!("Да. Это точно *не* linux!");
     }
 }
 ```

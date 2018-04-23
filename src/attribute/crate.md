@@ -4,10 +4,11 @@
 какой контейнер является библиотекой (и каким типом библиотеки),
 а какой исполняемым файлом. Атрибут `crate_name` используется для указания имя контейнера.
 
-However, it is important to note that both the `crate_type` and `crate_name`
-attributes have **no** effect whatsoever when using Cargo, the Rust package
-manager. Since Cargo is used for the majority of Rust projects, this means
-real-world uses of `crate_type` and `crate_name` are relatively limited.
+Однако важно отметить, что `crate_type` и `create_name`
+атрибуты не имеют значения при использовании пакетного менеджера `Cargo`.
+В виду того что `Cargo` использован для большинства проектов Rust,
+это значит в реальном мире использование `crate_type` и `crate_name`
+достаточно ограничено.
 
 ```rust,editable
 // Этот контейнер - библиотека
