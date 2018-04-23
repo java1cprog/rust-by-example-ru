@@ -1,44 +1,42 @@
-# As input parameters
+# Как входные параметры
 
-While Rust chooses how to capture variables on the fly mostly without type 
-annotation, this ambiguity is not allowed when writing functions. When 
-taking a closure as an input parameter, the closure's complete type must be 
-annotated using one of a few `traits`. In order of decreasing restriction, 
-they are:
+В то время как замыкания Rust выбирают способ захвата переменных на лету, по
+большей части без указания типов, эта двусмысленность недопустима при написании
+функций. При использовании замыкания в качестве входного параметра, его тип
+должен быть указан с использованием одного из `типажей`. Вот они, в порядке
+уменьшения ограничений:
 
-* `Fn`: the closure captures by reference (`&T`)
-* `FnMut`: the closure captures by mutable reference (`&mut T`)
-* `FnOnce`: the closure captures by value (`T`)
+* `Fn`: замыкание захватывает по ссылке (`&T`)
+* `FnMut`: замыкание захватывает по изменяемой ссылке (`&mut T`)
+* `FnOnce`: замыкание захватывает по значению (`T`)
 
-On a variable-by-variable basis, the compiler will capture variables in the 
-least restrictive manner possible. 
+Компилятор стремится захватывать переменные наименее ограничивающим способом.
 
-For instance, consider a parameter annotated as `FnOnce`. This specifies 
-that the closure *may* capture by `&T`, `&mut T`, or `T`, but the compiler 
-will ultimately choose based on how the captured variables are used in the 
-closure.
+Для примера, рассмотрим аргумент, указанный как `FnOnce`. Это означает, что
+замыкание *может* захватывать `&T`, `&mut T`, или `T`, но компилятор в итоге
+будет выбирать в зависимости от того, как захваченные переменные используются
+в замыкании.
 
-This is because if a move is possible, then any type of borrow should also 
-be possible. Note that the reverse is not true. If the parameter is 
-annotated as `Fn`, then capturing variables by `&mut T` or `T` are not 
-allowed.
+Это связано с тем, что если перемещение возможно, тогда любой тип заимствования
+также должен быть возможен. Отметим, что обратное не верно. Если параметр
+указан как `Fn`, то захват переменных как `&mut T` или `T` недопустим.
 
-In the following example, try swapping the usage of `Fn`, `FnMut`, and 
-`FnOnce` to see what happens:
+В следующем примере попробуйте поменять местами использование `Fn`, `FnMut`, и
+`FnOnce`, чтобы увидеть результат:
 
 ```rust,editable
-// A function which takes a closure as an argument and calls it.
+// Функция, которая принимает замыкание в качестве аргумента и вызывает его.
 fn apply<F>(f: F) where
-    // The closure takes no input and returns nothing.
+    // Замыкание ничего не принимает и не возвращает.
     F: FnOnce() {
-    // ^ TODO: Try changing this to `Fn` or `FnMut`.
+    // ^ TODO: Попробуйте изменить это на `Fn` или `FnMut`.
 
     f();
 }
 
-// A function which takes a closure and returns an `i32`.
+// Функция, которая принимает замыкание и возвращает `i32`.
 fn apply_to_3<F>(f: F) -> i32 where
-    // The closure takes an `i32` and returns an `i32`.
+    // Замыкание принимает `i32` и возвращает `i32`.
     F: Fn(i32) -> i32 {
 
     f(3)
@@ -47,39 +45,39 @@ fn apply_to_3<F>(f: F) -> i32 where
 fn main() {
     use std::mem;
 
-    let greeting = "hello";
-    // A non-copy type.
-    // `to_owned` creates owned data from borrowed one
-    let mut farewell = "goodbye".to_owned();
+    let greeting = "привет";
+    // Некопируемый тип.
+    // `to_owned` преобразует заимствованные данные в собственные.
+    let mut farewell = "пока".to_owned();
 
-    // Capture 2 variables: `greeting` by reference and
-    // `farewell` by value.
+    // Захват двух переменных: `greeting` по ссылке и
+    // `farewell` по значению.
     let diary = || {
-        // `greeting` is by reference: requires `Fn`.
-        println!("I said {}.", greeting);
+        // `greeting` захватывается по ссылке: требует `Fn`.
+        println!("Я сказал {}.", greeting);
 
-        // Mutation forces `farewell` to be captured by
-        // mutable reference. Now requires `FnMut`.
+        // Изменяемость требует от `farewell` быть захваченным
+        // по изменяемой ссылке. Сейчас требуется `FnMut`.
         farewell.push_str("!!!");
-        println!("Then I screamed {}.", farewell);
-        println!("Now I can sleep. zzzzz");
+        println!("Потом я закричал {}.", farewell);
+        println!("Теперь я могу поспать. zzzzz");
 
-        // Manually calling drop forces `farewell` to
-        // be captured by value. Now requires `FnOnce`.
+        // Ручной вызов удаления требуется от `farewell`
+        // быть захваченным по значению. Теперь требуется `FnOnce`.
         mem::drop(farewell);
     };
 
-    // Call the function which applies the closure.
+    // Вызов функции, которая выполняет замыкание.
     apply(diary);
 
-    // `double` satisfies `apply_to_3`'s trait bound
+    // `double` удовлетворяет ограничениям типажа `apply_to_3`
     let double = |x| 2 * x;
 
-    println!("3 doubled: {}", apply_to_3(double));
+    println!("Удвоенное 3: {}", apply_to_3(double));
 }
 ```
 
-### See also:
+### Смотрите также:
 
 [`std::mem::drop`][drop], [`Fn`][fn], [`FnMut`][fnmut], and [`FnOnce`][fnonce]
 
