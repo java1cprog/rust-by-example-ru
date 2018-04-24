@@ -1,21 +1,21 @@
-# Structs
+# Структуры
 
-Annotation of lifetimes in structures are also similar to functions:
+Аннотирование времени жизни в структурах аналогично функциям:
 
 ```rust,editable
-// A type `Borrowed` which houses a reference to an
-// `i32`. The reference to `i32` must outlive `Borrowed`.
+// Тип `Borrowed`, в котором находится ссылка на `i32`.
+// Ссылка на `i32` должна пережить `Borrowed`.
 #[derive(Debug)]
 struct Borrowed<'a>(&'a i32);
 
-// Similarly, both references here must outlive this structure.
+// Аналогично, обе ссылки расположенные здесь, должны пережить эту структуру.
 #[derive(Debug)]
 struct NamedBorrowed<'a> {
     x: &'a i32,
     y: &'a i32,
 }
 
-// An enum which is either an `i32` or a reference to one.
+// Перечисление, которое указывает на `i32` или на ссылку.
 #[derive(Debug)]
 enum Either<'a> {
     Num(i32),
@@ -29,18 +29,18 @@ fn main() {
     let single = Borrowed(&x);
     let double = NamedBorrowed { x: &x, y: &y };
     let reference = Either::Ref(&x);
-    let number    = Either::Num(y);
+    let number = Either::Num(y);
 
-    println!("x is borrowed in {:?}", single);
-    println!("x and y are borrowed in {:?}", double);
-    println!("x is borrowed in {:?}", reference);
-    println!("y is *not* borrowed in {:?}", number);
+    println!("x заимствован в {:?}", single);
+    println!("x и y заимствованы в {:?}", double);
+    println!("x заимствован в {:?}", reference);
+    println!("y *не* заимствован в {:?}", number);
 }
 ```
 
-### See also:
+### Смотрите также:
 
-[`struct`s][structs]
+[`Структуры`][structs]
 
 
 [structs]: custom_types/structs.html

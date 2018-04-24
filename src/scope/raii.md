@@ -1,45 +1,47 @@
 # RAII
 
-Variables in Rust do more than just hold data in the stack: they also *own*
-resources, e.g. `Box<T>` owns memory in the heap. Rust enforces [RAII][raii]
-(Resource Acquisition Is Initialization), so whenever an object goes out of
-scope, its destructor is called and its owned resources are freed.
+Переменные в Rust не только держат данные в стеке, они также могут *владеть*
+ресурсами; к примеру, `Box<T>` владеет памятью в куче. Поскольку Rust строго
+придерживается идиоме [RAII][raii], то когда объект выходит за зону видимости, вызывается
+его деструктор, а ресурс, которым он *владеет* освобождается.
 
-This behavior shields against *resource leak* bugs, so you'll never have to
-manually free memory or worry about memory leaks again! Here's a quick showcase:
+Такое поведение защищает от багов, связанных с *утечкой ресурсов.*
+Вам больше никогда не потребуется вручную освобождать память или же беспокоиться
+об её утечках! Небольшой пример:
 
 ```rust,editable
 // raii.rs
 fn create_box() {
-    // Allocate an integer on the heap
+    // Выделить память для целого число в куче
     let _box1 = Box::new(3i32);
 
-    // `_box1` is destroyed here, and memory gets freed
+    // `_box1` здесь уничтожается, а память освобождается
 }
 
 fn main() {
-    // Allocate an integer on the heap
+    // Выделить память для целого числа в куче
     let _box2 = Box::new(5i32);
 
-    // A nested scope:
+    // Вложенная область видимости:
     {
-        // Allocate an integer on the heap
+        // Выделить память для ещё одного целого числа в куче
         let _box3 = Box::new(4i32);
 
-        // `_box3` is destroyed here, and memory gets freed
+        // `_box3` здесь уничтожается, а память освобождается
     }
 
-    // Creating lots of boxes just for fun
-    // There's no need to manually free memory!
+    // Создаём большое количество упаковок. Просто потому что можем.
+    // Здесь нет необходимости освобождать память вручную!
     for _ in 0u32..1_000 {
         create_box();
     }
 
-    // `_box2` is destroyed here, and memory gets freed
+    // `_box2` здесь уничтожается, а память освобождается
 }
 ```
 
-Of course, we can double check for memory errors using [`valgrind`][valgrind]:
+Конечно, мы можем убедиться, что в нашей программе нет ошибок с памятью,
+используя [`valgrind`][valgrind]:
 
 ```bash
 $ rustc raii.rs && valgrind ./raii
@@ -59,17 +61,19 @@ $ rustc raii.rs && valgrind ./raii
 ==26873== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
 ```
 
-No leaks here!
+Утечки отсутствуют!
 
-## Destructor
+## Деструктор
 
-The notion of a destructor in Rust is provided through the [`Drop`] trait. The
-destructor is called when the resource goes out of scope. This trait is not
-required to be implemented for every type, only implement it for your type if
-you require its own destructor logic.
+Понятие деструктора в Rust обеспечивается через типаж [`Drop`].
+Деструктор вызывается, когда ресурс выходит за пределы области видимости.
+Этот типаж не требуется реализовать для каждого типа.
+Реализовать его для вашего типа вам потребуется, только если
+требуется своя логика при удалении экземпляра типа.
 
-Run the below example to see how the [`Drop`] trait works. When the variable in
-the `main` function goes out of scope the custom destructor will be invoked.
+Выполните пример ниже, чтобы увидеть, как работает типаж [`Drop'].
+Когда переменная в функции `main` выходит за пределы области действия,
+будет вызван пользовательский деструктор.
 
 ```rust,editable
 struct ToDrop;
@@ -86,9 +90,9 @@ fn main() {
 }
 ```
 
-### See also:
+### Смотрите также:
 
-[Box][box]
+[Упаковка][box]
 
 [raii]: https://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization
 [box]: std/box.html
