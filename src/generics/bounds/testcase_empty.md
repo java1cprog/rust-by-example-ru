@@ -1,8 +1,9 @@
-# Testcase: empty bounds
+# Пример: пустые ограничения
 
-A consequence of how bounds work is that even if a `trait` doesn't
-include any functionality, you can still use it as a bound. `Eq` and
-`Ord` are examples of such `trait`s from the `std` library.
+Следствием того, как работают ограничения по типажу, является то,
+что даже если `типаж` не включает в себя какие-либо функциональные
+возможности, вы все равно можете использовать его в качестве ограничения.
+Примерами таких типажей являются `Eq` и `Ord` из стандартной библиотеки.
 
 ```rust,editable
 struct Cardinal;
@@ -15,28 +16,28 @@ trait Blue {}
 impl Red for Cardinal {}
 impl Blue for BlueJay {}
 
-// These functions are only valid for types which implement these
-// traits. The fact that the traits are empty is irrelevant.
-fn red<T: Red>(_: &T)   -> &'static str { "red" }
-fn blue<T: Blue>(_: &T) -> &'static str { "blue" }
+// Эти функции действительны только для типов реализующих эти типажи.
+// То, что типажи пусты, не имеет значения.
+fn red<T: Red>(_: &T)   -> &'static str { "красная" }
+fn blue<T: Blue>(_: &T) -> &'static str { "синяя" }
 
 fn main() {
     let cardinal = Cardinal;
     let blue_jay = BlueJay;
     let _turkey   = Turkey;
 
-    // `red()` won't work on a blue jay nor vice versa
-    // because of the bounds.
-    println!("A cardinal is {}", red(&cardinal));
-    println!("A blue jay is {}", blue(&blue_jay));
-    //println!("A turkey is {}", red(&_turkey));
-    // ^ TODO: Try uncommenting this line.
+    // `red()` не будет работать для blue_jay, ни наоборот,
+    // из-за ограничений по типажу.
+    println!("Кардинал {} птица", red(&cardinal));
+    println!("Голубая сойка {} птица", blue(&blue_jay));
+    //println!("Индюк {} птица", red(&_turkey));
+    // ^ TODO: Попробуйте раскомментировать эту строку.
 }
 ```
 
-### See also:
+### Смотрите также:
 
-[`std::cmp::Eq`][eq], [`std::cmp::Ord`s][ord], and [`trait`s][traits]
+[`std::cmp::Eq`][eq], [`std::cmp::Ord`s][ord], и [`типажи`][traits]
 
 [eq]: https://doc.rust-lang.org/std/cmp/trait.Eq.html
 [ord]: https://doc.rust-lang.org/std/cmp/trait.Ord.html
