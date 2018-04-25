@@ -1,40 +1,38 @@
 # macro_rules!
 
-Rust provides a powerful macro system that allows metaprogramming. As you've
-seen in previous chapters, macros look like functions, except that their name
-ends with a bang `!`, but instead of generating a function call, macros are
-expanded into source code that gets compiled with the rest of the program.
-However, unlike macros in C and other languages, Rust macros are expanded into
-abstract syntax trees, rather than string preprocessing, so you don't get
-unexpected precedence bugs.
+Rust предоставляет мощную систему макросов, которая позволяет
+использовать метапрограммирование. Как вы могли видеть в предыдущих главах,
+макросы выглядят как функции, но их имя заканчивается восклицательным знаком (`!`).
+Вместо вызова функции, макросы расширяются в исходный код, который впоследствии
+компилируется с остальной частью программы.
 
-Macros are created using the `macro_rules!` macro.
+Макросы создаются с помощью макроса `macro_rules!`
 
 ```rust,editable
-// This is a simple macro named `say_hello`.
+// Этот простой макрос называется `say_hello`.
 macro_rules! say_hello {
-    // `()` indicates that the macro takes no argument.
+    // `()` указывает, что макрос не принимает аргументов.
     () => (
-        // The macro will expand into the contents of this block.
+        // Макрос будет раскрываться с содержимым этого блока.
         println!("Hello!");
     )
 }
 
 fn main() {
-    // This call will expand into `println!("Hello");`
+    // Этот вызов будет раскрыт в код `println!("Hello");`
     say_hello!()
 }
 ```
 
-So why are macros useful?
+Так почему же макросы полезны?
 
-1. Don't repeat yourself. There are many cases where you may need similar
-   functionality in multiple places but with different types. Often, writing a
-   macro is a useful way to avoid repeating code. (More on this later)
+1. Не повторяйтесь. Есть много случаев, когда вам может понадобиться подобная
+   функциональность в нескольких местах, но с различными типами. Часто пишут
+   макрос - это полезный способ избежать повторения кода. (Подробнее об этом позже)
 
-2. Domain-specific languages. Macros allow you to define special syntax for a
-   specific purpose. (More on this later)
+2. Предметно ориентированные языки. Макросы позволяют определить специальный синтаксис для
+   конкретной цели. (Подробнее об этом позже)
 
-3. Variadic interfaces. Sometime you want to define an interface that takes a
-   variable number of arguments. An example is `println!` which could take any
-   number of arguments, depending on the format string!. (More on this later)
+3. Вариативные интерфейсы. Иногда требуется определить интерфейс, который
+   имеет переменное количество аргументов. Пример: `println!`, который может принять любое
+   количество аргументов в зависимости от строки формата. (Подробнее об этом позже)

@@ -1,23 +1,23 @@
-# Overload
+# Перегрузка
 
-Macros can be overloaded to accept different combinations of arguments. 
-In that regard, `macro_rules!` can work similarly to a match block:
+Макросы могут быть перегружены, принимая различные комбинации аргументов.
+В этом плане, `macro_rules!` может работать аналогично блоку сопоставления (match):
 
 ```rust,editable
-// `test!` will compare `$left` and `$right`
-// in different ways depending on how you invoke it:
+// `test!` будет сравнивать `$left` и `$right`
+// по разному, в зависимости от того, как вы объявите их:
 macro_rules! test {
-    // Arguments don't need to be separated by a comma.
-    // Any template can be used!
+    // Не нужно разделять аргументы запятой.
+    // Можно использовать любой шаблон!
     ($left:expr; and $right:expr) => (
-        println!("{:?} and {:?} is {:?}",
+        println!("{:?} и {:?} это {:?}",
                  stringify!($left),
                  stringify!($right),
                  $left && $right)
     );
-    // ^ each arm must end with a semicolon.
+    // ^ каждый блок должен заканчиваться точкой с запятой.
     ($left:expr; or $right:expr) => (
-        println!("{:?} or {:?} is {:?}",
+        println!("{:?} или {:?} это {:?}",
                  stringify!($left),
                  stringify!($right),
                  $left || $right)

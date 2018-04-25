@@ -1,35 +1,35 @@
-# Designators
+# Указатели
 
-The arguments of a macro are prefixed by a dollar sign `$` and type annotated
-with a *designator*:
+Аргументы макроса имеют префикс знака доллара `$` и тип аннотируется
+с помощью *указателей фрагмента*:
 
 ```rust,editable
 macro_rules! create_function {
-    // This macro takes an argument of designator `ident` and
-    // creates a function named `$func_name`.
-    // The `ident` designator is used for variable/function names.
+    // Этот макрос принимает аргумент идентификатора `ident` и
+    // создаёт функцию с именем `$func_name`.
+    // Идентификатор `ident` используют для обозначения имени переменной/функции.
     ($func_name:ident) => (
         fn $func_name() {
-            // The `stringify!` macro converts an `ident` into a string.
-            println!("You called {:?}()",
-                     stringify!($func_name));
+            // Макрос `stringify!` преобразует `ident` в строку.
+            println!("Вызвана функция {:?}()",
+                     stringify!($func_name))
         }
     )
 }
 
-// Create functions named `foo` and `bar` with the above macro.
+// Создадим функции с именами `foo` и `bar` используя макрос, указанный выше.
 create_function!(foo);
 create_function!(bar);
 
 macro_rules! print_result {
-    // This macro takes an expression of type `expr` and prints
-    // it as a string along with its result.
-    // The `expr` designator is used for expressions.
+    // Этот макрос принимает выражение типа `expr` и напечатает
+    // его как строку вместе с результатом.
+    // Указатель `expr` используют для обозначения выражений.
     ($expression:expr) => (
-        // `stringify!` will convert the expression *as it is* into a string.
+        // `stringify!` преобразует выражение *как есть* в строку.
         println!("{:?} = {:?}",
                  stringify!($expression),
-                 $expression);
+                 $expression)
     )
 }
 
@@ -39,7 +39,7 @@ fn main() {
 
     print_result!(1u32 + 1);
 
-    // Recall that blocks are expressions too!
+    // Напомним, что блоки тоже являются выражениями!
     print_result!({
         let x = 1u32;
 
@@ -48,14 +48,14 @@ fn main() {
 }
 ```
 
-This is a list of all the designators:
+Это список всех указателей:
 
-* `block`
-* `expr` is used for expressions
-* `ident` is used for variable/function names
-* `item`
-* `pat` (*pattern*)
-* `path`
-* `stmt` (*statement*)
-* `tt` (*token tree*)
-* `ty` (*type*)
+* `block` (*последовательность операторов*)
+* `expr` используют для обозначения выражений
+* `ident` используют для обозначения имени переменной/функции
+* `item` (*элемент*)
+* `pat` (*образец*)
+* `path` (*квалифицированное имя*)
+* `stmt` (*единственный оператор*)
+* `tt` (*единственное дерево лексем*)
+* `ty` (*тип*)
