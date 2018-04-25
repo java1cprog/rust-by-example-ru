@@ -1,59 +1,58 @@
-# Ownership and moves
+# Владение и перемещение
 
-Because variables are in charge of freeing their own resources, 
-**resources can only have one owner**. This also prevents resources 
-from being freed more than once. Note that not all variables own 
-resources (e.g. [references]).
+Поскольку переменные ответственны за освобождение своих ресурсов,
+**ресурсы могут иметь лишь одного владельца**.  Это ограничение предотвращает
+возможность высвобождения ресурсов более одно раза. Обратите внимание,
+что не все переменные владеют своим ресурсом (например, [ссылки][references]).
 
-When doing assignments (`let x = y`) or passing function arguments by value
-(`foo(x)`), the *ownership* of the resources is transferred. In Rust-speak, 
-this is known as a *move*.
+При присваивании (`let x = y`) или при передаче функции аргумента по значению (`foo(x)`),
+*владение* ресурсами передаётся. В языке Rust это называется *перемещением.*
 
-After moving resources, the previous owner can no longer be used. This avoids
-creating dangling pointers.
+После перемещения ресурсов, переменная, владевшая ресурсами ранее, не может быть
+использована. Это предотвращает создание висячих указателей.
 
 ```rust,editable
-// This function takes ownership of the heap allocated memory
+// Эта функция берёт во владение память, выделенную в куче
 fn destroy_box(c: Box<i32>) {
-    println!("Destroying a box that contains {}", c);
+    println!("Уничтожаем упаковку, в которой хранится {}", c);
 
-    // `c` is destroyed and the memory freed
+    // `c` уничтожится, а память будет освобождена
 }
 
 fn main() {
-    // _Stack_ allocated integer
+    // Целое число выделенное в стеке
     let x = 5u32;
 
-    // *Copy* `x` into `y` - no resources are moved
+    // *Копируем* `x` в `y`. В данном случае нет ресурсов для перемещения
     let y = x;
 
-    // Both values can be independently used
-    println!("x is {}, and y is {}", x, y);
+    // Оба значения можно использовать независимо
+    println!("x равен {}, а y равен {}", x, y);
 
-    // `a` is a pointer to a _heap_ allocated integer
+    // `a` - указатель на целое число, выделенное в куче
     let a = Box::new(5i32);
 
-    println!("a contains: {}", a);
+    println!("a содержит: {}", a);
 
-    // *Move* `a` into `b`
+    // *Перемещаем* `a` в `b`
     let b = a;
-    // The pointer address of `a` is copied (not the data) into `b`.
-    // Both are now pointers to the same heap allocated data, but
-    // `b` now owns it.
-    
-    // Error! `a` can no longer access the data, because it no longer owns the
-    // heap memory
-    //println!("a contains: {}", a);
-    // TODO ^ Try uncommenting this line
+    // Адрес указателя `a` копируется (но не данные) в `b`.
+    // Оба указателя указывают на одни и те же данные в куче, но
+    // `b` теперь владеет ими.
 
-    // This function takes ownership of the heap allocated memory from `b`
+    // Ошибка! `a` больше не может получить доступ к данным, потому что
+    // больше не владеет данными в куче.
+    //println!("a содержит: {}", a);
+    // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
+
+    // Эта функция берет во владение память, выделенную в куче, которой ранее владела `b`
     destroy_box(b);
 
-    // Since the heap memory has been freed at this point, this action would
-    // result in dereferencing freed memory, but it's forbidden by the compiler
-    // Error! Same reason as the previous Error
-    //println!("b contains: {}", b);
-    // TODO ^ Try uncommenting this line
+    // Поскольку в данный момент память в куче уже освобождена, это действие
+    // приведёт к разыменованию освобождённой памяти, но это запрещено компилятором
+    // Ошибка! Причина та же, что и в прошлый раз
+    //println!("b содержит: {}", b);
+    // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 }
 ```
 

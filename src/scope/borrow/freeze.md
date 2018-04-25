@@ -1,24 +1,24 @@
-# Freezing
+# Замораживание
 
-When data is immutably borrowed, it also *freezes*. *Frozen* data can't be 
-modified via the original object until all references to it go out of scope:
+Когда данные заимствуются, они заодно и *замораживаются*. *Замороженные* данные
+не могут быть изменены до тех пор, пока все ссылки не выйдут за область видимости:
 
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
     let mut _mutable_integer = 7i32;
 
     {
-        // Borrow `_mutable_integer`
+        // Заимствовать `_mutable_integer`
         let _large_integer = &_mutable_integer;
 
-        // Error! `_mutable_integer` is frozen in this scope
+        // Ошибка! `_mutable_integer` заморожен в этой области видимости
         _mutable_integer = 50;
-        // FIXME ^ Comment out this line
+        // ИСПРАВЬТЕ ^ Закомментируйте эту строку
 
-        // `_large_integer` goes out of scope
+        // `_large_integer` покидает область видимости
     }
 
-    // Ok! `_mutable_integer` is not frozen in this scope
+    // Ок! `_mutable_integer` не заморожен в этой области видимости
     _mutable_integer = 3;
 }
 ```
