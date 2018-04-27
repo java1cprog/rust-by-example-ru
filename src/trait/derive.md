@@ -1,24 +1,25 @@
 # Derive
 
-The compiler is capable of providing basic implementations for some traits via
-the `#[derive]` [attribute][attribute]. These traits can still be
-manually implemented if a more complex behavior is required.
+Компилятор способен предоставить основные реализации для некоторых типажей
+с помощью [атрибута][attribute] `#[derive]`. Эти типажи могут быть
+реализованы вручную, если необходимо более сложное поведение.
 
-The following is a list of derivable traits:
-* Comparison traits:
+Ниже приводится список выводимых типажей:
+* Типажи сравнения:
   [`Eq`][eq], [`PartialEq`][partial-eq], [`Ord`][ord], [`PartialOrd`][partial-ord]
-* [`Clone`][clone], to create `T` from `&T` via a copy.
-* [`Copy`][copy], to give a type 'copy semantics' instead of 'move semantics'
-* [`Hash`][hash], to compute a hash from `&T`.
-* [`Default`][default], to create an empty instance of a data type.
-* [`Debug`][debug], to format a value using the `{:?}` formatter.
+* [`Clone`][clone], для создания `T` из `&T` с помощью копии.
+* [`Copy`][copy], чтобы создать тип семантикой копирования, вместо семантики перемещения.
+* [`Hash`][hash], чтобы вычислить хеш из `&T`.
+* [`Default`][default], чтобы создать пустой экземпляр типа данных.
+* `Zero`, для создания нулевого экземпляра числового типа данных.
+* [`Debug`][debug], чтобы отформатировать значение с помощью `{:?}`.
  
 ```rust,example
-// `Centimeters`, a tuple struct that can be compared
+// `Centimeters`, кортежная структура, которую можно сравнить
 #[derive(PartialEq, PartialOrd)]
 struct Centimeters(f64);
 
-// `Inches`, a tuple struct that can be printed
+// `Inches`, кортежная структура, которую можно напечатать
 #[derive(Debug)]
 struct Inches(i32);
 
@@ -30,38 +31,38 @@ impl Inches {
     }
 }
 
-// `Seconds`, a tuple struct no additional attributes
+// `Seconds`, кортежная структура без дополнительных атрибутов
 struct Seconds(i32);
 
 fn main() {
     let _one_second = Seconds(1);
 
-    // Error: `Seconds` can't be printed; it doesn't implement the `Debug` trait
-    //println!("One second looks like: {:?}", _one_second);
-    // TODO ^ Try uncommenting this line
+    // Ошибка: `Seconds` не может быть напечатана; не реализован типаж `Debug`
+    //println!("Одна секунда выглядит как: {:?}", _one_second);
+    // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
-    // Error: `Seconds` can't be compared; it doesn't implement the `PartialEq` trait
+    // Ошибка: `Seconds` нельзя сравнить; не реализован типаж `PartialEq`
     //let _this_is_true = (_one_second == _one_second);
-    // TODO ^ Try uncommenting this line
+    // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
     let foot = Inches(12);
 
-    println!("One foot equals {:?}", foot);
+    println!("Один фут равен {:?}", foot);
 
     let meter = Centimeters(100.0);
 
     let cmp =
         if foot.to_centimeters() < meter {
-            "smaller"
+            "меньше"
         } else {
-            "bigger"
+            "больше"
         };
 
-    println!("One foot is {} than one meter.", cmp);
+    println!("Один фут {} одного метра.", cmp);
 }
 ```
 
-### See also:
+### Смотрите также:
 [`derive`][derive]
 
 [attribute]: attribute.html

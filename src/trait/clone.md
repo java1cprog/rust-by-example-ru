@@ -1,54 +1,54 @@
 # Clone
 
-When dealing with resources, the default behavior is to transfer them during
-assignments or function calls. However, sometimes we need to make a 
-copy of the resource as well.
+При работе с ресурсами, стандартным поведением является передача их (ресурсов)
+в ходе выполнения или вызов функции. Однако, иногда нам нужно
+также объявить копию ресурса.
 
-The [`Clone`][clone] trait helps us do exactly this. Most commonly, we can 
-use the `.clone()` method defined by the `Clone` trait.
+Типаж [`Clone`][clone] помогает нам сделать именно это. Чаще всего, мы можем
+использовать метод `.clone()` объявленный типажом `Clone`.
 
 ```rust,editable
-// A unit struct without resources
+// Единичная структура без ресурсов
 #[derive(Debug, Clone, Copy)]
 struct Nil;
 
-// A tuple struct with resources that implements the `Clone` trait
+// Кортежная структура с ресурсами, которая реализует типаж `Clone`
 #[derive(Clone, Debug)]
 struct Pair(Box<i32>, Box<i32>);
 
 fn main() {
-    // Instantiate `Nil`
+    // Объявим экземпляр `Nil`
     let nil = Nil;
-    // Copy `Nil`, there are no resources to move
+    // Скопируем `Nil`, который не имеет ресурсов для перемещения
     let copied_nil = nil;
 
-    // Both `Nil`s can be used independently
-    println!("original: {:?}", nil);
-    println!("copy: {:?}", copied_nil);
+    // Оба `Nil`s могут быть использованы независимо
+    println!("оригинал: {:?}", nil);
+    println!("копия: {:?}", copied_nil);
 
-    // Instantiate `Pair`
+    // Объявим экземпляр `Pair`
     let pair = Pair(Box::new(1), Box::new(2));
-    println!("original: {:?}", pair);
+    println!("оригинал: {:?}", pair);
 
-    // Copy `pair` into `moved_pair`, moves resources
+    // Скопируем `pair` в `moved_pair`, перенаправляя ресурсы
     let moved_pair = pair;
-    println!("copy: {:?}", moved_pair);
+    println!("копия: {:?}", moved_pair);
 
-    // Error! `pair` has lost its resources
-    //println!("original: {:?}", pair);
-    // TODO ^ Try uncommenting this line
-    
-    // Clone `moved_pair` into `cloned_pair` (resources are included)
+    // Ошибка! `pair` потеряла свои ресурсы
+    //println!("оригинал: {:?}", pair);
+    // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
+
+    // Скопируем `moved_pair` в `cloned_pair` (включая ресурсы)
     let cloned_pair = moved_pair.clone();
-    // Drop the original pair using std::mem::drop
+    // Сбросим оригинальную пару используя std::mem::drop
     drop(moved_pair);
 
-    // Error! `moved_pair` has been dropped
-    //println!("copy: {:?}", moved_pair);
-    // TODO ^ Try uncommenting this line
+    // Ошибка! `moved_pair` была сброшена
+    //println!("копия: {:?}", moved_pair);
+    // ЗАДАНИЕ ^ Попробуйте раскомментировать эту строку
 
-    // The result from .clone() can still be used!
-    println!("clone: {:?}", cloned_pair);
+    // Полученный результат из .clone() все ещё можно использовать!
+    println!("клон: {:?}", cloned_pair);
 }
 ```
 

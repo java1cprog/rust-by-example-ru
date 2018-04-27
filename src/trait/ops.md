@@ -1,12 +1,13 @@
-# Operator Overloading
+# Перегрузка операторов
 
-In Rust, many of the operators can be overloaded via traits. That is, some operators can
-be used to accomplish different tasks based on their input arguments. This is possible
-because operators are syntactic sugar for method calls. For example, the `+` operator in
-`a + b` calls the `add` method (as in `a.add(b)`). This `add` method is part of the `Add`
-trait. Hence, the `+` operator can be used by any implementor of the `Add` trait.
+В Rust, множество операторов могут быть перегружены с помощью типажей. То есть, некоторые
+операторы могут использоваться для выполнения различных задач на основе вводимых аргументов.
+Это возможно, потому что операторы являются синтаксическим сахаром для вызова методов. Например,
+оператор `+` в `a + b` вызывает метод `add` (как в `a.add(b)`).
+Метод `add` является частью типажа `Add`.
+Следовательно, оператор `+` могут использовать все, кто реализуют типаж `Add`.
 
-A list of the traits, such as `Add`, that overload operators is available [here][ops].
+Список типажей, таких как `Add`, которые перегружают операторы, доступен [здесь][ops].
 
 ```rust,editable
 use std::ops;
@@ -20,27 +21,29 @@ struct FooBar;
 #[derive(Debug)]
 struct BarFoo;
 
-// The `std::ops::Add` trait is used to specify the functionality of `+`.
-// Here, we make `Add<Bar>` - the trait for addition with a RHS of type `Bar`.
-// The following block implements the operation: Foo + Bar = FooBar
+// Типаж `std::ops::Add` используется для указания функциональности `+`.
+// Здесь мы объявим `Add<Bar>` - типаж сложения, со вторым
+// операндом типа `Bar`.
+// Следующий блок реализует операцию: Foo + Bar = FooBar
 impl ops::Add<Bar> for Foo {
     type Output = FooBar;
 
     fn add(self, _rhs: Bar) -> FooBar {
-        println!("> Foo.add(Bar) was called");
+        println!("> Вызвали Foo.add(Bar)");
 
         FooBar
     }
 }
 
-// By reversing the types, we end up implementing non-commutative addition.
-// Here, we make `Add<Foo>` - the trait for addition with a RHS of type `Foo`.
-// This block implements the operation: Bar + Foo = BarFoo
+// Если мы поменяем местами типы, то получим реализацию некоммутативного сложения.
+// Здесь мы объявим `Add<Foo>` - типаж сложения, со вторым
+// операндом типа `Foo`.
+// Этот блок реализует операцию: Bar + Foo = BarFoo
 impl ops::Add<Foo> for Bar {
     type Output = BarFoo;
 
     fn add(self, _rhs: Foo) -> BarFoo {
-        println!("> Bar.add(Foo) was called");
+        println!("> Вызвали Bar.add(Foo)");
 
         BarFoo
     }
@@ -52,7 +55,7 @@ fn main() {
 }
 ```
 
-### See Also
+###Смотрите также
 
 [Add][add], [Syntax Index][syntax]
 
