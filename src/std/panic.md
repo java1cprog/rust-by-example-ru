@@ -1,38 +1,39 @@
 # `panic!`
 
-The `panic!` macro can be used to generate a panic and start unwinding
-its stack. While unwinding, the runtime will take care of freeing all the
-resources *owned* by the thread by calling the destructor of all its objects.
+Макрос `panic!` используется для генерации паники и раскрутки стека.
+Во время раскрутки стека, среда выполнения возьмёт на себя всю ответственность по
+освобождению ресурсов, которыми *владеет* текущий поток, вызывая деструкторы
+всех объектов.
 
-Since we are dealing with programs with only one thread, `panic!` will cause the
-program to report the panic message and exit.
+Так как в данном случае мы имеем дело с однопоточной программой, `panic!` заставит
+программу вывести сообщение с ошибкой и завершится.
 
 ```rust,editable,ignore,mdbook-runnable
-// Re-implementation of integer division (/)
+// Реализуем свою версию целочисленного деления (/)
 fn division(dividend: i32, divisor: i32) -> i32 {
     if divisor == 0 {
-        // Division by zero triggers a panic
-        panic!("division by zero");
+       // Деление на ноль вызывает панику
+        panic!("Деление на ноль!");
     } else {
         dividend / divisor
     }
 }
 
-// The `main` task
+// Основной поток `main`
 fn main() {
-    // Heap allocated integer
+    // Целочисленное значение, выделенное в куче
     let _x = Box::new(0i32);
 
-    // This operation will trigger a task failure
+    // Это операция вызовет панику в основном потоке
     division(3, 0);
 
-    println!("This point won't be reached!");
+    println!("Эта часть кода не будет достигнута");
 
-    // `_x` should get destroyed at this point
+    // `_x` должен быть уничтожен в этой точке
 }
 ```
 
-Let's check that `panic!` doesn't leak memory.
+Давайте убедимся, что `panic!` не приводит к утечки памяти.
 
 ```bash
 $ rustc panic.rs && valgrind ./panic
