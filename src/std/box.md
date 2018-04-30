@@ -1,12 +1,12 @@
-# Box, stack and heap
+# Упаковка, стек и куча
 
-All values in Rust are stack allocated by default. Values can be *boxed*
-(allocated in the heap) by creating a `Box<T>`. A box is a smart pointer to a
-heap allocated value of type `T`. When a box goes out of scope, its destructor
-is called, the inner object is destroyed, and the memory in the heap is freed.
+По умолчанию, все значения в Rust располагаются в стеке. Значения можно *упаковать*
+(разместить в куче), создав упаковку `Box<T>`. Упаковка — умный указатель на значение
+типа `T` в куче. Когда упаковка оказывается за пределами области видимости, вызывается
+деструктор, содержащийся в ней объект уничтожается, а память в куче освобождается.
 
-Boxed values can be dereferenced using the `*` operator; this removes one layer
-of indirection. 
+Упакованные значения могут быть разыменованы с помощью операции `*`.
+Эта операция убирает один уровень косвенности.
 
 ```rust,editable
 use std::mem;
@@ -29,47 +29,47 @@ fn origin() -> Point {
 }
 
 fn boxed_origin() -> Box<Point> {
-    // Allocate this point in the heap, and return a pointer to it
+    // Разместить эту точку в куче и вернуть указатель на неё
     Box::new(Point { x: 0.0, y: 0.0 })
 }
 
 fn main() {
-    // (all the type annotations are superfluous)
-    // Stack allocated variables
+    // (все аннотации типа избыточны)
+    // Выделенные на стеке значения
     let point: Point = origin();
     let rectangle: Rectangle = Rectangle {
         p1: origin(),
         p2: Point { x: 3.0, y: 4.0 }
     };
 
-    // Heap allocated rectangle
+    // Выделенный в куче квадрат
     let boxed_rectangle: Box<Rectangle> = Box::new(Rectangle {
         p1: origin(),
         p2: origin()
     });
 
-    // The output of functions can be boxed
+    // Результат функции может быть упакован
     let boxed_point: Box<Point> = Box::new(origin());
 
-    // Double indirection
+    // Два уровня косвенной адресации
     let box_in_a_box: Box<Box<Point>> = Box::new(boxed_origin());
 
-    println!("Point occupies {} bytes in the stack",
+    println!("Point занимает {} байт в стеке",
              mem::size_of_val(&point));
-    println!("Rectangle occupies {} bytes in the stack",
+    println!("Rectangle занимает {} байт в стеке",
              mem::size_of_val(&rectangle));
 
-    // box size = pointer size
-    println!("Boxed point occupies {} bytes in the stack",
+    // размер упаковки = размер указателя
+    println!("Boxed point занимает {} байт в стеке",
              mem::size_of_val(&boxed_point));
-    println!("Boxed rectangle occupies {} bytes in the stack",
+    println!("Boxed rectangle занимает {} байт в стеке",
              mem::size_of_val(&boxed_rectangle));
-    println!("Boxed box occupies {} bytes in the stack",
+    println!("Boxed box занимает {} байт в стеке",
              mem::size_of_val(&box_in_a_box));
 
-    // Copy the data contained in `boxed_point` into `unboxed_point`
+    // Копировать данные, что находятся в `boxed_point`, в `unboxed_point`
     let unboxed_point: Point = *boxed_point;
-    println!("Unboxed point occupies {} bytes in the stack",
+    println!("Unboxed point занимает {} байт в стеке",
              mem::size_of_val(&unboxed_point));
 }
 ```
