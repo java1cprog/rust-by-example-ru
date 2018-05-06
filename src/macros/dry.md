@@ -1,18 +1,18 @@
-# DRY (Don't Repeat Yourself)
+# DRY (Не повторяйся)
 
-Macros allow writing DRY code by factoring out the common parts of functions
-and/or test suites. Here is an example that implements and tests the `+=`, `*=`
-and `-=` operators on `Vec<T>`:
+Макросы позволяют писать DRY код, путём разделения общих частей функций
+и/или набор тестов. Вот пример, который реализует и тестирует операторы
+`+=`, `*=` и `-=` на `Vec<T>`:
 
 ```rust,editable
 use std::ops::{Add, Mul, Sub};
 
 macro_rules! assert_equal_len {
-    // The `tt` (token tree) designator is used for
-    // operators and tokens.
+    // Указатель `tt` (единственное дерево лексем) используют для
+    // операторов и лексем.
     ($a:ident, $b: ident, $func:ident, $op:tt) => (
         assert!($a.len() == $b.len(),
-                "{:?}: dimension mismatch: {:?} {:?} {:?}",
+                "{:?}: несоответствие размеров: {:?} {:?} {:?}",
                 stringify!($func),
                 ($a.len(),),
                 stringify!($op),
@@ -33,7 +33,7 @@ macro_rules! op {
     )
 }
 
-// Implement `add_assign`, `mul_assign`, and `sub_assign` functions.
+// Реализуем функции `add_assign`, `mul_assign`, и `sub_assign`.
 op!(add_assign, Add, +=, add);
 op!(mul_assign, Mul, *=, mul);
 op!(sub_assign, Sub, -=, sub);
@@ -57,7 +57,7 @@ mod test {
         }
     }
 
-    // Test `add_assign`, `mul_assign` and `sub_assign`
+    // Протестируем `add_assign`, `mul_assign` и `sub_assign`
     test!(add_assign, 1u32, 2u32, 3u32);
     test!(mul_assign, 2u32, 3u32, 6u32);
     test!(sub_assign, 3u32, 2u32, 1u32);
