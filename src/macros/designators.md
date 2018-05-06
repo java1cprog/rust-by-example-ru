@@ -29,7 +29,7 @@ macro_rules! print_result {
         // `stringify!` преобразует выражение *как есть* в строку.
         println!("{:?} = {:?}",
                  stringify!($expression),
-                 $expression)
+                 $expression);
     )
 }
 
