@@ -50,7 +50,7 @@ pub fn function() {
 }
 
 fn private_function() {
-    println!("вызывает `my::private_function()`");
+    println!("вызвана `my::private_function()`");
 }
 
 pub fn indirect_access() {
