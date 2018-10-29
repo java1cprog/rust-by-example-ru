@@ -16,7 +16,10 @@
 
 ## Что это за проект?
 
-Это исходный код сайта [Rust by Example][website], переведённый на русский язык! Перевод можно найти по адресу https://rurust.github.io/rust-by-example-ru
+Это исходный код сайта [Rust by Example][website], переведённый на русский язык! Перевод можно найти по адресу 
+https://rurust.github.io/rust-by-example-ru
+
+[website]: https://rurust.github.io/rust-by-example-ru
 
 ## Как помочь проекту?
 
