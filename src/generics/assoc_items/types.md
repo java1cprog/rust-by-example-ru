@@ -41,7 +41,7 @@ trait Contains {
     type A;
     type B;
 
-    fn contains(&self, &Self::A, &Self::B) -> bool;
+    fn contains(&self, number_1: &Self::A, number_2: &Self::B) -> bool;
     fn first(&self) -> i32;
     fn last(&self) -> i32;
 }
