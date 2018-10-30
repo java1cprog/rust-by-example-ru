@@ -7,7 +7,6 @@ borrowed again only *after* the mutable reference goes out of scope.
 
 ```rust,editable
 struct Point { x: i32, y: i32, z: i32 }
-
 fn main() {
     let mut point = Point { x: 0, y: 0, z: 0 };
 
@@ -25,6 +24,21 @@ fn main() {
         // TODO ^ Try uncommenting this line
 
         // Immutable references go out of scope
+
+    }
+
+    {
+        let borrowed_point = &point;
+        let another_borrow = &point;
+
+        // Data can be accessed via the references and the original owner
+        println!("Point has coordinates: ({}, {}, {})",
+                 borrowed_point.x, another_borrow.y, point.z);
+
+        // for Rust edition = "2018" no error will be here because non-lexical lifetimes
+        let mutable_borrow = &mut point;
+        println!("Point has coordinates: ({}, {}, {})",
+                 mutable_borrow.x, mutable_borrow.y, mutable_borrow.z);
     }
 
     {
