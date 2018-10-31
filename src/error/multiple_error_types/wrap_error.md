@@ -4,7 +4,6 @@ An alternative to boxing errors is to wrap them in your own error type.
 
 ```rust,editable
 use std::error;
-use std::num::ParseIntError;
 use std::fmt;
 
 type Result<T> = std::result::Result<T, DoubleError>;
